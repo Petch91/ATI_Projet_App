@@ -1,0 +1,22 @@
+@if (Liste.Count() > 0)
+{
+    <div class="card">
+        <div class="card-body">
+            <QuickGrid Items="@Liste" Pagination="@pagination">
+                <PropertyColumn Align=Align.Center Property="@(p => p.Id)" Sortable="true" />
+                <PropertyColumn Title="Nom" Property="@(p => p.Name)" Sortable="true" Class="name me-2">
+                    <ColumnOptions>
+                        <div class="search-box">
+                            <input type="search" autofocus @bind="nameFilter" @bind:event="oninput" placeholder="Entrez le nom recherché" />
+                        </div>
+                    </ColumnOptions>
+                </PropertyColumn>
+                <PropertyColumn Title="Email" Property="@(p => p.Email)" Sortable="true" class="email" />
+                <PropertyColumn Title="GSM" Property="@(p => p.GSM)" Sortable="true" class="gsm" />
+                <PropertyColumn Property="@(p => p.Fonction)" Sortable="true" class="fonction" />
+            </QuickGrid>
+        </div>
+        <Paginator State="@pagination" />
+    </div>
+
+}

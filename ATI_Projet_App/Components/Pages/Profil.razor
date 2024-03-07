@@ -1,0 +1,11 @@
+﻿@page "/profil"
+
+@if (connectedUser != null)
+{
+    <Perso Utilisateur
+    ="connectedUser"></Perso>
+}
+else
+{
+    <p>Loading...</p>
+}

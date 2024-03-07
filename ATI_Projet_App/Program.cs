@@ -1,5 +1,6 @@
 using ATI_Projet_App.Components;
 using ATI_Projet_App.Tools;
+using ATI_Projet_Tools;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 
 var builder = WebApplication.CreateBuilder(args);

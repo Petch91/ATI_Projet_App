@@ -12,10 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Blazorise" Version="1.4.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="8.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ATI_Projet_Models\ATI_Projet_Models.csproj" />
     <ProjectReference Include="..\ATI_Projet_Tools\ATI_Projet_Tools.csproj" />
   </ItemGroup>
 

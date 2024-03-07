@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Text;
 
-namespace ATI_Projet_App.Tools
+namespace ATI_Projet_Tools
 {
     public class ApiRequester( HttpClient http)
     {

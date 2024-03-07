@@ -4,9 +4,8 @@ namespace ATI_Projet_App.Models.Forms
 {
     public class LoginForm
     {
-        [EmailAddress]
         [Required]
-        public string Email { get; set; }
+        public string Login { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

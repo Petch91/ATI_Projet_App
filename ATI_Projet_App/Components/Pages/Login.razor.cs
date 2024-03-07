@@ -26,7 +26,7 @@ namespace ATI_Projet_App.Components.Pages
         public void Login_()
         {
             string token = "";
-            string jsonToSend = JsonConvert.SerializeObject(Form);
+            string jsonToSend = JsonConvert.SerializeObject(new {login = int.Parse(Form.Login), Password = Form.Password});
             HttpContent content = new StringContent(jsonToSend, Encoding.UTF8, "application/json");
             using (HttpResponseMessage response = http.PostAsync("User/login", content).Result)
             {
@@ -34,26 +34,27 @@ namespace ATI_Projet_App.Components.Pages
                 {
                     token = response.Content.ReadAsStringAsync().Result;
                     session.Token = token;
-                    JwtSecurityToken jwt = new JwtSecurityToken(token);
-                    int id = int.Parse(jwt.Claims.First(x => x.Type == ClaimTypes.Sid).Value);
-                    using (HttpResponseMessage responseGet = http.GetAsync("user/" + id).Result)
-                    {
-                        if (responseGet.IsSuccessStatusCode)
-                        {
-                            string json = responseGet.Content.ReadAsStringAsync().Result;
-                            session.ConnectedUser = JsonConvert.DeserializeObject<User>(json);
-                            StateHasChanged();
-                            navigationManager.NavigateTo("/");
-                        }
-                        else
-                        {
-                            throw new Exception(responseGet.StatusCode.ToString());
-                        }
-                    }
+
                 }
                 else { throw new Exception("Email ou mot de passe invalide"); }
-            }
 
+            }
+            JwtSecurityToken jwt = new JwtSecurityToken(token);
+            int id = int.Parse(jwt.Claims.First(x => x.Type == ClaimTypes.Sid).Value);
+            using (HttpResponseMessage response = http.GetAsync("user/" + id).Result)
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    string json = response.Content.ReadAsStringAsync().Result;
+                    session.ConnectedUser = JsonConvert.DeserializeObject<User>(json);
+                    StateHasChanged();
+                    navigationManager.NavigateTo("/", true);
+                }
+                else
+                {
+                    throw new Exception(response.StatusCode.ToString());
+                }
+            }
         }
     }
 }

@@ -1,21 +1,23 @@
-using ATI_Projet_App.Models;
-using ATI_Projet_App.Tools;
-using Microsoft.AspNetCore.Components;
+
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using Microsoft.AspNetCore.Components;
+using ATI_Projet_App.Models;
+using ATI_Projet_Tools;
+using ATI_Projet_Models;
 
 namespace ATI_Projet_App.Components.Layout
 {
-    public partial class NavMenu
+    public partial class MainLayout
     {
         [Inject]
-        private SessionManager session {  get; set; }
+        private ApiRequester api { get; set; }
 
         [Inject]
         private ProtectedLocalStorage storage { get; set; }
         [Inject]
         private NavigationManager navigationManager { get; set; }
 
-        private User? connectedUser;
+        private Personnel? connectedUser;
 
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -24,15 +26,9 @@ namespace ATI_Projet_App.Components.Layout
             if (firstRender)
             {
                 var result = await storage.GetAsync<User>("ConnectedUser");
-                connectedUser = result.Value;
+                if(result.Value != null) connectedUser = api.Get<Personnel>("personnel/"+ result.Value.IdPerso);
                 StateHasChanged();
             }
-        }
-        private async void Logout()
-        {
-            await session.Logout();
-            StateHasChanged();           
-            navigationManager.NavigateTo("/login",true);
         }
     }
 }
