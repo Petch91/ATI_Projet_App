@@ -14,6 +14,9 @@
                 <PropertyColumn Title="Email" Property="@(p => p.Email)" Sortable="true" class="email" />
                 <PropertyColumn Title="GSM" Property="@(p => p.GSM)" Sortable="true" class="gsm" />
                 <PropertyColumn Property="@(p => p.Fonction)" Sortable="true" class="fonction" />
+                <TemplateColumn Title="Actions" Class="actions">
+                    <button class="voir btn btn-primary btn-sm" @onclick="@(p=> ShowPerso(context.Id))">Voir</button>
+                </TemplateColumn>
             </QuickGrid>
         </div>
         <Paginator State="@pagination" />

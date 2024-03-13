@@ -1,11 +1,13 @@
 ﻿@page "/profil"
 
-@if (connectedUser != null)
-{
-    <Perso Utilisateur
-    ="connectedUser"></Perso>
-}
-else
-{
-    <p>Loading...</p>
-}
+<div class="container">
+    <h1 class="center">Profil:</h1>
+    @if (connectedUser != null)
+    {
+        <Perso Utilisateur="connectedUser"></Perso>
+    }
+    else
+    {
+        <p>Loading...</p>
+    }
+</div>

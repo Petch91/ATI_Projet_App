@@ -1,42 +1,30 @@
-﻿@* @rendermode @(new InteractiveServerRenderMode(prerender: false)) *@
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">ATI Projet</a>
-    </div>
-</div>
+﻿
+@if (connectedUser != null)
+{
+    <nav class="navbar navbar-expand-sm">
+        <div class="container-fluid gap-3">
+            <NavLink class="navbar-brand" href=""><img src="/images//ATI.png" width="30" height="24" class="d-inline-block align-text-top" alt="logo" />ATI Projets</NavLink>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <img src="/images//ATI.png" width="30" height="24" class="d-inline-block align-text-top" alt="logo" />
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Personnel
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><NavLink class="link dropdown-item" href="personnel">Liste</NavLink></li>
+                            <li><NavLink class="link dropdown-item" href="personnel/recherche">Recherche</NavLink></li>
+                        </ul>
+                    </li>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
-
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="personnel" >
-                <span class="bi bi-person-lines-fill" aria-hidden="true"></span> Personnel
-            </NavLink>
-        </div>
-        @if (connectedUser == null)
-        {
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" href="login">
-                    <span class="bi bi-person-fill-add" aria-hidden="true"></span> Login
-                </NavLink>
+                </ul>
+                <div class="d-flex gap-3 align-items-center">
+                    <NavLink class="link" href="profil">@connectedUser.FirstName @connectedUser.LastName</NavLink>
+                    <button class="btn btn-outline-danger" @onclick="Logout">Se Déconnecter</button>
+                </div>
             </div>
-        }
-        else
-        {
-            <div class="nav-item px-3">
-                <NavLink class="nav-link" @onclick="Logout">
-                    <span class="bi bi-emoji-expressionless" aria-hidden="true"></span> Logout
-                </NavLink>
-            </div>
-        }
+        </div>
     </nav>
-</div>
-
-
-
+}

@@ -1,0 +1,16 @@
+﻿@page "/personnel/show/{Id}"
+
+<div class="container">
+    <h3>Utilisateur: </h3>
+
+    @if (Personne != null)
+    {
+        <Perso Utilisateur="Personne"></Perso>
+    }
+    else
+    {
+        <p>Loading...</p>
+    }
+</div>
+
+

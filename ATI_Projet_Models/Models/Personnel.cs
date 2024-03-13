@@ -8,5 +8,6 @@
         public string Email { get; set; }
         public string? GSM { get; set; }
         public string? Fonction { get; set; }
+        public string? Vehicule { get; set; }
     }
 }

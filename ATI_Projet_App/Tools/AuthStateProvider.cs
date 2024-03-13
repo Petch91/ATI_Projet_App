@@ -1,0 +1,45 @@
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+
+namespace ATI_Projet_App.Tools
+{
+    public class AuthStateProvider(ProtectedLocalStorage storage) : AuthenticationStateProvider
+    {
+        private readonly ProtectedLocalStorage _storage = storage;
+        public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+        {
+            List<Claim> claims = new List<Claim>();
+            var result = await _storage.GetAsync<string>("Token");
+            string token = result.Value;
+
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                ClaimsIdentity anonymousUser = new ClaimsIdentity();
+                return await Task.FromResult(new AuthenticationState(new ClaimsPrincipal(anonymousUser)));
+            }
+
+            JwtSecurityToken jwt = new JwtSecurityToken(token);
+            if (jwt.ValidTo < DateTime.Now)
+            {
+                ClaimsIdentity anonymousUser = new ClaimsIdentity();
+                return await Task.FromResult(new AuthenticationState(new ClaimsPrincipal(anonymousUser)));
+            }
+            foreach (Claim claim in jwt.Claims)
+            {
+                claims.Add(claim);
+            }
+
+            ClaimsIdentity currentUser = new ClaimsIdentity(claims, "TestAuthSystem");
+
+
+            return Task.FromResult(new AuthenticationState(new ClaimsPrincipal(currentUser))).Result;
+        }
+        public void NotifyUserChanged()
+        {
+            NotifyAuthenticationStateChanged(GetAuthenticationStateAsync());
+        }
+    }
+}

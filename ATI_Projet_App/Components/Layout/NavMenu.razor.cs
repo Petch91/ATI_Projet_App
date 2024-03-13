@@ -31,8 +31,8 @@ namespace ATI_Projet_App.Components.Layout
         private async void Logout()
         {
             await session.Logout();
-            StateHasChanged();           
-            navigationManager.NavigateTo("/login",true);
+            navigationManager.NavigateTo("https://localhost:7069/logout", true);
+            //navigationManager.NavigateTo("/login",true);
         }
     }
 }

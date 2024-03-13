@@ -12,6 +12,8 @@ namespace ATI_Projet_Components
         private  ApiRequester api {  get; set; }
         [Inject]
         private HttpClient client { get; set; }
+        [Inject]
+        private NavigationManager navigationManager { get; set; }
 
         private string nameFilter;
         private  IQueryable<Personnel> _liste= Enumerable.Empty<Personnel>().AsQueryable();
@@ -27,7 +29,7 @@ namespace ATI_Projet_Components
                                                 }
                                            }
 
-        PaginationState pagination = new PaginationState { ItemsPerPage = 25 };
+        PaginationState pagination = new PaginationState { ItemsPerPage = 20 };
 
         protected async override Task OnInitializedAsync()
         {
@@ -35,6 +37,9 @@ namespace ATI_Projet_Components
            _liste = Temp.AsQueryable();
         }
 
-
+        public void ShowPerso(int id )
+        {
+            navigationManager.NavigateTo("personnel/show/" + id);
+        }
     }
 }
