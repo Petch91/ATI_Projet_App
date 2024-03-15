@@ -1,5 +1,20 @@
-﻿@page "/personnel"
+﻿@page "/Personnel"
+@page "/Personnel/{Id}"
 
-<h3>Liste</h3>
+@if (Personnel != null)
+{
+    <ListGeneric Items="@Personnel" ExcludedCols="ExcluCol" ActivateOffCanvas="true"></ListGeneric>
+    if (person != null)
+    {
+        <Offcanvas @ref="offcanvas"
+        Title="Employé:">
+            <BodyTemplate>
+                <ShowGeneric Item="@person" ExcludedProp="@(new List<string>{"Titre"})"></ShowGeneric>
+            </BodyTemplate>
+            <FooterTemplate>
+                <Button Color="ButtonColor.Primary" @onclick="OnHideOffcanvasClick">Back</Button>
+            </FooterTemplate>
+        </Offcanvas>
+    }
+}
 
-<ListePerso></ListePerso>

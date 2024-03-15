@@ -1,16 +1,15 @@
-﻿@page "/personnel/show/{Id}"
+﻿@page "/Personnel/show/{Id}"
 
-<div class="container">
-    <h3>Utilisateur: </h3>
 
-    @if (Personne != null)
-    {
-        <Perso Utilisateur="Personne"></Perso>
-    }
-    else
-    {
-        <p>Loading...</p>
-    }
-</div>
+<h3>Utilisateur: </h3>
+
+@if (Personne != null)
+{
+    <ShowGeneric Item="@Personne" ExcludedProp="@(new List<string>{"Titre"})"></ShowGeneric>
+}
+else
+{
+    <p>Loading...</p>
+}
 
 

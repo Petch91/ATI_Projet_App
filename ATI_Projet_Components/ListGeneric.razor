@@ -1,0 +1,48 @@
+﻿@using System.ComponentModel
+@using System.Reflection
+@typeparam TItem
+
+@if (Liste.Count() > 0)
+{
+
+    <div class=" m-3 d-flex justify-content-center">
+        <div class="card container p-2 m-3 ">
+            <div class="card-body d-flex justify-content-center">
+                <QuickGrid Items="@Liste" Pagination="@pagination">
+                    @foreach (var p in Liste.ElementType.GetProperties())
+                    {
+                        if(!ExcludedCols.Contains(p.Name))
+                        {
+                            if (p.PropertyType == typeof(string))
+                            {
+                                <PropertyColumn Align="Align.Center"
+                                                Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
+                                                Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))"
+                                                Sortable="true" class="@p.Name.ToLower()">
+                                    <ColumnOptions>
+                                        <div class="search-box">
+                                            <input type="search" autofocus @bind="@filters[$"{p.Name}filter"]" @bind:event="oninput" placeholder="Entrez votre recherche" />
+                                        </div>
+                                    </ColumnOptions>
+                                </PropertyColumn>
+
+                            }
+                            else
+                            {
+                                <PropertyColumn Align="Align.Center"
+                                                Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
+                                                Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))" Sortable="true" class="@p.Name.ToLower()" />
+                            }
+                        }
+
+                    }
+                    <TemplateColumn Title="Actions" Class="actions">
+                        <button class="voir btn btn-primary btn-sm" @onclick="@(p=> Show((int)context.GetType().GetProperty("Id").GetValue(context)))">Voir</button>
+                    </TemplateColumn>
+                </QuickGrid>
+            </div>
+            <Paginator State="@pagination" />
+        </div>
+    </div>
+
+}

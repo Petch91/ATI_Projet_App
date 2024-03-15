@@ -1,4 +1,4 @@
-﻿@page "/personnel/recherche"
+﻿@page "/Personnel/recherche"
 @using Blazorise.Components
 
 <h3>Search</h3>
@@ -8,7 +8,7 @@
             Data="@Liste"
             TextField="@((item)=>item.Name)"
             ValueField="@(item=>item.Id)"
-            DefaultItemText="Recherche"
+            DefaulPersonnelText="Recherche"
             SelectedValueChanged="@(e=>SelectChange(e))"/>
 @if(personne != null)
 {

@@ -15,7 +15,7 @@ namespace ATI_Projet_App.Components.Pages.Personnels
 
         protected async override void OnParametersSet()
         {
-            Personne = await http.GetFromJsonAsync<Personnel>("personnel/"+Id) ?? new Personnel();
+            Personne = await http.GetFromJsonAsync<Personnel>("Personnel/"+Id) ?? new Personnel();
             StateHasChanged();
         }
     }

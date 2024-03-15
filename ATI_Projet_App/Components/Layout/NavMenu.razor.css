@@ -31,3 +31,10 @@ body {
         transition: 0.3s;
         font-size: 1.15rem;
     }
+
+::deep .dropdown-item.active {
+    background-color: #A7A7A9 !important;
+    color: papayawhip !important;
+    transform: none !important;
+}
+::deep .dropdown-toggle{}

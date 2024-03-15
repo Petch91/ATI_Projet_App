@@ -1,22 +1,17 @@
-﻿::deep .quickgrid[theme="default"] thead {
+﻿
+::deep .quickgrid[theme="default"] thead {
     background-color: lightslategray;
 }
 
 ::deep .quickgrid[theme="default"] .col-title {
-
     font-weight: bold;
     text-transform: uppercase;
     font-size: 1.25rem;
     display: flex;
-    justify-content:center;
-
+    justify-content: center;
 }
 
 
-::deep .quickgrid[theme="default"]{
+::deep .quickgrid[theme="default"] {
     --col-gap: 2rem;
 }
-
-    ::deep .quickgrid[theme="default"] .name {
-        color: cadetblue;
-    }

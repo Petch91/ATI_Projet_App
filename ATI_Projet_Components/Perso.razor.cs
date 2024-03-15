@@ -23,7 +23,7 @@ namespace ATI_Projet_Components
 
         public void EditUser()
         {
-            api.Patch<Personnel>(Utilisateur, "personnel/update/" + Utilisateur.Id);
+            api.Patch<Personnel>(Utilisateur, "Personnel/update/" + Utilisateur.Id);
         }
 
 

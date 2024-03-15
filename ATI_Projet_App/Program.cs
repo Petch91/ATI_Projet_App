@@ -20,6 +20,7 @@ builder.Services
     })
     .AddBootstrapProviders()
     .AddFontAwesomeIcons();
+builder.Services.AddBlazorBootstrap();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7214/api/") });
 builder.Services.AddScoped<ProtectedLocalStorage>();

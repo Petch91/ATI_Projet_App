@@ -20,7 +20,7 @@ namespace ATI_Projet_App.Components.Pages.Personnels
 
         protected async override Task OnInitializedAsync()
         {
-            Liste = await client.GetFromJsonAsync<List<Personnel>>("personnel/") ??  new List<Personnel>();
+            Liste = await client.GetFromJsonAsync<List<Personnel>>("Personnel/") ??  new List<Personnel>();
 
         }
          void SelectChange(int id)

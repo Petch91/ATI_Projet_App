@@ -26,7 +26,7 @@ namespace ATI_Projet_App.Components.Layout
             if (firstRender)
             {
                 var result = await storage.GetAsync<User>("ConnectedUser");
-                if(result.Value != null) connectedUser = api.Get<Personnel>("personnel/"+ result.Value.IdExterne);
+                if(result.Value != null) connectedUser = api.Get<Personnel>("Personnel/"+ result.Value.IdExterne);
                 StateHasChanged();
             }
         }

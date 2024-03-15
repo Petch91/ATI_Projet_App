@@ -14,11 +14,19 @@
                             Personnel
                         </a>
                         <ul class="dropdown-menu">
-                            <li><NavLink class="link dropdown-item" href="personnel">Liste</NavLink></li>
-                            <li><NavLink class="link dropdown-item" href="personnel/recherche">Recherche</NavLink></li>
+                            <li><NavLink class="link dropdown-item" href="Personnel">Liste</NavLink></li>
+                            <li><NavLink class="link dropdown-item" href="Personnel/recherche">Recherche</NavLink></li>
                         </ul>
                     </li>
-
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Vehicules
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><NavLink class="link dropdown-item" href="Vehicule">Liste</NavLink></li>
+@*                             <li><NavLink class="link dropdown-item" href="Personnel/recherche">Recherche</NavLink></li> *@
+                        </ul>
+                    </li>
                 </ul>
                 <div class="d-flex gap-3 align-items-center">
                     <NavLink class="link" href="profil">@connectedUser.FirstName @connectedUser.LastName</NavLink>
