@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Newtonsoft.Json.Linq;
+using System.Security.Cryptography;
 
 namespace ATI_Projet_App.Components.Pages
 {
@@ -31,8 +32,18 @@ namespace ATI_Projet_App.Components.Pages
             //return base.OnAfterRenderAsync(firstRender);
             if (firstRender)
             {
-                var vartoken = await storage.GetAsync<string>("Token");
-                string token = vartoken.Value;
+                ProtectedBrowserStorageResult<string> result = new ProtectedBrowserStorageResult<string>();
+                try
+                {
+                    result = await storage.GetAsync<string>("Token");
+                }
+                catch (CryptographicException e)
+                {
+                    await storage.DeleteAsync("Token");
+                    await storage.DeleteAsync("ConnectedUser");
+                    result = await storage.GetAsync<string>("Token");
+                }
+                string token = result.Value;
                 if (token != null)
                 {
                     await sessionManager.Logout();
@@ -40,7 +51,7 @@ namespace ATI_Projet_App.Components.Pages
                 try
                 {
                     //_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", result.Value);
-                    using (HttpResponseMessage response = _client.GetAsync($"https://localhost:7054/api/user/token/{Id}/{HashToken}").Result)
+                    using (HttpResponseMessage response = _client.GetAsync($"http://192.168.122.77:7000/api/user/token/{Id}/{HashToken}").Result)
                     {
                         if (response.IsSuccessStatusCode)
                         {
@@ -52,7 +63,7 @@ namespace ATI_Projet_App.Components.Pages
                                 {
                                     ;
                                     int id = int.Parse(jwt.Claims.First(x => x.Type == ClaimTypes.Sid).Value);
-                                    using (HttpResponseMessage res = _client.GetAsync("https://localhost:7054/api/user/byid/" + id).Result)
+                                    using (HttpResponseMessage res = _client.GetAsync("http://192.168.122.77:7000/api/user/byid/" + id).Result)
                                     {
                                         if (res.IsSuccessStatusCode)
                                         {
@@ -71,7 +82,7 @@ namespace ATI_Projet_App.Components.Pages
                                 else
                                 {
                                     await sessionManager.Logout();
-                                    navigationManager.NavigateTo("https://localhost:7069/logout", true);
+                                    navigationManager.NavigateTo("http://192.168.122.77:7100/logout", true);
                                 }
 
                             }
@@ -87,7 +98,7 @@ namespace ATI_Projet_App.Components.Pages
                 catch (Exception ex)
                 {
                     await sessionManager.Logout();
-                    navigationManager.NavigateTo("https://localhost:7069/logout", true);
+                    navigationManager.NavigateTo("http://192.168.122.77:7100/logout", true);
                 }
 
             }

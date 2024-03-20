@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace ATI_Projet_App.Tools
 {
@@ -12,7 +13,17 @@ namespace ATI_Projet_App.Tools
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
             List<Claim> claims = new List<Claim>();
-            var result = await _storage.GetAsync<string>("Token");
+            ProtectedBrowserStorageResult<string> result = new ProtectedBrowserStorageResult<string>();
+            try
+            {
+                result = await _storage.GetAsync<string>("Token");
+            }
+            catch (CryptographicException e)
+            {
+                await _storage.DeleteAsync("Token");
+                await _storage.DeleteAsync("ConnectedUser");
+                result = await _storage.GetAsync<string>("Token");
+            }
             string token = result.Value;
 
             if (string.IsNullOrWhiteSpace(token))

@@ -5,7 +5,8 @@
 @if (Liste.Count() > 0)
 {
 
-    <div class=" m-3 d-flex justify-content-center">
+    <div class=" m-3 d-flex flex-column align-items-center">
+        <h1>Liste @(Liste.ElementType.GetCustomAttribute<DisplayNameAttribute>() == null ? Liste.ElementType.Name : Liste.ElementType.GetCustomAttribute<DisplayNameAttribute>().DisplayName)</h1>
         <div class="card container p-2 m-3 ">
             <div class="card-body d-flex justify-content-center">
                 <QuickGrid Items="@Liste" Pagination="@pagination">

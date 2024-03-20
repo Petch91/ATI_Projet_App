@@ -37,4 +37,12 @@ body {
     color: papayawhip !important;
     transform: none !important;
 }
-::deep .dropdown-toggle{}
+::deep .dropdown-toggle:hover {
+    color: antiquewhite;
+}
+
+::deep .dropdown-toggle.show {
+    color: darkblue;
+    background-color: antiquewhite;
+    border-radius: 10px;
+}

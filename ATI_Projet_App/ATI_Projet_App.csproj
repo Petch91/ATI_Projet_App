@@ -19,8 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ATI_Projet_Components\ATI_Projet_Components.csproj" />
-    <ProjectReference Include="..\ATI_Projet_Models\ATI_Projet_Models.csproj" />
-    <ProjectReference Include="..\ATI_Projet_Tools\ATI_Projet_Tools.csproj" />
   </ItemGroup>
 
 </Project>

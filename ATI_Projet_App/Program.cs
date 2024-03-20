@@ -22,11 +22,13 @@ builder.Services
     .AddFontAwesomeIcons();
 builder.Services.AddBlazorBootstrap();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7214/api/") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://192.168.122.77:7001/api/") });
 builder.Services.AddScoped<ProtectedLocalStorage>();
 builder.Services.AddScoped<SessionManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 builder.Services.AddScoped<ApiRequester>();
+
+builder.Services.AddServerSideBlazor().AddCircuitOptions(option => { option.DetailedErrors = true; });
 
 var app = builder.Build();
 

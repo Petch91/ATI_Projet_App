@@ -47,7 +47,7 @@ namespace ATI_Projet_Components
             }
         }
 
-        PaginationState pagination = new PaginationState { ItemsPerPage = 20 };
+        PaginationState pagination = new PaginationState { ItemsPerPage = 15 };
 
         protected override void OnParametersSet()
         {
