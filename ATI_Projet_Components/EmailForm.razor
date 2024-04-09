@@ -1,0 +1,22 @@
+﻿
+@if (Email != null)
+{
+    <EditForm @ref="EditForm" class="container d-flex flex-column" Model="Email" OnValidSubmit="IsValided" OnInvalidSubmit="IsNotValided">
+        
+            <DataAnnotationsValidator></DataAnnotationsValidator>
+            <label>Description: </label>
+            <InputText class="w-75" @bind-Value="Email.Description" @onblur="Submit" @onkeyup="Changed" ></InputText>
+            <label>Email: </label>
+        <div class="d-flex ">
+            <InputText class="w-75" @bind-Value="Email.email" @onblur="Submit" @onkeyup="Changed"></InputText>
+            @if (IsValid)
+            {
+                <Button Color="ButtonColor.Success" Size="Size.Small" @onclick="GoEdit">
+                    <Icon Name="IconName.Archive"></Icon>
+                </Button>
+            }
+        </div>
+        <ValidationSummary></ValidationSummary>
+    </EditForm>
+
+}

@@ -1,0 +1,23 @@
+﻿<div class="adresse gap-3 border rounded p-2 m-1 position-relative w-75">
+    <h5>Adresse: </h5>
+    <EditForm class="d-flex flex-column gap-2" Model="adress" OnValidSubmit="EditAdresse">
+        <div class="w-100">
+            <label>Adresse:</label>
+            <InputText class="w-75" @bind-Value="adress.adresse"></InputText>
+        </div>
+        <div>
+            <label>Code Postal:</label>
+            <InputNumber @bind-Value="adress.CodePostal"></InputNumber>
+            <label>Localite</label>
+            <InputText @bind-Value="adress.Localite"></InputText>
+        </div>
+        <div class="w-100">
+            <label>Pays:</label>
+            <InputText class="w-75" @bind-Value="adress.Pays"></InputText>
+        </div>
+        <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2 btn-sm">Sauver Adresse</button>
+    </EditForm>
+</div>
+
+
+

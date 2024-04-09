@@ -59,7 +59,7 @@ namespace ATI_Projet_App.Components.Pages
                             if (token != null)
                             {
                                 JwtSecurityToken jwt = new JwtSecurityToken(token);
-                                if (jwt.ValidTo >= DateTime.Now)
+                                if (jwt.ValidTo >= DateTime.UtcNow)
                                 {
                                     ;
                                     int id = int.Parse(jwt.Claims.First(x => x.Type == ClaimTypes.Sid).Value);

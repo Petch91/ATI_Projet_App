@@ -1,0 +1,21 @@
+﻿@if (Telephone != null)
+{
+    <EditForm @ref="EditForm" class="container d-flex flex-column" Model="Telephone" OnValidSubmit="IsValided" OnInvalidSubmit="IsNotValided">
+
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <label>Description: </label>
+        <InputText class="w-75" @bind-Value="Telephone.Description" @onblur="Submit" @onkeyup="Changed"></InputText>
+        <label>Telephone: </label>
+        <div class="d-flex ">
+            <InputText class="w-75" @bind-Value="Telephone.Numero" @onblur="Submit" @onkeyup="Changed"></InputText>
+            @if (IsValid)
+            {
+                <Button Color="ButtonColor.Success" Size="Size.Small" @onclick="GoEdit">
+                    <Icon Name="IconName.Archive"></Icon>
+                </Button>
+            }
+        </div>
+        <ValidationSummary></ValidationSummary>
+    </EditForm>
+
+}

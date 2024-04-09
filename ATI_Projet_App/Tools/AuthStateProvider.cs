@@ -33,7 +33,7 @@ namespace ATI_Projet_App.Tools
             }
 
             JwtSecurityToken jwt = new JwtSecurityToken(token);
-            if (jwt.ValidTo < DateTime.Now)
+            if (jwt.ValidTo < DateTime.UtcNow)
             {
                 await _storage.DeleteAsync("Token");
                 await _storage.DeleteAsync("ConnectedUser");

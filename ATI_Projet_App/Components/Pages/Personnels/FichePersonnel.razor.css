@@ -1,0 +1,31 @@
+﻿body {
+}
+
+::deep .initiales{
+    width: 50px;
+}
+
+::deep .group_S{
+    width: 50px;
+}
+
+::deep .cprofil {
+    min-height: 350px !important;
+}
+
+::deep .parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+}
+
+::deep .div1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+::deep .div2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+

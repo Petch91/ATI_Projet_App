@@ -1,0 +1,25 @@
+﻿<div class="prof gap-3 border rounded p-2 m-3 position-relative w-50">
+    <h3>Infos Professionnelles: </h3>
+
+    <EditForm class="parent" Model="EmployeProf" OnValidSubmit="EditProf">
+        <div class="div1">
+            <div class="d-flex flex-column">
+                <label>Safety Book:</label>
+                <InputText @bind-Value="EmployeProf.SafetyBook"></InputText>
+                <label>Coût: </label>
+                <InputNumber @bind-Value="EmployeProf.Cout"></InputNumber>
+
+            </div>
+        </div>
+        <div class="div2">
+            <div class="d-flex flex-column">
+                <label>Date SafetyBook: </label>
+                <InputDate @bind-Value="EmployeProf.DateSafetyBook"></InputDate>
+                <label>Badge: </label>
+                <InputText class="w-50"  @bind-Value="EmployeProf.Badge"></InputText>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">Sauver Infos</button>
+    </EditForm>
+
+</div>

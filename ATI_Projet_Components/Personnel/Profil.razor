@@ -1,0 +1,178 @@
+﻿@using ATI_Projet_Models
+@using ATI_Projet_Models.Types
+@using ATI_Projet_Models.VCA
+
+@if (fonctions != null && telephones != null && departements != null)
+{
+    <div class="d-flex m-1 p-2 profil">
+
+        <div class="cprofil gap-3 border rounded p-2 m-2 position-relative">
+            <h4>Profil:</h4>
+            <EditForm class="d-flex flex-column gap-2" Model="EmployeProfil" OnValidSubmit="Edit">
+
+                @*                 <DataAnnotationsValidator></DataAnnotationsValidator> *@
+
+                <div class="d-flex gap-2">
+                    <div class="status">
+                        <span>Actif: <InputCheckbox @bind-Value="EmployeProfil.Actif"></InputCheckbox></span>
+                        <InputRadioGroup id="groupstatus" @bind-Value="EmployeProfil.Status">
+                            Ouvrier <InputRadio Value="false"></InputRadio>
+                            Employé <InputRadio Value="true"></InputRadio>
+                        </InputRadioGroup>
+                    </div>
+
+                    <label>Group_S: </label>
+                    <InputNumber class="group_S" @bind-Value="EmployeProfil.Group_S"></InputNumber>
+                    <label>Date d'entrée</label>
+                    <InputDate @bind-Value="EmployeProfil.DateEntree"></InputDate>
+                    @if (!EmployeProfil.Actif)
+                    {
+                        <label>Date de sortie</label>
+                        <InputDate @bind-Value="EmployeProfil.DateSortie"></InputDate>
+                    }
+                </div>
+
+                <div>
+                    <label>Titre</label>
+                    <InputSelect class="titre" @bind-Value="EmployeProfil.Titre">
+                        @foreach (string choix in ChoixTitre)
+                        {
+
+                            <option value="@choix">@choix</option>
+                        }
+                    </InputSelect>
+                    <label>Nom</label>
+                    <InputText @bind-Value="EmployeProfil.Nom"></InputText>
+                    <label>Prénom</label>
+                    <InputText @bind-Value="EmployeProfil.Prenom"></InputText>
+                    <label>Initiales</label>
+                    <InputText class="initiales" @bind-Value="EmployeProfil.Initiales"></InputText>
+                </div>
+
+                <div>
+                    <label>Département</label>
+                    <InputSelect @bind-Value="EmployeProfil.DepartementId">
+                        @foreach (DeptSimplifiedList choix in departements)
+                        {
+                            <option value="@choix.Id">@($"{choix.Id}    {choix.Designation}")</option>
+                        }
+                    </InputSelect>
+                    <label>Fonction</label>
+                    <InputSelect @bind-Value="EmployeProfil.FonctionId">
+                        @foreach (Fonction choix in fonctions)
+                        {
+                            <option value="@choix.Id">@choix.Designation</option>
+                        }
+                    </InputSelect>
+                </div>
+                <div>
+                    <label>Fonction VCA</label>
+                    <InputSelect @bind-Value="EmployeProfil.IdFonctionVCA">
+                        @foreach (FonctionVCA choix in fonctionsVCA)
+                        {
+                            <option value="@choix.Id">@($"{choix.Id}    {choix.Designation}")</option>
+                        }
+                    </InputSelect>
+                    <label>Status VCA</label>
+                    <InputSelect @bind-Value="EmployeProfil.CodeStatusVCA">
+                        @foreach (StatusVCA choix in statusVCA)
+                        {
+                            <option value="@choix.Code">@choix.Code @choix.Libelle</option>
+                        }
+                    </InputSelect>
+                </div>
+                <div>
+                    <label>Contrat de travail</label>
+                    <InputSelect @bind-Value="EmployeProfil.CodeTypeContrat">
+                        @foreach (TypeContrat choix in TypesContrat)
+                        {
+                            <option value="@choix.Code">@($"{choix.Code}    {choix.Libelle}")</option>
+                        }
+                    </InputSelect>
+                    <label>Type Main d'oeuvre</label>
+                    <InputSelect @bind-Value="EmployeProfil.CodeTypeMO">
+                        @foreach (TypeMO choix in TypesMO)
+                        {
+                            <option value="@choix.Code">@choix.Code @choix.Libelle</option>
+                        }
+                    </InputSelect>
+                    <label>Gestion Stock</label>
+                    <InputSelect @bind-Value="EmployeProfil.GestionStock">
+                        @foreach (var choix in Enum.GetValues(typeof(GestionStock)))
+                        {
+                            <option value="@((int)choix)">@((int)choix) @(Enum.GetName(typeof(GestionStock), choix))</option>
+                        }
+                    </InputSelect>
+                </div>
+                <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">Sauver Profil</button>
+            </EditForm>
+
+        </div>
+        <div class="d-flex border rounded m-2 p-2 position-relative">
+            <div class="container d-flex flex-column m-1">
+                @if (emails.Count() > 0)
+                {
+                    <h4>Adresse Mail:</h4>
+                    int i = 1;
+                    foreach (Email e in emails)
+                    {
+                        <label for="@("email"+i)">@e.Description :  </label>
+                        <p id="@("email"+i)">@e.email</p>
+                    }
+
+                }
+            </div>
+            <div class=" container d-flex flex-column m-1">
+                @if (telephones.Count() > 0)
+                {
+                    <h4>Telephones:</h4>
+                    int i = 1;
+                    foreach (Telephone t in telephones)
+                    {
+                        <label for="@("telephone"+i)">@t.Description :  </label>
+                        <p id="@("telephone"+i)">@t.Numero</p>
+                    }
+
+                }
+            </div>
+            <button class="btn btn-primary position-absolute bottom-0 end-0 m-2" @onclick="OpenCanvas">Edit</button>
+        </div>
+
+    </div>
+    <Offcanvas @ref="offcanvas"
+               Title="Edit emails et téléphones:">
+        <BodyTemplate>
+            @if (tempEmails != null && tempEmails.Count() > 0 )
+            {
+                <h4>Adresse Mail:</h4>
+
+                @foreach (Email email in tempEmails)
+                {
+                    <EmailForm Email="email" GoEditMail="EditMail"></EmailForm>
+                }
+@*                 <ValidationSummary></ValidationSummary> *@
+                <div class="d-flex">
+                    <button type="button" class="btn btn-primary" @onclick="@(() => AddMail(EmployeProfil.PersonneId))">Ajouter Email</button>
+                </div>
+            }
+            @if (tempTelephones != null && tempTelephones.Count() > 0)
+            {
+                <h4>Telephones:</h4>
+
+                    @foreach (Telephone telephone in tempTelephones)
+                    {
+                        <TelephoneForm Telephone="telephone" GoEditTelephone="EditTelephone"></TelephoneForm>
+                    }
+                    <div class="d-flex">
+                        <button type="button" class="btn btn-primary" @onclick="@(() => AddNumber(EmployeProfil.PersonneId))">Ajouter Numéro</button>
+                    </div>
+
+
+            }
+        </BodyTemplate>
+        <FooterTemplate>
+            <Button Type="ButtonType.Button" Color="ButtonColor.Secondary" @onclick="OnHideOffcanvasClick">Back</Button>
+        </FooterTemplate>
+    </Offcanvas>
+
+}

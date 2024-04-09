@@ -10,14 +10,14 @@ namespace ATI_Projet_App.Components.Layout
     public partial class MainLayout
     {
         [Inject]
-        private ApiRequester api { get; set; }
+        private HttpClient httpClient { get; set; }
 
         [Inject]
         private ProtectedLocalStorage storage { get; set; }
         [Inject]
         private NavigationManager navigationManager { get; set; }
 
-        private Personnel? connectedUser;
+        private EmployeProfil? connectedUser;
 
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -26,7 +26,7 @@ namespace ATI_Projet_App.Components.Layout
             if (firstRender)
             {
                 var result = await storage.GetAsync<User>("ConnectedUser");
-                if(result.Value != null) connectedUser = api.Get<Personnel>("Personnel/"+ result.Value.IdExterne);
+                if(result.Value != null) connectedUser = await httpClient.GetFromJsonAsync<EmployeProfil>("Employe/Profil/"+ result.Value.IdExterne);
                 StateHasChanged();
             }
         }

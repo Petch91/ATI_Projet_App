@@ -1,0 +1,33 @@
+﻿@if (EmployeProfil != null)
+{
+    <Profil EmployeProfil="EmployeProfil"></Profil>
+
+}
+<div>
+    <Button Color="ButtonColor.Primary" Active="@(choix == 0)" Size="Size.Small" @onclick=@(() => choisir(0))>Infos Privé</Button>
+    <Button Color="ButtonColor.Primary" Active="@(choix == 1)" Size="Size.Small" @onclick=@(() => choisir(1))>Infos Professionnelles</Button>
+</div>
+
+@{
+    switch (choix)
+    {
+        case 0:
+            {
+                if (EmployePrivate != null)
+                {
+                    <InfoPriv EmployePrivate="@EmployePrivate"></InfoPriv>
+                }
+                break;
+            }
+        case 1:
+            {
+                if (EmployeProf != null)
+                {
+                    <InfoProf EmployeProf="@EmployeProf"></InfoProf>
+                }
+                break;
+            }
+    }
+}
+
+

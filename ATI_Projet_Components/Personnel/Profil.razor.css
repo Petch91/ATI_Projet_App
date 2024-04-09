@@ -1,0 +1,31 @@
+﻿body {
+}
+@media (max-width: 1000px) 
+{
+    .profil{
+        flex-direction: column;
+        gap: 2rem;
+
+    }
+    .cprofil{
+        width:auto !important;
+        margin: 1rem;
+    }
+}
+
+::deep .status{
+    border: 2px double black;
+    padding-left:2px;
+    padding-right: 2px;
+}
+
+::deep #groupstatus {
+    border: 1px solid black;
+}
+::deep .group_S {
+    width: 50px;
+}
+
+::deep .profil{
+    min-height: 300px !important;
+}
