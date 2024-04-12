@@ -1,0 +1,88 @@
+﻿@using System.ComponentModel
+@using System.Reflection
+@typeparam TItem
+
+@if (Liste.Count() > 0)
+{
+
+    @if (Liste.Count() > pagination.ItemsPerPage)
+    {
+
+        <QuickGrid  Items="@Liste" Pagination="@pagination">
+            @foreach (var p in Liste.ElementType.GetProperties())
+            {
+                if (!ExcludedCols.Contains(p.Name))
+                {
+                    if (p.PropertyType == typeof(string))
+                    {
+                        <PropertyColumn Align="Align.Center"
+                                        Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
+                                        Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))"
+                                        Sortable="true" class="@p.Name.ToLower()">
+                            <ColumnOptions>
+                                <div class="search-box">
+                                    <input type="search" autofocus @bind="@filters[$"{p.Name}filter"]" @bind:event="oninput" placeholder="Entrez votre recherche" />
+                                </div>
+                            </ColumnOptions>
+                        </PropertyColumn>
+
+                    }
+                    else
+                    {
+                        <PropertyColumn Align="Align.Center"
+                                        Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
+                                        Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))" Sortable="true" class="@p.Name.ToLower()" />
+                    }
+                }
+
+            }
+            <TemplateColumn Class="actions" Align="Align.Center">
+                <Button Color="ButtonColor.Warning" Size="Size.ExtraSmall" @onclick="@(() =>Edit((int)context.GetType().GetProperty("Id").GetValue(context)))"><Icon Name="IconName.PencilSquare"></Icon></Button>
+                <Button Color="ButtonColor.Danger" Size="Size.ExtraSmall" @onclick="@(() =>Delete((int)context.GetType().GetProperty("Id").GetValue(context)))"><Icon Name="IconName.XLg"></Icon></Button>
+            </TemplateColumn>
+        </QuickGrid>
+
+        <Paginator State="@pagination" />
+    }
+    else
+    {
+
+
+        <QuickGrid Items="@Liste">
+            @foreach (var p in Liste.ElementType.GetProperties())
+            {
+                if (!ExcludedCols.Contains(p.Name))
+                {
+                    if (p.PropertyType == typeof(string))
+                    {
+                        <PropertyColumn Align="Align.Center"
+                                        Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
+                                        Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))"
+                                        Sortable="true" class="@p.Name.ToLower()">
+                            <ColumnOptions>
+                                <div class="search-box">
+                                    <input type="search" autofocus @bind="@filters[$"{p.Name}filter"]" @bind:event="oninput" placeholder="Entrez votre recherche" />
+                                </div>
+                            </ColumnOptions>
+                        </PropertyColumn>
+
+                    }
+                    else
+                    {
+                        <PropertyColumn Align="Align.Center"
+                                        Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
+                                        Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))" Sortable="true" class="@p.Name.ToLower()" />
+                    }
+                }
+
+            }
+            <TemplateColumn Class="actions">
+                <Button Color="ButtonColor.Warning" Size="Size.ExtraSmall" @onclick="@(() =>Edit((int)context.GetType().GetProperty("Id").GetValue(context)))"><Icon Name="IconName.PencilSquare"></Icon></Button>
+                <Button Color="ButtonColor.Danger" Size="Size.ExtraSmall" @onclick="@(() =>Delete((int)context.GetType().GetProperty("Id").GetValue(context)))"><Icon Name="IconName.XLg"></Icon></Button>
+
+            </TemplateColumn>
+        </QuickGrid>
+    }
+
+
+}

@@ -2,22 +2,6 @@
 @using ATI_Projet_Components.Personnel
 
 
-<div class="m-3">
-    <SelectList TItem="EmployeList"
-                TValue="int"
-                Data="@Liste"
-                TextField="@(item => (item.Id + ": " +item.Prenom + " " + item.Nom.ToUpper()))"
-                ValueField="@(item => item.Id)"
-                DefaulPersonnelText="Recherche"
-                SelectedValueChanged="@(e=>SelectChange(e))" />
-    <div>
-        @if (Id >= 54)
-        {
-            <Fiche Id="@(Id.ToString())"></Fiche>
-        }
-    </div>
-    <div class="buttonsNav">
-
-    </div>
-
+<div>
+    <Fiche></Fiche>
 </div>

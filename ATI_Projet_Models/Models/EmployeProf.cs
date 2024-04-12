@@ -13,7 +13,7 @@ namespace ATI_Projet_Models
         [DisplayName("Coût")]
         public int? Cout { get; set; }
         public string? SafetyBook { get; set; }
-        public DateTime? DateSafetyBook { get; set; }
+        public DateTime DateSafetyBook { get; set; }
         public string? Badge { get; set; }
     }
 }

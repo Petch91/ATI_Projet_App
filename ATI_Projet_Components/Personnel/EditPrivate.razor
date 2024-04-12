@@ -1,0 +1,34 @@
+﻿<div class="d-flex gap-3">
+    @if (Adresse != null)
+    {
+        <AdresseComponent Pays="Pays" adress="Adresse"></AdresseComponent>
+    }
+</div>
+<EditForm class="parent" Model="EmployePrivate" OnValidSubmit="EditEmployePrivate">
+    <DataAnnotationsValidator></DataAnnotationsValidator>
+    <div class="div1">
+        <div class="d-flex flex-column">
+            <label>Date de Naissance:</label>
+            <InputDate @bind-Value="EmployePrivate.DateNaissance"></InputDate>
+            <label>IBAN:</label>
+            <InputText @bind-Value="EmployePrivate.IBAN"></InputText>
+            <label>Numéro National: </label>
+            <InputText @bind-Value="EmployePrivate.NumeroNational"></InputText>
+
+        </div>
+    </div>
+    <div class="div2">
+        <div class="d-flex flex-column">
+            <label>Langue: </label>
+            <InputText @bind-Value="EmployePrivate.Langue"></InputText>
+            <label>Nationalité: </label>
+            <InputText @bind-Value="EmployePrivate.Nationalite"></InputText>
+            <label>Permis: </label>
+            <InputText class="w-25" @bind-Value="EmployePrivate.Permis"></InputText>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">Sauver</button>
+</EditForm>
+
+
+

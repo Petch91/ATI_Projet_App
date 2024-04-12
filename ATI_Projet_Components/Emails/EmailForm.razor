@@ -1,0 +1,34 @@
+﻿@if (Email != null)
+{
+    <EditForm class="container d-flex flex-column position-relative" Model="Email" OnValidSubmit="IsValided">
+
+        <DataAnnotationsValidator></DataAnnotationsValidator>
+        <label>Description: </label>
+        <InputSelect class="w-50" @bind-Value="Email.Description" d>
+            @if (!string.IsNullOrEmpty(Email.Description) && !descriptions.Contains(Email.Description))
+            {
+                <option value="@Email.Description" selected>@Email.Description</option>
+            }
+            @foreach (string choix in descriptions)
+            {
+                @if ((string.IsNullOrEmpty(Email.Description) && descriptions.IndexOf(choix) == 0 )||( descriptions.Contains(Email.Description) && Email.Description == choix))
+                {
+                    <option value="@choix" selected>@choix</option>
+                    @(Email.Description = choix)
+                }
+                else
+                {
+                    <option value="@choix">@choix</option>
+                }
+
+        }
+        </InputSelect>
+        <label>Email: </label>
+        <InputText class="w-75" @bind-Value="Email.email"></InputText>
+        <Button Class="position-absolute bottom-0 end-0" Size="Size.Small" Type="ButtonType.Submit" Color="ButtonColor.Success">
+            <Icon Name="IconName.CheckCircle"></Icon>
+        </Button>
+        <ValidationSummary></ValidationSummary>
+    </EditForm>
+
+}

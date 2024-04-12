@@ -6,6 +6,7 @@ using BlazorBootstrap;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Components.Web;
 using System.Net.Http.Json;
 
 namespace ATI_Projet_Components.Personnel
@@ -24,7 +25,9 @@ namespace ATI_Projet_Components.Personnel
         private HttpClient httpClient { get; set; } =default!;
         [Parameter]
         public EmployeProfil EmployeProfil { get; set; }
-        private List<string> ChoixTitre = new List<string> { "", "M.", "Mme", "X." };
+        [Parameter]
+        public EventCallback<EmployeProfil> ProfilChanged { get; set; }
+
 
         private IEnumerable<Fonction> fonctions;
         private IEnumerable<FonctionVCA> fonctionsVCA;
@@ -34,12 +37,7 @@ namespace ATI_Projet_Components.Personnel
         private IEnumerable<DeptSimplifiedList> departements;
 
 
-        private List<Email> emails;
-        private List<Telephone> telephones;
-        private List<Email> tempEmails;
-        private List<Telephone> tempTelephones;
 
-        private Offcanvas offcanvas = default!;
 
         protected async override Task OnInitializedAsync()
         {
@@ -57,66 +55,30 @@ namespace ATI_Projet_Components.Personnel
             departements = await httpClient.GetFromJsonAsync<IEnumerable<DeptSimplifiedList>>("departement/simplifiedList");
         }
 
-        protected async override Task OnParametersSetAsync()
-        {
-            emails = new List<Email>();
-            telephones = new List<Telephone>();
-            if (EmployeProfil != null)
-            {               
-                emails = await httpClient.GetFromJsonAsync<List<Email>>("Employe/emailsByEmploye/" + EmployeProfil.PersonneId);
 
-                telephones = await httpClient.GetFromJsonAsync<List<Telephone>>("Employe/telephonesByEmploye/" + EmployeProfil.PersonneId);
-            }
-        }
-
-        public void Edit()
+        public void Edit(EmployeProfil employeProfil)
         {
-            httpClient.PatchAsJsonAsync<EmployeProfil>("Employe/updateProfil", EmployeProfil);
-        }
-        public async void OpenCanvas()
-        {
-            tempEmails = new List<Email>();
-            foreach (Email email in emails)
-            {
-                tempEmails.Add(new Email(email));
-            }
-
-            tempTelephones = new List<Telephone>();
-            foreach (Telephone telephone in telephones)
-            {
-                tempTelephones.Add(new Telephone(telephone));
-            }
-            await offcanvas.ShowAsync();
-        }
-        public async void OnHideOffcanvasClick()
-        {
-            await offcanvas.HideAsync();
-        }
-        public void EditMail(Email email)
-        {
-            int index = emails.IndexOf(emails.First(e => e.Id == email.Id));
-            emails[index] = email;
-            httpClient.PutAsJsonAsync<Email>("Employe/updateEmail", email);
-            StateHasChanged();
-
-        }
-        public void EditTelephone(Telephone telephone)
-        {
-            int index = telephones.IndexOf(telephones.First(e => e.Id == telephone.Id));
-            telephones[index] = telephone;
-            httpClient.PutAsJsonAsync<Telephone>("Employe/updateTelephone", telephone);
+            EmployeProfil = employeProfil;
+            httpClient.PatchAsJsonAsync<EmployeProfil>("Employe/updateProfil", employeProfil);
+            modal.HideAsync();
+            ProfilChanged.InvokeAsync(EmployeProfil);
             StateHasChanged();
         }
+        private Modal modal = default!;
 
-        public void AddNumber(int id)
+        private async Task ShowEditProfil()
         {
-            tempTelephones.Add(new Telephone { PersonneId = id });
-            StateHasChanged();
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("EmployeProfil", EmployeProfil.Clone());
+            parameters.Add("fonctions", fonctions);
+            parameters.Add("fonctionsVCA", fonctionsVCA);
+            parameters.Add("statusVCA", statusVCA);
+            parameters.Add("TypesMO", TypesMO);
+            parameters.Add("TypesContrat", TypesContrat);
+            parameters.Add("departements", departements);
+            parameters.Add("EditProfilEvent", EventCallback.Factory.Create<EmployeProfil>(this, Edit));
+            await modal.ShowAsync<EditProfil>(title: "Edition du Profil", parameters: parameters);
         }
-        public void AddMail(int id)
-        {
-            tempEmails.Add(new Email { PersonneId = id });
-            StateHasChanged();
-        }
+
     }
 }

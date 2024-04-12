@@ -1,17 +1,6 @@
 ﻿body {
 }
-@media (max-width: 1000px) 
-{
-    .profil{
-        flex-direction: column;
-        gap: 2rem;
 
-    }
-    .cprofil{
-        width:auto !important;
-        margin: 1rem;
-    }
-}
 
 ::deep .status{
     border: 2px double black;
@@ -26,6 +15,6 @@
     width: 50px;
 }
 
-::deep .profil{
+/*::deep .profil{
     min-height: 300px !important;
-}
+}*/

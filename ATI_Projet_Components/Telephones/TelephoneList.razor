@@ -1,0 +1,9 @@
+﻿<div class="p-2 m-1 position-relative">
+    @if (telephones.Count() > 0)
+    {
+        <h5 class="mx-1">Telephones</h5>
+        <ListGenericEdit Items="telephones" ExcludedCols="@(new List<string>{"Id", "PersonneId" , "SocieteId"})" DeleteEvent="Delete" EditEvent="ShowEdit" />
+        <Button Class="mx-2 position-absolute top-0 end-0" Color="ButtonColor.Secondary" Size="Size.Small" @onclick="ShowCreateTelephone">Ajouter telephone</Button>
+        <Modal @ref="modal"></Modal>
+    }
+</div>

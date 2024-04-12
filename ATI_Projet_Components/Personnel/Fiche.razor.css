@@ -1,6 +1,21 @@
-﻿body {
+﻿body
+{
 }
 
+@media (max-width: 1000px) {
+
+    .contacts {
+        display: none !important;
+    }
+
+}
+::deep p{
+    margin-bottom: 5px;
+}
+
+::deep .cprofil{
+    width: 100%;
+}
 ::deep .initiales {
     width: 50px;
 }
@@ -56,14 +71,8 @@
     position: relative !important;
     transition: 0.3s;
 }
-::deep .photo:hover{
-    transition: 0.3s;
-    opacity: 0.4 !important;
-    /*z-index: 0 !important;*/
-}
 
-::deep .image{
-    background-color : dimgrey !important;
-    color: white;
-    font-size: 1rem
-}
+    ::deep .photo:hover {
+        transition: 0.3s;
+        opacity: 0.5 !important;
+    }

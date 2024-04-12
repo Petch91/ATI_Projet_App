@@ -1,40 +1,44 @@
-<div class="private gap-3 border rounded p-2 m-3 position-relative w-50">
-    <h3>Infos Privée: </h3>
-    <div class="d-flex gap-3">
-        @if (Adresse != null)
-        {
-            <AdresseComponent adress="Adresse" GoEditAdresse="EditAdresse"></AdresseComponent>
-        }
-        <div class="d-flex flex-column">
-            <h6>Photo: </h6>
-            <img src="@EmployePrivate.Photo" alt="photo" />
-            <h6>Signature: </h6>
-            <img src="@EmployePrivate.Signature" alt="Signature" />
+<div class="private gap-3 border-top p-2 m-1 position-relative">
+    <div class="d-flex border-bottom">
+        <div class="adresse w-100">
+            <h5>Adresse: </h5>
+            <div class="row">
+                <span class="fw-semibold col-3 text-end">Rue et numéro:</span>
+                <p class="col "> @Adresse.adresse</p>
+            </div>
+            <div class="row">
+                <span class="fw-semibold col-3 text-end">Code Postal:</span>
+                <p class="col-2 "> @Adresse.CodePostal</p>
+                <span class="fw-semibold col-2 text-end ">Localité:</span>
+                <p class="col "> @Adresse.Localite</p>
+            </div>
+            <div class="row">
+                <span class="fw-semibold col-7 text-end ">Pays:</span>
+                <p class="col "> @Adresse.Pays</p>
+            </div>
         </div>
     </div>
-    <EditForm class="parent" Model="EmployePrivate" OnValidSubmit="EditPrivate">
-        <div class="div1">
-            <div class="d-flex flex-column">
-                <label>Date de Naissance:</label>
-                <InputDate @bind-Value="EmployePrivate.DateNaissance"></InputDate>
-                <label>IBAN:</label>
-                <InputText @bind-Value="EmployePrivate.IBAN"></InputText>
-                <label>Numéro National: </label>
-                <InputText @bind-Value="EmployePrivate.NumeroNational"></InputText>
-
-            </div>
+    <div class="p-1">
+        <div class="row">
+            <span class="fw-semibold col text-end">Date de naissance:</span>
+            <p class="col"> @EmployePrivate.DateNaissance.ToString("dd/MM/yyyy")</p>
+            <span class="fw-semibold col text-end">Langue:</span>
+            <p class="col"> @EmployePrivate.Langue</p>
         </div>
-        <div class="div2">
-            <div class="d-flex flex-column">
-                <label>Langue: </label>
-                <InputText @bind-Value="EmployePrivate.Langue"></InputText>
-                <label>Nationalité: </label>
-                <InputText @bind-Value="EmployePrivate.Nationalite"></InputText>
-                <label>Permis: </label>
-                <InputText class="w-25" @bind-Value="EmployePrivate.Permis"></InputText>
-            </div>
+        <div class="row">
+            <span class="fw-semibold col text-end">Nationalité:</span>
+            <p class="col"> @EmployePrivate.Nationalite</p>
+            <span class="fw-semibold col text-end">Numéro National:</span>
+            <p class="col"> @EmployePrivate.NumeroNational</p>
         </div>
-        <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">Sauver Infos</button>
-    </EditForm>
-
+        <div class="row">
+            <span class="fw-semibold col text-end">IBAN:</span>
+            <p class="col"> @EmployePrivate.IBAN</p>
+            <span class="fw-semibold col text-end">Permis:</span>
+            <p class="col "> @EmployePrivate.Permis</p>
+        </div>
+    </div>
+    <button class="btn btn-primary position-absolute bottom-0 end-0 m-2" @onclick="ShowEditPrivate">Edit</button>
 </div>
+
+<Modal @ref="modal" Size="ModalSize.ExtraLarge" />

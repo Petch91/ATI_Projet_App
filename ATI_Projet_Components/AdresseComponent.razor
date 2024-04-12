@@ -1,21 +1,27 @@
-﻿<div class="adresse gap-3 border rounded p-2 m-1 position-relative w-75">
+﻿<div class="adresse gap-3 border rounded p-2 m-1">
     <h5>Adresse: </h5>
-    <EditForm class="d-flex flex-column gap-2" Model="adress" OnValidSubmit="EditAdresse">
+    <EditForm class="d-flex flex-column gap-2" Model="adress" @ref="EditForm">
+        <DataAnnotationsValidator></DataAnnotationsValidator>
         <div class="w-100">
             <label>Adresse:</label>
-            <InputText class="w-75" @bind-Value="adress.adresse"></InputText>
+            <InputText class="w-75" @bind-Value="adress.adresse" @onkeyup="Changed"></InputText>
         </div>
         <div>
             <label>Code Postal:</label>
-            <InputNumber @bind-Value="adress.CodePostal"></InputNumber>
+            <InputNumber @bind-Value="adress.CodePostal" @onkeyup="Changed"></InputNumber>
             <label>Localite</label>
-            <InputText @bind-Value="adress.Localite"></InputText>
+            <InputText @bind-Value="adress.Localite" @onkeyup="Changed"></InputText>
         </div>
         <div class="w-100">
             <label>Pays:</label>
-            <InputText class="w-75" @bind-Value="adress.Pays"></InputText>
+            <InputSelect @bind-Value="adress.Pays">
+                @foreach (var choix in Pays.Values)
+                {
+                    <option value="@choix">@choix</option>
+                }
+            </InputSelect>
         </div>
-        <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2 btn-sm">Sauver Adresse</button>
+        <ValidationSummary></ValidationSummary>
     </EditForm>
 </div>
 
