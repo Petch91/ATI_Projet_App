@@ -1,0 +1,86 @@
+﻿@using System
+@using System.IO
+@using Microsoft.AspNetCore.Hosting
+@inject ILogger<UploadPhoto> Logger
+@inject IWebHostEnvironment Environment
+
+<PageTitle>Upload Photo</PageTitle>
+
+<div class="d-flex flex-column">
+    <InputFile accept="image/*" OnChange="LoadFiles" />
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <p class="text-danger">@errorMessage</p>
+    }
+</div>
+<Button Color="ButtonColor.Primary" Type="ButtonType.Submit" @onclick="Submit">Upload</Button>
+
+
+
+@if (isLoading)
+{
+    <p>Uploading...</p>
+}
+else
+{
+    if (loadedFiles != null)
+    {
+        <ul>
+            <li>Name: @loadedFiles.Name</li>
+            <li>Last modified: @loadedFiles.LastModified.ToString()</li>
+            <li>Size (bytes): @loadedFiles.Size</li>
+            <li>Content type: @loadedFiles.ContentType</li>
+        </ul>
+    }
+}
+
+@code {
+    [Parameter] public string UploadPath { get; set; }
+    [Parameter] public EventCallback<string> PhotoUploaded { get; set; }
+    private IBrowserFile loadedFiles = default!;
+    private long maxFileSize = 1024 * 4000;
+    // private int maxAllowedFiles = 3;
+    private bool isLoading;
+
+    private string errorMessage;
+
+    private async Task LoadFiles(InputFileChangeEventArgs e)
+    {
+        isLoading = true;
+        loadedFiles = e.File;
+        isLoading = false;
+
+    }
+
+    private async void Submit()
+    {
+        try
+        {
+            errorMessage = string.Empty;
+            //var trustedFileName = Path.GetFileName("Photo+id" + Path.GetExtension(loadedFiles.Name));
+            //var extension = Path.GetExtension(loadedFiles.Name);
+            if (loadedFiles == null)
+            {
+                errorMessage = "Pas de Photo selectionnée";
+                StateHasChanged();
+                return;
+            }
+            var path = UploadPath + Path.GetExtension(loadedFiles.Name);
+
+            await using FileStream fs = new(path, FileMode.Create);
+            await loadedFiles.OpenReadStream(maxFileSize).CopyToAsync(fs);
+            await PhotoUploaded.InvokeAsync(path);
+
+            Logger.LogInformation(
+                "Unsafe Filename: {UnsafeFilename} File saved: {Filename}",
+                loadedFiles.Name);
+
+
+        }
+        catch (Exception ex)
+        {
+            Logger.LogError("File: {Filename} Error: {Error}",
+                loadedFiles.Name, ex.Message);
+        }
+    }
+}

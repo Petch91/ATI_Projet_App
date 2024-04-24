@@ -19,7 +19,13 @@ namespace ATI_Projet_Components.Telephones
         public EventCallback<List<Telephone>> telephonesChanged { get; set; }
 
 
+        private string ErrorMessage = string.Empty;
+
+
         private Modal modal = default!;
+
+
+        List<ToastMessage> messages = new List<ToastMessage>();
 
         private async Task ShowEdit(int id)
         {
@@ -42,9 +48,18 @@ namespace ATI_Projet_Components.Telephones
         public async void Edit(Telephone telephone)
         {
             if (telephone.Id > 0) telephones[telephones.IndexOf(telephones.First(t => t.Id == telephone.Id))] = telephone;
-            await httpClient.PutAsJsonAsync<Telephone>("Employe/updateTelephone", telephone);
-            modal.HideAsync();
-            telephonesChanged.InvokeAsync(telephones);
+            using var result = httpClient.PutAsJsonAsync<Telephone>("Employe/updateTelephone", telephone);
+            if (!result.Result.IsSuccessStatusCode)
+            {
+                var body = await result.Result.Content.ReadAsStringAsync();
+                ErrorMessage = body.Contains("unique") ? @"Attention le Numéro existe déjà" : result.Result.ReasonPhrase;
+                messages.Add(new ToastMessage { Type = ToastType.Danger, Title = "Erreur en DB", HelpText = $"{DateTime.Now}", Message = ErrorMessage });
+            }
+            else
+            {
+                modal.HideAsync();
+                telephonesChanged.InvokeAsync(telephones);
+            }
             StateHasChanged();
 
         }

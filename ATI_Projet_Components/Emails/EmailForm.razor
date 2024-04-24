@@ -28,6 +28,10 @@
         <Button Class="position-absolute bottom-0 end-0" Size="Size.Small" Type="ButtonType.Submit" Color="ButtonColor.Success">
             <Icon Name="IconName.CheckCircle"></Icon>
         </Button>
+        @if(!string.IsNullOrEmpty(Error))
+        {
+            <p class="text-danger">@Error</p>
+        }
         <ValidationSummary></ValidationSummary>
     </EditForm>
 

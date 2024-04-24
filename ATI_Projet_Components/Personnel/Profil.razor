@@ -26,6 +26,7 @@
                 <div class="row g-2 ">
                     <span class="fw-semibold col-3 text-end">Type Main d'oeuvre:</span>
                     @{
+                        if (EmployeProfil.CodeTypeMO == null) EmployeProfil.CodeTypeMO = "";
                         string code = string.IsNullOrEmpty(EmployeProfil.CodeTypeMO.Trim()) ? "" : EmployeProfil.CodeTypeMO;
                         <p class="col-4"> @(TypesMO.FirstOrDefault(f => f.Code == code).Libelle ?? "NONE")</p>
                     }

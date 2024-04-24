@@ -8,7 +8,12 @@
                 TextField="@(item => (item.Id + ": " +item.Prenom + " " + item.Nom.ToUpper()))"
                 ValueField="@(item => item.Id)"
                 DefaulPersonnelText="Recherche"
-                SelectedValueChanged="@(e=>SelectChange(e))" />
+                SelectedValue="Id"
+                SelectedValueChanged="@(e=>{
+                                            cts.Cancel();                                           
+                                            SelectChange(e);
+                                        })" />
+                <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">Ajouter</Button>
     <div>
         @if (Id >= 54)
         {
@@ -16,14 +21,15 @@
             {
                 <div class="d-flex m-1 p-2 profil border rounded position-relative">
                     <Button Type="ButtonType.Button" Class="contButton position-absolute top-0 end-0" Color="ButtonColor.Dark" Size="Size.Large" @onclick="ShowCanvas">Contacts</Button>
-                    <Card Style="width:17rem; max-height: 38.15rem; min-width: 12rem;">
-                        <div class="rounded-top position-relative w-100 image">
-                            <img class="rounded-top w-100 photo" src="@EmployePrivate.Photo" alt="photo">
+                    <Card Style="width:17rem; height: 38.15rem; min-width: 12rem;">
+                        <div class="rounded-top position-relative w-100 image" @onclick="ChangePhoto">
+                            <img class="rounded-top w-100 photo" src="@PhotoPath" alt="photo" style="max-height:16.1rem">
                             <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center w-100">
-                                <Icon Name="IconName.CameraFill" Color="IconColor.Light" Size="IconSize.x1"/>
-                                <p>Cliquer Pour Modifier</p></div><img />
+                                <Icon Name="IconName.CameraFill" Color="IconColor.Light" Size="IconSize.x1" />
+                                <p>Cliquer Pour Modifier</p>
+                            </div><img />
                         </div>
-                        
+
                         <CardBody>
                             <CardTitle>
                                 @EmployeProfil.Nom @EmployeProfil.Prenom
@@ -45,7 +51,13 @@
                             <li class="list-group-item">@(fonctions.FirstOrDefault(f => f.Id == EmployeProfil.FonctionId).Designation)</li>
                             <li class="list-group-item">Dépt.: @(departements.FirstOrDefault(d => d.Id == EmployeProfil.DepartementId).Designation)</li>
                         </ul>
-                        <img class="rounded-bottom" src="@EmployePrivate.Signature" alt="photo" />
+                        <div class="rounded-bottom position-relative w-100 image" @onclick="ChangeSignature">
+                            <img class=" w-100 photo" src="@SignaturePath" alt="signature" style="max-height:9.3rem">
+                            <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center w-100">
+                                <Icon Name="IconName.CameraFill" Color="IconColor.Light" Size="IconSize.x1" />
+                                <p>Cliquer Pour Modifier</p>
+                            </div><img />
+                        </div>
                     </Card>
                     <div class="d-flex">
                         <div class="d-flex flex-column">
@@ -109,3 +121,4 @@
 
 
 
+<Modal @ref="modal" Size="ModalSize.Large"></Modal>

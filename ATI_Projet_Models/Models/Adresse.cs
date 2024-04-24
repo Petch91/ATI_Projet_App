@@ -10,14 +10,14 @@ namespace ATI_Projet_Models
     public class Adresse : ICloneable
     {
         public int Id {  get; set; }
-        [Required]
+        [Required(ErrorMessage ="La rue et le numéro sont requis")]
         public string adresse { get; set; }
-        [Required]
-        [Range(1000,9999)]
+        [Required(ErrorMessage ="Code Postal Requis")]
+        [Range(1000,9999,ErrorMessage ="Ceci n'est pas un code postal valide")]
         public int CodePostal { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Une localité est requise")]
         public string Localite { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Un Pays est requis")]
         public string Pays { get; set; }
         public int EmployeId { get; set; }
 
