@@ -13,7 +13,7 @@ namespace ATI_Projet_Components.Emails
         public EventCallback<Email> OnValidation { get; set; }
         [Parameter] public string Error { get; set; }
 
-        private List<string> descriptions = new List<string> { "Privée", "Professionnelle" };
+        private List<string> descriptions = new List<string> { @"Privée", "Professionnelle" };
        
         public void IsValided()
         {

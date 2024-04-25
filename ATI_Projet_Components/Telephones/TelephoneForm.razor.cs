@@ -11,7 +11,7 @@ namespace ATI_Projet_Components.Telephones
         [Parameter]
         public EventCallback<Telephone> OnValidation { get; set; }
 
-        private List<string> descriptions = new List<string>{ "Fixe Privé","Fixe Professionnel", "Gsm Privé", "Gsm Professionnel" };
+        private List<string> descriptions = new List<string>{ @"Fixe Privé","Fixe Professionnel", @"Gsm Privé", "Gsm Professionnel" };
         
         public void IsValided()
         {

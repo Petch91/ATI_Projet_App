@@ -10,7 +10,7 @@ namespace ATI_Projets_Models
     public class EmployeList
     {
         public int Id { get; set; }
-        [DisplayName("Prénom")]
+        [DisplayName(@"Prénom")]
         public string? Prenom { get; set; }
         public string? Nom { get; set; }
     }

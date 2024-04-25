@@ -62,7 +62,7 @@ namespace ATI_Projet_Components.Personnel
             parameters.Add("Pays", Pays);
             parameters.Add("EditEmployePrivateEvent", EventCallback.Factory.Create<EmployePrivate>(this, EditPrivate));
             parameters.Add("EditAdresseEvent", EventCallback.Factory.Create<Adresse>(this, EditAdresse));
-            await modal.ShowAsync<EditPrivate>(title: "Edition des infos privées", parameters: parameters);
+            await modal.ShowAsync<EditPrivate>(title: @"Edition des infos privées", parameters: parameters);
         }
     }
 }

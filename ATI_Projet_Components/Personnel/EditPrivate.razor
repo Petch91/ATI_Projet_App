@@ -12,7 +12,7 @@
             <InputDate @bind-Value="EmployePrivate.DateNaissance"></InputDate>
             <label>IBAN:</label>
             <InputText @bind-Value="EmployePrivate.IBAN"></InputText>
-            <label>Numéro National: </label>
+            <label>@(@"Numéro National: ") </label>
             <InputText @bind-Value="EmployePrivate.NumeroNational"></InputText>
 
         </div>
@@ -21,7 +21,7 @@
         <div class="d-flex flex-column">
             <label>Langue: </label>
             <InputText @bind-Value="EmployePrivate.Langue"></InputText>
-            <label>Nationalité: </label>
+            <label>@(@"Nationalité"): </label>
             <InputText @bind-Value="EmployePrivate.Nationalite"></InputText>
             <label>Permis: </label>
             <InputText class="w-25" @bind-Value="EmployePrivate.Permis"></InputText>

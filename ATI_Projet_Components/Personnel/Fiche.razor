@@ -36,7 +36,7 @@
                             </CardTitle>
 
                             <CardText>
-                                @(EmployeProfil.Status ? "Employé" : "Ouvrier")@if (EmployeProfil.Actif)
+                                @(EmployeProfil.Status ? @"Employé" : "Ouvrier")@if (EmployeProfil.Actif)
                                 {
                                     <Badge Class="mx-1" Color="BadgeColor.Success">Actif</Badge>
                                 }
@@ -49,7 +49,7 @@
                         </CardBody>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">@(fonctions.FirstOrDefault(f => f.Id == EmployeProfil.FonctionId).Designation)</li>
-                            <li class="list-group-item">Dépt.: @(departements.FirstOrDefault(d => d.Id == EmployeProfil.DepartementId).Designation)</li>
+                            <li class="list-group-item">@(@"Dépt:") @(departements.FirstOrDefault(d => d.Id == EmployeProfil.DepartementId).Designation)</li>
                         </ul>
                         <div class="rounded-bottom position-relative w-100 image" @onclick="ChangeSignature">
                             <img class=" w-100 photo" src="@SignaturePath" alt="signature" style="max-height:9.3rem">

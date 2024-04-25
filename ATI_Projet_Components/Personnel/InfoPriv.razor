@@ -3,13 +3,13 @@
         <div class="adresse w-100">
             <h5>Adresse: </h5>
             <div class="row">
-                <span class="fw-semibold col-3 text-end">Rue et numéro:</span>
+                <span class="fw-semibold col-3 text-end">@(@"Rue et numéro:")</span>
                 <p class="col "> @Adresse.adresse</p>
             </div>
             <div class="row">
                 <span class="fw-semibold col-3 text-end">Code Postal:</span>
                 <p class="col-2 "> @Adresse.CodePostal</p>
-                <span class="fw-semibold col-2 text-end ">Localité:</span>
+                <span class="fw-semibold col-2 text-end ">@(@"Localité:")</span>
                 <p class="col "> @Adresse.Localite</p>
             </div>
             <div class="row">
@@ -26,9 +26,9 @@
             <p class="col"> @EmployePrivate.Langue</p>
         </div>
         <div class="row">
-            <span class="fw-semibold col text-end">Nationalité:</span>
+            <span class="fw-semibold col text-end">@(@"Nationalité:")</span>
             <p class="col"> @EmployePrivate.Nationalite</p>
-            <span class="fw-semibold col text-end">Numéro National:</span>
+            <span class="fw-semibold col text-end">@(@"Numéro National:")</span>
             <p class="col"> @EmployePrivate.NumeroNational</p>
         </div>
         <div class="row">

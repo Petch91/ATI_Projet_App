@@ -144,7 +144,7 @@ namespace ATI_Projet_Components.Personnel
         {
             var parameters = new Dictionary<string, object>();
             parameters.Add("CreateEvent", EventCallback.Factory.Create<PersonneForm>(this, AddEmploye));
-            await modal.ShowAsync<CreatePersonne>(title: "Ajouter un employé", parameters: parameters);
+            await modal.ShowAsync<CreatePersonne>(title: @"Ajouter un employé", parameters: parameters);
         }
 
         private async void AddEmploye(PersonneForm personne)

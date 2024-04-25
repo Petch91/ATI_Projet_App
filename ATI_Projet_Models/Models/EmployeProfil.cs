@@ -19,7 +19,7 @@ namespace ATI_Projet_Models
         public bool Actif { get; set; }
         public bool Status { get; set; }
         public int Group_S { get; set; }
-        [DisplayName("Date d'entrée")]
+        [DisplayName(@"Date d'entrée")]
         public DateTime DateEntree { get; set; }
         [DisplayName("Date de sortie")]
         public DateTime DateSortie { get; set; }

@@ -11,13 +11,13 @@
                 <span>Actif: <InputCheckbox @bind-Value="EmployeProfil.Actif"></InputCheckbox></span>
                 <InputRadioGroup id="groupstatus" @bind-Value="EmployeProfil.Status">
                     Ouvrier <InputRadio Value="false"></InputRadio>
-                    Employé <InputRadio Value="true"></InputRadio>
+                @(@"Employé") <InputRadio Value="true"></InputRadio>
                 </InputRadioGroup>
             </div>
 
             <label>Group_S: </label>
             <InputNumber class="group_S" @bind-Value="EmployeProfil.Group_S"></InputNumber>
-            <label>Date d'entrée</label>
+        <label>@(@"Date d'entrée")</label>
             <InputDate @bind-Value="EmployeProfil.DateEntree"></InputDate>
             @if (!EmployeProfil.Actif)
             {
@@ -37,14 +37,14 @@
             </InputSelect>
             <label>Nom</label>
             <InputText @bind-Value="EmployeProfil.Nom"></InputText>
-            <label>Prénom</label>
+        <label>@(@"Prénom")</label>
             <InputText @bind-Value="EmployeProfil.Prenom"></InputText>
             <label>Initiales</label>
             <InputText class="initiales" @bind-Value="EmployeProfil.Initiales"></InputText>
         </div>
 
         <div>
-            <label>Département</label>
+        <label>@(@"Département")</label>
             <InputSelect @bind-Value="EmployeProfil.DepartementId">
                 @foreach (DeptSimplifiedList choix in departements)
                 {

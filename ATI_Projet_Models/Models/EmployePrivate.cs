@@ -11,11 +11,11 @@ namespace ATI_Projet_Models
     {
         public int Id { get; set; }
         public string? Langue { get; set; }
-        [DisplayName("Nationalité")]
+        [DisplayName(@"Nationalité")]
         public string? Nationalite { get; set; }
         [DisplayName("Date de Naissance")]
         public DateTime DateNaissance { get; set; }
-        [DisplayName("Numéro National")]
+        [DisplayName(@"Numéro National")]
         public string? NumeroNational { get; set; }
         public string? Signature { get; set; } 
         public string? Photo { get; set; } 
