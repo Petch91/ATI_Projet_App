@@ -25,7 +25,7 @@ namespace ATI_Projet_Components.Personnel
         public async void EditEmployePrivate()
         {
             await EditAdresseEvent.InvokeAsync(Adresse);
-            EditEmployePrivateEvent.InvokeAsync(EmployePrivate);
+            await EditEmployePrivateEvent.InvokeAsync(EmployePrivate);
         }
 
     }

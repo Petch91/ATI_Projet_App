@@ -20,6 +20,8 @@ namespace ATI_Projet_Components.Personnel
 
         private Dictionary<string, string> Pays { get; set; }
 
+        private int NewId;
+
         protected async override void OnInitialized()
         {
             Pays = await HttpClient.GetFromJsonAsync<Dictionary<string, string>>("https://www.iso-country-code.com/api/?lang=fr&output=json");
@@ -34,18 +36,20 @@ namespace ATI_Projet_Components.Personnel
                 Adresse.EmployeId = EmployePrivate.Id;
             }
         }
-        public void EditPrivate(EmployePrivate employePrivate)
+        public async void EditPrivate(EmployePrivate employePrivate)
         {
             EmployePrivate = employePrivate;
-            HttpClient.PatchAsJsonAsync<EmployePrivate>("Employe/updatePrivate", employePrivate);
+            EmployePrivate.AdresseId = NewId;
+            await HttpClient.PatchAsJsonAsync<EmployePrivate>("Employe/updatePrivate", employePrivate);
             modal.HideAsync();
             StateHasChanged();
         }
-        public void EditAdresse(Adresse adresse)
+        public async void EditAdresse(Adresse adresse)
         {
             Adresse = adresse;
-            HttpClient.PatchAsJsonAsync<Adresse>("Employe/updateAdresse", adresse);
-            StateHasChanged();
+            var reponse = HttpClient.PatchAsJsonAsync<Adresse>("Employe/updateAdresse", adresse);
+            NewId = await reponse.Result.Content.ReadFromJsonAsync<int>();
+            //StateHasChanged();
         }
 
         private Modal modal = default!;

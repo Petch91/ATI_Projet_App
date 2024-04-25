@@ -1,11 +1,10 @@
-﻿
-<div class="p-2 m-1 position-relative">
+﻿<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopCenter" AutoHide=true />
+<div class="p-2 m-1 position-relative" style="min-width: 18rem">
+    <h5 class="mx-1">Emails</h5>
+    <Button Class="mx-2 position-absolute top-0 end-0" Color="ButtonColor.Secondary" Size="Size.Small" @onclick="ShowCreateMail">Ajouter Email</Button>
     @if (emails.Count() > 0)
     {
-        <h5 class="mx-1">Emails</h5>
         <ListGenericEdit Items="emails" ExcludedCols="@(new List<string>{"Id", "PersonneId" , "SocieteId"})" DeleteEvent="Delete" EditEvent="ShowEdit" />
-        <Button Class="mx-2 position-absolute top-0 end-0" Color="ButtonColor.Secondary" Size="Size.Small" @onclick="ShowCreateMail">Ajouter Email</Button>
-        <Modal @ref="modal"></Modal>
     }
+    <Modal @ref="modal"></Modal>
 </div>
-

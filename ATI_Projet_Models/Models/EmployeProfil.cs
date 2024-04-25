@@ -11,12 +11,9 @@ namespace ATI_Projet_Models
     public class EmployeProfil :ICloneable
     {
         public int Id { get; set; }
-        [Required]
         public string? Nom { get; set; }
-        [Required]
         [DisplayName("Prénom")]
         public string? Prenom { get; set; }
-
         public string? Initiales { get; set; }
         public string? Titre { get; set; }
         public bool Actif { get; set; }

@@ -11,6 +11,7 @@ namespace ATI_Projet_Components.Emails
         public Email Email { get; set; }
         [Parameter]
         public EventCallback<Email> OnValidation { get; set; }
+        [Parameter] public string Error { get; set; }
 
         private List<string> descriptions = new List<string> { "Privée", "Professionnelle" };
        

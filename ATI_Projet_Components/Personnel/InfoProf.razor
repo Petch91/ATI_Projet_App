@@ -1,12 +1,16 @@
-﻿<div class="prof gap-3 border-top rounded p-2 m-1 position-relative">
+﻿<div class="prof gap-3 border-top rounded p-2 m-1 position-relative" style="min-height: 7rem"> 
     <div>
-        <div class="row">
-            <p class="col-3 "><span class="fw-semibold">Safety Book:</span> @EmployeProf.SafetyBook</p>
-            <p class="col-5 "><span class="fw-semibold">Date SafetyBook:</span> @EmployeProf.DateSafetyBook.ToString("dd/MM/yyyy")</p>            
+        <div class="row g-2">
+            <span class="fw-semibold col-3 text-end">Safety Book:</span>
+            <p class="col-2 ">@EmployeProf.SafetyBook</p>
+            <span class="fw-semibold col-3 text-end">Date SafetyBook:</span>
+            <p class="col-3 ">@EmployeProf.DateSafetyBook.ToString("dd/MM/yyyy")</p>            
         </div>
-        <div class="row">
-            <p class="col-3 "><span class="fw-semibold">Coût:</span> @EmployeProf.Cout</p>
-            <p class="col-5 "><span class="fw-semibold">Badge:</span> @EmployeProf.Badge</p>
+        <div class="row g-2">
+            <span class="fw-semibold col-3 text-end">Coût:</span>
+            <p class="col-2">@EmployeProf.Cout</p>
+            <span class="fw-semibold col-3 text-end">Badge:</span>
+            <p class="col-3 ">@EmployeProf.Badge</p>
         </div>
 
     </div>

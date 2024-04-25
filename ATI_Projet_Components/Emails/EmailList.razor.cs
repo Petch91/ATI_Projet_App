@@ -19,8 +19,14 @@ namespace ATI_Projet_Components.Emails
         [Parameter]
         public EventCallback<List<Email>> emailsChanged { get; set; }
 
+        private string ErrorMessage = string.Empty;
+
 
         private Modal modal = default!;
+
+
+        List<ToastMessage> messages = new List<ToastMessage>();
+
 
         private async Task ShowEdit(int id)
         {
@@ -36,18 +42,28 @@ namespace ATI_Projet_Components.Emails
             e.SocieteId = SocieteId;
             var parameters = new Dictionary<string, object>();
             parameters.Add("Email", e);
+            parameters.Add("Error", ErrorMessage);
             parameters.Add("OnValidation", EventCallback.Factory.Create<Email>(this, Edit));
             await modal.ShowAsync<EmailForm>(title: "Ajout d'une adresse Mail", parameters: parameters);
         }
 
         public async void Edit(Email email)
         {
-            if(email.Id >0) emails[emails.IndexOf(emails.First(e => e.Id == email.Id))] = email;
-            await httpClient.PutAsJsonAsync<Email>("Employe/updateEmail", email);
-            modal.HideAsync();
-            emailsChanged.InvokeAsync(emails);
+            if (email.Id > 0) emails[emails.IndexOf(emails.First(e => e.Id == email.Id))] = email;
+            var result = httpClient.PutAsJsonAsync<Email>("Employe/updateEmail", email);
+            if (!result.Result.IsSuccessStatusCode)
+            {
+                var body = await result.Result.Content.ReadAsStringAsync();
+                ErrorMessage = body.Contains("unique") ? @"Attention l'email existe déjà" : result.Result.ReasonPhrase;
+                messages.Add(new ToastMessage { Type = ToastType.Danger, Title = "Erreur en DB", HelpText = $"{DateTime.Now}", Message= ErrorMessage });
+            }
+            else
+            {
+                ErrorMessage = "";
+                modal.HideAsync();
+                emailsChanged.InvokeAsync(emails);
+            }
             StateHasChanged();
-
         }
         public async void Delete(int id)
         {

@@ -24,7 +24,8 @@ namespace ATI_Projet_Models.Validators
                 .Must(d => d <= DateTime.Now).WithMessage("La date ne peut pas dépasser la date d'aujourd'hui");
 
             RuleFor(e => e.DateSortie)
-                .Must(d => d <= DateTime.Now).WithMessage("La date ne peut pas dépasser la date d'aujourd'hui");
+                .Must(d => d <= DateTime.Now).WithMessage("La date ne peut pas dépasser la date d'aujourd'hui")
+                .Must((e,d) => e.Actif || d >= e.DateEntree).WithMessage("La date de sortie doit être postérieure ou égale à la date d'entrée");
 
         }
     }

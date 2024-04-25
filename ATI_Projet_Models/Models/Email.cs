@@ -11,11 +11,11 @@ namespace ATI_Projet_Models
     public class Email : ICloneable
     {
         public int Id { get; set; }
-        [EmailAddress]
-        [Required]
+        [EmailAddress(ErrorMessage ="Ce n'est pas une adresse mail valide")]
+        [Required(ErrorMessage ="Adresse Mail requise")]
         [DisplayName("Adresse")]
         public string email { get; set; }
-        [Required]
+        [Required(ErrorMessage ="Description requise")]
         public string? Description { get; set; }
         public int? PersonneId { get; set; }
         public int? SocieteId { get; set; }
