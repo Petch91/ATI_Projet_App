@@ -68,3 +68,74 @@ InputNumber {
     -webkit-appearance: none;
     margin: 0;
 }
+
+body {
+}
+
+ .initiales {
+    width: 50px;
+}
+
+ .group_S {
+    width: 50px;
+}
+
+ .cprofil {
+    max-height: 25rem !important;
+    min-height: 20rem !important;
+}
+
+ .private {
+    min-width: 43rem !important;
+}
+
+ .prof {
+    min-width: 43rem !important;
+}
+
+ .parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+}
+
+ .div1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+ .div2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+ .contButton {
+    display: none !important;
+}
+
+@media (max-width: 1000px) {
+
+
+     .contButton {
+        display: block !important;
+        z-index: 1 !important;
+    }
+}
+
+ .photo {
+    z-index: 1 !important;
+    position: relative !important;
+    transition: 0.3s;
+}
+
+     .photo:hover {
+        transition: 0.3s;
+        opacity: 0.4 !important;
+        /*z-index: 0 !important;*/
+    }
+
+ .image {
+    background-color: dimgrey !important;
+    color: white;
+    font-size: 1rem
+}
