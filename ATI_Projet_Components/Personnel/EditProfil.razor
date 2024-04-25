@@ -2,102 +2,104 @@
 @using ATI_Projet_Models.Types
 @using ATI_Projet_Models.VCA
 
-    <EditForm class="d-flex flex-column gap-2" Model="EmployeProfil" OnValidSubmit="Edit">
+<EditForm class="d-flex flex-column gap-2" Model="EmployeProfil" OnValidSubmit="Edit">
 
-        <Blazored.FluentValidation.FluentValidationValidator></Blazored.FluentValidation.FluentValidationValidator>
-        <ValidationSummary></ValidationSummary>
-        <div class="d-flex gap-2">
-            <div class="status">
-                <span>Actif: <InputCheckbox @bind-Value="EmployeProfil.Actif"></InputCheckbox></span>
-                <InputRadioGroup id="groupstatus" @bind-Value="EmployeProfil.Status">
-                    Ouvrier <InputRadio Value="false"></InputRadio>
-                @(@"Employé") <InputRadio Value="true"></InputRadio>
-                </InputRadioGroup>
-            </div>
+    <Blazored.FluentValidation.FluentValidationValidator></Blazored.FluentValidation.FluentValidationValidator>
+    <ValidationSummary></ValidationSummary>
+    <div class="d-flex gap-2">
+        <div class="status">
+            <span>Actif: <InputCheckbox @bind-Value="EmployeProfil.Actif"></InputCheckbox></span>
+            <InputRadioGroup id="groupstatus" @bind-Value="EmployeProfil.Status">
+                Ouvrier <InputRadio Value="false"></InputRadio>
+                Employ&eacute; <InputRadio Value="true"></InputRadio>
+            </InputRadioGroup>
+        </div>
 
-            <label>Group_S: </label>
-            <InputNumber class="group_S" @bind-Value="EmployeProfil.Group_S"></InputNumber>
-        <label>@(@"Date d'entrée")</label>
-            <InputDate @bind-Value="EmployeProfil.DateEntree"></InputDate>
-            @if (!EmployeProfil.Actif)
+        <label>Group_S: </label>
+        <InputNumber class="group_S" @bind-Value="EmployeProfil.Group_S"></InputNumber>
+        <label>
+            Date d'entr&eacute;e
+        </label>
+        <InputDate @bind-Value="EmployeProfil.DateEntree"></InputDate>
+        @if (!EmployeProfil.Actif)
+        {
+            <label>Date de sortie</label>
+            <InputDate @bind-Value="EmployeProfil.DateSortie"></InputDate>
+        }
+    </div>
+
+    <div>
+        <label>Titre</label>
+        <InputSelect class="titre" @bind-Value="EmployeProfil.Titre">
+            @foreach (string choix in ChoixTitre)
             {
-                <label>Date de sortie</label>
-                <InputDate @bind-Value="EmployeProfil.DateSortie"></InputDate>
+
+                <option value="@choix">@choix</option>
             }
-        </div>
+        </InputSelect>
+        <label>Nom</label>
+        <InputText @bind-Value="EmployeProfil.Nom"></InputText>
+        <label>Pr&eacute;nom</label>
+        <InputText @bind-Value="EmployeProfil.Prenom"></InputText>
+        <label>Initiales</label>
+        <InputText class="initiales" @bind-Value="EmployeProfil.Initiales"></InputText>
+    </div>
 
-        <div>
-            <label>Titre</label>
-            <InputSelect class="titre" @bind-Value="EmployeProfil.Titre">
-                @foreach (string choix in ChoixTitre)
-                {
-
-                    <option value="@choix">@choix</option>
-                }
-            </InputSelect>
-            <label>Nom</label>
-            <InputText @bind-Value="EmployeProfil.Nom"></InputText>
-        <label>@(@"Prénom")</label>
-            <InputText @bind-Value="EmployeProfil.Prenom"></InputText>
-            <label>Initiales</label>
-            <InputText class="initiales" @bind-Value="EmployeProfil.Initiales"></InputText>
-        </div>
-
-        <div>
-        <label>@(@"Département")</label>
-            <InputSelect @bind-Value="EmployeProfil.DepartementId">
-                @foreach (DeptSimplifiedList choix in departements)
-                {
-                    <option value="@choix.Id">@($"{choix.Id}    {choix.Designation}")</option>
-                }
-            </InputSelect>
-            <label>Fonction</label>
-            <InputSelect @bind-Value="EmployeProfil.FonctionId">
-                @foreach (Fonction choix in fonctions)
-                {
-                    <option value="@choix.Id">@choix.Designation</option>
-                }
-            </InputSelect>
-        </div>
-        <div>
-            <label>Fonction VCA</label>
-            <InputSelect @bind-Value="EmployeProfil.IdFonctionVCA">
-                @foreach (FonctionVCA choix in fonctionsVCA)
-                {
-                    <option value="@choix.Id">@($"{choix.Posit}    {choix.Designation}")</option>
-                }
-            </InputSelect>
-            <label>Status VCA</label>
-            <InputSelect @bind-Value="EmployeProfil.CodeStatusVCA">
-                @foreach (StatusVCA choix in statusVCA)
-                {
-                    <option value="@choix.Code">@choix.Code @choix.Libelle</option>
-                }
-            </InputSelect>
-        </div>
-        <div>
-            <label>Contrat de travail</label>
-            <InputSelect @bind-Value="EmployeProfil.CodeTypeContrat">
-                @foreach (TypeContrat choix in TypesContrat)
-                {
-                    <option value="@choix.Code">@($"{choix.Code}    {choix.Libelle}")</option>
-                }
-            </InputSelect>
-            <label>Type Main d'oeuvre</label>
-            <InputSelect @bind-Value="EmployeProfil.CodeTypeMO">
-                @foreach (TypeMO choix in TypesMO)
-                {
-                    <option value="@choix.Code">@choix.Code @choix.Libelle</option>
-                }
-            </InputSelect>
-            <label>Gestion Stock</label>
-            <InputSelect @bind-Value="EmployeProfil.GestionStock">
-                @foreach (var choix in Enum.GetValues(typeof(GestionStock)))
-                {
-                    <option value="@((int)choix)">@((int)choix) @(Enum.GetName(typeof(GestionStock), choix))</option>
-                }
-            </InputSelect>
-        </div>
-        <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">Sauver Profil</button>
-    </EditForm>
+    <div>
+        <label>D&eacute;partement</label>
+        <InputSelect @bind-Value="EmployeProfil.DepartementId">
+            @foreach (DeptSimplifiedList choix in departements)
+            {
+                <option value="@choix.Id">@($"{choix.Id}    {choix.Designation}")</option>
+            }
+        </InputSelect>
+        <label>Fonction</label>
+        <InputSelect @bind-Value="EmployeProfil.FonctionId">
+            @foreach (Fonction choix in fonctions)
+            {
+                <option value="@choix.Id">@choix.Designation</option>
+            }
+        </InputSelect>
+    </div>
+    <div>
+        <label>Fonction VCA</label>
+        <InputSelect @bind-Value="EmployeProfil.IdFonctionVCA">
+            @foreach (FonctionVCA choix in fonctionsVCA)
+            {
+                <option value="@choix.Id">@($"{choix.Posit}    {choix.Designation}")</option>
+            }
+        </InputSelect>
+        <label>Status VCA</label>
+        <InputSelect @bind-Value="EmployeProfil.CodeStatusVCA">
+            @foreach (StatusVCA choix in statusVCA)
+            {
+                <option value="@choix.Code">@choix.Code @choix.Libelle</option>
+            }
+        </InputSelect>
+    </div>
+    <div>
+        <label>Contrat de travail</label>
+        <InputSelect @bind-Value="EmployeProfil.CodeTypeContrat">
+            @foreach (TypeContrat choix in TypesContrat)
+            {
+                <option value="@choix.Code">@($"{choix.Code}    {choix.Libelle}")</option>
+            }
+        </InputSelect>
+        <label>Type Main d'oeuvre</label>
+        <InputSelect @bind-Value="EmployeProfil.CodeTypeMO">
+            @foreach (TypeMO choix in TypesMO)
+            {
+                <option value="@choix.Code">@choix.Code @choix.Libelle</option>
+            }
+        </InputSelect>
+        <label>Gestion Stock</label>
+        <InputSelect @bind-Value="EmployeProfil.GestionStock">
+            @foreach (var choix in Enum.GetValues(typeof(GestionStock)))
+            {
+                <option value="@((int)choix)">@((int)choix) @(Enum.GetName(typeof(GestionStock), choix))</option>
+            }
+        </InputSelect>
+    </div>
+    <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">Sauver Profil</button>
+</EditForm>
 
