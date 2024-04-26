@@ -1,4 +1,5 @@
-﻿@if (Email != null)
+﻿@using System.Web
+@if (Email != null)
 {
     <EditForm class="container d-flex flex-column position-relative" Model="Email" OnValidSubmit="IsValided">
 
@@ -11,14 +12,14 @@
             }
             @foreach (string choix in descriptions)
             {
-                @if ((string.IsNullOrEmpty(Email.Description) && descriptions.IndexOf(choix) == 0 )||( descriptions.Contains(Email.Description) && Email.Description == choix))
+                @if ((string.IsNullOrEmpty(Email.Description) && descriptions.IndexOf(choix) == 0) || (descriptions.Contains(Email.Description) && Email.Description == @HttpUtility.HtmlDecode(choix)))
                 {
-                    <option value="@choix" selected>@choix</option>
-                    @(Email.Description = choix)
+                    <option value="@HttpUtility.HtmlDecode(choix)" selected>@HttpUtility.HtmlDecode(choix)</option>
+                    @(Email.Description = @HttpUtility.HtmlDecode(choix))
                 }
                 else
                 {
-                    <option value="@choix">@choix</option>
+                    <option value="@HttpUtility.HtmlDecode(choix)">@HttpUtility.HtmlDecode(choix)</option>
                 }
 
         }
