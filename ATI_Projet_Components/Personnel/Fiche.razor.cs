@@ -115,7 +115,7 @@ namespace ATI_Projet_Components.Personnel
             
             EmployePrivate = await httpClient.GetFromJsonAsync<EmployePrivate>("Employe/private/" + Id) ?? new EmployePrivate();
             PhotoPath = string.IsNullOrEmpty(EmployePrivate.Photo) ? "/images/Photo.jpg" : Path.GetFullPath(EmployePrivate.Photo); /*(Path.GetFullPath(EmployePrivate.Photo)).Replace("C:\\Users\\ati_etu3\\source\\repos\\ATI_Projet_App\\ATI_Projet_App\\wwwroot", "").Replace("\\", "/");*/
-            SignaturePath = string.IsNullOrEmpty(EmployePrivate.Signature) ? "/images/signature.webp" : Path.GetFullPath(EmployePrivate.Signature); /*(Path.GetFullPath(EmployePrivate.Signature)).Replace("C:\\Users\\ati_etu3\\source\\repos\\ATI_Projet_App\\ATI_Projet_App\\wwwroot", "").Replace("\\", "/");*/ 
+            SignaturePath = string.IsNullOrEmpty(EmployePrivate.Signature) ? "/images/signature.webp" : Path.GetFullPath(EmployePrivate.Signature); /*(Path.GetFullPath(EmployePrivate.Signature)).Replace("C:\\Users\\ati_etu3\\source\\repos\\ATI_Projet_App\\ATI_Projet_App\\wwwroot", "").Replace("\\", "/");*/  
 
             EmployeProf = await httpClient.GetFromJsonAsync<EmployeProf>("Employe/prof/" + Id) ?? new EmployeProf();
 
