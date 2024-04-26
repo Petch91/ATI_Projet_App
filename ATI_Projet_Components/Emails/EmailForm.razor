@@ -1,6 +1,4 @@
-﻿@using System.Web
-@using System.Text
-@if (Email != null)
+﻿@if (Email != null)
 {
     <EditForm class="container d-flex flex-column position-relative" Model="Email" OnValidSubmit="IsValided">
 
@@ -11,17 +9,16 @@
             {
                 <option value="@Email.Description" selected>@Email.Description</option>
             }
-            @foreach (byte[] choixbyte in descriptionsByte)
+            @foreach (string choix in descriptions)
             {
-                string choix = Encoding.UTF8.GetString(choixbyte);
-                @if ((string.IsNullOrEmpty(Email.Description) && descriptions.IndexOf(choix) == 0) || (descriptions.Contains(Email.Description) && Email.Description == @HttpUtility.HtmlDecode(choix)))
+                @if ((string.IsNullOrEmpty(Email.Description) && descriptions.IndexOf(choix) == 0 )||( descriptions.Contains(Email.Description) && Email.Description == choix))
                 {
-                    <option value="@choix.ToString()" selected>@choix.ToString()</option>
-                    @(Email.Description = choix.ToString())
+                    <option value="@descriptions.Find(s => s == choix)" selected>@descriptions.Find(s => s == choix)</option>
+                    @(Email.Description = descriptions.Find(s => s == choix))
                 }
                 else
                 {
-                    <option value="@choix.ToString()">@choix.ToString()</option>
+                    <option value="@choix">@choix</option>
                 }
 
         }
