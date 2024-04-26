@@ -1,4 +1,5 @@
 ﻿@using System.Web
+@using System.Text
 @if (Email != null)
 {
     <EditForm class="container d-flex flex-column position-relative" Model="Email" OnValidSubmit="IsValided">
@@ -14,12 +15,12 @@
             {
                 @if ((string.IsNullOrEmpty(Email.Description) && descriptions.IndexOf(choix) == 0) || (descriptions.Contains(Email.Description) && Email.Description == @HttpUtility.HtmlDecode(choix)))
                 {
-                    <option value="@HttpUtility.HtmlDecode(choix)" selected>@HttpUtility.HtmlDecode(choix)</option>
-                    @(Email.Description = @HttpUtility.HtmlDecode(choix))
+                    <option value="@choix.ToString()" selected>@choix.ToString()</option>
+                    @(Email.Description = choix.ToString())
                 }
                 else
                 {
-                    <option value="@HttpUtility.HtmlDecode(choix)">@HttpUtility.HtmlDecode(choix)</option>
+                    <option value="@choix.ToString()">@choix.ToString()</option>
                 }
 
         }

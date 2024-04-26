@@ -2,6 +2,7 @@ using ATI_Projet_Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using System.Reflection;
+using System.Text;
 using System.Web;
 
 namespace ATI_Projet_Components.Emails
@@ -14,12 +15,12 @@ namespace ATI_Projet_Components.Emails
         public EventCallback<Email> OnValidation { get; set; }
         [Parameter] public string Error { get; set; }
 
-        private List<string> descriptions = new List<string> { HttpUtility.HtmlEncode("Privée"), "Professionnelle" };
+        private List<string> descriptions = new List<string> { "Privée", "Professionnelle" };
        
         public void IsValided()
         {
                 OnValidation.InvokeAsync(Email);               
-
+            Encoding.UTF8.GetBytes("");
         }
 
     }
