@@ -13,8 +13,8 @@
             {
                 @if ((string.IsNullOrEmpty(Email.Description) && descriptions.IndexOf(choix) == 0 )||( descriptions.Contains(Email.Description) && Email.Description == choix))
                 {
-                    <option value="@descriptions.Find(s => s == choix)" selected>@descriptions.Find(s => s == choix)</option>
-                    @(Email.Description = descriptions.Find(s => s == choix))
+                    <option value="@choix" selected>@choix</option>
+                    @(Email.Description = choix)
                 }
                 else
                 {
