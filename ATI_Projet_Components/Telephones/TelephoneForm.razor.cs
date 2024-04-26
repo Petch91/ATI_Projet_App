@@ -1,4 +1,4 @@
-using ATI_Projet_Models;
+ï»¿using ATI_Projet_Models;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components;
 
@@ -11,7 +11,7 @@ namespace ATI_Projet_Components.Telephones
         [Parameter]
         public EventCallback<Telephone> OnValidation { get; set; }
 
-        private List<string> descriptions = new List<string>{ @"Fixe Privé","Fixe Professionnel", @"Gsm Privé", "Gsm Professionnel" };
+        private List<string> descriptions = new List<string>{ "Fixe PrivÃ©","Fixe Professionnel", "Gsm PrivÃ©", "Gsm Professionnel" };
         
         public void IsValided()
         {
