@@ -23,7 +23,7 @@ namespace ATI_Projet_App.Components.Pages.Personnels
             ID = id;
             var parameters = new Dictionary<string, object>();
             //parameters.Add("UploadPath", @$"C:\Users\ati_etu3\source\repos\ATI_Projet_App\ATI_Projet_App\wwwroot\images\photos\employe{id}");
-            parameters.Add("UploadPath", @$"/app/images/photos/employe{id}");
+            parameters.Add("UploadPath", @$"/app/wwwroot/images/photos/employe{id}");
             parameters.Add("PhotoUploaded", EventCallback.Factory.Create<string>(this, EditPhoto));
             await modalPhoto.ShowAsync<UploadPhoto>(title: "Changer La Photo", parameters: parameters);
         }
@@ -37,7 +37,7 @@ namespace ATI_Projet_App.Components.Pages.Personnels
         {
             ID = id;
             var parameters = new Dictionary<string, object>();
-            parameters.Add("UploadPath", @$"/app/images/signatures/employe{id}");
+            parameters.Add("UploadPath", @$"/app/wwwroot/images/signatures/employe{id}");
             parameters.Add("PhotoUploaded", EventCallback.Factory.Create<string>(this, EditSignature));
             await modalSignature.ShowAsync<UploadPhoto>(title: "Changer La Signature", parameters: parameters);
         }
