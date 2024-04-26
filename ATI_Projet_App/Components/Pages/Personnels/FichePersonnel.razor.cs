@@ -31,6 +31,7 @@ namespace ATI_Projet_App.Components.Pages.Personnels
         {
             await httpClient.PatchAsJsonAsync("Employe/changePhoto", new {Id = ID, Path = path});
             await modalPhoto.HideAsync();
+            StateHasChanged();
             //navigationManager.Refresh();
         }
         private async void OpenModalSignature(int id)
