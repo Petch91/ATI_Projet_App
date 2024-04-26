@@ -11,8 +11,9 @@
             {
                 <option value="@Email.Description" selected>@Email.Description</option>
             }
-            @foreach (string choix in descriptions)
+            @foreach (byte[] choixbyte in descriptionsByte)
             {
+                string choix = Encoding.UTF8.GetString(choixbyte);
                 @if ((string.IsNullOrEmpty(Email.Description) && descriptions.IndexOf(choix) == 0) || (descriptions.Contains(Email.Description) && Email.Description == @HttpUtility.HtmlDecode(choix)))
                 {
                     <option value="@choix.ToString()" selected>@choix.ToString()</option>

@@ -16,11 +16,12 @@ namespace ATI_Projet_Components.Emails
         [Parameter] public string Error { get; set; }
 
         private List<string> descriptions = new List<string> { "Privée", "Professionnelle" };
-       
+        private List<byte[]> descriptionsByte = new List<byte[]> { Encoding.UTF8.GetBytes("Privée"), Encoding.UTF8.GetBytes("Professionnelle") };
+
         public void IsValided()
         {
                 OnValidation.InvokeAsync(Email);               
-            Encoding.UTF8.GetBytes("");
+
         }
 
     }
