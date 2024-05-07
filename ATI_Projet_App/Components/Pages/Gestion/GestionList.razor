@@ -28,27 +28,27 @@
                 {
                     case "Fonction":
                         {
-                            <ListGenericEdit Items="items.Cast<Fonction>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<Fonction>" />
+                            <ListGenericEdit Items="items.Cast<Fonction>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<Fonction>" DeleteEvent="Delete<Fonction>"/>
                             break;
                         }
                     case "FonctionVCA":
                         {
-                            <ListGenericEdit Items="items.Cast<FonctionVCA>()" EditEvent="OpenEdit<FonctionVCA>" />
+                            <ListGenericEdit Items="items.Cast<FonctionVCA>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<FonctionVCA>" DeleteEvent="Delete<FonctionVCA>" />
                             break;
                         }
                     case "StatusVCA":
                         {
-                            <ListGenericEdit Items="items.Cast<StatusVCA>()" EditEvent="OpenEdit<StatusVCA>" />
+                            <ListGenericEdit Items="items.Cast<StatusVCA>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<StatusVCA>" DeleteEvent="Delete<StatusVCA>" />
                             break;
                         }
                     case "TypeContrat":
                         {
-                            <ListGenericEdit Items="items.Cast<TypeContrat>()" EditEvent="OpenEdit<TypeContrat>" />
+                            <ListGenericEdit Items="items.Cast<TypeContrat>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<TypeContrat>" DeleteEvent="Delete<TypeContrat>" />
                             break;
                         }
                     case "TypeMO":
                         {
-                            <ListGenericEdit Items="items.Cast<TypeMO>()" EditEvent="OpenEdit<TypeMO>" />
+                            <ListGenericEdit Items="items.Cast<TypeMO>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<TypeMO>" DeleteEvent="Delete<TypeMO>" />
                             break;
                         }
                 }

@@ -180,5 +180,20 @@ namespace ATI_Projet_App.Components.Pages.Gestion
             await SelectChange(type);
             StateHasChanged();
         }
+        public async Task Delete<T>(object id)
+        {
+            string url = typeof(T) switch
+            {
+                Type t when t == typeof(Fonction) => "fonction/",
+                Type t when t == typeof(FonctionVCA) => "VCA/Fonction/",
+                Type t when t == typeof(StatusVCA) => "VCA/statusVCA/",
+                Type t when t == typeof(TypeContrat) => "type/Contrat/",
+                Type t when t == typeof(TypeMO) => "type/MO/",
+                _ => throw new ArgumentException($"Type {typeof(T)} not supported."),
+            };
+            HttpClient.DeleteFromJsonAsync<T>(url + id);
+            await Task.Delay(500);
+            StateHasChanged();
+        }
     }
 }
