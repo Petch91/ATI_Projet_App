@@ -22,9 +22,11 @@ namespace ATI_Projet_Components
         [Parameter]
         public List<string> ExcludedCols { get; set; }
         [Parameter]
-        public EventCallback<int> EditEvent { get; set; }
+        public EventCallback<object> EditEvent { get; set; }
         [Parameter]
-        public EventCallback<int> DeleteEvent { get; set; }
+        public EventCallback<object> DeleteEvent { get; set; }
+        [Parameter] 
+        public int ItemsPerPageForPagination { get; set; }
 
 
         private Dictionary<string, string> filters;
@@ -47,7 +49,7 @@ namespace ATI_Projet_Components
             }
         }
 
-        PaginationState pagination = new PaginationState { ItemsPerPage = 15 };
+        private PaginationState pagination;
 
         protected override void OnParametersSet()
         {
@@ -64,6 +66,11 @@ namespace ATI_Projet_Components
                     filters.Add($"{p.Name}filter", "");
                 }
             }
+            if(ItemsPerPageForPagination == null || ItemsPerPageForPagination == 0)
+            {
+                ItemsPerPageForPagination = 15;
+            }
+            pagination = new PaginationState { ItemsPerPage = ItemsPerPageForPagination };
         }
 
         public void Edit(int id)

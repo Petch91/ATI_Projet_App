@@ -21,6 +21,7 @@
                                         Sortable="true" class="@p.Name.ToLower()">
                             <ColumnOptions>
                                 <div class="search-box">
+                                    <label>@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name : p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)</label>
                                     <input type="search" autofocus @bind="@filters[$"{p.Name}filter"]" @bind:event="oninput" placeholder="Entrez votre recherche" />
                                 </div>
                             </ColumnOptions>
@@ -61,6 +62,7 @@
                                         Sortable="true" class="@p.Name.ToLower()">
                             <ColumnOptions>
                                 <div class="search-box">
+                                    <label>@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name : p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)</label>
                                     <input type="search" autofocus @bind="@filters[$"{p.Name}filter"]" @bind:event="oninput" placeholder="Entrez votre recherche" />
                                 </div>
                             </ColumnOptions>

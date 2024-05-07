@@ -18,7 +18,7 @@ namespace ATI_Projet_App.Components.Pages.Personnels
 
         private int ID = 0;
 
-        private async void OpenModalPhoto(int id)
+        private async Task OpenModalPhoto(int id)
         {
             ID = id;
             var parameters = new Dictionary<string, object>();
@@ -27,14 +27,14 @@ namespace ATI_Projet_App.Components.Pages.Personnels
             parameters.Add("PhotoUploaded", EventCallback.Factory.Create<string>(this, EditPhoto));
             await modalPhoto.ShowAsync<UploadPhoto>(title: "Changer La Photo", parameters: parameters);
         }
-        private async void EditPhoto(string path)
+        private async Task EditPhoto(string path)
         {
             await httpClient.PatchAsJsonAsync("Employe/changePhoto", new {Id = ID, Path = path});
             await modalPhoto.HideAsync();
             StateHasChanged();
             //navigationManager.Refresh();
         }
-        private async void OpenModalSignature(int id)
+        private async Task OpenModalSignature(int id)
         {
             ID = id;
             var parameters = new Dictionary<string, object>();
@@ -42,7 +42,7 @@ namespace ATI_Projet_App.Components.Pages.Personnels
             parameters.Add("PhotoUploaded", EventCallback.Factory.Create<string>(this, EditSignature));
             await modalSignature.ShowAsync<UploadPhoto>(title: "Changer La Signature", parameters: parameters);
         }
-        private async void EditSignature(string path)
+        private async Task EditSignature(string path)
         {
             await httpClient.PatchAsJsonAsync("Employe/changeSignature", new { Id = ID, Path = path });
             await modalSignature.HideAsync();

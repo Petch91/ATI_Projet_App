@@ -28,7 +28,7 @@ namespace ATI_Projet_App.Components.Layout
                 StateHasChanged();
             }
         }
-        private async void Logout()
+        private async Task Logout()
         {
             await session.Logout();
             navigationManager.NavigateTo("http://192.168.122.77:7100/logout", true);

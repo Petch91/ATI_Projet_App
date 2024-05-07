@@ -36,7 +36,7 @@ namespace ATI_Projet_Components.Personnel
                 Adresse.EmployeId = EmployePrivate.Id;
             }
         }
-        public async void EditPrivate(EmployePrivate employePrivate)
+        public async Task EditPrivate(EmployePrivate employePrivate)
         {
             EmployePrivate = employePrivate;
             EmployePrivate.AdresseId = NewId;
@@ -44,7 +44,7 @@ namespace ATI_Projet_Components.Personnel
             modal.HideAsync();
             StateHasChanged();
         }
-        public async void EditAdresse(Adresse adresse)
+        public async Task EditAdresse(Adresse adresse)
         {
             Adresse = adresse;
             var reponse = HttpClient.PatchAsJsonAsync<Adresse>("Employe/updateAdresse", adresse);

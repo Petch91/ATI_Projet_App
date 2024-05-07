@@ -62,7 +62,7 @@ namespace ATI_Projet_Components.Personnel
         {
             await ChangeEmploye();
         }
-        private async void SelectChange(int id)
+        private async Task SelectChange(int id)
         {
             Id = id;
             await task;
@@ -81,21 +81,21 @@ namespace ATI_Projet_Components.Personnel
             StateHasChanged();
         }
 
-        public async void ShowCanvas()
+        public async Task ShowCanvas()
         {
             await offcanvas.ShowAsync();
         }
-        public async void OnHideOffcanvasClick()
+        public async Task OnHideOffcanvasClick()
         {
             await offcanvas.HideAsync();
         }
-        public async void TriggerEmail()
+        public async Task TriggerEmail()
         {
             emails = await httpClient.GetFromJsonAsync<List<Email>>("Employe/emailsByEmploye/" + EmployeProfil.PersonneId);
             StateHasChanged();
         }
 
-        public async void TriggerTelephone()
+        public async Task TriggerTelephone()
         {
             telephones = await httpClient.GetFromJsonAsync<List<Telephone>>("Employe/telephonesByEmploye/" + EmployeProfil.PersonneId);
             StateHasChanged();
@@ -128,26 +128,26 @@ namespace ATI_Projet_Components.Personnel
             
         }
 
-        private async void ChangePhoto()
+        private async Task ChangePhoto()
         {
             await EditPhoto.InvokeAsync(Id);
 
         }
 
-        private async void ChangeSignature()
+        private async Task ChangeSignature()
         {
             await EditSignature.InvokeAsync(Id);
         }
 
         private Modal modal { get; set; }
-        private async void OpenModalCreate()
+        private async Task OpenModalCreate()
         {
             var parameters = new Dictionary<string, object>();
             parameters.Add("CreateEvent", EventCallback.Factory.Create<PersonneForm>(this, AddEmploye));
             await modal.ShowAsync<CreatePersonne>(title: @"Ajouter un employé", parameters: parameters);
         }
 
-        private async void AddEmploye(PersonneForm personne)
+        private async Task AddEmploye(PersonneForm personne)
         {
             await httpClient.PostAsJsonAsync<PersonneForm>("Employe/", personne);
             await modal.HideAsync();
@@ -157,9 +157,11 @@ namespace ATI_Projet_Components.Personnel
             StateHasChanged();
         }
 
+
         public void Dispose()
         {
             httpClient.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

@@ -1,3 +1,62 @@
-﻿<h3>GestionList</h3>
+﻿@page "/gestion"
+@using System.ComponentModel
+@using System.Reflection
+@using System.Collections
+@using ATI_Projet_Models.Types
+@using ATI_Projet_Models.VCA
+
+<div class=" d-flex justify-content-center">
+    <div class="m-2 pb-2 container border" style="max-width: 56.5rem">
+        <div class="my-2">
+            <SelectList TItem="Type"
+                        TValue="string"
+                        Data="@Liste"
+                        TextField="@(item => item.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
+                        ValueField="@(item => item.Name)"
+                        DefaulPersonnelText="Recherche"
+                        SelectedValueChanged="@(e=>{
+                                            SelectChange(e);
+                                        })" />
+
+            <Button Color="ButtonColor.Success" @onclick="OpenModalAdd">Ajouter</Button>
+        </div>
+
+        <div class="w-100">
+            @if (items != null)
+            {
+                switch (type)
+                {
+                    case "Fonction":
+                        {
+                            <ListGenericEdit Items="items.Cast<Fonction>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<Fonction>" />
+                            break;
+                        }
+                    case "FonctionVCA":
+                        {
+                            <ListGenericEdit Items="items.Cast<FonctionVCA>()" EditEvent="OpenEdit<FonctionVCA>" />
+                            break;
+                        }
+                    case "StatusVCA":
+                        {
+                            <ListGenericEdit Items="items.Cast<StatusVCA>()" EditEvent="OpenEdit<StatusVCA>" />
+                            break;
+                        }
+                    case "TypeContrat":
+                        {
+                            <ListGenericEdit Items="items.Cast<TypeContrat>()" EditEvent="OpenEdit<TypeContrat>" />
+                            break;
+                        }
+                    case "TypeMO":
+                        {
+                            <ListGenericEdit Items="items.Cast<TypeMO>()" EditEvent="OpenEdit<TypeMO>" />
+                            break;
+                        }
+                }
+            }
+        </div>
 
 
+    </div>
+
+</div>
+<Modal @ref="modal"></Modal>

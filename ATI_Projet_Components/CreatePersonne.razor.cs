@@ -11,7 +11,7 @@ namespace ATI_Projet_Components
 
         private List<string> ChoixTitre = new List<string> { "M.", "Mme", "X." };
 
-        private async void Submit()
+        private async Task Submit()
         {
             await CreateEvent.InvokeAsync(form);
             form = new PersonneForm();

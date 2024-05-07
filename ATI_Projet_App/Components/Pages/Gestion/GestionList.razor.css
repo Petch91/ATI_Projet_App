@@ -1,0 +1,35 @@
+﻿body {
+}
+::deep .quickgrid[theme="default"] thead {
+    background-color: lightslategray;
+}
+
+::deep .quickgrid[theme="default"] .col-title {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+
+::deep .quickgrid[theme="default"] {
+    --col-gap: 1.25rem;
+    width:100%;
+}
+
+::deep tr {
+    height: 2rem;
+    border-bottom: 0.5px solid silver;
+}
+
+::deep tbody td {
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: initial;
+    text-overflow: ellipsis;
+}
+
+::deep .quickgrid[theme="default"] .col-options-button {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /> </svg>');
+}

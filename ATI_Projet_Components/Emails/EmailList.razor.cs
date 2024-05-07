@@ -28,10 +28,10 @@ namespace ATI_Projet_Components.Emails
         List<ToastMessage> messages = new List<ToastMessage>();
 
 
-        private async Task ShowEdit(int id)
+        private async Task ShowEdit(object id)
         {
             var parameters = new Dictionary<string, object>();
-            parameters.Add("Email", emails.FirstOrDefault(e => e.Id == id).Clone());
+            parameters.Add("Email", emails.FirstOrDefault(e => e.Id == (int)id).Clone());
             parameters.Add("OnValidation", EventCallback.Factory.Create<Email>(this, Edit));
             await modal.ShowAsync<EmailForm>(title: "Edition Mail", parameters: parameters);
         }
@@ -47,7 +47,7 @@ namespace ATI_Projet_Components.Emails
             await modal.ShowAsync<EmailForm>(title: "Ajout d'une adresse Mail", parameters: parameters);
         }
 
-        public async void Edit(Email email)
+        public async Task Edit(Email email)
         {
             if (email.Id > 0) emails[emails.IndexOf(emails.First(e => e.Id == email.Id))] = email;
             var result = httpClient.PutAsJsonAsync<Email>("Employe/updateEmail", email);
@@ -60,15 +60,15 @@ namespace ATI_Projet_Components.Emails
             else
             {
                 ErrorMessage = "";
-                modal.HideAsync();
-                emailsChanged.InvokeAsync(emails);
+                await modal.HideAsync();
+                await emailsChanged.InvokeAsync(emails);
             }
             StateHasChanged();
         }
-        public async void Delete(int id)
+        public async Task Delete(object id)
         {
             httpClient.DeleteFromJsonAsync<Email>("Email?id=" + id);
-            emails.Remove(emails.First(e => e.Id == id));
+            emails.Remove(emails.First(e => e.Id == (int)id));
             await Task.Delay(500);
             await emailsChanged.InvokeAsync(emails);
             StateHasChanged();
