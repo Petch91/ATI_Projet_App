@@ -1,6 +1,6 @@
 ﻿@typeparam TItem
 
-<div class="edit">
+<div class="edit position-relative">
     <EditForm Model="Item" OnValidSubmit="Submit">
         <DataAnnotationsValidator></DataAnnotationsValidator>
         <ValidationSummary></ValidationSummary>
@@ -10,14 +10,14 @@
             var propValue = p.GetValue(Item);
             if (!ExcludedProp.Contains(p.Name))
             {
-                <div class="row">
-                    <label class="col text-end">@label</label>
+                <div class="row mb-2">
+                    <label class="col-3 text-end">@label</label>
                     @switch (Type.GetTypeCode(p.PropertyType))
                     {
                         case TypeCode.String:
                             {
-                                var value = propValue != null ? propValue.ToString(): "";
-                                <InputText class="col" Value="@value" ValueExpression="@(() => value)"
+                                var value = propValue != null ? propValue.ToString() : "";
+                                <InputText class="col-6" Value="@value" ValueExpression="@(() => value)"
                                            ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,x))"></InputText>
                                 break;
                             }
@@ -25,36 +25,44 @@
                         case TypeCode.UInt32:
                         case TypeCode.Byte:
                         case TypeCode.SByte:
-                        case TypeCode.Int64:
-                        case TypeCode.UInt64:
                         case TypeCode.Int16:
                         case TypeCode.UInt16:
                             {
-                                var value = propValue != null ? Convert.ToInt64(propValue) : 0 ;
-                                <InputNumber class="col" TValue="long" Value="@(value)" ValueExpression="@(() => value)"
-                                             ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,(long)x))"></InputNumber>
+                                var value = propValue != null ? Convert.ToInt32(propValue) : 0;
+                                <InputNumber class="col-3" TValue="int" Value="@(value)" ValueExpression="@(() => value)"
+                                             ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,Convert.ToInt32(x)))"></InputNumber>
                                 break;
+                            }
+                        case TypeCode.Int64:
+                        case TypeCode.UInt64:
+                            {
+
+                                var value = propValue != null ? Convert.ToInt64(propValue) : 0;
+                                <InputNumber class="col-3" TValue="long" Value="@(value)" ValueExpression="@(() => value)"
+                                             ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,Convert.ToInt64(x)))"></InputNumber>
+                                break;
+
                             }
                         case TypeCode.Single:
                         case TypeCode.Double:
                             {
                                 var value = propValue != null ? Convert.ToDouble(propValue) : 0;
-                                <InputNumber class="col" TValue="double" Value="@(value)" ValueExpression="@(() => value)"
+                                <InputNumber class="col-4" TValue="double" Value="@(value)" ValueExpression="@(() => value)"
                                              ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,(double)x))"></InputNumber>
                                 break;
                             }
 
                         case TypeCode.Decimal:
                             {
-                                var value = propValue != null ? Convert.ToDecimal(propValue) : 0 ;
-                                <InputNumber class="col" TValue="decimal" Value="@value" ValueExpression="@(() => value)"
+                                var value = propValue != null ? Convert.ToDecimal(propValue) : 0;
+                                <InputNumber class="col-4" TValue="decimal" Value="@value" ValueExpression="@(() => value)"
                                              ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,(decimal)x))"></InputNumber>
                                 break;
                             }
                         case TypeCode.DateTime:
                             {
                                 var value = propValue != null ? Convert.ToDateTime(propValue) : DateTime.Now;
-                                <InputDate class="col" TValue="DateTime" Value="@value" ValueExpression="@(() => value)"
+                                <InputDate class="col-5" TValue="DateTime" Value="@value" ValueExpression="@(() => value)"
                                            ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,(DateTime)x))"></InputDate>
                                 break;
                             }
@@ -64,7 +72,7 @@
 
             }
         }
-        <Button Type="ButtonType.Submit" Color="ButtonColor.Primary">Save</Button>
+        <Button Type="ButtonType.Submit" Color="ButtonColor.Primary" Class="position-absolute bottom-0 end-0">Save</Button>
     </EditForm>
 
 

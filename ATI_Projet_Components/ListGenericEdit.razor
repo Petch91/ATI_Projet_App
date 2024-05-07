@@ -1,14 +1,14 @@
 ﻿@using System.ComponentModel
 @using System.Reflection
 @typeparam TItem
-
+@typeparam TId
 @if (Liste.Count() > 0)
 {
 
     @if (Liste.Count() > pagination.ItemsPerPage)
     {
 
-        <QuickGrid  Items="@Liste" Pagination="@pagination">
+        <QuickGrid Items="@Liste" Pagination="@pagination">
             @foreach (var p in Liste.ElementType.GetProperties())
             {
                 if (!ExcludedCols.Contains(p.Name))
@@ -38,8 +38,14 @@
 
             }
             <TemplateColumn Class="actions" Align="Align.Center">
-                <Button Color="ButtonColor.Warning" Size="Size.ExtraSmall" @onclick="@(() =>Edit((int)context.GetType().GetProperty("Id").GetValue(context)))"><Icon Name="IconName.PencilSquare"></Icon></Button>
-                <Button Color="ButtonColor.Danger" Size="Size.ExtraSmall" @onclick="@(() =>Delete((int)context.GetType().GetProperty("Id").GetValue(context)))"><Icon Name="IconName.XLg"></Icon></Button>
+                <Button Color="ButtonColor.Warning" Size="Size.ExtraSmall" Loading="loadingEdit" LoadingText="  "
+                        @onclick="@(() =>Edit((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
+                    <Icon Name="IconName.PencilSquare"></Icon>
+                </Button>
+                <Button Color="ButtonColor.Danger" Size="Size.ExtraSmall" Loading="loadingDelete" LoadingText="  "
+                        @onclick="@(() =>Delete((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
+                    <Icon Name="IconName.XLg"></Icon>
+                </Button>
             </TemplateColumn>
         </QuickGrid>
 
@@ -79,8 +85,14 @@
 
             }
             <TemplateColumn Class="actions">
-                <Button Color="ButtonColor.Warning" Size="Size.ExtraSmall" @onclick="@(() =>Edit((int)context.GetType().GetProperty("Id").GetValue(context)))"><Icon Name="IconName.PencilSquare"></Icon></Button>
-                <Button Color="ButtonColor.Danger" Size="Size.ExtraSmall" @onclick="@(() =>Delete((int)context.GetType().GetProperty("Id").GetValue(context)))"><Icon Name="IconName.XLg"></Icon></Button>
+                <Button Color="ButtonColor.Warning" Size="Size.ExtraSmall" Loading="loadingEdit" LoadingText="  "
+                        @onclick="@(() =>Edit((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
+                    <Icon Name="IconName.PencilSquare"></Icon>
+                </Button>
+                <Button Color="ButtonColor.Danger" Size="Size.ExtraSmall" Loading="loadingDelete" LoadingText="  "
+                        @onclick="@(() =>Delete((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
+                    <Icon Name="IconName.XLg"></Icon>
+                </Button>
 
             </TemplateColumn>
         </QuickGrid>

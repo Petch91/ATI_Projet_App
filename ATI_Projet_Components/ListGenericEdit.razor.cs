@@ -14,20 +14,24 @@ namespace ATI_Projet_Components
     /// si le nom de la propriètés ne vous convient pas vous pouvez utiliser l'attribut DisplayName
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class ListGenericEdit<TItem> : ComponentBase where TItem : class
+    public partial class ListGenericEdit<TItem, TId> : ComponentBase where TItem : class
     {
         [Parameter]
         public IEnumerable<TItem> Items { get; set; }
-
         [Parameter]
         public List<string> ExcludedCols { get; set; }
         [Parameter]
         public EventCallback<object> EditEvent { get; set; }
         [Parameter]
         public EventCallback<object> DeleteEvent { get; set; }
-        [Parameter] 
+        [Parameter]
         public int ItemsPerPageForPagination { get; set; }
 
+        [Parameter]
+        public string IdName { get; set; }
+
+        private bool loadingEdit = false;
+        private bool loadingDelete = false;
 
         private Dictionary<string, string> filters;
 
@@ -41,8 +45,8 @@ namespace ATI_Projet_Components
                 {
                     if (!string.IsNullOrEmpty(keyValue.Value))
                     {
-                        string name = keyValue.Key.Replace("filter","");
-                        result =  result.Where(u => u.GetType().GetProperty(name).GetValue(u).ToString().Contains(keyValue.Value, StringComparison.CurrentCultureIgnoreCase));
+                        string name = keyValue.Key.Replace("filter", "");
+                        result = result.Where(u => u.GetType().GetProperty(name).GetValue(u).ToString().Contains(keyValue.Value, StringComparison.CurrentCultureIgnoreCase));
                     }
                 }
                 return result;
@@ -61,26 +65,35 @@ namespace ATI_Projet_Components
             _liste = Items.AsQueryable();
             foreach (var p in _liste.ElementType.GetProperties())
             {
-                if (p.PropertyType ==  typeof(string))
+                if (p.PropertyType == typeof(string))
                 {
                     filters.Add($"{p.Name}filter", "");
                 }
             }
-            if(ItemsPerPageForPagination == null || ItemsPerPageForPagination == 0)
+            if (ItemsPerPageForPagination == null || ItemsPerPageForPagination == 0)
             {
                 ItemsPerPageForPagination = 15;
             }
             pagination = new PaginationState { ItemsPerPage = ItemsPerPageForPagination };
+
+            if (string.IsNullOrEmpty(IdName))
+            {
+                IdName = "Id";
+            }
         }
 
-        public void Edit(int id)
+        public async Task Edit(TId id)
         {
-            EditEvent.InvokeAsync(id);
+            loadingEdit = true;
+            await EditEvent.InvokeAsync(id);
+            loadingEdit = false;
         }
 
-        public void Delete(int id) 
+        public async Task Delete(TId id)
         {
-            DeleteEvent.InvokeAsync(id);
+            loadingDelete = true;
+            await DeleteEvent.InvokeAsync(id);
+            loadingDelete = false;
         }
 
     }

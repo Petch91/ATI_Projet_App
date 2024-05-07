@@ -28,27 +28,32 @@
                 {
                     case "Fonction":
                         {
-                            <ListGenericEdit Items="items.Cast<Fonction>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<Fonction>" DeleteEvent="Delete<Fonction>"/>
+                            <ListGenericEdit TId=int TItem =Fonction Items="items.Cast<Fonction>()" ItemsPerPageForPagination=20 
+                                EditEvent="OpenEdit<Fonction>" DeleteEvent="Delete<Fonction>"/>
                             break;
                         }
                     case "FonctionVCA":
                         {
-                            <ListGenericEdit Items="items.Cast<FonctionVCA>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<FonctionVCA>" DeleteEvent="Delete<FonctionVCA>" />
+                            <ListGenericEdit TId=int TItem=FonctionVCA Items="items.Cast<FonctionVCA>()" ItemsPerPageForPagination=20
+                                             EditEvent="OpenEdit<FonctionVCA>" DeleteEvent="Delete<FonctionVCA>" />
                             break;
                         }
                     case "StatusVCA":
                         {
-                            <ListGenericEdit Items="items.Cast<StatusVCA>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<StatusVCA>" DeleteEvent="Delete<StatusVCA>" />
+                            <ListGenericEdit TId=int TItem=StatusVCA Items="items.Cast<StatusVCA>()" ItemsPerPageForPagination=20 IdName="Code"
+                                EditEvent="OpenEdit<StatusVCA>" DeleteEvent="Delete<StatusVCA>" />
                             break;
                         }
                     case "TypeContrat":
                         {
-                            <ListGenericEdit Items="items.Cast<TypeContrat>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<TypeContrat>" DeleteEvent="Delete<TypeContrat>" />
+                            <ListGenericEdit TId=int TItem=TypeContrat Items="items.Cast<TypeContrat>()" ItemsPerPageForPagination=20 IdName="Code"
+                                EditEvent="OpenEdit<TypeContrat>" DeleteEvent="Delete<TypeContrat>" />
                             break;
                         }
                     case "TypeMO":
                         {
-                            <ListGenericEdit Items="items.Cast<TypeMO>()" ItemsPerPageForPagination=20 EditEvent="OpenEdit<TypeMO>" DeleteEvent="Delete<TypeMO>" />
+                            <ListGenericEdit TId=string TItem=TypeMO Items="items.Cast<TypeMO>()" ItemsPerPageForPagination=20 IdName="Code"
+                                EditEvent="OpenEdit<TypeMO>" DeleteEvent="Delete<TypeMO>" />
                             break;
                         }
                 }
@@ -59,4 +64,5 @@
     </div>
 
 </div>
-<Modal @ref="modal"></Modal>
+<Modal @ref="modal" Size="ModalSize.Large"></Modal>
+<ConfirmDialog @ref="dialog" />

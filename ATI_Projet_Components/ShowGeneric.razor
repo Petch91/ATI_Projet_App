@@ -1,22 +1,21 @@
 ﻿@typeparam TItem
 
-<div class="d-flex justify-content-center align-items-center p-2 h-75">
-    <div class="d-flex flex-column gap-1 show">
-        @foreach(var p in Item.GetType().GetProperties())
+<div class="show">
+    @foreach (var p in Item.GetType().GetProperties())
+    {
+        if (!ExcludedProp.Contains(p.Name))
         {
-            if (p.GetValue(Item) != null && !ExcludedProp.Contains(p.Name))
-            {
-                if(p.PropertyType == typeof(string))
-                {
-                    if (!string.IsNullOrEmpty(p.GetValue(Item).ToString()))
-                    {
-                        <div>
-                            <h4>@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name : p.GetCustomAttribute<DisplayNameAttribute>().DisplayName):</h4>
-                            <p>@p.GetValue(Item)</p>
-                        </div>
-                    }
-                }
-            }
+            <div class="row">
+                <h5 class="col-4 text-end">@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name : p.GetCustomAttribute<DisplayNameAttribute>().DisplayName):</h5>
+                <p class="col-7">@(p.GetValue(Item) != null ? p.GetValue(Item) : default! )</p>
+            </div>
+            @*                 if(p.PropertyType == typeof(string))
+    {
+    if (!string.IsNullOrEmpty(p.GetValue(Item).ToString()))
+    {
+
+    }
+    } *@
         }
-    </div>
+    }
 </div>

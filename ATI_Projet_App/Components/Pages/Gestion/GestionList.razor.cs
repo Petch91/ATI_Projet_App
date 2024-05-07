@@ -21,6 +21,9 @@ namespace ATI_Projet_App.Components.Pages.Gestion
 
         private string type = "Fonction";
 
+        private Modal modal { get; set; }
+        private ConfirmDialog dialog;
+
         protected async override Task OnInitializedAsync()
         {
             List<Fonction> list = await HttpClient.GetFromJsonAsync<List<Fonction>>("fonction/");
@@ -68,8 +71,6 @@ namespace ATI_Projet_App.Components.Pages.Gestion
 
             StateHasChanged();
         }
-
-        private Modal modal { get; set; }
 
         private async Task CreateModalEdit<T>(string title, T item) where T : class, new()
         {
@@ -180,20 +181,65 @@ namespace ATI_Projet_App.Components.Pages.Gestion
             await SelectChange(type);
             StateHasChanged();
         }
+        private async Task<bool> CreateConfirmation<T>(T entity, string title) where T : class
+        {
+            var options = new ConfirmDialogOptions { Size = DialogSize.Large };
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("Item", entity);
+            return await dialog.ShowAsync<ShowGeneric<T>>(title, parameters, options);
+        }
         public async Task Delete<T>(object id)
         {
-            string url = typeof(T) switch
+            string url;
+            bool confirmation = false;
+            switch (typeof(T))
             {
-                Type t when t == typeof(Fonction) => "fonction/",
-                Type t when t == typeof(FonctionVCA) => "VCA/Fonction/",
-                Type t when t == typeof(StatusVCA) => "VCA/statusVCA/",
-                Type t when t == typeof(TypeContrat) => "type/Contrat/",
-                Type t when t == typeof(TypeMO) => "type/MO/",
-                _ => throw new ArgumentException($"Type {typeof(T)} not supported."),
-            };
-            HttpClient.DeleteFromJsonAsync<T>(url + id);
-            await Task.Delay(500);
-            StateHasChanged();
+                case var t when t == typeof(Fonction):
+                    {
+                        var item = items.Cast<Fonction>().ToList().FirstOrDefault(e => e.Id == (int)id);
+                        confirmation = await CreateConfirmation<Fonction>(item, "Voulez vous vraiment supprimer cette fonction?");
+                        url = "Fonction/";
+                        break;
+                    }
+                case var t when t == typeof(FonctionVCA):
+                    {
+                        var item = items.Cast<FonctionVCA>().ToList().FirstOrDefault(e => e.Id == (int)id);
+                        confirmation = await CreateConfirmation<FonctionVCA>(item, "Voulez vous vraiment supprimer cette fonction VCA?");
+                        url = "VCA/Fonction/";
+                        break;
+                    }
+                case var t when t == typeof(StatusVCA):
+                    {
+                        var item = items.Cast<StatusVCA>().ToList().FirstOrDefault(e => e.Code == (int)id);
+                        confirmation = await CreateConfirmation<StatusVCA>(item, "Voulez vous vraiment supprimer ce statut VCA?");
+                        url = "VCA/statusVCA/";
+                        break;
+                    }
+                case var t when t == typeof(TypeContrat):
+                    {
+                        var item = items.Cast<TypeContrat>().ToList().FirstOrDefault(e => e.Code == (int)id);
+                        confirmation = await CreateConfirmation<TypeContrat>(item, "Voulez vous vraiment supprimer ce type de contrat?");
+                        url = "type/Contrat/";
+                        break;
+                    }
+                case var t when t == typeof(TypeMO):
+                    {
+                        var item = items.Cast<TypeMO>().ToList().FirstOrDefault(e => e.Code == id.ToString());
+                        confirmation = await CreateConfirmation<TypeMO>(item, "Voulez vous vraiment supprimer ce type de main d'oeuvre?");
+                        url = "type/MO/";
+                        break;
+                    }
+                default:
+                    throw new ArgumentException($"Type {type} not supported.");
+            }
+            if(confirmation)
+            {
+                HttpClient.DeleteFromJsonAsync<T>(url + id);
+                await Task.Delay(100);
+                await SelectChange(type);
+                StateHasChanged();
+            }
+
         }
     }
 }
