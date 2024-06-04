@@ -8,22 +8,43 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.11.1" />
+    <PackageReference Include="Azure.Identity" Version="1.11.3" />
     <PackageReference Include="Blazor.Bootstrap" Version="2.2.0" />
-    <PackageReference Include="Blazored.FluentValidation" Version="2.1.0" />
-    <PackageReference Include="Blazorise" Version="1.5.1" />
-    <PackageReference Include="Blazorise.Bootstrap" Version="1.5.1" />
-    <PackageReference Include="Blazorise.Components" Version="1.5.1" />
-    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.1" />
-    <PackageReference Include="FluentValidation" Version="11.9.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="8.0.4" />
-    <PackageReference Include="Microsoft.Graph" Version="5.49.0" />
+    <PackageReference Include="Blazored.FluentValidation" Version="2.2.0" />
+    <PackageReference Include="Blazorise" Version="1.5.3" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="1.5.3" />
+    <PackageReference Include="Blazorise.Components" Version="1.5.3" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.5.3" />
+    <PackageReference Include="FluentValidation" Version="11.9.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid" Version="8.0.6" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="8.0.6" />
+    <PackageReference Include="Microsoft.Graph" Version="5.55.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ATI_Projet_Components\ATI_Projet_Components.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Locales\PersonnelResource.fr-BE.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PersonnelResource.fr-BE.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Locales\PersonnelResource.en.US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>PublicResXFileCodeGenerator</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Locales\PersonnelResource.fr-BE.resx">
+      <CustomToolNamespace>PublicResXFileCodeGenerator</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PersonnelResource.fr-BE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

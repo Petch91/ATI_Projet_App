@@ -2,6 +2,7 @@ using ATI_Projet_App.Models;
 using ATI_Projet_App.Tools;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using System.Globalization;
 
 namespace ATI_Projet_App.Components.Layout
 {
@@ -17,6 +18,30 @@ namespace ATI_Projet_App.Components.Layout
 
         private User? connectedUser;
 
+        private CultureInfo culture
+        {
+            get
+            {
+                return CultureInfo.CurrentCulture;
+            }
+
+            set 
+            {
+                if (value != null && CultureInfo.CurrentCulture != value) 
+                { 
+                    var uri = new Uri(navigationManager.Uri).GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+                    var cultureEscaped = Uri.EscapeDataString(value.Name);
+                    var uriEscaped = Uri.EscapeDataString(uri);
+
+                    navigationManager.NavigateTo($"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}", true);
+                }
+            }
+        }
+
+        protected override void OnInitialized()
+        {
+            culture = CultureInfo.CurrentCulture;
+        }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -31,7 +56,7 @@ namespace ATI_Projet_App.Components.Layout
         private async Task Logout()
         {
             await session.Logout();
-            navigationManager.NavigateTo("http://192.168.122.77:7100/logout", true);
+            navigationManager.NavigateTo("http://192.168.122.53:7100/logout", true);
             //navigationManager.NavigateTo("/login",true);
         }
     }

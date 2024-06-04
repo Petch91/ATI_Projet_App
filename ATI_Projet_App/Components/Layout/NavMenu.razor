@@ -1,4 +1,8 @@
-﻿
+﻿@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using PublicResXFileCodeGenerator
+@inject IStringLocalizer<PersonnelResource> localizer
+
 @if (connectedUser != null)
 {
     <nav class="navbar navbar-expand-sm">
@@ -11,10 +15,10 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Personnel
+                            @localizer["Titre"]
                         </a>
                         <ul class="dropdown-menu">
-                            <li><NavLink class="link dropdown-item" href="Personnel">Liste</NavLink></li>
+                            <li><NavLink class="link dropdown-item" href="Personnel">@localizer["Liste"]</NavLink></li>
 @*                             <li><NavLink class="link dropdown-item" href="EmployeProfil/recherche">Recherche</NavLink></li> *@
                         </ul>
                     </li>
@@ -24,6 +28,10 @@
                 </ul>
                 <div class="d-flex gap-3 align-items-center">
                     <NavLink class="link" href="profil">@connectedUser.FirstName @connectedUser.LastName</NavLink>
+                    <InputSelect @bind-Value="culture">
+                        <option value="fr-BE">Français</option>
+                        <option value="en-US">English</option>
+                    </InputSelect>
                     <button class="btn btn-outline-danger" @onclick="Logout">Se Déconnecter</button>
                 </div>
             </div>

@@ -12,6 +12,8 @@ using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddLocalization();
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
@@ -25,7 +27,7 @@ builder.Services
     .AddFontAwesomeIcons();
 builder.Services.AddBlazorBootstrap();
 
-builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://192.168.122.77:7001/api/") });
+builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://192.168.122.53:7001/api/") });
 builder.Services.AddScoped<ProtectedLocalStorage>();
 builder.Services.AddScoped<SessionManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
@@ -40,6 +42,14 @@ builder.Services.Configure<WebEncoderOptions>(options =>
 });
 
 var app = builder.Build();
+
+string[] supportedCultures = ["fr-BE", "en-US"];
+var localizationOptions = new RequestLocalizationOptions()
+                                                    .SetDefaultCulture(supportedCultures[0])
+                                                    .AddSupportedCultures(supportedCultures)
+                                                    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(localizationOptions);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
