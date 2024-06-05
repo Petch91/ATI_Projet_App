@@ -61,7 +61,7 @@
                             }
                         case TypeCode.DateTime:
                             {
-                                var value = propValue != null ? Convert.ToDateTime(propValue) : DateTime.Now;
+                                var value = propValue != null ? Convert.ToDateTime(propValue) : DateTime.UtcNow;
                                 <InputDate class="col-5" TValue="DateTime" Value="@value" ValueExpression="@(() => value)"
                                            ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,(DateTime)x))"></InputDate>
                                 break;
