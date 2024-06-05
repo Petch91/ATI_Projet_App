@@ -27,7 +27,7 @@ builder.Services
     .AddFontAwesomeIcons();
 builder.Services.AddBlazorBootstrap();
 
-builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://192.168.122.53:7001/api/") });
+builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://192.168.123.69:7001/api/") });
 builder.Services.AddScoped<ProtectedLocalStorage>();
 builder.Services.AddScoped<SessionManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();

@@ -56,7 +56,7 @@ namespace ATI_Projet_App.Components.Layout
         private async Task Logout()
         {
             await session.Logout();
-            navigationManager.NavigateTo("http://192.168.122.53:7100/logout", true);
+            navigationManager.NavigateTo("http://192.168.123.69:7100/logout", true);
             //navigationManager.NavigateTo("/login",true);
         }
     }
