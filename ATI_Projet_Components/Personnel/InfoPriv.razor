@@ -1,17 +1,17 @@
-@if(Pays.Count() > 0)
+ï»¿@if(Pays.Count() > 0)
 {
    <div class="private gap-3 border-top p-2 m-1 position-relative">
       <div class="d-flex border-bottom" style="min-height: 8rem">
          <div class="adresse w-100">
             <h5>@localizer["Adresse"]: </h5>
             <div class="row">
-               <span class="fw-semibold col-3 text-end">@localizer["Rue et Numéro"]:</span>
+               <span class="fw-semibold col-3 text-end">@localizer["Rue et NumÃ©ro"]:</span>
                <p class="col "> @Adresse.adresse</p>
             </div>
             <div class="row">
                <span class="fw-semibold col-3 text-end">@localizer["Code Postal"]:</span>
                <p class="col-2 "> @Adresse.CodePostal</p>
-               <span class="fw-semibold col-2 text-end ">@localizer["Localité"]:</span>
+               <span class="fw-semibold col-2 text-end ">@localizer["LocalitÃ©"]:</span>
                <p class="col "> @Adresse.Localite</p>
             </div>
             <div class="row">
@@ -28,9 +28,9 @@
             <p class="col"> @EmployePrivate.Langue</p>
          </div>
          <div class="row">
-            <span class="fw-semibold col text-end">@localizer["Nationalité"]:</span>
+            <span class="fw-semibold col text-end">@localizer["NationalitÃ©"]:</span>
             <p class="col"> @EmployePrivate.Nationalite</p>
-            <span class="fw-semibold col text-end">@localizer["Numéro National"]:</span>
+            <span class="fw-semibold col text-end">@localizer["NumÃ©ro National"]:</span>
             <p class="col"> @EmployePrivate.NumeroNational</p>
          </div>
          <div class="row">
