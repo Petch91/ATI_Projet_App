@@ -30,6 +30,7 @@ builder.Services
 builder.Services.AddBlazorBootstrap();
 
 builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://192.168.123.69:7001/api/") });
+//TestDeveloppement
 //builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7214/api/") });
 builder.Services.AddScoped<ProtectedLocalStorage>();
 builder.Services.AddScoped<SessionManager>();
