@@ -7,12 +7,16 @@
 
     <div class="d-flex position-relative border-end">
         <div class="cprofil p-2 m-1 ">
-            <h4>Profil:</h4>
+            <h4>@localizer["Profil"]:</h4>
             <h5>@EmployeProfil.Titre @EmployeProfil.Nom @EmployeProfil.Prenom (@EmployeProfil.Initiales)</h5>
-            <p>Entré le @(EmployeProfil.DateEntree.ToString("dd/MM/yyyy")) @(EmployeProfil.Actif ? "" : $"et a quitté l'entreprise le {EmployeProfil.DateSortie.ToString("dd/MM/yyyy")}")</p>
+         <p>@localizer["Entré le"] @(EmployeProfil.DateEntree.ToString("dd/MM/yyyy")) @if (!EmployeProfil.Actif)
+            {
+               <span>@localizer["a quitté l'entreprise le"]</span>
+               <span>@EmployeProfil.DateSortie.ToString("dd/MM/yyyy")</span>
+            } </p>
             <div class="mt-3">
                 <div class="row g-2 ">
-                    <span class="fw-semibold col-3 text-end">Fonction VCA:</span>
+                    <span class="fw-semibold col-3 text-end">@localizer["Fonction VCA"]:</span>
                     <p class="col-4"> @(fonctionsVCA.FirstOrDefault(f => f.Id == EmployeProfil.IdFonctionVCA).Designation ?? "NONE") </p>
                     <span class="fw-semibold col-3 text-end">Gestion Stock:</span>
                     <p class="col"> @(Enum.GetName(typeof(GestionStock), EmployeProfil.GestionStock))</p>
@@ -24,13 +28,13 @@
                     <p class="col">@EmployeProfil.Group_S</p>
                 </div>
                 <div class="row g-2 ">
-                    <span class="fw-semibold col-3 text-end">Type Main d'oeuvre:</span>
+                    <span class="fw-semibold col-3 text-end">@localizer["Type Main d'oeuvre"]:</span>
                     @{
                         if (EmployeProfil.CodeTypeMO == null) EmployeProfil.CodeTypeMO = "";
                         string code = string.IsNullOrEmpty(EmployeProfil.CodeTypeMO.Trim()) ? "" : EmployeProfil.CodeTypeMO;
                         <p class="col-4"> @(TypesMO.FirstOrDefault(f => f.Code == code).Libelle ?? "NONE")</p>
                     }
-                    <span class="fw-semibold col-3 text-end">Contrat de travail:</span>
+                    <span class="fw-semibold col-3 text-end">@localizer["Contrat de travail"]:</span>
                     <p class="col"> @(TypesContrat.FirstOrDefault(f => f.Code == EmployeProfil.CodeTypeContrat).Libelle ?? "NONE")</p>
 
                 </div>

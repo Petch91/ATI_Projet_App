@@ -8,7 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PublicResXFileCodeGenerator {
+namespace ATI_Projet_Cultures.Locales
+{
     using System;
     
     

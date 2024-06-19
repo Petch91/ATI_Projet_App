@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATI_Projet_Tools", "ATI_Pro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATI_Projet_Models", "ATI_Projet_Models\ATI_Projet_Models.csproj", "{010D96F9-597A-4098-8044-8A263B7A71DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATI_Projet_Cultures", "ATI_Projet_Cultures\ATI_Projet_Cultures.csproj", "{494E062F-52A8-4CD0-96CD-DFB005470007}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{010D96F9-597A-4098-8044-8A263B7A71DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{010D96F9-597A-4098-8044-8A263B7A71DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{010D96F9-597A-4098-8044-8A263B7A71DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{494E062F-52A8-4CD0-96CD-DFB005470007}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{494E062F-52A8-4CD0-96CD-DFB005470007}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{494E062F-52A8-4CD0-96CD-DFB005470007}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{494E062F-52A8-4CD0-96CD-DFB005470007}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

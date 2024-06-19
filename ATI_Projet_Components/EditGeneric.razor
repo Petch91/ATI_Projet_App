@@ -1,4 +1,9 @@
-﻿@typeparam TItem
+﻿@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using ATI_Projet_Cultures.Locales
+@inject IStringLocalizer<PersonnelResource> localizer
+
+@typeparam TItem
 
 <div class="edit position-relative">
     <EditForm Model="Item" OnValidSubmit="Submit">
@@ -6,7 +11,7 @@
         <ValidationSummary></ValidationSummary>
         @foreach (var p in Item.GetType().GetProperties())
         {
-            string label = p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name : p.GetCustomAttribute<DisplayNameAttribute>().DisplayName;
+            string label = localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName];
             var propValue = p.GetValue(Item);
             if (!ExcludedProp.Contains(p.Name))
             {
@@ -17,7 +22,7 @@
                         case TypeCode.String:
                             {
                                 var value = propValue != null ? propValue.ToString() : "";
-                                <InputText class="col-6" Value="@value" ValueExpression="@(() => value)"
+                                <InputText class="col-6" Value="@(localizer[value])" ValueExpression="@(() => value)"
                                            ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,x))"></InputText>
                                 break;
                             }

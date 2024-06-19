@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="a quitté l'entreprise le" xml:space="preserve">
+    <value>left the company on</value>
+  </data>
+  <data name="Actif" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Administrative departement" xml:space="preserve">
+    <value>Administrative department</value>
+  </data>
+  <data name="Adresse" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Ajout d'un status VCA" xml:space="preserve">
+    <value>Add a VCA status</value>
+  </data>
+  <data name="Ajout d'un type de contrat" xml:space="preserve">
+    <value>Add a contract type</value>
+  </data>
+  <data name="Ajout d'un type de main d'oeuvre" xml:space="preserve">
+    <value>Add a labour type</value>
+  </data>
+  <data name="Ajout d'une fonction" xml:space="preserve">
+    <value>Add function</value>
+  </data>
+  <data name="Ajout d'une fonction VCA" xml:space="preserve">
+    <value>Add a VCA function</value>
+  </data>
+  <data name="Ajouter" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Ajouter Email" xml:space="preserve">
+    <value>Add Mail</value>
+  </data>
+  <data name="Ajouter Telephone" xml:space="preserve">
+    <value>Add Phone</value>
+  </data>
+  <data name="Ajouter un employé" xml:space="preserve">
+    <value>Add a employee</value>
+  </data>
+  <data name="Automaticien" xml:space="preserve">
+    <value>Automatician</value>
+  </data>
+  <data name="Automaticien - Roboticien" xml:space="preserve">
+    <value>Automation technician - Robotics technician</value>
+  </data>
+  <data name="Automation" xml:space="preserve">
+    <value>Automation</value>
+  </data>
+  <data name="Autres collaborateur intérimaires" xml:space="preserve">
+    <value>Other temporary staff</value>
+  </data>
+  <data name="Bienvenue sur ATI Projets" xml:space="preserve">
+    <value>Welcome on ATI Projects</value>
+  </data>
+  <data name="BUM Automation &amp; Robotisation" xml:space="preserve">
+    <value>BUM Automation &amp; Robotisation</value>
+  </data>
+  <data name="BUM Conception Electrique" xml:space="preserve">
+    <value>BUM Electrical Design</value>
+  </data>
+  <data name="BUM Data" xml:space="preserve">
+    <value>BUM Data</value>
+  </data>
+  <data name="BUM Informatique Industrielle" xml:space="preserve">
+    <value>BUM Industrial Computing</value>
+  </data>
+  <data name="C. Prévention - Resp. SSE" xml:space="preserve">
+    <value>C. Prevention - HSE Manager</value>
+  </data>
+  <data name="Cadre" xml:space="preserve">
+    <value>Manager</value>
+  </data>
+  <data name="Cadres dirigeant les collaborateurs" xml:space="preserve">
+    <value>Managerial staff</value>
+  </data>
+  <data name="ce statut VCA?" xml:space="preserve">
+    <value>this VCA status?</value>
+  </data>
+  <data name="ce type de contrat?" xml:space="preserve">
+    <value>this type of contract?</value>
+  </data>
+  <data name="ce type de main d'oeuvre?" xml:space="preserve">
+    <value>This type of labour?</value>
+  </data>
+  <data name="cette fonction VCA?" xml:space="preserve">
+    <value>this VCA function?</value>
+  </data>
+  <data name="cette fonction?" xml:space="preserve">
+    <value>this function?</value>
+  </data>
+  <data name="Chef d'équipe (BA5)" xml:space="preserve">
+    <value>Team Leader (BA5)</value>
+  </data>
+  <data name="Cliquer Pour Modifier" xml:space="preserve">
+    <value>Click to Modify</value>
+  </data>
+  <data name="Code Postal" xml:space="preserve">
+    <value>Zipcode</value>
+  </data>
+  <data name="Collaborateurs opérationnels fixes" xml:space="preserve">
+    <value>Permanent operational staff</value>
+  </data>
+  <data name="Collaborateurs opérationnels temporaires" xml:space="preserve">
+    <value>Temporary operational staff</value>
+  </data>
+  <data name="Concepteur électrique" xml:space="preserve">
+    <value>Electrical Designer</value>
+  </data>
+  <data name="Conducteur de nacelle" xml:space="preserve">
+    <value>Aerial work platform operator</value>
+  </data>
+  <data name="Conseiller Qualité-Sécurité-Santé-Environnement" xml:space="preserve">
+    <value>Quality-Safety-Health-Environment Advisor</value>
+  </data>
+  <data name="Contrat de travail" xml:space="preserve">
+    <value>Work contract</value>
+  </data>
+  <data name="Coord. SSE - Service administratif" xml:space="preserve">
+    <value>Coord. HSE - Administration</value>
+  </data>
+  <data name="Coût" xml:space="preserve">
+    <value>Cost</value>
+  </data>
+  <data name="Câblage Atelier" xml:space="preserve">
+    <value>Workshop Wiring</value>
+  </data>
+  <data name="Câblage Chantier" xml:space="preserve">
+    <value>Wiring on site</value>
+  </data>
+  <data name="Câbleurs" xml:space="preserve">
+    <value>Wiring</value>
+  </data>
+  <data name="Date d'entrée" xml:space="preserve">
+    <value>Entry date</value>
+  </data>
+  <data name="Date de naissance" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="Date de sortie" xml:space="preserve">
+    <value>Date of leaving</value>
+  </data>
+  <data name="Dessinateur" xml:space="preserve">
+    <value>Electrical Designer</value>
+  </data>
+  <data name="Dessinateurs" xml:space="preserve">
+    <value>Electrical Designers</value>
+  </data>
+  <data name="Directeur Général" xml:space="preserve">
+    <value>General Manager</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value>Management</value>
+  </data>
+  <data name="Département" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="Edition des infos privées" xml:space="preserve">
+    <value>Edit private info</value>
+  </data>
+  <data name="Edition des infos professionnelles" xml:space="preserve">
+    <value>Edit business info</value>
+  </data>
+  <data name="Edition du Profil" xml:space="preserve">
+    <value>Edit Profile</value>
+  </data>
+  <data name="Edition Fonction" xml:space="preserve">
+    <value>Edit Function</value>
+  </data>
+  <data name="Edition Fonction VCA" xml:space="preserve">
+    <value>Edit Function VCA</value>
+  </data>
+  <data name="Edition Status VCA" xml:space="preserve">
+    <value>Edit VCA Status</value>
+  </data>
+  <data name="Edition Type de contrat" xml:space="preserve">
+    <value>Edit Contract Type</value>
+  </data>
+  <data name="Edition Type de main d'oeuvre" xml:space="preserve">
+    <value>Edit Labour type</value>
+  </data>
+  <data name="Electricien (BA4)" xml:space="preserve">
+    <value>Electrician (BA4)</value>
+  </data>
+  <data name="Employé" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Entré le" xml:space="preserve">
+    <value>Joined on</value>
+  </data>
+  <data name="Etude projet" xml:space="preserve">
+    <value>Project study</value>
+  </data>
+  <data name="Etudiant Employé" xml:space="preserve">
+    <value>Student Employee</value>
+  </data>
+  <data name="Etudiant Ouvrier" xml:space="preserve">
+    <value>Student Worker</value>
+  </data>
+  <data name="Fermer" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Fixe Privé" xml:space="preserve">
+    <value>Private landline phone</value>
+  </data>
+  <data name="Fixe Professionnel" xml:space="preserve">
+    <value>Business landline telephone</value>
+  </data>
+  <data name="Fonction" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="Fonction VCA" xml:space="preserve">
+    <value>VCA Function</value>
+  </data>
+  <data name="Fonctions" xml:space="preserve">
+    <value>Functions</value>
+  </data>
+  <data name="Fonctions VCA" xml:space="preserve">
+    <value>VCA Functions</value>
+  </data>
+  <data name="Gestion" xml:space="preserve">
+    <value>Management</value>
+  </data>
+  <data name="Gestion des ressources" xml:space="preserve">
+    <value>Ressource management</value>
+  </data>
+  <data name="Gestion Stock" xml:space="preserve">
+    <value>Stock management</value>
+  </data>
+  <data name="GSM Privé" xml:space="preserve">
+    <value>Private mobile phone</value>
+  </data>
+  <data name="GSM Professionnel" xml:space="preserve">
+    <value>Business mobile telephone</value>
+  </data>
+  <data name="Inactif" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="Indépendant" xml:space="preserve">
+    <value>Self-employed</value>
+  </data>
+  <data name="Informaticien" xml:space="preserve">
+    <value>IT Specialist</value>
+  </data>
+  <data name="Informaticien Industriel" xml:space="preserve">
+    <value>Industrial IT Specialist</value>
+  </data>
+  <data name="Informaticien Industriel (P.E.)" xml:space="preserve">
+    <value>Industrial IT Technician (P.E.)</value>
+  </data>
+  <data name="Informaticien Logistique (P.E.)" xml:space="preserve">
+    <value>Logistics Technician (P.E.)</value>
+  </data>
+  <data name="Informaticien Vision (P.E.)" xml:space="preserve">
+    <value>Computer Vision (P.E.)</value>
+  </data>
+  <data name="Informaticiens" xml:space="preserve">
+    <value>IT specialists</value>
+  </data>
+  <data name="Infos Privé" xml:space="preserve">
+    <value>Private Info</value>
+  </data>
+  <data name="Infos Professionnelles" xml:space="preserve">
+    <value>Professional Info</value>
+  </data>
+  <data name="Initiales" xml:space="preserve">
+    <value>Initials</value>
+  </data>
+  <data name="Intérimaire Employé" xml:space="preserve">
+    <value>Temporary Employee</value>
+  </data>
+  <data name="Intérimaire Ouvrier" xml:space="preserve">
+    <value>Temporary Worker</value>
+  </data>
+  <data name="Langue" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Libelle" xml:space="preserve">
+    <value>Label</value>
+  </data>
+  <data name="Liste" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="Localité" xml:space="preserve">
+    <value>Town</value>
+  </data>
+  <data name="Nationalité" xml:space="preserve">
+    <value>Nationality</value>
+  </data>
+  <data name="Nom" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Numero" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Numéro" xml:space="preserve">
+    <value>Number</value>
+  </data>
+  <data name="Numéro National" xml:space="preserve">
+    <value>National number</value>
+  </data>
+  <data name="Pays" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Permis" xml:space="preserve">
+    <value>Licence</value>
+  </data>
+  <data name="Personnel" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Privée" xml:space="preserve">
+    <value>Private</value>
+  </data>
+  <data name="Professionnelle" xml:space="preserve">
+    <value>Business</value>
+  </data>
+  <data name="Profil" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="Prénom" xml:space="preserve">
+    <value>Firstname</value>
+  </data>
+  <data name="Rue et Numéro" xml:space="preserve">
+    <value>Adress</value>
+  </data>
+  <data name="Sauver" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Se Déconnecter" xml:space="preserve">
+    <value>Log Off</value>
+  </data>
+  <data name="Taille" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Telephones" xml:space="preserve">
+    <value>Phones</value>
+  </data>
+  <data name="Titre" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Type Main d'oeuvre" xml:space="preserve">
+    <value>Labour type</value>
+  </data>
+  <data name="Veuillez vous connecter s'il vous plait" xml:space="preserve">
+    <value>Please log in</value>
+  </data>
+  <data name="Voulez vous vraiment supprimer" xml:space="preserve">
+    <value>Do you really want to delete </value>
+  </data>
+</root>

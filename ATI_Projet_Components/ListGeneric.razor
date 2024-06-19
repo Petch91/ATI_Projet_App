@@ -17,8 +17,8 @@
                             if (p.PropertyType == typeof(string))
                             {
                                 <PropertyColumn Align="Align.Center"
-                                                Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
-                                                Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))"
+                                                Title="@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName])"
+                                                Property="@(x => GetLocalString(x.GetType().GetProperty(p.Name).GetValue(x)))"
                                                 Sortable="true" class="@p.Name.ToLower()">
                                     <ColumnOptions>
                                         <div class="search-box">
@@ -31,8 +31,8 @@
                             else
                             {
                                 <PropertyColumn Align="Align.Center"
-                                                Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
-                                                Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))" Sortable="true" class="@p.Name.ToLower()" />
+                                                Title="@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName])"
+                                                Property="@(x => GetLocalString(x.GetType().GetProperty(p.Name).GetValue(x)))" Sortable="true" class="@p.Name.ToLower()" />
                             }
                         }
 

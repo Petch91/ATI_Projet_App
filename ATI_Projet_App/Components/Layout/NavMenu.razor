@@ -1,6 +1,6 @@
 ﻿@using Microsoft.Extensions.Localization
 @using System.Globalization
-@using PublicResXFileCodeGenerator
+@using ATI_Projet_Cultures.Locales
 @inject IStringLocalizer<PersonnelResource> localizer
 
 @if (connectedUser != null)
@@ -15,15 +15,15 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            @localizer["Titre"]
+                            @localizer["Personnel"].Value
                         </a>
                         <ul class="dropdown-menu">
-                            <li><NavLink class="link dropdown-item" href="Personnel">@localizer["Liste"]</NavLink></li>
+                            <li><NavLink class="link dropdown-item" href="Personnel">@localizer["Liste"].Value</NavLink></li>
 @*                             <li><NavLink class="link dropdown-item" href="EmployeProfil/recherche">Recherche</NavLink></li> *@
                         </ul>
                     </li>
                     <li class="nav-item">
-                    <li><NavLink class="nav-link dropdown-toggle" href="gestion">Gestion</NavLink></li>
+                    <li><NavLink class="nav-link dropdown-toggle" href="gestion">@localizer["Gestion"]</NavLink></li>
                     </li>
                 </ul>
                 <div class="d-flex gap-3 align-items-center">
@@ -32,7 +32,7 @@
                         <option value="fr-BE">Français</option>
                         <option value="en-US">English</option>
                     </InputSelect>
-                    <button class="btn btn-outline-danger" @onclick="Logout">Se Déconnecter</button>
+                    <button class="btn btn-outline-danger" @onclick="Logout">@localizer["Se Déconnecter"]</button>
                 </div>
             </div>
         </div>

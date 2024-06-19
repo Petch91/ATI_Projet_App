@@ -120,10 +120,10 @@
   <data name="Liste" xml:space="preserve">
     <value>Liste</value>
   </data>
+  <data name="Numero" xml:space="preserve">
+    <value>Numéro</value>
+  </data>
   <data name="Telephone" xml:space="preserve">
     <value>Téléphone</value>
-  </data>
-  <data name="Titre" xml:space="preserve">
-    <value>Personnel</value>
   </data>
 </root>

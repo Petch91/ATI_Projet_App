@@ -1,4 +1,5 @@
 using ATI_Projet_Models;
+using ATI_Projet_Models.Events;
 using Microsoft.AspNetCore.Components;
 
 namespace ATI_Projet_Components.Personnel
@@ -14,9 +15,7 @@ namespace ATI_Projet_Components.Personnel
         public Dictionary<string, string> Pays { get; set; }
 
         [Parameter]
-        public EventCallback<Adresse> EditAdresseEvent{ get; set; }
-        [Parameter]
-        public EventCallback<EmployePrivate> EditEmployePrivateEvent { get; set; }
+        public EventCallback<EditPrivateArgs> EditEmployePrivateEvent { get; set; }
 
  
             
@@ -24,8 +23,7 @@ namespace ATI_Projet_Components.Personnel
 
         public async Task EditEmployePrivate()
         {
-            await EditAdresseEvent.InvokeAsync(Adresse);
-            await EditEmployePrivateEvent.InvokeAsync(EmployePrivate);
+            await EditEmployePrivateEvent.InvokeAsync(new EditPrivateArgs { Employe = EmployePrivate, Adresse = Adresse});
         }
 
     }

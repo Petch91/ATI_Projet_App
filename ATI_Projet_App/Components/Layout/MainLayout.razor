@@ -1,4 +1,8 @@
 ﻿@inherits LayoutComponentBase
+@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using ATI_Projet_Cultures.Locales
+@inject IStringLocalizer<PersonnelResource> localizer
 
 <AuthorizeView>
     <Authorized>
@@ -22,7 +26,7 @@
                     <h3 class="flex-grow-1 ms-3">ATI Projets</h3>
                 </div>
                 @* <p class="text-danger">Veuillez vous connecter s'il vous plait</p> *@
-                <Alert Color="AlertColor.Danger"> <Icon Name="IconName.ExclamationTriangleFill" class="me-2"></Icon>Veuillez vous connecter s'il vous plait</Alert>
+            <Alert Color="AlertColor.Danger"> <Icon Name="IconName.ExclamationTriangleFill" class="me-2"></Icon>@localizer["Veuillez vous connecter s'il vous plait"] </Alert>
                 <button class="btn btn-primary btn-lg" @onclick="GoLogin">Login</button>
             </div>
 

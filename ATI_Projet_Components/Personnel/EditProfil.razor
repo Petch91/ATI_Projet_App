@@ -1,6 +1,10 @@
 ﻿@using ATI_Projet_Models
 @using ATI_Projet_Models.Types
 @using ATI_Projet_Models.VCA
+@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using ATI_Projet_Cultures.Locales
+@inject IStringLocalizer<PersonnelResource> localizer
 
 <EditForm class="d-flex flex-column gap-2" Model="EmployeProfil" OnValidSubmit="Edit">
 
@@ -8,28 +12,28 @@
     <ValidationSummary></ValidationSummary>
     <div class="d-flex gap-2">
         <div class="status">
-            <span>Actif: <InputCheckbox @bind-Value="EmployeProfil.Actif"></InputCheckbox></span>
+            <span>@localizer["Actif"]: <InputCheckbox @bind-Value="EmployeProfil.Actif"></InputCheckbox></span>
             <InputRadioGroup id="groupstatus" @bind-Value="EmployeProfil.Status">
-                Ouvrier <InputRadio Value="false"></InputRadio>
-                Employ&eacute; <InputRadio Value="true"></InputRadio>
+                @localizer["Ouvrier"] <InputRadio Value="false"></InputRadio>
+                @localizer["Employé"] <InputRadio Value="true"></InputRadio>
             </InputRadioGroup>
         </div>
 
         <label>Group_S: </label>
         <InputNumber class="group_S" @bind-Value="EmployeProfil.Group_S"></InputNumber>
         <label>
-            Date d'entr&eacute;e
+            @localizer["Date d'entrée"]
         </label>
         <InputDate @bind-Value="EmployeProfil.DateEntree"></InputDate>
         @if (!EmployeProfil.Actif)
         {
-            <label>Date de sortie</label>
+            <label>@localizer["Date de sortie"]</label>
             <InputDate @bind-Value="EmployeProfil.DateSortie"></InputDate>
         }
     </div>
 
     <div>
-        <label>Titre</label>
+        <label>@localizer["Titre"]</label>
         <InputSelect class="titre" @bind-Value="EmployeProfil.Titre">
             @foreach (string choix in ChoixTitre)
             {
@@ -37,23 +41,23 @@
                 <option value="@choix">@choix</option>
             }
         </InputSelect>
-        <label>Nom</label>
+        <label>@localizer["Nom"]</label>
         <InputText @bind-Value="EmployeProfil.Nom"></InputText>
-        <label>Pr&eacute;nom</label>
+      <label>@localizer["Prénom"]</label>
         <InputText @bind-Value="EmployeProfil.Prenom"></InputText>
-        <label>Initiales</label>
+        <label>@localizer["Initiales"]</label>
         <InputText class="initiales" @bind-Value="EmployeProfil.Initiales"></InputText>
     </div>
 
     <div>
-        <label>D&eacute;partement</label>
+        <label>@localizer["Département"]</label>
         <InputSelect @bind-Value="EmployeProfil.DepartementId">
             @foreach (DeptSimplifiedList choix in departements)
             {
                 <option value="@choix.Id">@($"{choix.Id}    {choix.Designation}")</option>
             }
         </InputSelect>
-        <label>Fonction</label>
+        <label>@localizer["Fonction"]</label>
         <InputSelect @bind-Value="EmployeProfil.FonctionId">
             @foreach (Fonction choix in fonctions)
             {
@@ -62,7 +66,7 @@
         </InputSelect>
     </div>
     <div>
-        <label>Fonction VCA</label>
+        <label>@localizer["Fonction"] VCA</label>
         <InputSelect @bind-Value="EmployeProfil.IdFonctionVCA">
             @foreach (FonctionVCA choix in fonctionsVCA)
             {
@@ -78,21 +82,21 @@
         </InputSelect>
     </div>
     <div>
-        <label>Contrat de travail</label>
+        <label>@localizer["Contrat de travail"]</label>
         <InputSelect @bind-Value="EmployeProfil.CodeTypeContrat">
             @foreach (TypeContrat choix in TypesContrat)
             {
                 <option value="@choix.Code">@($"{choix.Code}    {choix.Libelle}")</option>
             }
         </InputSelect>
-        <label>Type Main d'oeuvre</label>
+        <label>@localizer["Type Main d'oeuvre"]</label>
         <InputSelect @bind-Value="EmployeProfil.CodeTypeMO">
             @foreach (TypeMO choix in TypesMO)
             {
                 <option value="@choix.Code">@choix.Code @choix.Libelle</option>
             }
         </InputSelect>
-        <label>Gestion Stock</label>
+        <label>@localizer["Gestion Stock"]</label>
         <InputSelect @bind-Value="EmployeProfil.GestionStock">
             @foreach (var choix in Enum.GetValues(typeof(GestionStock)))
             {
@@ -100,6 +104,6 @@
             }
         </InputSelect>
     </div>
-    <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">Sauver Profil</button>
+    <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">@localizer["Sauver"] @localizer["Profil"]</button>
 </EditForm>
 

@@ -1,4 +1,9 @@
-﻿@typeparam TItem
+﻿@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using ATI_Projet_Cultures.Locales
+@inject IStringLocalizer<PersonnelResource> localizer
+
+@typeparam TItem
 
 <div class="show">
     @foreach (var p in Item.GetType().GetProperties())
@@ -6,7 +11,7 @@
         if (!ExcludedProp.Contains(p.Name))
         {
             <div class="row">
-                <h5 class="col-4 text-end">@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name : p.GetCustomAttribute<DisplayNameAttribute>().DisplayName):</h5>
+                <h5 class="col-4 text-end">@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName]):</h5>
                 <p class="col-7">@(p.GetValue(Item) != null ? p.GetValue(Item) : default! )</p>
             </div>
             @*                 if(p.PropertyType == typeof(string))

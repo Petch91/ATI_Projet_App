@@ -1,23 +1,28 @@
-﻿<div class="adresse gap-3 border rounded p-2 m-1">
-    <h5>Adresse: </h5>
+﻿@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using ATI_Projet_Cultures.Locales
+@inject IStringLocalizer<PersonnelResource> localizer
+
+<div class="adresse gap-3 border rounded p-2 m-1">
+    <h5>@localizer["Adresse"]: </h5>
     <EditForm class="d-flex flex-column gap-2" Model="adress" @ref="EditForm">
         <DataAnnotationsValidator></DataAnnotationsValidator>
         <div class="w-100">
-            <label>Adresse:</label>
+            <label>@localizer["Adresse"]:</label>
             <InputText class="w-75" @bind-Value="adress.adresse" @onkeyup="Changed"></InputText>
         </div>
         <div>
-            <label>Code Postal:</label>
+            <label>@localizer["Code Postal"]:</label>
             <InputNumber @bind-Value="adress.CodePostal" @onkeyup="Changed"></InputNumber>
-            <label>Localite</label>
+            <label>@localizer["Localité"]:</label>
             <InputText @bind-Value="adress.Localite" @onkeyup="Changed"></InputText>
         </div>
         <div class="w-100">
-            <label>Pays:</label>
+            <label>@localizer["Pays"]:</label>
             <InputSelect @bind-Value="adress.Pays">
-                @foreach (var choix in Pays.Values)
+                @foreach (var choix in Pays.Keys)
                 {
-                    <option value="@choix">@choix</option>
+                    <option value="@choix">@Pays.GetValueOrDefault(choix)</option>
                 }
             </InputSelect>
         </div>

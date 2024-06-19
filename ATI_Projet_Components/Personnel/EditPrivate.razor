@@ -1,35 +1,40 @@
-﻿<div class="d-flex gap-3">
-    @if (Adresse != null)
-    {
-        <AdresseComponent Pays="Pays" adress="Adresse"></AdresseComponent>
-    }
+﻿@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using ATI_Projet_Cultures.Locales
+@inject IStringLocalizer<PersonnelResource> localizer
+
+<div class="d-flex gap-3">
+   @if (Adresse != null)
+   {
+      <AdresseComponent Pays="Pays" adress="Adresse"></AdresseComponent>
+   }
 </div>
 <EditForm class="parent" Model="EmployePrivate" OnValidSubmit="EditEmployePrivate">
-    <DataAnnotationsValidator></DataAnnotationsValidator>
-    <div class="div1">
-        <div class="d-flex flex-column">
-            <label>Date de Naissance:</label>
-            <InputDate @bind-Value="EmployePrivate.DateNaissance"></InputDate>
-            <label>IBAN:</label>
-            <InputText @bind-Value="EmployePrivate.IBAN"></InputText>
-            <label>"Num&eacute;ro National:  </label>
-            <InputText @bind-Value="EmployePrivate.NumeroNational"></InputText>
+   <DataAnnotationsValidator></DataAnnotationsValidator>
+   <div class="div1">
+      <div class="d-flex flex-column">
+         <label>@localizer["Date de naissance"]:</label>
+         <InputDate @bind-Value="EmployePrivate.DateNaissance"></InputDate>
+         <label>IBAN:</label>
+         <InputText @bind-Value="EmployePrivate.IBAN"></InputText>
+         <label>@localizer["Numéro National"]:  </label>
+         <InputText @bind-Value="EmployePrivate.NumeroNational"></InputText>
 
-        </div>
-    </div>
-    <div class="div2">
-        <div class="d-flex flex-column">
-            <label>Langue: </label>
-            <InputText @bind-Value="EmployePrivate.Langue"></InputText>
-            <label>
-                Nationalit&eacute;:
-            </label>
-            <InputText @bind-Value="EmployePrivate.Nationalite"></InputText>
-            <label>Permis: </label>
-            <InputText class="w-25" @bind-Value="EmployePrivate.Permis"></InputText>
-        </div>
-    </div>
-    <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">Sauver</button>
+      </div>
+   </div>
+   <div class="div2">
+      <div class="d-flex flex-column">
+         <label>@localizer["Langue"]: </label>
+         <InputText @bind-Value="EmployePrivate.Langue"></InputText>
+         <label>
+            @localizer["Nationalité"]:
+         </label>
+         <InputText @bind-Value="EmployePrivate.Nationalite"></InputText>
+         <label>@localizer["Permis"]: </label>
+         <InputText class="w-25" @bind-Value="EmployePrivate.Permis"></InputText>
+      </div>
+   </div>
+   <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">@localizer["Sauver"]</button>
 </EditForm>
 
 

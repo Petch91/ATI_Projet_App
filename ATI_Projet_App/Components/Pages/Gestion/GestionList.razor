@@ -11,14 +11,14 @@
             <SelectList TItem="Type"
                         TValue="string"
                         Data="@Liste"
-                        TextField="@(item => item.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
+                        TextField="@(item => localizer[item.GetCustomAttribute<DisplayNameAttribute>().DisplayName])"
                         ValueField="@(item => item.Name)"
                         DefaulPersonnelText="Recherche"
                         SelectedValueChanged="@(e=>{
                                             SelectChange(e);
                                         })" />
 
-            <Button Color="ButtonColor.Success" @onclick="OpenModalAdd">Ajouter</Button>
+            <Button Color="ButtonColor.Success" @onclick="OpenModalAdd">@localizer["Ajouter"]</Button>
         </div>
 
         <div class="w-100">

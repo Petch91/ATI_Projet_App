@@ -1,9 +1,14 @@
-﻿<EditForm class="parent" Model="EmployeProf" OnValidSubmit="Edit">
+﻿@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using ATI_Projet_Cultures.Locales
+@inject IStringLocalizer<PersonnelResource> localizer
+
+<EditForm class="parent" Model="EmployeProf" OnValidSubmit="Edit">
     <div class="div1">
         <div class="d-flex flex-column">
             <label>Safety Book:</label>
             <InputText @bind-Value="EmployeProf.SafetyBook"></InputText>
-            <label>Coût: </label>
+            <label>@localizer["Coût"]: </label>
             <InputNumber @bind-Value="EmployeProf.Cout"></InputNumber>
 
         </div>
@@ -16,5 +21,5 @@
             <InputText class="w-75" @bind-Value="EmployeProf.Badge"></InputText>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">Sauver</button>
+    <button type="submit" class="btn btn-primary position-absolute bottom-0 end-0 m-2">@localizer["Sauver"]</button>
 </EditForm>

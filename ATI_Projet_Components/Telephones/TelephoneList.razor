@@ -1,7 +1,12 @@
-﻿<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopCenter" AutoHide=true />
+﻿@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using ATI_Projet_Cultures.Locales
+@inject IStringLocalizer<PersonnelResource> localizer
+
+<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopCenter" AutoHide=true />
 <div class="p-2 m-1 position-relative" style="min-width: 5rem">
-    <h5 class="mx-1">Telephones</h5>
-    <Button Class="mx-2 position-absolute top-0 end-0" Color="ButtonColor.Secondary" Size="Size.Small" @onclick="ShowCreateTelephone">Ajouter telephone</Button>
+    <h5 class="mx-1">@localizer["Telephones"]</h5>
+    <Button Class="mx-2 position-absolute top-0 end-0" Color="ButtonColor.Secondary" Size="Size.Small" @onclick="ShowCreateTelephone">@localizer["Ajouter Telephone"]</Button>
     @if (telephones.Count() > 0)
     {
         <ListGenericEdit TId=int TItem=Telephone Items="telephones" ExcludedCols="@(new List<string>{"Id", "PersonneId" , "SocieteId"})" DeleteEvent="Delete" EditEvent="ShowEdit" />

@@ -14,6 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddLocalization();
 
+builder.Services.AddControllers();
+
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
@@ -28,6 +30,7 @@ builder.Services
 builder.Services.AddBlazorBootstrap();
 
 builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("http://192.168.123.69:7001/api/") });
+//builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7214/api/") });
 builder.Services.AddScoped<ProtectedLocalStorage>();
 builder.Services.AddScoped<SessionManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
@@ -63,6 +66,8 @@ app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 app.UseAntiforgery();
+
+app.MapControllers();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();

@@ -1,102 +1,108 @@
 ﻿@using System.ComponentModel
 @using System.Reflection
+@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using ATI_Projet_Cultures.Locales
+
 @typeparam TItem
 @typeparam TId
+
 @if (Liste.Count() > 0)
 {
 
-    @if (Liste.Count() > pagination.ItemsPerPage)
-    {
+   @if (Liste.Count() > pagination.ItemsPerPage)
+   {
 
-        <QuickGrid Items="@Liste" Pagination="@pagination">
-            @foreach (var p in Liste.ElementType.GetProperties())
+      <QuickGrid Items="@Liste" Pagination="@pagination">
+         @foreach (var p in Liste.ElementType.GetProperties())
+         {
+            if (!ExcludedCols.Contains(p.Name))
             {
-                if (!ExcludedCols.Contains(p.Name))
-                {
-                    if (p.PropertyType == typeof(string))
-                    {
-                        <PropertyColumn Align="Align.Center"
-                                        Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
-                                        Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))"
-                                        Sortable="true" class="@p.Name.ToLower()">
-                            <ColumnOptions>
-                                <div class="search-box">
-                                    <label>@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name : p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)</label>
-                                    <input type="search" autofocus @bind="@filters[$"{p.Name}filter"]" @bind:event="oninput" placeholder="Entrez votre recherche" />
-                                </div>
-                            </ColumnOptions>
-                        </PropertyColumn>
+               if (p.PropertyType == typeof(string))
+               {
+                  <PropertyColumn Align="Align.Center"
+                                  Title="@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName])"
+                                  Property="@(x => GetLocalString(x.GetType().GetProperty(p.Name).GetValue(x)))"
+                                  Sortable="true" class="@p.Name.ToLower()">
+                     <ColumnOptions>
+                        <div class="search-box">
+                           <label>@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName])</label>
+                           <input type="search" autofocus @bind="@filters[$"{p.Name}filter"]" @bind:event="oninput" placeholder="Entrez votre recherche" />
+                        </div>
+                     </ColumnOptions>
+                  </PropertyColumn>
 
-                    }
-                    else
-                    {
-                        <PropertyColumn Align="Align.Center"
-                                        Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
-                                        Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))" Sortable="true" class="@p.Name.ToLower()" />
-                    }
-                }
-
+               }
+               else
+               {
+                  <PropertyColumn Align="Align.Center"
+                                  Title="@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName])"
+                                  Property="@(x => GetLocalString(x.GetType().GetProperty(p.Name).GetValue(x)))" Sortable="true" class="@p.Name.ToLower()" />
+               }
             }
-            <TemplateColumn Class="actions" Align="Align.Center">
-                <Button Color="ButtonColor.Warning" Size="Size.ExtraSmall" Loading="loadingEdit" LoadingText="  "
-                        @onclick="@(() =>Edit((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
-                    <Icon Name="IconName.PencilSquare"></Icon>
-                </Button>
-                <Button Color="ButtonColor.Danger" Size="Size.ExtraSmall" Loading="loadingDelete" LoadingText="  "
-                        @onclick="@(() =>Delete((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
-                    <Icon Name="IconName.XLg"></Icon>
-                </Button>
-            </TemplateColumn>
-        </QuickGrid>
 
-        <Paginator State="@pagination" />
-    }
-    else
-    {
+         }
+         <TemplateColumn Class="actions" Align="Align.Center">
+            <Button Color="ButtonColor.Warning" Size="Size.ExtraSmall" Loading="loadingEdit" LoadingText="  "
+                    @onclick="@(() =>Edit((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
+               <Icon Name="IconName.PencilSquare"></Icon>
+            </Button>
+            <Button Color="ButtonColor.Danger" Size="Size.ExtraSmall" Loading="loadingDelete" LoadingText="  "
+                    @onclick="@(() =>Delete((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
+               <Icon Name="IconName.XLg"></Icon>
+            </Button>
+         </TemplateColumn>
+      </QuickGrid>
+
+      <Paginator State="@pagination" />
+   }
+   else
+   {
 
 
-        <QuickGrid Items="@Liste">
-            @foreach (var p in Liste.ElementType.GetProperties())
+      <QuickGrid Items="@Liste">
+         @foreach (var p in Liste.ElementType.GetProperties())
+         {
+            if (!ExcludedCols.Contains(p.Name))
             {
-                if (!ExcludedCols.Contains(p.Name))
-                {
-                    if (p.PropertyType == typeof(string))
-                    {
-                        <PropertyColumn Align="Align.Center"
-                                        Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
-                                        Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))"
-                                        Sortable="true" class="@p.Name.ToLower()">
-                            <ColumnOptions>
-                                <div class="search-box">
-                                    <label>@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name : p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)</label>
-                                    <input type="search" autofocus @bind="@filters[$"{p.Name}filter"]" @bind:event="oninput" placeholder="Entrez votre recherche" />
-                                </div>
-                            </ColumnOptions>
-                        </PropertyColumn>
+               if (p.PropertyType == typeof(string))
+               {
 
-                    }
-                    else
-                    {
-                        <PropertyColumn Align="Align.Center"
-                                        Title="@(p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName)"
-                                        Property="@(x => x.GetType().GetProperty(p.Name).GetValue(x))" Sortable="true" class="@p.Name.ToLower()" />
-                    }
-                }
+                  <PropertyColumn Align="Align.Center"
+                                  Title="@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName])"
+                                  Property="@(x => GetLocalString(x.GetType().GetProperty(p.Name).GetValue(x)))"
+                                  Sortable="true" class="@p.Name.ToLower()">
+                     <ColumnOptions>
+                        <div class="search-box">
+                           <label>@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName])</label>
+                           <input type="search" autofocus @bind="@filters[$"{p.Name}filter"]" @bind:event="oninput" placeholder="Entrez votre recherche" />
+                        </div>
+                     </ColumnOptions>
+                  </PropertyColumn>
 
+               }
+               else
+               {
+                  <PropertyColumn Align="Align.Center"
+                                  Title="@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name: p.GetCustomAttribute<DisplayNameAttribute>().DisplayName])"
+                                  Property="@(x => GetLocalString(x.GetType().GetProperty(p.Name).GetValue(x)))" Sortable="true" class="@p.Name.ToLower()" />
+               }
             }
-            <TemplateColumn Class="actions">
-                <Button Color="ButtonColor.Warning" Size="Size.ExtraSmall" Loading="loadingEdit" LoadingText="  "
-                        @onclick="@(() =>Edit((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
-                    <Icon Name="IconName.PencilSquare"></Icon>
-                </Button>
-                <Button Color="ButtonColor.Danger" Size="Size.ExtraSmall" Loading="loadingDelete" LoadingText="  "
-                        @onclick="@(() =>Delete((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
-                    <Icon Name="IconName.XLg"></Icon>
-                </Button>
 
-            </TemplateColumn>
-        </QuickGrid>
-    }
+         }
+         <TemplateColumn Class="actions">
+            <Button Color="ButtonColor.Warning" Size="Size.ExtraSmall" Loading="loadingEdit" LoadingText="  "
+                    @onclick="@(() =>Edit((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
+               <Icon Name="IconName.PencilSquare"></Icon>
+            </Button>
+            <Button Color="ButtonColor.Danger" Size="Size.ExtraSmall" Loading="loadingDelete" LoadingText="  "
+                    @onclick="@(() =>Delete((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
+               <Icon Name="IconName.XLg"></Icon>
+            </Button>
+
+         </TemplateColumn>
+      </QuickGrid>
+   }
 
 
 }

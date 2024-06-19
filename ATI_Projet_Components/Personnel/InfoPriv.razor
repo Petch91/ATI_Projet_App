@@ -1,44 +1,47 @@
-<div class="private gap-3 border-top p-2 m-1 position-relative">
-    <div class="d-flex border-bottom" style="min-height: 8rem">
-        <div class="adresse w-100">
-            <h5>Adresse: </h5>
+@if(Pays.Count() > 0)
+{
+   <div class="private gap-3 border-top p-2 m-1 position-relative">
+      <div class="d-flex border-bottom" style="min-height: 8rem">
+         <div class="adresse w-100">
+            <h5>@localizer["Adresse"]: </h5>
             <div class="row">
-                <span class="fw-semibold col-3 text-end">Rue et num&eacute;ro:</span>
-                <p class="col "> @Adresse.adresse</p>
+               <span class="fw-semibold col-3 text-end">@localizer["Rue et Numéro"]:</span>
+               <p class="col "> @Adresse.adresse</p>
             </div>
             <div class="row">
-                <span class="fw-semibold col-3 text-end">Code Postal:</span>
-                <p class="col-2 "> @Adresse.CodePostal</p>
-                <span class="fw-semibold col-2 text-end ">Localit&eacute;:</span>
-                <p class="col "> @Adresse.Localite</p>
+               <span class="fw-semibold col-3 text-end">@localizer["Code Postal"]:</span>
+               <p class="col-2 "> @Adresse.CodePostal</p>
+               <span class="fw-semibold col-2 text-end ">@localizer["Localité"]:</span>
+               <p class="col "> @Adresse.Localite</p>
             </div>
             <div class="row">
-                <span class="fw-semibold col-7 text-end ">Pays:</span>
-                <p class="col "> @Adresse.Pays</p>
+               <span class="fw-semibold col-7 text-end ">@localizer["Pays"]:</span>
+               <p class="col">@(!string.IsNullOrEmpty(Pays.GetValueOrDefault(CodePays)) ? Pays.GetValueOrDefault(CodePays) : Adresse.Pays)</p>
             </div>
-        </div>
-    </div>
-    <div class="p-1" style="min-height: 6rem">
-        <div class="row">
-            <span class="fw-semibold col text-end">Date de naissance:</span>
+         </div>
+      </div>
+      <div class="p-1" style="min-height: 6rem">
+         <div class="row">
+            <span class="fw-semibold col text-end">@localizer["Date de naissance"]:</span>
             <p class="col"> @EmployePrivate.DateNaissance.ToString("dd/MM/yyyy")</p>
-            <span class="fw-semibold col text-end">Langue:</span>
+            <span class="fw-semibold col text-end">@localizer["Langue"]:</span>
             <p class="col"> @EmployePrivate.Langue</p>
-        </div>
-        <div class="row">
-            <span class="fw-semibold col text-end">Nationalit&eacute;:</span>
+         </div>
+         <div class="row">
+            <span class="fw-semibold col text-end">@localizer["Nationalité"]:</span>
             <p class="col"> @EmployePrivate.Nationalite</p>
-            <span class="fw-semibold col text-end">Num&eacute;ro National:</span>
+            <span class="fw-semibold col text-end">@localizer["Numéro National"]:</span>
             <p class="col"> @EmployePrivate.NumeroNational</p>
-        </div>
-        <div class="row">
+         </div>
+         <div class="row">
             <span class="fw-semibold col text-end">IBAN:</span>
             <p class="col"> @EmployePrivate.IBAN</p>
-            <span class="fw-semibold col text-end">Permis:</span>
+            <span class="fw-semibold col text-end">@localizer["Permis"]:</span>
             <p class="col "> @EmployePrivate.Permis</p>
-        </div>
-    </div>
-    <button class="btn btn-primary position-absolute bottom-0 end-0 m-2" @onclick="ShowEditPrivate">Edit</button>
-</div>
+         </div>
+      </div>
+      <button class="btn btn-primary position-absolute bottom-0 end-0 m-2" @onclick="ShowEditPrivate">Edit</button>
+   </div>
 
-<Modal @ref="modal" Size="ModalSize.ExtraLarge" />
+   <Modal @ref="modal" Size="ModalSize.ExtraLarge" />
+}

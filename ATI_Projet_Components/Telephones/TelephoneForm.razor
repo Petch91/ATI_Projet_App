@@ -1,4 +1,9 @@
-﻿@if (Telephone != null)
+﻿@using Microsoft.Extensions.Localization
+@using System.Globalization
+@using ATI_Projet_Cultures.Locales
+@inject IStringLocalizer<PersonnelResource> localizer
+
+@if (Telephone != null)
 {
     <EditForm class="container d-flex flex-column position-relative" Model="Telephone" OnValidSubmit="IsValided">
 
@@ -23,7 +28,7 @@
 
             }
         </InputSelect>
-        <label>Telephone: </label>
+        <label>@localizer["Telephone"]: </label>
         <InputText class="w-75" @bind-Value="Telephone.Numero"></InputText>
         <Button Class="position-absolute bottom-0 end-0" Size="Size.Small" Type="ButtonType.Submit" Color="ButtonColor.Success">
             <Icon Name="IconName.CheckCircle"></Icon>

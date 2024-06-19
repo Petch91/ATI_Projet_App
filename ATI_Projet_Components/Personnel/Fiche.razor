@@ -1,121 +1,137 @@
 ﻿@using ATI_Projet_Models
 @using ATI_Projets_Models
 @using Blazorise.Components
+@using System.Globalization;
+
 <div class="m-3">
-    <SelectList TItem="EmployeList"
-                TValue="int"
-                Data="@Liste"
-                TextField="@(item => (item.Id + ": " +item.Prenom + " " + item.Nom.ToUpper()))"
-                ValueField="@(item => item.Id)"
-                DefaulPersonnelText="Recherche"
-                SelectedValue="Id"
-                SelectedValueChanged="@(e=>{
-                                            cts.Cancel();                                           
+   <SelectList TItem="EmployeList"
+               TValue="int"
+               Data="@Liste"
+               TextField="@(item => (item.Id + ": " +item.Prenom + " " + item.Nom.ToUpper()))"
+               ValueField="@(item => item.Id)"
+               DefaulPersonnelText="Recherche"
+               SelectedValue="Id"
+               SelectedValueChanged="@(e=>{
+                                            cts.Cancel();
                                             SelectChange(e);
                                         })" />
-                <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">Ajouter</Button>
-    <div>
-        @if (Id >= 54)
-        {
-            @if (EmployeProfil != null && EmployeProfil.Id > 0 && fonctions != null && departements != null)
-            {
-                <div class="d-flex m-1 p-2 profil border rounded position-relative">
-                    <Button Type="ButtonType.Button" Class="contButton position-absolute top-0 end-0" Color="ButtonColor.Dark" Size="Size.Large" @onclick="ShowCanvas">Contacts</Button>
-                    <Card Style="width:17rem; height: 38.15rem; min-width: 12rem;">
-                        <div class="rounded-top position-relative w-100 image" @onclick="ChangePhoto">
-                            <img class="rounded-top w-100 photo" src="@PhotoPath" alt="photo" style="max-height:16.1rem">
-                            <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center w-100">
-                                <Icon Name="IconName.CameraFill" Color="IconColor.Light" Size="IconSize.x1" />
-                                <p>Cliquer Pour Modifier</p>
-                            </div><img />
+   <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">@localizer["Ajouter"]</Button>
+   <div>
+      @if (Id >= 54)
+      {
+         @if (EmployeProfil != null && EmployeProfil.Id > 0 && fonctions != null && departements != null)
+         {
+            <div class="d-flex m-1 p-2 profil border rounded position-relative">
+               <Button Type="ButtonType.Button" Class="contButton position-absolute top-0 end-0" Color="ButtonColor.Dark" Size="Size.Large" @onclick="ShowCanvas">Contacts</Button>
+               <Card Style="width:17rem; height: 38.15rem; min-width: 12rem;">
+                  <div class="rounded-top position-relative w-100 image" @onclick="ChangePhoto">
+                     <img class="rounded-top w-100 photo" src="@PhotoPath" alt="photo" style="max-height:16.1rem">
+                     <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center w-100">
+                        <Icon Name="IconName.CameraFill" Color="IconColor.Light" Size="IconSize.x1" />
+                        <p>@localizer["Cliquer Pour Modifier"]</p>
+                     </div><img />
+                  </div>
+
+                  <CardBody>
+                     <CardTitle>
+                        @EmployeProfil.Nom @EmployeProfil.Prenom
+                     </CardTitle>
+
+                     <CardText>
+                        <div>
+                           @(EmployeProfil.Status ? localizer["Employé"] : localizer["Ouvrier"])
+                           @if (EmployeProfil.Actif)
+                           {
+                              <Badge Class="mx-1" Color="BadgeColor.Success">@localizer["Actif"]</Badge>
+                           }
+
+                           else
+                           {
+                              <Badge Class="mx-1" Color="BadgeColor.Danger">@localizer["Inactif"]</Badge>
+                           }
+                        </div>
+                        <div class="my-2">
+                           
+                           @if (CultureInfo.CurrentCulture.Equals(new CultureInfo("fr-BE")))
+                           {
+                              <p><span class="fw-semibold">@localizer["Taille"]: </span>@EmployePrivate.Taille cm</p>
+                           }
+                           else
+                           {
+                              <p><span class="fw-semibold">@localizer["Taille"]: </span>@UsaSize(EmployePrivate.Taille)</p>
+                           }
+                        </div>
+                     </CardText>
+                  </CardBody>
+                  <ul class="list-group list-group-flush">
+                     <li class="list-group-item">@(localizer[fonctions.FirstOrDefault(f => f.Id == EmployeProfil.FonctionId).Designation])</li>
+                     <li class="list-group-item">@(@"Dépt:") @(departements.FirstOrDefault(d => d.Id == EmployeProfil.DepartementId).Designation)</li>
+                  </ul>
+                  <div class="rounded-bottom position-relative w-100 image" @onclick="ChangeSignature">
+                     <img class=" w-100 photo" src="@SignaturePath" alt="signature" style="max-height:9.3rem">
+                     <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center w-100">
+                        <Icon Name="IconName.CameraFill" Color="IconColor.Light" Size="IconSize.x1" />
+                        <p>@localizer["Cliquer Pour Modifier"]</p>
+                     </div><img />
+                  </div>
+               </Card>
+               <div class="d-flex">
+                  <div class="d-flex flex-column">
+                     <Profil EmployeProfil="EmployeProfil" ProfilChanged="ProfilChanged"></Profil>
+                     <div class="border-end">
+                        <div class="m-1 d-flex">
+                           <Button Color="ButtonColor.Secondary" Outline="true" Active="@(choix == 0)" Size="Size.Small" @onclick=@(() => choisir(0))>@localizer["Infos Privé"]</Button>
+                           <Button Color="ButtonColor.Secondary" Outline="true" Active="@(choix == 1)" Size="Size.Small" @onclick=@(() => choisir(1))>@localizer["Infos Professionnelles"]</Button>
                         </div>
 
-                        <CardBody>
-                            <CardTitle>
-                                @EmployeProfil.Nom @EmployeProfil.Prenom
-                            </CardTitle>
-
-                            <CardText>
-                                @(EmployeProfil.Status ? @"Employé" : "Ouvrier")@if (EmployeProfil.Actif)
-                                {
-                                    <Badge Class="mx-1" Color="BadgeColor.Success">Actif</Badge>
-                                }
-
-                                else
-                                {
-                                    <Badge Class="mx-1" Color="BadgeColor.Danger">Inactif</Badge>
-                                }
-                            </CardText>
-                        </CardBody>
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">@(fonctions.FirstOrDefault(f => f.Id == EmployeProfil.FonctionId).Designation)</li>
-                            <li class="list-group-item">@(@"Dépt:") @(departements.FirstOrDefault(d => d.Id == EmployeProfil.DepartementId).Designation)</li>
-                        </ul>
-                        <div class="rounded-bottom position-relative w-100 image" @onclick="ChangeSignature">
-                            <img class=" w-100 photo" src="@SignaturePath" alt="signature" style="max-height:9.3rem">
-                            <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center w-100">
-                                <Icon Name="IconName.CameraFill" Color="IconColor.Light" Size="IconSize.x1" />
-                                <p>Cliquer Pour Modifier</p>
-                            </div><img />
-                        </div>
-                    </Card>
-                    <div class="d-flex">
-                        <div class="d-flex flex-column">
-                            <Profil EmployeProfil="EmployeProfil" ProfilChanged="ProfilChanged"></Profil>
-                            <div class="border-end">
-                                <div class="m-1 d-flex">
-                                    <Button Color="ButtonColor.Secondary" Outline="true" Active="@(choix == 0)" Size="Size.Small" @onclick=@(() => choisir(0))>Infos Privé</Button>
-                                    <Button Color="ButtonColor.Secondary" Outline="true" Active="@(choix == 1)" Size="Size.Small" @onclick=@(() => choisir(1))>Infos Professionnelles</Button>
-                                </div>
-
-                                @{
-                                    switch (choix)
+                        @{
+                           switch (choix)
+                           {
+                              case 0:
+                                 {
+                                    if (EmployePrivate != null)
                                     {
-                                        case 0:
-                                            {
-                                                if (EmployePrivate != null)
-                                                {
-                                                    <InfoPriv EmployePrivate="@EmployePrivate"></InfoPriv>
-                                                }
-                                                break;
-                                            }
-                                        case 1:
-                                            {
-                                                if (EmployeProf != null)
-                                                {
-                                                    <InfoProf EmployeProf="@EmployeProf"></InfoProf>
-                                                }
-                                                break;
-                                            }
+                                       <InfoPriv EmployePrivate="@EmployePrivate"></InfoPriv>
                                     }
-                                }
-                            </div>
-                        </div>
-                        <div class="d-flex flex-column contacts">
-                            <EmailList emails="emails" emailsChanged="TriggerEmail" PersonneId="EmployeProfil.PersonneId"></EmailList>
-                            <TelephoneList telephones="telephones" telephonesChanged="TriggerTelephone" PersonneId="EmployeProfil.PersonneId" />
-                        </div>
+                                    break;
+                                 }
+                              case 1:
+                                 {
+                                    if (EmployeProf != null)
+                                    {
+                                       <InfoProf EmployeProf="@EmployeProf"></InfoProf>
+                                    }
+                                    break;
+                                 }
+                           }
+                        }
+                     </div>
+                  </div>
+                  <div class="d-flex flex-column contacts">
+                     <EmailList emails="emails" emailsChanged="TriggerEmail" PersonneId="EmployeProfil.PersonneId"></EmailList>
+                     <TelephoneList telephones="telephones" telephonesChanged="TriggerTelephone" PersonneId="EmployeProfil.PersonneId" />
+                  </div>
 
-                    </div>
-                </div>
+               </div>
+            </div>
 
-                <Offcanvas @ref="offcanvas"
-                           Title="Contacts"
-                           Size="OffcanvasSize.Large">
-                    <BodyTemplate>
-                        <div class="container d-flex flex-column" style="max-width: 40rem">
-                            <EmailList emails="emails" emailsChanged="TriggerEmail" PersonneId="EmployeProfil.PersonneId"></EmailList>
-                            <TelephoneList telephones="telephones" telephonesChanged="TriggerTelephone" PersonneId="EmployeProfil.PersonneId" />
-                        </div>
-                        <div class="mt-3">
-                            <Button Color="ButtonColor.Primary" @onclick="OnHideOffcanvasClick">Fermer</Button>
-                        </div>
-                    </BodyTemplate>
-                </Offcanvas>
-            }
+            <Offcanvas @ref="offcanvas"
+                       Title="Contacts"
+                       Size="OffcanvasSize.Large">
+               <BodyTemplate>
+                  <div class="container d-flex flex-column" style="max-width: 40rem">
+                     <EmailList emails="emails" emailsChanged="TriggerEmail" PersonneId="EmployeProfil.PersonneId"></EmailList>
+                     <TelephoneList telephones="telephones" telephonesChanged="TriggerTelephone" PersonneId="EmployeProfil.PersonneId" />
+                  </div>
+                  <div class="mt-3">
+                     <Button Color="ButtonColor.Primary" @onclick="OnHideOffcanvasClick">@localizer["Fermer"]</Button>
+                  </div>
+               </BodyTemplate>
+            </Offcanvas>
+         }
 
-        }
-    </div>
+      }
+   </div>
 
 </div>
 
