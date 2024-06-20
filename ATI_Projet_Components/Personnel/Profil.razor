@@ -17,13 +17,13 @@
             <div class="mt-3">
                 <div class="row g-2 ">
                     <span class="fw-semibold col-3 text-end">@localizer["Fonction VCA"]:</span>
-                    <p class="col-4"> @(fonctionsVCA.FirstOrDefault(f => f.Id == EmployeProfil.IdFonctionVCA).Designation ?? "NONE") </p>
+                    <p class="col-4"> @(localizer[fonctionsVCA.FirstOrDefault(f => f.Id == EmployeProfil.IdFonctionVCA).Designation ?? "NONE"]) </p>
                     <span class="fw-semibold col-3 text-end">Gestion Stock:</span>
-                    <p class="col"> @(Enum.GetName(typeof(GestionStock), EmployeProfil.GestionStock))</p>
+                    <p class="col"> @(localizer[Enum.GetName(typeof(GestionStock), EmployeProfil.GestionStock)])</p>
                 </div>
                 <div class="row g-2 ">
                     <span class="fw-semibold col-3 text-end">Status VCA:</span>
-                    <p class="col-4"> @(statusVCA.FirstOrDefault(f => f.Code == EmployeProfil.CodeStatusVCA).Libelle ?? "NONE")</p>
+                    <p class="col-4"> @(localizer[statusVCA.FirstOrDefault(f => f.Code == EmployeProfil.CodeStatusVCA).Libelle ?? "NONE"])</p>
                     <span class="fw-semibold col-3 text-end">Group_S:</span>
                     <p class="col">@EmployeProfil.Group_S</p>
                 </div>
@@ -32,10 +32,10 @@
                     @{
                         if (EmployeProfil.CodeTypeMO == null) EmployeProfil.CodeTypeMO = "";
                         string code = string.IsNullOrEmpty(EmployeProfil.CodeTypeMO.Trim()) ? "" : EmployeProfil.CodeTypeMO;
-                        <p class="col-4"> @(TypesMO.FirstOrDefault(f => f.Code == code).Libelle ?? "NONE")</p>
+                        <p class="col-4"> @(localizer[TypesMO.FirstOrDefault(f => f.Code == code).Libelle ?? "NONE"])</p>
                     }
                     <span class="fw-semibold col-3 text-end">@localizer["Contrat de travail"]:</span>
-                    <p class="col"> @(TypesContrat.FirstOrDefault(f => f.Code == EmployeProfil.CodeTypeContrat).Libelle ?? "NONE")</p>
+                    <p class="col"> @(localizer[TypesContrat.FirstOrDefault(f => f.Code == EmployeProfil.CodeTypeContrat).Libelle ?? "NONE"])</p>
 
                 </div>
             </div>

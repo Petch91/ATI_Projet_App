@@ -6,8 +6,8 @@
 <EditForm class="position-relative" style="min-height: 8rem" Model="form" OnValidSubmit="Submit">
     <DataAnnotationsValidator></DataAnnotationsValidator>
     <ValidationSummary></ValidationSummary>
-    <div class="row my-2">
-        <div class="col-2">
+        <div class="row my-2">
+        <div class="col-3 text-end">
             <label>@localizer["Titre"]</label>
             <InputSelect class="titre" @bind-Value="form.Titre">
                 @foreach (string choix in ChoixTitre)
@@ -25,6 +25,8 @@
                 }
             </InputSelect>
         </div>
+        </div>
+    <div class="row my-2">
         <div class="col-5 text-end">
             <label>@localizer["Nom"]</label>
             <InputText @bind-Value="form.Nom"></InputText>
@@ -35,13 +37,40 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-7 text-end">
+        <div class="col-4 text-end">
             <label>@localizer["Langue"]</label>
-            <InputText @bind-Value="form.Langue"></InputText>
+         <InputSelect @bind-Value="form.Langue">
+            @foreach (var choix in Langues)
+            {
+               if(choix.Key == "Français")
+               {
+                  <option selected value="@(choix.Key)">@choix.Value</option>
+                  form.Langue = choix.Key;
+               }
+               else
+               {
+                  <option value="@(choix.Key)">@choix.Value</option>
+               }
+               
+            }
+         </InputSelect>
         </div>
-        <div class="col-5 text-end">
+        <div class="col-6 text-end">
             <label>@localizer["Nationalité"]</label>
-            <InputText @bind-Value="form.Nationalite"></InputText>
+         <InputSelect @bind-Value="form.Nationalite">
+            @foreach (var choix in Nationalites)
+            {
+               if (choix.Key == "Belge")
+               {
+                  <option selected value="@(choix.Key)">@choix.Value</option>
+                  form.Nationalite = choix.Key;
+               }
+               else
+               {
+                  <option value="@(choix.Key)">@choix.Value</option>
+               }
+            }
+         </InputSelect>
         </div>
     </div>
     <Button Class="position-absolute bottom-0 end-0 m-2" Type="ButtonType.Submit" Color="ButtonColor.Primary">@localizer["Ajouter"]</Button>

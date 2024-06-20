@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Reflection;
 using ATI_Projet_Cultures.Locales;
 using Microsoft.Extensions.Localization;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ATI_Projet_Components
 {
@@ -16,7 +17,7 @@ namespace ATI_Projet_Components
    /// si le nom de la propriètés ne vous convient pas vous pouvez utiliser l'attribut DisplayName
    /// </summary>
    /// <typeparam name="TItem"></typeparam>
-   public partial class ListGenericEdit<TItem, TId> : ComponentBase where TItem : class
+   public partial class ListGenericEdit<TItem, TId> : ComponentBase where TItem : class,new()
    {
       [Inject] private IStringLocalizer<PersonnelResource> localizer {  get; set; }
 
@@ -50,10 +51,10 @@ namespace ATI_Projet_Components
                if (!string.IsNullOrEmpty(keyValue.Value))
                {
                   string name = keyValue.Key.Replace("filter", "");
-                  result = result.Where(u => u.GetType().GetProperty(name).GetValue(u).ToString().Contains(keyValue.Value, StringComparison.CurrentCultureIgnoreCase));
+                  result = result.Where(u => localizer[u.GetType().GetProperty(name).GetValue(u).ToString()].ToString().Contains(localizer[keyValue.Value], StringComparison.CurrentCultureIgnoreCase));
                }
             }
-            return result;
+            return result.IsNullOrEmpty() ? new List<TItem>{new ()}.AsQueryable() : result ;
          }
       }
 

@@ -61,7 +61,7 @@
         <InputSelect @bind-Value="EmployeProfil.FonctionId">
             @foreach (Fonction choix in fonctions)
             {
-                <option value="@choix.Id">@choix.Designation</option>
+                <option value="@choix.Id">@localizer[choix.Designation]</option>
             }
         </InputSelect>
     </div>
@@ -70,14 +70,14 @@
         <InputSelect @bind-Value="EmployeProfil.IdFonctionVCA">
             @foreach (FonctionVCA choix in fonctionsVCA)
             {
-                <option value="@choix.Id">@($"{choix.Posit}    {choix.Designation}")</option>
+                <option value="@choix.Id">@($"{choix.Posit}    {localizer[choix.Designation]}")</option>
             }
         </InputSelect>
         <label>Status VCA</label>
         <InputSelect @bind-Value="EmployeProfil.CodeStatusVCA">
             @foreach (StatusVCA choix in statusVCA)
             {
-                <option value="@choix.Code">@choix.Code @choix.Libelle</option>
+                <option value="@choix.Code">@choix.Code @localizer[choix.Libelle]</option>
             }
         </InputSelect>
     </div>
@@ -86,21 +86,21 @@
         <InputSelect @bind-Value="EmployeProfil.CodeTypeContrat">
             @foreach (TypeContrat choix in TypesContrat)
             {
-                <option value="@choix.Code">@($"{choix.Code}    {choix.Libelle}")</option>
+                <option value="@choix.Code">@($"{choix.Code}    {localizer[choix.Libelle]}")</option>
             }
         </InputSelect>
         <label>@localizer["Type Main d'oeuvre"]</label>
         <InputSelect @bind-Value="EmployeProfil.CodeTypeMO">
             @foreach (TypeMO choix in TypesMO)
             {
-                <option value="@choix.Code">@choix.Code @choix.Libelle</option>
+                <option value="@choix.Code">@choix.Code @localizer[choix.Libelle]</option>
             }
         </InputSelect>
         <label>@localizer["Gestion Stock"]</label>
         <InputSelect @bind-Value="EmployeProfil.GestionStock">
             @foreach (var choix in Enum.GetValues(typeof(GestionStock)))
             {
-                <option value="@((int)choix)">@((int)choix) @(Enum.GetName(typeof(GestionStock), choix))</option>
+                <option value="@((int)choix)">@((int)choix) @(localizer[Enum.GetName(typeof(GestionStock), choix)])</option>
             }
         </InputSelect>
     </div>

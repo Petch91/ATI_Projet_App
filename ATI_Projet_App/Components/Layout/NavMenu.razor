@@ -1,4 +1,5 @@
-﻿@using Microsoft.Extensions.Localization
+﻿@using Blazor.Flags
+@using Microsoft.Extensions.Localization
 @using System.Globalization
 @using ATI_Projet_Cultures.Locales
 @inject IStringLocalizer<PersonnelResource> localizer
@@ -27,10 +28,11 @@
                     </li>
                 </ul>
                 <div class="d-flex gap-3 align-items-center">
+
                     <NavLink class="link" href="profil">@connectedUser.FirstName @connectedUser.LastName</NavLink>
                     <InputSelect @bind-Value="culture">
-                        <option value="fr-BE">Français</option>
-                        <option value="en-US">English</option>
+                  <option value="fr-BE">FR 🇫🇷&emsp;</option>
+                  <option value="en-US">EN 🇺🇸&emsp;</option>
                     </InputSelect>
                     <button class="btn btn-outline-danger" @onclick="Logout">@localizer["Se Déconnecter"]</button>
                 </div>

@@ -23,7 +23,7 @@
                             {
                                 var value = propValue != null ? propValue.ToString() : "";
                                 <InputText class="col-6" Value="@(localizer[value])" ValueExpression="@(() => value)"
-                                           ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,x))"></InputText>
+                                           ValueChanged="@(x => Item.GetType().GetProperty(p.Name).SetValue(Item,x.ToString()))"></InputText>
                                 break;
                             }
                         case TypeCode.Int32:

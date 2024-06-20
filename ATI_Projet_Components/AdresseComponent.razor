@@ -20,9 +20,9 @@
         <div class="w-100">
             <label>@localizer["Pays"]:</label>
             <InputSelect @bind-Value="adress.Pays">
-                @foreach (var choix in Pays.Keys)
+                @foreach (var choix in Pays)
                 {
-                    <option value="@choix">@Pays.GetValueOrDefault(choix)</option>
+                    <option value="@(choix.Key)">@choix.Value</option>
                 }
             </InputSelect>
         </div>

@@ -25,11 +25,11 @@
             <span class="fw-semibold col text-end">@localizer["Date de naissance"]:</span>
             <p class="col"> @EmployePrivate.DateNaissance.ToString("dd/MM/yyyy")</p>
             <span class="fw-semibold col text-end">@localizer["Langue"]:</span>
-            <p class="col"> @EmployePrivate.Langue</p>
+            <p class="col"> @langLocalizer[EmployePrivate.Langue]</p>
          </div>
          <div class="row">
             <span class="fw-semibold col text-end">@localizer["Nationalité"]:</span>
-            <p class="col"> @EmployePrivate.Nationalite</p>
+            <p class="col"> @natLocalizer[EmployePrivate.Nationalite]</p>
             <span class="fw-semibold col text-end">@localizer["Numéro National"]:</span>
             <p class="col"> @EmployePrivate.NumeroNational</p>
          </div>

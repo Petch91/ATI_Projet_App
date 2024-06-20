@@ -8,9 +8,21 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.12.0" />
+    <PackageReference Include="Blazor.Flags" Version="1.0.0.1" />
+    <PackageReference Include="BlazorFlags" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Locales\LangueResource.fr-BE.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>LangueResource.fr-BE.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Locales\NationaliteResource.fr-BE.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>NationaliteResource.fr-BE.resx</DependentUpon>
+    </Compile>
     <Compile Update="Locales\PersonnelResource.fr-BE.Designer.cs">
       <DependentUpon>PersonnelResource.fr-BE.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -19,6 +31,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Locales\LangueResource.fr-BE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>LangueResource.fr-BE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Locales\NationaliteResource.fr-BE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>NationaliteResource.fr-BE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Locales\PersonnelResource.fr-BE.resx">
       <LastGenOutput>PersonnelResource.fr-BE.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>

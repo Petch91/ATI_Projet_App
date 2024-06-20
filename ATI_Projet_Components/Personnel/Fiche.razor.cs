@@ -16,7 +16,10 @@ namespace ATI_Projet_Components.Personnel
    public partial class Fiche : ComponentBase, IDisposable
    {
       [Inject] private HttpClient httpClient { get; set; } = default!;
+
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
+      [Inject] private IStringLocalizer<LangueResource> langLocalizer { get; set; }
+      [Inject] private IStringLocalizer<NationaliteResource> natLocalizer { get; set; }
 
       [Parameter] public EventCallback<int> EditPhoto { get; set; }
       [Parameter] public EventCallback<int> EditSignature { get; set; }
@@ -39,6 +42,9 @@ namespace ATI_Projet_Components.Personnel
       private string PhotoPath;
       private string SignaturePath;
 
+      private Dictionary<string, string> Langues { get; set; }
+      private Dictionary<string, string> Nationalites { get; set; }
+
       private Offcanvas offcanvas = default!;
 
       CancellationTokenSource cts = new CancellationTokenSource();
@@ -50,6 +56,37 @@ namespace ATI_Projet_Components.Personnel
       Task task = default!;
       protected async override Task OnInitializedAsync()
       {
+         var dico = langLocalizer.GetAllStrings().ToDictionary(x => x.Name, x => x.Value);
+         var valeurs = dico.Values.ToList();
+         valeurs.Sort();
+         Langues = new Dictionary<string, string>();
+         foreach (var value in valeurs)
+         {
+            foreach (var kvp in dico)
+            {
+               if (kvp.Value == value)
+               {
+                  Langues.Add(kvp.Key, value);
+                  break;
+               }
+            }
+         }
+         dico = natLocalizer.GetAllStrings().ToDictionary(x => x.Name, x => x.Value);
+         valeurs = dico.Values.ToList();
+         valeurs.Sort();
+         Nationalites = new Dictionary<string, string>();
+         foreach (var value in valeurs)
+         {
+            foreach (var kvp in dico)
+            {
+               if (kvp.Value == value)
+               {
+                  Nationalites.Add(kvp.Key, value);
+                  break;
+               }
+            }
+         }
+
          Liste = await httpClient.GetFromJsonAsync<List<EmployeList>>("Employe/") ?? new List<EmployeList>();
          if (Liste != null) Id = Liste.First().Id;
          fonctions = new List<Fonction>();
@@ -149,6 +186,8 @@ namespace ATI_Projet_Components.Personnel
       {
          var parameters = new Dictionary<string, object>();
          parameters.Add("CreateEvent", EventCallback.Factory.Create<PersonneForm>(this, AddEmploye));
+         parameters.Add("Langues", Langues);
+         parameters.Add("Nationalites", Nationalites);
          await modal.ShowAsync<CreatePersonne>(title: localizer["Ajouter un employé"], parameters: parameters);
       }
 

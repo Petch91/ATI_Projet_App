@@ -25,11 +25,21 @@
    <div class="div2">
       <div class="d-flex flex-column">
          <label>@localizer["Langue"]: </label>
-         <InputText @bind-Value="EmployePrivate.Langue"></InputText>
+         <InputSelect @bind-Value="EmployePrivate.Langue">
+            @foreach (var choix in Langues)
+            {
+               <option value="@(choix.Key)">@choix.Value</option>
+            }
+         </InputSelect>
          <label>
             @localizer["Nationalité"]:
          </label>
-         <InputText @bind-Value="EmployePrivate.Nationalite"></InputText>
+         <InputSelect @bind-Value="EmployePrivate.Nationalite">
+            @foreach (var choix in Nationalites)
+            {
+               <option value="@(choix.Key)">@choix.Value</option>
+            }
+         </InputSelect>
          <label>@localizer["Permis"]: </label>
          <InputText class="w-25" @bind-Value="EmployePrivate.Permis"></InputText>
       </div>

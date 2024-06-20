@@ -345,6 +345,9 @@
   <data name="Gestion Stock" xml:space="preserve">
     <value>Stock management</value>
   </data>
+  <data name="Gestion Stock1" xml:space="preserve">
+    <value>Inventory management</value>
+  </data>
   <data name="GSM Privé" xml:space="preserve">
     <value>Private mobile phone</value>
   </data>
@@ -402,6 +405,15 @@
   <data name="Localité" xml:space="preserve">
     <value>Town</value>
   </data>
+  <data name="Main d'oeuvre Sécurité" xml:space="preserve">
+    <value>Security manpower</value>
+  </data>
+  <data name="Membre de la direction" xml:space="preserve">
+    <value>Member of the management</value>
+  </data>
+  <data name="Mise en service" xml:space="preserve">
+    <value>Commissioning</value>
+  </data>
   <data name="Nationalité" xml:space="preserve">
     <value>Nationality</value>
   </data>
@@ -416,6 +428,18 @@
   </data>
   <data name="Numéro National" xml:space="preserve">
     <value>National number</value>
+  </data>
+  <data name="Ouvrier" xml:space="preserve">
+    <value>Worker</value>
+  </data>
+  <data name="P.E. Chantier &amp; Atelier" xml:space="preserve">
+    <value>P.E. Site &amp; Workshop</value>
+  </data>
+  <data name="P.E. Chantier Data" xml:space="preserve">
+    <value>P.E. Workshop Data</value>
+  </data>
+  <data name="P.E. Maintenance Industrielle" xml:space="preserve">
+    <value>P.E. Industrial Maintenance</value>
   </data>
   <data name="Pays" xml:space="preserve">
     <value>Country</value>
@@ -438,6 +462,18 @@
   <data name="Prénom" xml:space="preserve">
     <value>Firstname</value>
   </data>
+  <data name="Responsable commercial" xml:space="preserve">
+    <value>Commercial Manager</value>
+  </data>
+  <data name="Responsable d'affaire" xml:space="preserve">
+    <value>Business Manager</value>
+  </data>
+  <data name="Responsable projet" xml:space="preserve">
+    <value>Project Manager</value>
+  </data>
+  <data name="Responsable SIPP" xml:space="preserve">
+    <value>Health and Safety Manager</value>
+  </data>
   <data name="Rue et Numéro" xml:space="preserve">
     <value>Adress</value>
   </data>
@@ -447,8 +483,23 @@
   <data name="Se Déconnecter" xml:space="preserve">
     <value>Log Off</value>
   </data>
+  <data name="Service administratif" xml:space="preserve">
+    <value>Administrative Services</value>
+  </data>
+  <data name="Stagiaire Employé" xml:space="preserve">
+    <value>Trainee Employee</value>
+  </data>
+  <data name="Stagiaire Ouvrier" xml:space="preserve">
+    <value>Trainee Worker</value>
+  </data>
+  <data name="Status VCA" xml:space="preserve">
+    <value>VCA Status</value>
+  </data>
   <data name="Taille" xml:space="preserve">
     <value>Size</value>
+  </data>
+  <data name="Technico-commercial" xml:space="preserve">
+    <value>Technical Sales Representative</value>
   </data>
   <data name="Telephones" xml:space="preserve">
     <value>Phones</value>
