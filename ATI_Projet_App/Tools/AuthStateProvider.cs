@@ -7,10 +7,18 @@ using System.Security.Cryptography;
 
 namespace ATI_Projet_App.Tools
 {
-   public class AuthStateProvider(ProtectedLocalStorage storage, NavigationManager navigationManager) : AuthenticationStateProvider
+   public class AuthStateProvider : AuthenticationStateProvider
    {
-      private readonly ProtectedLocalStorage _storage = storage;
-      private readonly NavigationManager _navigationManager = navigationManager;
+      private readonly ProtectedLocalStorage _storage;
+      private readonly NavigationManager _navigationManager;
+      private bool? IsFirstTime;
+
+      public AuthStateProvider(ProtectedLocalStorage storage, NavigationManager navigationManager)
+      {
+         _storage = storage;
+         _navigationManager = navigationManager;
+         if (IsFirstTime != null) IsFirstTime = false;
+      }
       public override async Task<AuthenticationState> GetAuthenticationStateAsync()
       {
          List<Claim> claims = new List<Claim>();
@@ -18,12 +26,13 @@ namespace ATI_Projet_App.Tools
          try
          {
             result = await _storage.GetAsync<string>("Token");
+            IsFirstTime = false;
          }
          catch (CryptographicException e)
          {
-            //await _storage.DeleteAsync("Token");
-            //await _storage.DeleteAsync("ConnectedUser");
-            _navigationManager.Refresh(true);
+            await _storage.DeleteAsync("Token");
+            await _storage.DeleteAsync("ConnectedUser");
+            if((bool)!IsFirstTime) _navigationManager.Refresh(true);
             result = await _storage.GetAsync<string>("Token");
          }
          string token = result.Value;
