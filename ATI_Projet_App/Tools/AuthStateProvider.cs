@@ -7,38 +7,44 @@ using System.Security.Cryptography;
 
 namespace ATI_Projet_App.Tools
 {
-   public class AuthStateProvider : AuthenticationStateProvider
+   public class AuthStateProvider(ProtectedLocalStorage storage, NavigationManager navigationManager) : AuthenticationStateProvider
    {
-      private readonly ProtectedLocalStorage _storage;
-      private readonly NavigationManager _navigationManager;
-      private bool? IsFirstTime;
+      private readonly ProtectedLocalStorage _storage = storage;
+      private readonly NavigationManager _navigationManager = navigationManager;
+      private bool IsOk;
 
-      public AuthStateProvider(ProtectedLocalStorage storage, NavigationManager navigationManager)
-      {
-         _storage = storage;
-         _navigationManager = navigationManager;
-         if (IsFirstTime != null) IsFirstTime = false;
-      }
       public override async Task<AuthenticationState> GetAuthenticationStateAsync()
       {
          List<Claim> claims = new List<Claim>();
          ProtectedBrowserStorageResult<string> result = new ProtectedBrowserStorageResult<string>();
-         try
+         bool isFirstTime = false;
+         while(!IsOk)
          {
-            result = await _storage.GetAsync<string>("Token");
-            IsFirstTime = false;
-         }
-         catch (CryptographicException e)
-         {
-            await _storage.DeleteAsync("Token");
-            await _storage.DeleteAsync("ConnectedUser");
-            if ((bool)!IsFirstTime)
+            
+            try
             {
-               _navigationManager.Refresh(true);
-               IsFirstTime = true;
+               result = await _storage.GetAsync<string>("Token");
+               isFirstTime = false;
+               IsOk = true;
             }
-            result = await _storage.GetAsync<string>("Token");
+            catch (CryptographicException e)
+            {
+               if (!isFirstTime)
+               {
+                  _navigationManager.Refresh(true);
+                  isFirstTime = true;
+               }
+               else
+               {
+                  await _storage.DeleteAsync("Token");
+                  await _storage.DeleteAsync("ConnectedUser");
+                  _navigationManager.Refresh(true);
+               }
+
+               result = await _storage.GetAsync<string>("Token");
+            }
          }
+
          string token = result.Value;
 
          if (string.IsNullOrWhiteSpace(token))
