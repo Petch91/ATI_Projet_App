@@ -32,7 +32,11 @@ namespace ATI_Projet_App.Tools
          {
             await _storage.DeleteAsync("Token");
             await _storage.DeleteAsync("ConnectedUser");
-            if((bool)!IsFirstTime) _navigationManager.Refresh(true);
+            if ((bool)!IsFirstTime)
+            {
+               _navigationManager.Refresh(true);
+               IsFirstTime = true;
+            }
             result = await _storage.GetAsync<string>("Token");
          }
          string token = result.Value;
