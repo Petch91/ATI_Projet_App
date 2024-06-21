@@ -17,32 +17,17 @@ namespace ATI_Projet_App.Tools
       {
          List<Claim> claims = new List<Claim>();
          ProtectedBrowserStorageResult<string> result = new ProtectedBrowserStorageResult<string>();
-         bool isFirstTime = false;
-         while(!IsOk)
-         {
-            
-            try
-            {
-               result = await _storage.GetAsync<string>("Token");
-               isFirstTime = false;
-               IsOk = true;
-            }
-            catch (CryptographicException e)
-            {
-               if (!isFirstTime)
-               {
-                  _navigationManager.Refresh(true);
-                  isFirstTime = true;
-               }
-               else
-               {
-                  await _storage.DeleteAsync("Token");
-                  await _storage.DeleteAsync("ConnectedUser");
-                  _navigationManager.Refresh(true);
-               }
 
-               result = await _storage.GetAsync<string>("Token");
-            }
+         try
+         {
+            result = await _storage.GetAsync<string>("Token");
+         }
+         catch (CryptographicException e)
+         {
+            await _storage.DeleteAsync("Token");
+            await _storage.DeleteAsync("ConnectedUser");
+            _navigationManager.Refresh(true);
+            result = await _storage.GetAsync<string>("Token");
          }
 
          string token = result.Value;
