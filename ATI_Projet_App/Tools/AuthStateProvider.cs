@@ -24,10 +24,8 @@ namespace ATI_Projet_App.Tools
          }
          catch (CryptographicException e)
          {
-            await _storage.DeleteAsync("Token");
-            await _storage.DeleteAsync("ConnectedUser");
-            _navigationManager.Refresh(true);
-            result = await _storage.GetAsync<string>("Token");
+            ClaimsIdentity anonymousUser = new ClaimsIdentity();
+            return await Task.FromResult(new AuthenticationState(new ClaimsPrincipal(anonymousUser)));
          }
 
          string token = result.Value;
