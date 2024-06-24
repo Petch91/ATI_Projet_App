@@ -1,0 +1,17 @@
+﻿body {
+}
+.chrome .test {
+   visibility: hidden
+}
+
+.firefox .test {
+   visibility: visible
+}
+
+::deep .chrome .test {
+   visibility: hidden
+}
+
+::deep .firefox .test {
+   visibility: visible
+}
