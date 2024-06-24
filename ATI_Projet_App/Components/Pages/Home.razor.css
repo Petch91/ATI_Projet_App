@@ -1,19 +1,22 @@
 ﻿body {
 }
+
 .chrome .test {
-   visibility: hidden
+   color: chartreuse;
 }
 
 .firefox .test {
-   visibility: visible
+   color: red;
+}
 }
 
+
 ::deep .chrome .test {
-   visibility: hidden
+   color: chartreuse;
 }
 
 ::deep .firefox .test {
-   visibility: visible
+   color: red;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
