@@ -15,3 +15,23 @@
 ::deep .firefox .test {
    visibility: visible
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+   ::deep .test {
+      visibility: hidden
+   }
+
+   .test {
+      visibility: hidden
+   }
+}
+
+@-moz-document url-prefix() {
+   ::deep .test {
+      visibility: visible
+   }
+
+   .test {
+      visibility: visible
+   }
+}

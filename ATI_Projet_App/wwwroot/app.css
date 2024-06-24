@@ -148,3 +148,17 @@ body {
 .firefox .test{
    visibility: visible
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+
+   .test {
+      visibility: hidden
+   }
+}
+
+@-moz-document url-prefix() {
+
+   .test {
+      visibility: visible
+   }
+}
