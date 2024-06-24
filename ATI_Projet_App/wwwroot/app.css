@@ -139,3 +139,12 @@ body {
     color: white;
     font-size: 1rem
 }
+
+
+.chrome .test{
+   visibility: hidden
+}
+
+.firefox .test{
+   visibility: visible
+}

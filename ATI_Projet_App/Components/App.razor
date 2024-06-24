@@ -28,6 +28,26 @@
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
    <script src="_content/Blazor.Bootstrap/blazor.bootstrap.js"></script>
    <script src="_framework/blazor.web.js"></script>
+   <script>
+      (function () {
+         var ua = navigator.userAgent;
+         var doc = document.documentElement;
+
+         if (ua.indexOf('MSIE 10.0') > -1) {
+            doc.className += ' ie10';
+         } else if (ua.indexOf('Trident') > -1) {
+            doc.className += ' ie11';
+         } else if (ua.indexOf('Firefox') > -1) {
+            doc.className += ' firefox';
+         } else if (ua.indexOf('Chrome') > -1) {
+            doc.className += ' chrome';
+         } else if (ua.indexOf('Safari') > -1) {
+            doc.className += ' safari';
+         } else if (ua.indexOf('Edge') > -1) {
+            doc.className += ' edge';
+         }
+      })();
+   </script>
 </body>
 
 </html>
