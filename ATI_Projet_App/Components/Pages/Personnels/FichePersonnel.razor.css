@@ -65,5 +65,6 @@
 ::deep .image{
     background-color : dimgrey !important;
     color: white;
-    font-size: 1rem
+    font-size: 1rem;
+    overflow: hidden;
 }
