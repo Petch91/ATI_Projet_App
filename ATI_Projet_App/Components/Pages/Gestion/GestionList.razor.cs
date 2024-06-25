@@ -195,7 +195,7 @@ namespace ATI_Projet_App.Components.Pages.Gestion
       {
          string url;
          bool confirmation = false;
-         string title = localizer["Voulez vous vraiment supprimer "];
+         string title = localizer["Voulez vous vraiment supprimer"] + " ";
          switch (typeof(T))
          {
             case var t when t == typeof(Fonction):

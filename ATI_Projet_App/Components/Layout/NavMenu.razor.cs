@@ -6,58 +6,66 @@ using System.Globalization;
 
 namespace ATI_Projet_App.Components.Layout
 {
-    public partial class NavMenu
-    {
-        [Inject]
-        private SessionManager session {  get; set; }
+   public partial class NavMenu
+   {
+      [Inject]
+      private SessionManager session { get; set; }
 
-        [Inject]
-        private ProtectedLocalStorage storage { get; set; }
-        [Inject]
-        private NavigationManager navigationManager { get; set; }
+      [Inject]
+      private ProtectedLocalStorage storage { get; set; }
+      [Inject]
+      private NavigationManager navigationManager { get; set; }
+      [Inject]
+      private JSTools jstools { get; set; }
 
-        private User? connectedUser;
+      private User? connectedUser;
 
-        private CultureInfo culture
-        {
-            get
+      private string drapeauFR;
+      private string drapeauUS;
+
+      private CultureInfo culture
+      {
+         get
+         {
+            return CultureInfo.CurrentCulture;
+         }
+
+         set
+         {
+            if (value != null && CultureInfo.CurrentCulture != value)
             {
-                return CultureInfo.CurrentCulture;
+               var uri = new Uri(navigationManager.Uri).GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
+               var cultureEscaped = Uri.EscapeDataString(value.Name);
+               var uriEscaped = Uri.EscapeDataString(uri);
+
+               navigationManager.NavigateTo($"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}", true);
             }
+         }
+      }
 
-            set 
-            {
-                if (value != null && CultureInfo.CurrentCulture != value) 
-                { 
-                    var uri = new Uri(navigationManager.Uri).GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
-                    var cultureEscaped = Uri.EscapeDataString(value.Name);
-                    var uriEscaped = Uri.EscapeDataString(uri);
+      protected override async void OnInitialized()
+      {
+         culture = CultureInfo.CurrentCulture;
+         drapeauFR = await jstools.IsoToEmoji("fr");
+         drapeauUS = await jstools.IsoToEmoji("us");
+         StateHasChanged();
+      }
 
-                    navigationManager.NavigateTo($"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}", true);
-                }
-            }
-        }
-
-        protected override void OnInitialized()
-        {
-            culture = CultureInfo.CurrentCulture;
-        }
-
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            //return base.OnAfterRenderAsync(firstRender);
-            if (firstRender)
-            {
-                var result = await storage.GetAsync<User>("ConnectedUser");
-                connectedUser = result.Value;
-                StateHasChanged();
-            }
-        }
-        private async Task Logout()
-        {
-            await session.Logout();
-            navigationManager.NavigateTo("http://192.168.123.69:7100/logout", true);
-            //navigationManager.NavigateTo("/login",true);
-        }
-    }
+      protected override async Task OnAfterRenderAsync(bool firstRender)
+      {
+         //return base.OnAfterRenderAsync(firstRender);
+         if (firstRender)
+         {
+            var result = await storage.GetAsync<User>("ConnectedUser");
+            connectedUser = result.Value;
+            StateHasChanged();
+         }
+      }
+      private async Task Logout()
+      {
+         await session.Logout();
+         navigationManager.NavigateTo("http://192.168.123.69:7100/logout", true);
+         //navigationManager.NavigateTo("/login",true);
+      }
+   }
 }
