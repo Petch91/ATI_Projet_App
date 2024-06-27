@@ -31,7 +31,7 @@ namespace ATI_Projet_App.Components.Pages.Personnels
       {
          if (firstRender)
          {
-            StateHasChanged();
+            StateHasChanged(); 
          }
       }
 
