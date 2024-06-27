@@ -36,7 +36,6 @@ builder.Services.AddScoped<ProtectedLocalStorage>();
 builder.Services.AddScoped<SessionManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 builder.Services.AddScoped<ApiRequester>();
-builder.Services.AddScoped<JSTools>();
 
 builder.Services.AddServerSideBlazor().AddCircuitOptions(option => { option.DetailedErrors = true; });
 
