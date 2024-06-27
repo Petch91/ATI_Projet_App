@@ -15,8 +15,6 @@ namespace ATI_Projet_App.Components.Layout
       private ProtectedLocalStorage storage { get; set; }
       [Inject]
       private NavigationManager navigationManager { get; set; }
-      [Inject]
-      private JSTools jstools { get; set; }
 
       private User? connectedUser;
 
@@ -46,8 +44,6 @@ namespace ATI_Projet_App.Components.Layout
       protected override async void OnInitialized()
       {
          culture = CultureInfo.CurrentCulture;
-         drapeauFR = await jstools.IsoToEmoji("fr");
-         drapeauUS = await jstools.IsoToEmoji("us");
          StateHasChanged();
       }
 
