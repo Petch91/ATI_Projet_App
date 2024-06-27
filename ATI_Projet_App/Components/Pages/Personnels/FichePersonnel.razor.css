@@ -69,3 +69,12 @@
    overflow: hidden;
    display: inline-grid;
 }
+
+::deep .signature{
+   height: 23%;
+}
+
+::deep .imgSigna {
+
+   height: 113%; 
+}

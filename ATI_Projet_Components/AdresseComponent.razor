@@ -6,7 +6,7 @@
 <div class="adresse gap-3 border rounded p-2 m-1">
     <h5>@localizer["Adresse"]: </h5>
     <EditForm class="d-flex flex-column gap-2" Model="adress" @ref="EditForm">
-        <DataAnnotationsValidator></DataAnnotationsValidator>
+      <Blazored.FluentValidation.FluentValidationValidator></Blazored.FluentValidation.FluentValidationValidator>
         <div class="w-100">
             <label>@localizer["Adresse"]:</label>
             <InputText class="w-75" @bind-Value="adress.adresse" @onkeyup="Changed"></InputText>
