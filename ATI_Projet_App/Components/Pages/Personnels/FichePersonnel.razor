@@ -5,10 +5,13 @@
 @using ATI_Projet_Cultures.Locales
 @inject IStringLocalizer<PersonnelResource> localizer
 
+@if(ID != 0)
+{
+   <div>
+      <Fiche Id="ID" EditPhoto="OpenModalPhoto" EditSignature="OpenModalSignature" EmployeChanged="EmployeEvent"></Fiche>
+   </div>
+}
 
-<div>
-    <Fiche Id="ID" EditPhoto="OpenModalPhoto" EditSignature="OpenModalSignature" EmployeChanged="EmployeEvent" ></Fiche>
-</div>
 
 <Modal @ref="modalPhoto"></Modal>
 

@@ -24,6 +24,15 @@ namespace ATI_Projet_App.Components.Pages.Personnels
       {
          int? id = await session.GetSessionStorage<int>("CurrentId");
          if (id != null && id > 0) ID = (int)id;
+         else ID = -1;
+         //StateHasChanged();
+      }
+      protected override void OnAfterRender(bool firstRender)
+      {
+         if (firstRender)
+         {
+            if (ID != 0) StateHasChanged();
+         }
       }
 
       private async Task OpenModalPhoto(int id)
@@ -57,9 +66,11 @@ namespace ATI_Projet_App.Components.Pages.Personnels
          navigationManager.Refresh();
       }
 
-      private void EmployeEvent(int id) 
+      private void EmployeEvent(int id)
       {
          session.SetSessionStorage<int>("CurrentId", id);
+         ID = id;
+
       }
    }
 }

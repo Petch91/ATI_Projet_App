@@ -91,10 +91,6 @@ namespace ATI_Projet_Components.Personnel
          }
 
          Liste = await httpClient.GetFromJsonAsync<List<EmployeList>>("Employe/") ?? new List<EmployeList>();
-         if (Id >0)
-         {
-            if (Liste != null) Id = Liste.First().Id;
-         }
          fonctions = new List<Fonction>();
          fonctions = await httpClient.GetFromJsonAsync<IEnumerable<Fonction>>("Fonction");
          departements = new List<DeptSimplifiedList>();
@@ -108,6 +104,10 @@ namespace ATI_Projet_Components.Personnel
 
       protected async override Task OnParametersSetAsync()
       {
+         if (Id <= 0)
+         {
+            if (Liste != null) Id = Liste.First().Id;
+         }
          await ChangeEmploye();
       }
       private async Task SelectChange(int id)
@@ -118,6 +118,7 @@ namespace ATI_Projet_Components.Personnel
          {
 
             await ChangeEmploye();
+            await EmployeChanged.InvokeAsync(Id);
             StateHasChanged();
          }
 
@@ -173,7 +174,7 @@ namespace ATI_Projet_Components.Personnel
 
             telephones = await httpClient.GetFromJsonAsync<List<Telephone>>("Employe/telephonesByEmploye/" + EmployeProfil.PersonneId);
          }
-         await EmployeChanged.InvokeAsync(Id);
+         
 
       }
 

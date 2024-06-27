@@ -97,6 +97,10 @@ namespace ATI_Projet_App.Tools
          if(obj != null)
          await _protectedSessionStorage.SetAsync(key, obj);
       }
+      public async void DeleteSessionStorage(string key)
+      {
+         await _protectedSessionStorage.DeleteAsync(key);
+      }
    }
 }
    
