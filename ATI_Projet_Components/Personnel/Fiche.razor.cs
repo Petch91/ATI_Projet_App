@@ -10,6 +10,8 @@ using System.Net.Http.Json;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
 using ATI_Projet_Cultures.Locales;
+using Microsoft.Graph.Models.CallRecords;
+
 
 namespace ATI_Projet_Components.Personnel
 {
@@ -23,8 +25,9 @@ namespace ATI_Projet_Components.Personnel
 
       [Parameter] public EventCallback<int> EditPhoto { get; set; }
       [Parameter] public EventCallback<int> EditSignature { get; set; }
+      [Parameter] public EventCallback<int> EmployeChanged { get; set; }
 
-      private int Id { get; set; }
+      [Parameter] public int Id { get; set; }
 
       private EmployeProfil EmployeProfil { get; set; }
       private EmployePrivate EmployePrivate { get; set; }
@@ -88,7 +91,10 @@ namespace ATI_Projet_Components.Personnel
          }
 
          Liste = await httpClient.GetFromJsonAsync<List<EmployeList>>("Employe/") ?? new List<EmployeList>();
-         if (Liste != null) Id = Liste.First().Id;
+         if (Id >0)
+         {
+            if (Liste != null) Id = Liste.First().Id;
+         }
          fonctions = new List<Fonction>();
          fonctions = await httpClient.GetFromJsonAsync<IEnumerable<Fonction>>("Fonction");
          departements = new List<DeptSimplifiedList>();
@@ -167,6 +173,7 @@ namespace ATI_Projet_Components.Personnel
 
             telephones = await httpClient.GetFromJsonAsync<List<Telephone>>("Employe/telephonesByEmploye/" + EmployeProfil.PersonneId);
          }
+         await EmployeChanged.InvokeAsync(Id);
 
       }
 

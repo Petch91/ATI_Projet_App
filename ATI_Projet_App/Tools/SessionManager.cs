@@ -10,9 +10,10 @@ using System.Security.Claims;
 
 namespace ATI_Projet_App.Tools
 {
-   public class SessionManager(ProtectedLocalStorage protectedLocalStorage, HttpClient httpClient, NavigationManager navigationManager)
+   public class SessionManager(ProtectedLocalStorage protectedLocalStorage, ProtectedSessionStorage protectedSessionStorage, HttpClient httpClient, NavigationManager navigationManager)
    {
       private readonly ProtectedLocalStorage _protectedLocalStorage = protectedLocalStorage;
+      private readonly ProtectedSessionStorage _protectedSessionStorage = protectedSessionStorage;
       private readonly HttpClient _client = httpClient;
       private readonly NavigationManager _navigationManager = navigationManager;
 
@@ -85,6 +86,16 @@ namespace ATI_Projet_App.Tools
             }
 
          }
+      }
+      public async Task<T> GetSessionStorage<T>(string key)
+      {
+         var result = await _protectedSessionStorage.GetAsync<T>(key);
+         return result.Value ?? default!;
+      }
+      public async void SetSessionStorage<T>(string key, T obj)
+      {
+         if(obj != null)
+         await _protectedSessionStorage.SetAsync(key, obj);
       }
    }
 }
