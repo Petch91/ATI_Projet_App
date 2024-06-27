@@ -68,7 +68,7 @@
                      <li class="list-group-item">@(@"Dépt:") @(departements.FirstOrDefault(d => d.Id == EmployeProfil.DepartementId).Designation)</li>
                   </ul>
                   <div class="rounded-bottom position-relative w-100 image signature" @onclick="ChangeSignature">
-                     <img class=" w-100 photo imgSigna" src="@SignaturePath" alt="signature" style="max-height:9.3rem">
+                     <img class="w-100 photo imgSigna" src="@SignaturePath" alt="signature" style="max-height:9.3rem">
                      <div class="position-absolute top-50 start-50 translate-middle d-flex flex-column align-items-center w-100">
                         <Icon Name="IconName.CameraFill" Color="IconColor.Light" Size="IconSize.x1" />
                         <p>@localizer["Cliquer Pour Modifier"]</p>
