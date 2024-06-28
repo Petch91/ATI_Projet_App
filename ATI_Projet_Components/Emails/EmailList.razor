@@ -7,7 +7,7 @@
 <div class="p-2 m-1 position-relative" style="min-width: 18rem">
     <h5 class="mx-1">Emails</h5>
     <Button Class="mx-2 position-absolute top-0 end-0" Color="ButtonColor.Secondary" Size="Size.Small" @onclick="ShowCreateMail">@localizer["Ajouter Email"]</Button>
-    @if (emails.Count() > 0)
+    @if (emails != null && emails.Count() > 0)
     {
         <ListGenericEdit TId=int TItem=Email Items="emails" ExcludedCols="@(new List<string>{"Id", "PersonneId" , "SocieteId"})" DeleteEvent="Delete" EditEvent="ShowEdit" />
     }

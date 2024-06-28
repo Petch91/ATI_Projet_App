@@ -20,20 +20,28 @@ namespace ATI_Projet_App.Components.Pages.Personnels
 
       private int ID;
 
-      protected override async void OnInitialized()
+      //protected override async void OnInitialized()
+      //{
+      //   int? id = await session.GetSessionStorage<int>("CurrentId");
+      //   if (id != null && id > 0) ID = (int)id;
+      //   else ID = -1;
+      //   //StateHasChanged();
+      //}
+
+      protected override async Task OnInitializedAsync()
       {
          int? id = await session.GetSessionStorage<int>("CurrentId");
          if (id != null && id > 0) ID = (int)id;
          else ID = -1;
-         //StateHasChanged();
+         StateHasChanged();
       }
-      protected override void OnAfterRender(bool firstRender)
-      {
-         if (firstRender)
-         {
-            StateHasChanged(); 
-         }
-      }
+      //protected override void OnAfterRender(bool firstRender)
+      //{
+      //   if (firstRender)
+      //   {
+      //      StateHasChanged(); 
+      //   }
+      //}
 
       private async Task OpenModalPhoto(int id)
       {

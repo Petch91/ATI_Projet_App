@@ -7,9 +7,12 @@
 
 @if(ID != 0)
 {
-   <div>
-      <Fiche Id="ID" EditPhoto="OpenModalPhoto" EditSignature="OpenModalSignature" EmployeChanged="EmployeEvent"></Fiche>
-   </div>
+   <Fiche Id="ID" EditPhoto="OpenModalPhoto" EditSignature="OpenModalSignature" EmployeChanged="EmployeEvent"></Fiche>
+
+}
+else
+{
+   <span>Loading</span><Spinner Type="SpinnerType.Dots" Class="me-3" Color="SpinnerColor.Primary" />
 }
 
 

@@ -100,14 +100,20 @@ namespace ATI_Projet_Components.Personnel
          {
             await Task.Delay(300, token);
          }, token);
+         if (Liste != null) StateHasChanged();
       }
 
       protected async override Task OnParametersSetAsync()
       {
          if (Id <= 0)
          {
-            if (Liste != null) Id = Liste.First().Id;
+            if (Liste != null)
+            { 
+               Id = Liste.First().Id;
+               await ChangeEmploye();
+            }
          }
+         else
          await ChangeEmploye();
       }
       private async Task SelectChange(int id)
