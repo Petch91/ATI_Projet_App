@@ -50,13 +50,6 @@ namespace ATI_Projet_Components.Personnel
 
       private Offcanvas offcanvas = default!;
 
-      CancellationTokenSource cts = new CancellationTokenSource();
-
-      // Créer un jeton d'annulation à partir du CancellationTokenSource
-      CancellationToken token = default!;
-
-      // Lancer une tâche asynchrone qui utilise le jeton d'annulation
-      Task task = default!;
       protected async override Task OnInitializedAsync()
       {
          var dico = langLocalizer.GetAllStrings().ToDictionary(x => x.Name, x => x.Value);
@@ -95,11 +88,6 @@ namespace ATI_Projet_Components.Personnel
          fonctions = await httpClient.GetFromJsonAsync<IEnumerable<Fonction>>("Fonction");
          departements = new List<DeptSimplifiedList>();
          departements = await httpClient.GetFromJsonAsync<IEnumerable<DeptSimplifiedList>>("departement/simplifiedList");
-         token = cts.Token;
-         task = Task.Run(async () =>
-         {
-            await Task.Delay(300, token);
-         }, token);
          if (Liste != null) StateHasChanged();
       }
 
@@ -108,25 +96,21 @@ namespace ATI_Projet_Components.Personnel
          if (Id <= 0)
          {
             if (Liste != null)
-            { 
+            {
                Id = Liste.First().Id;
                await ChangeEmploye();
             }
          }
          else
-         await ChangeEmploye();
+            await ChangeEmploye();
       }
       private async Task SelectChange(int id)
       {
          Id = id;
-         await task;
-         if (!task.IsCanceled)
-         {
 
-            await ChangeEmploye();
-            await EmployeChanged.InvokeAsync(Id);
-            StateHasChanged();
-         }
+         await ChangeEmploye();
+         await EmployeChanged.InvokeAsync(Id);
+         StateHasChanged();
 
       }
 
@@ -180,7 +164,7 @@ namespace ATI_Projet_Components.Personnel
 
             telephones = await httpClient.GetFromJsonAsync<List<Telephone>>("Employe/telephonesByEmploye/" + EmployeProfil.PersonneId);
          }
-         
+
 
       }
 

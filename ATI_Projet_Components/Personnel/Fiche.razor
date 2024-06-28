@@ -12,7 +12,6 @@
                DefaulPersonnelText="Recherche"
                SelectedValue="Id"
                SelectedValueChanged="@(e=>{
-                                            cts.Cancel();
                                             SelectChange(e);
                                         })" />
    <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">@localizer["Ajouter"]</Button>
