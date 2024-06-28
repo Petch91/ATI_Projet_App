@@ -71,10 +71,17 @@
 }
 
 ::deep .signature{
-   height: 23%;
+   height: 23% !important;
 }
 
 ::deep .imgSigna {
+   height: 113% !important;
+   
+}
+.signature {
+   height: 23% !important;
+}
 
-   height: 113%; 
+.imgSigna {
+   height: 113% !important;
 }

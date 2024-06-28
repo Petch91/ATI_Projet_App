@@ -76,3 +76,19 @@
         transition: 0.3s;
         opacity: 0.5 !important;
     }
+
+::deep .signature {
+   height: 23% !important;
+}
+
+::deep .imgSigna {
+   height: 113% !important;
+}
+
+.signature {
+   height: 23% !important;
+}
+
+.imgSigna {
+   height: 113% !important;
+}
