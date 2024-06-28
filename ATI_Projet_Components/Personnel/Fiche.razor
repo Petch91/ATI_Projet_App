@@ -1,7 +1,9 @@
 ﻿@using ATI_Projet_Models
+@using ATI_Projet_Tools.Tools
 @using ATI_Projets_Models
 @using Blazorise.Components
 @using System.Globalization;
+@inject VariablesGlobales variables;
 
 <div class="m-3">
    <SelectList TItem="EmployeList"
@@ -50,9 +52,8 @@
                            }
                         </div>
                         <div class="my-2">
-                           @if (CultureInfo.CurrentCulture != null)
-                           {
-                              @if (CultureInfo.CurrentCulture.Equals(new CultureInfo("fr-BE")))
+
+                              @if (variables.CurrentCulture ==  "fr-BE")
                               {
                                  <p><span class="fw-semibold">@localizer["Taille"]: </span>@EmployePrivate.Taille cm</p>
                               }
@@ -60,7 +61,6 @@
                               {
                                  <p><span class="fw-semibold">@localizer["Taille"]: </span>@UsaSize(EmployePrivate.Taille)</p>
                               }
-                           }
 
                         </div>
                      </CardText>

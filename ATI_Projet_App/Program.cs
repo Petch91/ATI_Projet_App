@@ -1,6 +1,7 @@
 using ATI_Projet_App.Components;
 using ATI_Projet_App.Tools;
 using ATI_Projet_Tools;
+using ATI_Projet_Tools.Tools;
 using Blazorise;
 using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
@@ -36,6 +37,8 @@ builder.Services.AddScoped<ProtectedLocalStorage>();
 builder.Services.AddScoped<SessionManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 builder.Services.AddScoped<ApiRequester>();
+
+builder.Services.AddSingleton<VariablesGlobales>();
 
 builder.Services.AddServerSideBlazor().AddCircuitOptions(option => { option.DetailedErrors = true; });
 
