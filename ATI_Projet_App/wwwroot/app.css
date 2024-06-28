@@ -134,10 +134,12 @@ body {
         /*z-index: 0 !important;*/
     }
 
- .image {
-    background-color: dimgrey !important;
-    color: white;
-    font-size: 1rem
+.image {
+   background-color: dimgrey !important;
+   color: white;
+   font-size: 1rem;
+   overflow: hidden;
+   display: inline-grid;
 }
 
 
