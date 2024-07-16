@@ -29,4 +29,8 @@
     <ProjectReference Include="..\ATI_Projet_Components\ATI_Projet_Components.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\Pages\Clients\" />
+  </ItemGroup>
+
 </Project>
