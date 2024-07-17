@@ -29,7 +29,7 @@
                 </ul>
                 <div class="d-flex gap-3 align-items-center">
 
-                    <NavLink class="link" href="profil">@connectedUser.FirstName @connectedUser.LastName</NavLink>
+                    <NavLink class="link" href="@("Personnel/" + connectedUser.IdExterne)">@connectedUser.FirstName @connectedUser.LastName</NavLink>
                     <InputSelect @bind-Value="culture">
                   <option value="fr-BE">FR 🇫🇷</option>
                   <option value="en-US">EN 🇺🇸</option>
