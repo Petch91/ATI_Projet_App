@@ -20,7 +20,7 @@
    <div>
       @if (Id >= 54)
       {
-         @if (EmployeProfil != null && EmployeProfil.Id > 0 && fonctions != null && departements != null)
+         @if (EmployeProfil != null && EmployeProfil.Id > 0 && fonctions != null && departements != null && (EmployePrivate != null && choix == 0))
          {
             <div class="d-flex m-1 p-2 profil border rounded position-relative">
                <Button Type="ButtonType.Button" Class="contButton position-absolute top-0 end-0" Color="ButtonColor.Dark" Size="ButtonSize.Large" @onclick="ShowCanvas">Contacts</Button>
@@ -53,7 +53,9 @@
                         </div>
                         <div class="my-2">
 
-                              @if (variables.CurrentCulture ==  "fr-BE")
+                           @if (CultureInfo.CurrentCulture != null && EmployePrivate != null)
+                           {
+                              @if (CultureInfo.CurrentCulture.Equals(new CultureInfo("fr-BE")))
                               {
                                  <p><span class="fw-semibold">@localizer["Taille"]: </span>@EmployePrivate.Taille cm</p>
                               }
@@ -61,6 +63,7 @@
                               {
                                  <p><span class="fw-semibold">@localizer["Taille"]: </span>@UsaSize(EmployePrivate.Taille)</p>
                               }
+                           }
 
                         </div>
                      </CardText>
