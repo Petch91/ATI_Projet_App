@@ -10,24 +10,22 @@
    {
       if (!ExcludedProp.Contains(p.Name))
       {
-         <div class="row">
-            <h5 class="col-4 text-end">@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name : p.GetCustomAttribute<DisplayNameAttribute>().DisplayName]):</h5>
-            @if (p.PropertyType == typeof(string))
-            {
-               <p class="col-7">@(p.GetValue(Item) != null ? localizer[p.GetValue(Item).ToString()] : default!)</p>
-            }
-            else
-            {
-               <p class="col-7">@(p.GetValue(Item) != null ? p.GetValue(Item) : default!)</p>
-            }
-         </div>
-         @*                 if(p.PropertyType == typeof(string))
-   {
-   if (!string.IsNullOrEmpty(p.GetValue(Item).ToString()))
-   {
+         bool IsString = p.PropertyType == typeof(string);
+         if ((IsString && !string.IsNullOrEmpty(p.GetValue(Item).ToString())) || !IsString)
+         {
+            <div class="row">
+               <h5 class="col-6 text-end">@(localizer[p.GetCustomAttribute<DisplayNameAttribute>() == null ? p.Name : p.GetCustomAttribute<DisplayNameAttribute>().DisplayName]):</h5>
+               @if (IsString)
+               {
+                  <p class="col-6">@(p.GetValue(Item) != null ? localizer[p.GetValue(Item).ToString()] : default!)</p>
+               }
+               else if (!IsString)
+               {
+                  <p class="col-6">@(p.GetValue(Item) != null ? p.GetValue(Item) : default!)</p>
+               }
+            </div>
+         }
 
-   }
-   } *@
       }
    }
 </div>

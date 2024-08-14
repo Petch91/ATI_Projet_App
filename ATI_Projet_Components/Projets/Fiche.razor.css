@@ -1,0 +1,32 @@
+﻿body {
+}
+::deep .titleProjet {
+   transition: 0.3s;
+}
+
+.titleProjet {
+   transition: 0.3s;
+}
+
+   .titleProjet:hover {
+      cursor: pointer;
+      transform: scale(1.00001);
+      transition: 0.3s;
+      border-radius: 15%;
+      background-color: cadetblue;
+      /*margin: 2px;*/
+   }
+
+::deep .titleProjet:hover {
+   cursor: pointer;
+   transform: scale(1.1);
+   transition: 0.3s
+}
+
+.linkEntity:hover{
+   cursor:pointer;
+}
+
+::deep .linkEntity:hover {
+   cursor: pointer;
+}

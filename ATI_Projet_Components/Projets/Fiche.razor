@@ -1,12 +1,12 @@
 ﻿@using Microsoft.AspNetCore.Components.Web.Virtualization
-@if(projet != null)
+@if(projet != null && personnelList != null)
 {
    <Card Class="">
       <CardHeader Class="d-flex gap-2 align-items-center">
          <h4 class="my-0">Projet: </h4>
          <div class="d-flex gap-1 align-items-center">
             <InputNumber style="max-width: 5rem; text-align: center;" TValue="int" Value="Code" ValueExpression="() => Code" ValueChanged="@(x => SelectChange(x))"></InputNumber>
-            <h5 @onclick="ShowCanvas" class="my-0">@projet.Designation</h5>
+            <h5 @onclick="ShowCanvas" class="my-0 mx-3 titleProjet">@projet.Designation</h5>
             <Badge Class="mx-1" Color="BadgeColor.Success">@localizer[statuts.First(x => x.Id == projet.SpId).Designation]</Badge>
             @if (projet.TypeMarche)
             {
@@ -56,7 +56,7 @@
             </div>
             <div class="col-5">
                <div class="row my-2">
-                  <span class="fw-semibold col-5 text-end">@localizer["Responsable Projet"]:</span>
+                  <span class="fw-semibold col-5 text-end">@localizer["Responsable projet"]:</span>
                   @{
                      var respProjet = personnelList.First(x => x.Id == projet.RespProjetId);
                      <p class="col-7">@(respProjet.Prenom + " " + respProjet.Nom)</p>
@@ -109,7 +109,7 @@
                </div>
                <div class="row">
                   <span class="fw-semibold col-7 text-end ">@localizer["Pays"]:</span>
-                  <p class="col">@(!string.IsNullOrEmpty(Pays.GetValueOrDefault(CodePays)) ? Pays.GetValueOrDefault(CodePays) : Adresse.Pays)</p>
+                  <p class="col">@(!string.IsNullOrEmpty(CodePays) ? paysLocalizer[CodePays] : Adresse.Pays)</p>
                </div>
             </div>
          </div>
@@ -117,14 +117,14 @@
    </Card>
 
       <Offcanvas @ref="offcanvas"
-              Title="Liste Des Projets"
+              Title="@localizer["Liste Des Projets"]"
               Size="OffcanvasSize.Regular"
               Placement="Placement.Start"
               IsScrollable="false">
       <BodyTemplate>
          <div style="height:500px; overflow-y: scroll" class="d-flex flex-column align-items-center">
             <Virtualize Items="ProjetsClient">
-               <p @onclick="@(() => SelectChange(context.Code))">
+               <p class="linkEntity" @onclick="@(() => SelectChange(context.Code))">
                   @context.Designation
                </p>
             </Virtualize>

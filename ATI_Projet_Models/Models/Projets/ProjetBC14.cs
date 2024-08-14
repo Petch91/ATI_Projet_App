@@ -14,5 +14,17 @@ namespace ATI_Projet_Models.Models.Projets
 
       public int RespFacturationId { get; set; }
       public int ClientId { get; set; }
+      public string? ImpNumb { get; set; }
+      public string CompNumber
+      {
+         get
+         {
+            if (string.IsNullOrEmpty(ImpNumb))
+            {
+               return ClientId.ToString("0000") + Id.ToString("0000");
+            }
+            return ImpNumb;
+         }
+      }
    }
 }

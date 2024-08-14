@@ -16,5 +16,7 @@ namespace ATI_Projet_Models.Models.Societes.Clients
       public int KM { get; set; }
       public string SiteInternet { get; set; }
       public string CompteBancaire { get; set; }
+      public int AdresseId { get; set; }
+      public int SocieteId { get; set; }
    }
 }

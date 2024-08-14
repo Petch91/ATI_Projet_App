@@ -92,3 +92,33 @@
 .imgSigna {
    height: 113% !important;
 }
+
+::deep .titleClient {
+   transition: 0.3s;
+}
+
+.titleClient{
+   transition: 0.3s;
+}
+
+.titleClient:hover{
+   cursor:pointer;
+   transform: scale(1.00001);
+   transition: 0.3s;
+   border-radius:15%;
+   background-color:cadetblue;
+   /*margin: 2px;*/
+}
+::deep .titleClient:hover {
+   cursor: pointer;
+   transform: scale(1.1);
+   transition: 0.3s
+}
+
+.linkEntity:hover {
+   cursor: pointer;
+}
+
+::deep .linkEntity:hover {
+   cursor: pointer;
+}

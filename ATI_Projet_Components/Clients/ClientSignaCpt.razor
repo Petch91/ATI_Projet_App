@@ -18,7 +18,7 @@
                   </div>
                   <div class="row">
                      <span class="fw-semibold col-7 text-end ">@localizer["Pays"]:</span>
-                     <p class="col">@(!string.IsNullOrEmpty(Pays.GetValueOrDefault(CodePays)) ? Pays.GetValueOrDefault(CodePays) : Adresse.Pays)</p>
+                     <p class="col">@(!string.IsNullOrEmpty(CodePays) ? paysLocalizer[CodePays] : "")</p>
                   </div>
                </div>
             </div>

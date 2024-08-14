@@ -19,22 +19,22 @@ namespace ATI_Projet_Components.Personnel
       [Inject] private IStringLocalizer<LangueResource> langLocalizer { get; set; }
 
       [Inject] private IStringLocalizer<NationaliteResource> natLocalizer { get; set; }
+      [Inject] private IStringLocalizer<PaysResource> paysLocalizer { get; set; }
 
       [Parameter]
       public EmployePrivate EmployePrivate { get; set; }
 
       private Adresse Adresse { get; set; }
 
+      private string CodePays;
       private Dictionary<string, string> Pays { get; set; }
       private Dictionary<string, string> Langues { get; set; }
       private Dictionary<string, string> Nationalites { get; set; }
 
       private int NewId;
 
-      private string CodePays;
 
-
-      protected async override void OnInitialized()
+      protected override void OnInitialized()
       {
          var dico = langLocalizer.GetAllStrings().ToDictionary(x => x.Name, x => x.Value);
          var valeurs = dico.Values.ToList();
@@ -66,30 +66,25 @@ namespace ATI_Projet_Components.Personnel
                }
             }
          }
-         Pays = new Dictionary<string, string>();
-         if (CultureInfo.CurrentCulture.Equals(new CultureInfo("fr-BE"))) Pays = await HttpClient.GetFromJsonAsync<Dictionary<string, string>>
-                                                                                 ("https://www.iso-country-code.com/api/?lang=fr&output=json")
-                                                                                 ?? new Dictionary<string, string>();
 
-         else Pays = await HttpClient.GetFromJsonAsync<Dictionary<string, string>>("https://www.iso-country-code.com/api/?lang=en&output=json")
-                                                                                ?? new Dictionary<string, string>();
+         dico = paysLocalizer.GetAllStrings().ToDictionary(x => x.Name, x => x.Value);
+         valeurs = dico.Values.ToList();
+         valeurs.Sort();
+         Pays = new Dictionary<string, string>();
+         foreach (var value in valeurs)
+         {
+            foreach (var kvp in dico)
+            {
+               if (kvp.Value == value)
+               {
+                  Pays.Add(kvp.Key, value);
+                  break;
+               }
+            }
+         }
          StateHasChanged();
       }
 
-      //protected async override void OnAfterRender(bool firstRender)
-      //{
-      //   if (!firstRender)
-      //   {
-      //      Pays = new Dictionary<string, string>();
-      //      if (CultureInfo.CurrentCulture.Equals(new CultureInfo("fr-BE"))) Pays = await HttpClient.GetFromJsonAsync<Dictionary<string, string>>
-      //                                                                              ("https://www.iso-country-code.com/api/?lang=fr&output=json")
-      //                                                                              ?? new Dictionary<string, string>();
-
-      //      else Pays = await HttpClient.GetFromJsonAsync<Dictionary<string, string>>("https://www.iso-country-code.com/api/?lang=en&output=json")
-      //                                                                              ?? new Dictionary<string, string>();
-      //   }
-
-      //}
 
       protected async override Task OnParametersSetAsync()
       {

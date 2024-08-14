@@ -1,4 +1,4 @@
-﻿@if(Pays.Count() > 0)
+﻿@if(!string.IsNullOrEmpty(CodePays))
 {
    <div class="private gap-3 border-top p-2 m-1 position-relative">
       <div class="d-flex border-bottom" style="min-height: 8rem">
@@ -16,7 +16,7 @@
             </div>
             <div class="row">
                <span class="fw-semibold col-7 text-end ">@localizer["Pays"]:</span>
-               <p class="col">@(!string.IsNullOrEmpty(Pays.GetValueOrDefault(CodePays)) ? Pays.GetValueOrDefault(CodePays) : Adresse.Pays)</p>
+               <p class="col">@paysLocalizer[CodePays]</p>
             </div>
          </div>
       </div>
@@ -40,7 +40,7 @@
             <p class="col "> @EmployePrivate.Permis</p>
          </div>
       </div>
-      <button class="btn btn-primary position-absolute bottom-0 end-0 m-2" @onclick="ShowEditPrivate">Edit</button>
+      @* <button class="btn btn-primary position-absolute bottom-0 end-0 m-2" @onclick="ShowEditPrivate">Edit</button> *@
    </div>
 
    <Modal @ref="modal" Size="ModalSize.ExtraLarge" />

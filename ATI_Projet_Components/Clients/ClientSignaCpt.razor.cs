@@ -11,6 +11,8 @@ namespace ATI_Projet_Components.Clients;
 public partial class ClientSignaCpt : ComponentBase
 {
    [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
+   [Inject] private IStringLocalizer<PaysResource> paysLocalizer { get; set; }
+
    [Inject] private ICommon common { get; set; }
    [Inject] private ISociete societe { get; set; }
 
@@ -23,15 +25,15 @@ public partial class ClientSignaCpt : ComponentBase
    private string CodePays = "be";
    private Dictionary<string, string> Pays { get; set; }
 
-   protected async override void OnInitialized()
-   {
+   //protected async override void OnInitialized()
+   //{
 
-      Pays = new Dictionary<string, string>();
-      if (CultureInfo.CurrentCulture.Equals(new CultureInfo("fr-BE"))) Pays = await common.GetCountrys("fr");
+   //   Pays = new Dictionary<string, string>();
+   //   if (CultureInfo.CurrentCulture.Equals(new CultureInfo("fr-BE"))) Pays = await common.GetCountrys("fr");
 
-      else Pays = await common.GetCountrys("en");
-      StateHasChanged();
-   }
+   //   else Pays = await common.GetCountrys("en");
+   //   StateHasChanged();
+   //}
 
    protected async override Task OnParametersSetAsync()
    {

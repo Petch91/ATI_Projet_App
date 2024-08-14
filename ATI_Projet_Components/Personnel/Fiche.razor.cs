@@ -84,6 +84,7 @@ namespace ATI_Projet_Components.Personnel
          }
 
          Liste = await httpClient.GetFromJsonAsync<List<EmployeList>>("Employe/") ?? new List<EmployeList>();
+         Liste = Liste.Where(x => x.Actif).ToList();
          fonctions = new List<Fonction>();
          fonctions = await httpClient.GetFromJsonAsync<IEnumerable<Fonction>>("Fonction");
          departements = new List<DeptSimplifiedList>();

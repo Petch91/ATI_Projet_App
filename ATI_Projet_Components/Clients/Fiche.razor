@@ -4,86 +4,136 @@
 @using ATI_Projets_Models
 @using Blazorise.Components
 @using System.Globalization;
+@using Microsoft.AspNetCore.Components.Web.Virtualization
 @inject VariablesGlobales variables;
 
-<div class="m-3">
-   <SelectList TItem="ClientList"
-               TValue="int"
-               Data="@Liste"
-               TextField="@(item => (item.Id + ": " +item.Name))"
-               ValueField="@(item => item.Id)"
-               DefaulPersonnelText="Recherche"
-               SelectedValue="Id"
-               SelectedValueChanged="@(e=>{
-                                            SelectChange(e);
-                                        })" />
-   @* <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">@localizer["Ajouter"]</Button> *@
-   <div>
+<div class="m-3 card w-75">
+   <div class="p-2">
       @if (Id >= 1)
       {
-         @if (EmployeProfil != null && EmployeProfil.Id > 0 && fonctions != null && departements != null)
+         @if (ClientInfo != null && departements != null && axesMarche != null)
          {
+            <Card Class="">
+               <CardHeader Class="d-flex gap-2 align-items-center">
+                  <h4 class="my-0">@localizer["Client"]: </h4>
+                  <div class="d-flex gap-1 align-items-center">
+                     <InputNumber style="max-width: 5rem; text-align: center;" TValue="int" Value="Id" ValueExpression="() => Id" ValueChanged="@(x => SelectChange(x))"></InputNumber>
+                     <h5 @onclick="ShowCanvas" class="my-0 mx-3 titleClient">@ClientInfo.Name</h5>
+                     @if (ClientInfo.Actif)
+                     {
+                        <Badge Class="mx-1" Color="BadgeColor.Success">@localizer["Actif"]</Badge>
+                     }
 
-               <div class="d-flex">
-                  <div class="d-flex flex-column">
-                     <Profil EmployeProfil="EmployeProfil" ProfilChanged="ProfilChanged"></Profil>
-                     <div class="border-end">
-                        <div class="m-1 d-flex">
-                           <Button Color="ButtonColor.Secondary" Outline="true" Active="@(choix == 0)" Size="Size.Small" @onclick=@(() => choisir(0))>@localizer["Infos Privé"]</Button>
-                           <Button Color="ButtonColor.Secondary" Outline="true" Active="@(choix == 1)" Size="Size.Small" @onclick=@(() => choisir(1))>@localizer["Infos Professionnelles"]</Button>
-                        </div>
+                     else
+                     {
+                        <Badge Class="mx-1" Color="BadgeColor.Danger">@localizer["Inactif"]</Badge>
+                     }
+                  </div>
+                  @* <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">@localizer["Ajouter"]</Button> *@
+                  <Button Color="ButtonColor.Secondary" @onclick="GoBC14">BC14</Button>
+               </CardHeader>
+               <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                     <div>
+                        @if (ClientInfo.Conges)
+                        {
+                           <Badge Class="mx-1" Color="BadgeColor.Success">@localizer["Spécial Congés"]</Badge>
+                        }
 
-                        @{
-                           switch (choix)
-                           {
-                              case 0:
-                                 {
-                                    if (EmployePrivate != null)
-                                    {
-                                       <InfoPriv EmployePrivate="@EmployePrivate"></InfoPriv>
-                                    }
-                                    break;
-                                 }
-                              case 1:
-                                 {
-                                    if (EmployeProf != null)
-                                    {
-                                       <InfoProf EmployeProf="@EmployeProf"></InfoProf>
-                                    }
-                                    break;
-                                 }
-                           }
+                        else
+                        {
+                           <Badge Class="mx-1" Color="BadgeColor.Danger">@localizer["Non Spécial Congés"]</Badge>
+                        }
+                        @if (ClientInfo.Test)
+                        {
+                           <Badge Class="mx-1" Color="BadgeColor.Success">@localizer["Pour Test"]</Badge>
+                        }
+
+                        else
+                        {
+                           <Badge Class="mx-1" Color="BadgeColor.Danger">@localizer["No Test"]</Badge>
+                        }
+
+                        @if (ClientInfo.SansCRM)
+                        {
+                           <Badge Class="mx-1" Color="BadgeColor.Success">@localizer["Envoi Vers CRM"]</Badge>
+                        }
+
+                        else
+                        {
+                           <Badge Class="mx-1" Color="BadgeColor.Danger">@localizer["Pas d'Envoi => CMR"]</Badge>
+                        }
+                        @if (ClientInfo.SuiviJournalier)
+                        {
+                           <Badge Class="mx-1" Color="BadgeColor.Success">@localizer["Suivi en Jour"]</Badge>
+                        }
+
+                        else
+                        {
+                           <Badge Class="mx-1" Color="BadgeColor.Danger">@localizer["Suivi non journalier"]</Badge>
                         }
                      </div>
-                  </div>
-                  <div class="d-flex flex-column contacts">
-                     <EmailList emails="emails" emailsChanged="TriggerEmail" PersonneId="EmployeProfil.PersonneId"></EmailList>
-                     <TelephoneList telephones="telephones" telephonesChanged="TriggerTelephone" PersonneId="EmployeProfil.PersonneId" />
-                  </div>
+                  </li>
+                  <li class="list-group-item ">
+                     <div class="">
+                        <div class="col-4">
+                           <div class="row">
+                              <h6 class="col-4 my-0">@localizer["Axe de marché"]:</h6>
+                              <p class="col-6">@(localizer[axesMarche.FirstOrDefault(am => am.Id == ClientInfo.AmId).Libelle])</p>
+                           </div>
 
-               </div>
-            </div>
+                        </div>
+                        <div class="col-4">
+                           <div class="row">
+                              <h6 class="col-4 my-0">@localizer["Département"]:</h6>
+                              <p class="col-6">@(departements.FirstOrDefault(d => d.Id == ClientInfo.DeptId).Designation)</p>
+                           </div>
+                        </div>
+                     </div>
 
-            <Offcanvas @ref="offcanvas"
-                       Title="Contacts"
-                       Size="OffcanvasSize.Large">
-               <BodyTemplate>
-                  <div class="container d-flex flex-column" style="max-width: 40rem">
-                     <EmailList emails="emails" emailsChanged="TriggerEmail" PersonneId="EmployeProfil.PersonneId"></EmailList>
-                     <TelephoneList telephones="telephones" telephonesChanged="TriggerTelephone" PersonneId="EmployeProfil.PersonneId" />
-                  </div>
-                  <div class="mt-3">
-                     <Button Color="ButtonColor.Primary" @onclick="OnHideOffcanvasClick">@localizer["Fermer"]</Button>
-                  </div>
-               </BodyTemplate>
-            </Offcanvas>
+                  </li>
+               </ul>
+            </Card>
+
          }
-
       }
    </div>
+   <Tabs Class="m-2">
+      <Tab Title="@localizer["Signalétique"]">
+         <Content>
+            <div class="m-2">
+               <ClientSignaCpt client="ClientSigna" emails="emails" telephones="telephones"></ClientSignaCpt>
+            </div>
+         </Content>
+      </Tab>
+      <Tab Title="@localizer["Projets"]">
+         <Content>
+            <div class="m-2">
+               <ATI_Projet_Components.Projets.Fiche ClientId="Id"></ATI_Projet_Components.Projets.Fiche>
+            </div>
+         </Content>
+      </Tab>
+   </Tabs>
 
 </div>
 
+@if (Liste != null)
+{
+   <Offcanvas @ref="offcanvas"
+              Title="@localizer["Liste Des Clients"]"
+              Size="OffcanvasSize.Regular"
+              Placement="Placement.Start"
+              IsScrollable="false">
+      <BodyTemplate>
+         <div style="height:500px; overflow-y: scroll" class="d-flex flex-column align-items-center">
+            <Virtualize Items="@Liste">
+               <p class="linkEntity" @onclick="@(() => SelectChange(context.Id))">
+                  @context.Name
+               </p>
+            </Virtualize>
+         </div>
 
+      </BodyTemplate>
+   </Offcanvas>
+}
 
-<Modal @ref="modal" Size="ModalSize.Large"></Modal>

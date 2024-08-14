@@ -14,6 +14,7 @@ using Microsoft.Graph.Models.CallRecords;
 using ATI_Projet_Models.Models.Societes.Clients;
 using ATI_Projet_Models.Models.Projets;
 using ATI_Projet_Models.Models;
+using ATI_Projet_Tools.Services.Interfaces;
 
 
 namespace ATI_Projet_Components.Clients
@@ -21,6 +22,9 @@ namespace ATI_Projet_Components.Clients
    public partial class Fiche : ComponentBase, IDisposable
    {
       [Inject] private HttpClient httpClient { get; set; } = default!;
+      [Inject] private NavigationManager navigationManager { get; set; }
+
+      [Inject] private ISociete societe { get; set; }
 
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
 
@@ -30,29 +34,31 @@ namespace ATI_Projet_Components.Clients
 
       private ClientInfo ClientInfo { get; set; }
       private ClientSigna ClientSigna { get; set; }
-      private Projet Projet{ get; set; }
+      private Projet Projet { get; set; }
 
       private IEnumerable<AxeMarche> axesMarche;
       private IEnumerable<DeptSimplifiedList> departements;
 
-      private int choix = 0;
-
       private List<Email> emails;
       private List<Telephone> telephones;
+
+      private int choix = 0;
+
       public List<ClientList> Liste { get; set; }
 
-
       private Offcanvas offcanvas = default!;
+
 
       protected async override Task OnInitializedAsync()
       {
 
-         Liste = await httpClient.GetFromJsonAsync<List<ClientList>>("Client/list/") ?? new List<ClientList>();
+         var res = await societe.GotClientList();
+         Liste = res.ToList();
          axesMarche = new List<AxeMarche>();
-         axesMarche = await httpClient.GetFromJsonAsync<IEnumerable<AxeMarche>>("AxeMarche");
+         axesMarche = await societe.GotAxeMarche();
          departements = new List<DeptSimplifiedList>();
          departements = await httpClient.GetFromJsonAsync<IEnumerable<DeptSimplifiedList>>("departement/simplifiedList");
-         if (Liste != null) StateHasChanged();
+         StateHasChanged();
       }
 
       protected async override Task OnParametersSetAsync()
@@ -67,14 +73,19 @@ namespace ATI_Projet_Components.Clients
          }
          else
             await ChangeClient();
+         StateHasChanged();
       }
       private async Task SelectChange(int id)
       {
-         Id = id;
+         if (Liste.Select(x => x.Id).Contains(id))
+         {
+            Id = id;
 
-         await ChangeClient();
-         await ClientChanged.InvokeAsync(Id);
-         StateHasChanged();
+            await ChangeClient();
+            await ClientChanged.InvokeAsync(Id);
+            StateHasChanged();
+            await offcanvas.HideAsync();
+         }
 
       }
 
@@ -82,6 +93,31 @@ namespace ATI_Projet_Components.Clients
       {
          choix = choice;
          StateHasChanged();
+      }
+
+
+      public void InfoChanged(ClientInfo client)
+      {
+         ClientInfo = client;
+         Liste.First(c => c.Id == client.Id).Name = client.Name;
+         StateHasChanged();
+      }
+
+      private async Task ChangeClient()
+      {
+         ClientInfo = await societe.GotClientInfo(Id);
+
+         ClientSigna = await societe.GotClientSigna(Id);
+
+         var e = await societe.GotEmails(ClientSigna.SocieteId);
+         //emails = new List<Email>();
+         emails = e.ToList();
+
+         var t = await societe.GotPhones(ClientSigna.SocieteId);
+         //telephones = new List<Telephone>();
+         telephones = t.ToList();
+
+
       }
 
       public async Task ShowCanvas()
@@ -92,66 +128,12 @@ namespace ATI_Projet_Components.Clients
       {
          await offcanvas.HideAsync();
       }
-      public async Task TriggerEmail()
+
+      public void GoBC14()
       {
-         emails = await httpClient.GetFromJsonAsync<List<Email>>("Email/BySociete/" + ClientInfo.SocieteId);
-         StateHasChanged();
+         navigationManager.NavigateTo("/BC14");
       }
 
-      public async Task TriggerTelephone()
-      {
-         telephones = await httpClient.GetFromJsonAsync<List<Telephone>>("Telephone/BySociete/" + ClientInfo.SocieteId);
-         StateHasChanged();
-      }
-
-      public void ProfilChanged(EmployeProfil employeProfil)
-      {
-         EmployeProfil = employeProfil;
-         Liste.First(e => e.Id == employeProfil.Id).Nom = employeProfil.Nom;
-         Liste.First(e => e.Id == employeProfil.Id).Prenom = employeProfil.Prenom;
-         StateHasChanged();
-      }
-
-      private async Task ChangeClient()
-      {
-         EmployeProfil = await httpClient.GetFromJsonAsync<EmployeProfil>("Employe/profil/" + Id) ?? new EmployeProfil();
-
-         EmployePrivate = await httpClient.GetFromJsonAsync<EmployePrivate>("Employe/private/" + Id) ?? new EmployePrivate();
-         PhotoPath = string.IsNullOrEmpty(EmployePrivate.Photo) ? "/images/Photo.jpg" : (Path.GetFullPath(EmployePrivate.Photo)).Replace("/app/wwwroot", "").Replace("\\", "/");
-         SignaturePath = string.IsNullOrEmpty(EmployePrivate.Signature) ? "/images/signature.webp" : (Path.GetFullPath(EmployePrivate.Signature)).Replace("/app/wwwroot", "").Replace("\\", "/");
-
-         EmployeProf = await httpClient.GetFromJsonAsync<EmployeProf>("Employe/prof/" + Id) ?? new EmployeProf();
-
-         if (EmployeProfil != null)
-         {
-            emails = await httpClient.GetFromJsonAsync<List<Email>>("Employe/emailsByEmploye/" + EmployeProfil.PersonneId);
-
-            telephones = await httpClient.GetFromJsonAsync<List<Telephone>>("Employe/telephonesByEmploye/" + EmployeProfil.PersonneId);
-         }
-
-
-      }
-
-
-      private Modal modal { get; set; }
-      private async Task OpenModalCreate()
-      {
-         var parameters = new Dictionary<string, object>();
-         parameters.Add("CreateEvent", EventCallback.Factory.Create<PersonneForm>(this, AddEmploye));
-         parameters.Add("Langues", Langues);
-         parameters.Add("Nationalites", Nationalites);
-         await modal.ShowAsync<CreatePersonne>(title: localizer["Ajouter un employé"], parameters: parameters);
-      }
-
-      private async Task AddEmploye(PersonneForm personne)
-      {
-         await httpClient.PostAsJsonAsync<PersonneForm>("Employe/", personne);
-         await modal.HideAsync();
-         Liste = await httpClient.GetFromJsonAsync<List<EmployeList>>("Employe/") ?? new List<EmployeList>();
-         if (Liste != null) Id = Liste.Last().Id;
-         await ChangeClient();
-         StateHasChanged();
-      }
 
       public void Dispose()
       {

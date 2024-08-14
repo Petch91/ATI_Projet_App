@@ -23,6 +23,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>NationaliteResource.fr-BE.resx</DependentUpon>
     </Compile>
+    <Compile Update="Locales\PaysResource.fr-BE.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PaysResource.fr-BE.resx</DependentUpon>
+    </Compile>
     <Compile Update="Locales\PersonnelResource.fr-BE.Designer.cs">
       <DependentUpon>PersonnelResource.fr-BE.resx</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -38,6 +43,10 @@
     <EmbeddedResource Update="Locales\NationaliteResource.fr-BE.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>NationaliteResource.fr-BE.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Locales\PaysResource.fr-BE.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PaysResource.fr-BE.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Locales\PersonnelResource.fr-BE.resx">
       <LastGenOutput>PersonnelResource.fr-BE.Designer.cs</LastGenOutput>

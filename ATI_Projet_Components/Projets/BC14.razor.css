@@ -1,1 +1,94 @@
-﻿
+﻿::deep .quickgrid[theme="default"] thead {
+   background-color: lightslategray;
+}
+
+::deep .quickgrid[theme="default"] .col-title {
+   font-weight: 600;
+   text-transform: uppercase;
+   font-size: 1rem;
+   display: flex;
+   justify-content: center;
+}
+
+/*::deep table {
+   table-layout: fixed !important;
+}*/
+
+::deep .quickgrid[theme="default"] {
+   --col-gap: 1.25rem;
+}
+
+::deep tr {
+   height: 2rem;
+   border-bottom: 0.5px solid silver;
+}
+
+::deep tbody td {
+   white-space: nowrap;
+   overflow: hidden;
+   max-width: 8rem;
+   text-overflow: ellipsis;
+}
+/*::deep thead th {
+   white-space: nowrap;
+   overflow: hidden;
+   max-width: 10rem;
+   text-overflow: ellipsis;
+}*/
+
+/*::deep th.client {
+   width: 1rem !important;
+}
+
+::deep th.respATI {
+   width: 1rem !important;
+}
+
+::deep th.respBC14 {
+   width: 1rem !important;
+}
+
+::deep th.projetATI {
+   width: 2rem !important;
+}
+
+::deep th.projetBC14 {
+   width: 2rem !important;
+}
+
+::deep td.client {
+   width: 3rem !important;
+}*/
+
+.disabled {
+   pointer-events: none;
+   color: gray;
+   text-decoration: none;
+}
+
+::deep .disabled {
+   pointer-events: none;
+   color: gray;
+   text-decoration: none;
+}
+
+a{
+   color: darkslategrey;
+   font-size:1.05rem;
+   transition: 0.3s;
+   text-decoration:none;
+
+}
+
+a:hover {
+   transform: scale(1.2);
+   transition: 0.3s;
+   cursor: pointer;
+   border-radius: 5%;
+   color:aliceblue;
+   background-color:darkslategray;
+   }
+
+::deep a:hover {
+   cursor: pointer; /* Change le curseur à une main pointant */
+}

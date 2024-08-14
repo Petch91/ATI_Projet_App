@@ -21,6 +21,7 @@ namespace ATI_Projet_Components.Projets
       [Inject] private IPersonnel personnel { get; set; }
 
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
+      [Inject] private IStringLocalizer<PaysResource> paysLocalizer { get; set; }
 
       [Parameter] public EventCallback<int> ClientChanged { get; set; }
 
@@ -57,11 +58,6 @@ namespace ATI_Projet_Components.Projets
          statuts = await Projet.GotStatuts();
          personnelList = new List<EmployeList>();
          personnelList = await personnel.GotPersonnelList();
-
-         Pays = new Dictionary<string, string>();
-         if (CultureInfo.CurrentCulture.Equals(new CultureInfo("fr-BE"))) Pays = await common.GetCountrys("fr");
-
-         else Pays = await common.GetCountrys("en");
 
          StateHasChanged();
       }

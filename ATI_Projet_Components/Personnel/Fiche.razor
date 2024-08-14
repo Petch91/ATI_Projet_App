@@ -16,14 +16,14 @@
                SelectedValueChanged="@(e=>{
                                             SelectChange(e);
                                         })" />
-   <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">@localizer["Ajouter"]</Button>
+   @* <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">@localizer["Ajouter"]</Button> *@
    <div>
       @if (Id >= 54)
       {
          @if (EmployeProfil != null && EmployeProfil.Id > 0 && fonctions != null && departements != null)
          {
             <div class="d-flex m-1 p-2 profil border rounded position-relative">
-               <Button Type="ButtonType.Button" Class="contButton position-absolute top-0 end-0" Color="ButtonColor.Dark" Size="Size.Large" @onclick="ShowCanvas">Contacts</Button>
+               <Button Type="ButtonType.Button" Class="contButton position-absolute top-0 end-0" Color="ButtonColor.Dark" Size="ButtonSize.Large" @onclick="ShowCanvas">Contacts</Button>
                <Card Style="width:17rem; height: 40.5rem; min-width: 12rem;">
                   <div class="rounded-top position-relative w-100 image" @onclick="ChangePhoto">
                      <img class="rounded-top w-100 photo" src="@PhotoPath" alt="photo" style="max-height:16.1rem">
@@ -82,8 +82,8 @@
                      <Profil EmployeProfil="EmployeProfil" ProfilChanged="ProfilChanged"></Profil>
                      <div class="border-end">
                         <div class="m-1 d-flex">
-                           <Button Color="ButtonColor.Secondary" Outline="true" Active="@(choix == 0)" Size="Size.Small" @onclick=@(() => choisir(0))>@localizer["Infos Privé"]</Button>
-                           <Button Color="ButtonColor.Secondary" Outline="true" Active="@(choix == 1)" Size="Size.Small" @onclick=@(() => choisir(1))>@localizer["Infos Professionnelles"]</Button>
+                           <Button Color="ButtonColor.Secondary" Outline="true" Active="@(choix == 0)" Size="ButtonSize.Small" @onclick=@(() => choisir(0))>@localizer["Infos Privé"]</Button>
+                           <Button Color="ButtonColor.Secondary" Outline="true" Active="@(choix == 1)" Size="ButtonSize.Small" @onclick=@(() => choisir(1))>@localizer["Infos Professionnelles"]</Button>
                         </div>
 
                         @{
