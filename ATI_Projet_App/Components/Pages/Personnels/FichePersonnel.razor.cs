@@ -14,19 +14,12 @@ namespace ATI_Projet_App.Components.Pages.Personnels
       [Inject] private NavigationManager navigationManager { get; set; } = default!;
       [Inject] private SessionManager session {  get; set; } = default!;
 
+      [Parameter] public int ID { get; set; }
+
       private Modal modalPhoto;
 
       private Modal modalSignature;
 
-      [Parameter] public int ID { get; set; }
-
-      //protected override async Task OnInitializedAsync()
-      //{
-      //   int? id = await session.GetSessionStorage<int>("CurrentId");
-      //   if (id != null && id > 0) ID = (int)id;
-      //   else ID = -1;
-      //   StateHasChanged();
-      //}
 
       protected override async Task OnParametersSetAsync()
       {
@@ -38,7 +31,6 @@ namespace ATI_Projet_App.Components.Pages.Personnels
          }
          StateHasChanged();
       }
-
 
       private async Task OpenModalPhoto(int id)
       {

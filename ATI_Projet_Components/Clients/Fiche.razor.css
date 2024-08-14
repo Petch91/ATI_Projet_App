@@ -1,0 +1,124 @@
+﻿body
+{
+}
+
+@media (max-width: 1000px) {
+
+    .contacts {
+        display: none !important;
+    }
+
+}
+::deep p{
+    margin-bottom: 5px;
+}
+
+::deep .cprofil{
+    width: 100%;
+}
+::deep .initiales {
+    width: 50px;
+}
+
+::deep .group_S {
+    width: 50px;
+}
+
+::deep .cprofil {
+    max-height: 25rem !important;
+    min-height: 20rem !important;
+}
+
+::deep .private {
+    min-width: 43rem !important;
+}
+
+::deep .prof {
+    min-width: 43rem !important;
+}
+
+::deep .parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+}
+
+::deep .div1 {
+    grid-area: 1 / 1 / 2 / 2;
+}
+
+::deep .div2 {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+::deep .contButton {
+    display: none !important;
+}
+
+@media (max-width: 1000px) {
+
+
+    ::deep .contButton {
+        display: block !important;
+        z-index: 1 !important;
+    }
+}
+
+::deep .photo {
+    z-index: 1 !important;
+    position: relative !important;
+    transition: 0.3s;
+}
+
+    ::deep .photo:hover {
+        transition: 0.3s;
+        opacity: 0.5 !important;
+    }
+
+::deep .signature {
+   height: 23% !important;
+}
+
+::deep .imgSigna {
+   height: 113% !important;
+}
+
+.signature {
+   height: 23% !important;
+}
+
+.imgSigna {
+   height: 113% !important;
+}
+
+::deep .titleClient {
+   transition: 0.3s;
+}
+
+.titleClient{
+   transition: 0.3s;
+}
+
+.titleClient:hover{
+   cursor:pointer;
+   transform: scale(1.00001);
+   transition: 0.3s;
+   border-radius:15%;
+   background-color:cadetblue;
+   /*margin: 2px;*/
+}
+::deep .titleClient:hover {
+   cursor: pointer;
+   transform: scale(1.1);
+   transition: 0.3s
+}
+
+.linkEntity:hover {
+   cursor: pointer;
+}
+
+::deep .linkEntity:hover {
+   cursor: pointer;
+}

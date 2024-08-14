@@ -168,6 +168,9 @@
   <data name="Autres collaborateur intérimaires" xml:space="preserve">
     <value>Other temporary staff</value>
   </data>
+  <data name="Axe de marché" xml:space="preserve">
+    <value>Market axis</value>
+  </data>
   <data name="Bienvenue sur ATI Projets" xml:space="preserve">
     <value>Welcome on ATI Projects</value>
   </data>
@@ -209,6 +212,9 @@
   </data>
   <data name="Chef d'équipe (BA5)" xml:space="preserve">
     <value>Team Leader (BA5)</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Customer</value>
   </data>
   <data name="Cliquer Pour Modifier" xml:space="preserve">
     <value>Click to Modify</value>
@@ -264,11 +270,20 @@
   <data name="Dessinateurs" xml:space="preserve">
     <value>Electrical Designers</value>
   </data>
+  <data name="Details du projet" xml:space="preserve">
+    <value>Project details</value>
+  </data>
   <data name="Directeur Général" xml:space="preserve">
     <value>General Manager</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Management</value>
+  </data>
+  <data name="Données Commerciales" xml:space="preserve">
+    <value>Sales data</value>
+  </data>
+  <data name="Début" xml:space="preserve">
+    <value>Start</value>
   </data>
   <data name="Département" xml:space="preserve">
     <value>Department</value>
@@ -306,6 +321,9 @@
   <data name="Entré le" xml:space="preserve">
     <value>Joined on</value>
   </data>
+  <data name="Envoi Vers CRM" xml:space="preserve">
+    <value>Send to CRM</value>
+  </data>
   <data name="Etude projet" xml:space="preserve">
     <value>Project study</value>
   </data>
@@ -317,6 +335,9 @@
   </data>
   <data name="Fermer" xml:space="preserve">
     <value>Close</value>
+  </data>
+  <data name="Fin" xml:space="preserve">
+    <value>End</value>
   </data>
   <data name="Fixe Privé" xml:space="preserve">
     <value>Private landline phone</value>
@@ -378,6 +399,9 @@
   <data name="Informaticiens" xml:space="preserve">
     <value>IT specialists</value>
   </data>
+  <data name="Informations" xml:space="preserve">
+    <value>Information</value>
+  </data>
   <data name="Infos Privé" xml:space="preserve">
     <value>Private Info</value>
   </data>
@@ -402,6 +426,12 @@
   <data name="Liste" xml:space="preserve">
     <value>List</value>
   </data>
+  <data name="Liste Des Clients" xml:space="preserve">
+    <value>Customer List</value>
+  </data>
+  <data name="Liste Des Projets" xml:space="preserve">
+    <value>Project List</value>
+  </data>
   <data name="Localité" xml:space="preserve">
     <value>Town</value>
   </data>
@@ -414,11 +444,32 @@
   <data name="Mise en service" xml:space="preserve">
     <value>Commissioning</value>
   </data>
+  <data name="Modification" xml:space="preserve">
+    <value>Change</value>
+  </data>
   <data name="Nationalité" xml:space="preserve">
     <value>Nationality</value>
   </data>
+  <data name="No Test" xml:space="preserve">
+    <value>No Test</value>
+  </data>
   <data name="Nom" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="Nom du Projet (ATI)" xml:space="preserve">
+    <value>Project's Name (ATI)</value>
+  </data>
+  <data name="Nom du Projet (BC14)" xml:space="preserve">
+    <value>Project's Name (BC14)</value>
+  </data>
+  <data name="Nombre d'éléments par page" xml:space="preserve">
+    <value>Items per page</value>
+  </data>
+  <data name="Nombre de KMs" xml:space="preserve">
+    <value>Number of KMs</value>
+  </data>
+  <data name="Non Spécial Congés" xml:space="preserve">
+    <value>No Special Vacation</value>
   </data>
   <data name="Numero" xml:space="preserve">
     <value>Number</value>
@@ -428,6 +479,21 @@
   </data>
   <data name="Numéro National" xml:space="preserve">
     <value>National number</value>
+  </data>
+  <data name="N° de commande client" xml:space="preserve">
+    <value>Customer order no.</value>
+  </data>
+  <data name="N° de Compte Bancaire" xml:space="preserve">
+    <value>Bank account no.</value>
+  </data>
+  <data name="N° de T.V.A." xml:space="preserve">
+    <value>VAT number</value>
+  </data>
+  <data name="N° du cahier des charges" xml:space="preserve">
+    <value>Specifications no.</value>
+  </data>
+  <data name="N° Reg. Commerce" xml:space="preserve">
+    <value>Trade register no.</value>
   </data>
   <data name="Ouvrier" xml:space="preserve">
     <value>Worker</value>
@@ -441,6 +507,9 @@
   <data name="P.E. Maintenance Industrielle" xml:space="preserve">
     <value>P.E. Industrial Maintenance</value>
   </data>
+  <data name="Pas d'Envoi =&gt; CMR" xml:space="preserve">
+    <value>No Send =&gt; CMR</value>
+  </data>
   <data name="Pays" xml:space="preserve">
     <value>Country</value>
   </data>
@@ -449,6 +518,12 @@
   </data>
   <data name="Personnel" xml:space="preserve">
     <value>Employee</value>
+  </data>
+  <data name="Planning" xml:space="preserve">
+    <value>Schedule</value>
+  </data>
+  <data name="Pour Test" xml:space="preserve">
+    <value>For Test</value>
   </data>
   <data name="Privée" xml:space="preserve">
     <value>Private</value>
@@ -459,14 +534,32 @@
   <data name="Profil" xml:space="preserve">
     <value>Profile</value>
   </data>
+  <data name="Projets" xml:space="preserve">
+    <value>Projects</value>
+  </data>
   <data name="Prénom" xml:space="preserve">
     <value>Firstname</value>
+  </data>
+  <data name="R - Régie" xml:space="preserve">
+    <value>R - Time and Materials</value>
+  </data>
+  <data name="Responsable (ATI)" xml:space="preserve">
+    <value>Manager (ATI)</value>
+  </data>
+  <data name="Responsable (BC14)" xml:space="preserve">
+    <value>Manager (BC14)</value>
   </data>
   <data name="Responsable commercial" xml:space="preserve">
     <value>Commercial Manager</value>
   </data>
   <data name="Responsable d'affaire" xml:space="preserve">
     <value>Business Manager</value>
+  </data>
+  <data name="Responsable d'Affaire1" xml:space="preserve">
+    <value>Project manager</value>
+  </data>
+  <data name="Responsable Facturation" xml:space="preserve">
+    <value>Billing manager</value>
   </data>
   <data name="Responsable projet" xml:space="preserve">
     <value>Project Manager</value>
@@ -486,6 +579,15 @@
   <data name="Service administratif" xml:space="preserve">
     <value>Administrative Services</value>
   </data>
+  <data name="Signalétique" xml:space="preserve">
+    <value>Signage</value>
+  </data>
+  <data name="Site Internet" xml:space="preserve">
+    <value>Website</value>
+  </data>
+  <data name="Spécial Congés" xml:space="preserve">
+    <value>Special Vacation</value>
+  </data>
   <data name="Stagiaire Employé" xml:space="preserve">
     <value>Trainee Employee</value>
   </data>
@@ -494,6 +596,15 @@
   </data>
   <data name="Status VCA" xml:space="preserve">
     <value>VCA Status</value>
+  </data>
+  <data name="Suivi en Jour" xml:space="preserve">
+    <value>Daily tracking</value>
+  </data>
+  <data name="Suivi non journalier" xml:space="preserve">
+    <value>Non-daily tracking</value>
+  </data>
+  <data name="T - Forfait" xml:space="preserve">
+    <value>T - Fixed price</value>
   </data>
   <data name="Taille" xml:space="preserve">
     <value>Size</value>
@@ -507,8 +618,17 @@
   <data name="Titre" xml:space="preserve">
     <value>Title</value>
   </data>
+  <data name="Tout Corrigé" xml:space="preserve">
+    <value>All Fixed</value>
+  </data>
+  <data name="Type de Paiement par défaut" xml:space="preserve">
+    <value>Default Payment Type</value>
+  </data>
   <data name="Type Main d'oeuvre" xml:space="preserve">
     <value>Labour type</value>
+  </data>
+  <data name="Vendeur/Fournisseur" xml:space="preserve">
+    <value>Seller/Supplier</value>
   </data>
   <data name="Veuillez vous connecter s'il vous plait" xml:space="preserve">
     <value>Please log in</value>

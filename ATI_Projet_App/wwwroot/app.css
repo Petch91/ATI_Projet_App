@@ -150,3 +150,31 @@ body {
 .firefox .test{
    color: red; 
 }
+
+
+.client {
+   width: 7%;
+}
+
+.respATI {
+   width: 6%;
+}
+
+.respBC14 {
+   width: 7%;
+}
+
+.projetATI {
+   width: 10%;
+}
+.projetBC14 {
+   width: 13%;
+
+}
+.modif {
+   width: 5%;
+}
+
+.action {
+   width: 3%;
+}

@@ -1,0 +1,73 @@
+﻿
+<div class="d-flex">
+   <div class="flex-column w-50">
+      <Card Class="mb-2">
+         <CardBody>
+            <CardTitle>@localizer["Adresse"]:</CardTitle>
+            <div class="d-flex ">
+               <div class="adresse w-100">
+                  <div class="row">
+                     <span class="fw-semibold col-3 text-end">@localizer["Rue et Numéro"]:</span>
+                     <p class="col "> @Adresse.adresse</p>
+                  </div>
+                  <div class="row">
+                     <span class="fw-semibold col-3 text-end">@localizer["Code Postal"]:</span>
+                     <p class="col-2 "> @Adresse.CodePostal</p>
+                     <span class="fw-semibold col-2 text-end ">@localizer["Localité"]:</span>
+                     <p class="col "> @Adresse.Localite</p>
+                  </div>
+                  <div class="row">
+                     <span class="fw-semibold col-7 text-end ">@localizer["Pays"]:</span>
+                     <p class="col">@(!string.IsNullOrEmpty(CodePays) ? paysLocalizer[CodePays] : "")</p>
+                  </div>
+               </div>
+            </div>
+         </CardBody>
+      </Card>
+      <Card>
+         <CardBody>
+            <CardTitle>@localizer["Données Commerciales"]:</CardTitle>
+            <div class="d-flex ">
+               <div class="w-100">
+                  <div class="row my-2">
+                     <span class="fw-semibold col-5 text-end">@localizer["Site Internet"]:</span>
+                     <p class="col-7"> @client.SiteInternet</p>
+                  </div>
+                  <div class="row my-2">
+                     <span class="fw-semibold col-5 text-end">@localizer["Nombre de KMs"]:</span>
+                     <p class="col-7"> @client.KM</p>
+                  </div>
+                  <div class="row my-2">
+                     <span class="fw-semibold col-5 text-end">@localizer["N° Reg. Commerce"]:</span>
+                     <p class="col-7"> @client.RC</p>
+                  </div>
+                  <div class="row my-2">
+                     <span class="fw-semibold col-5 text-end">@localizer["N° de T.V.A."]:</span>
+                     <p class="col-7"> @client.TVA</p>
+                  </div>
+                  <div class="row my-2">
+                     <span class="fw-semibold col-5 text-end">@localizer["N° de Compte Bancaire"]:</span>
+                     <p class="col-7"> @client.CompteBancaire</p>
+                  </div>
+                  <div class="row my-2">
+                     <span class="fw-semibold col-5 text-end">@localizer["Vendeur/Fournisseur"]:</span>
+                     <p class="col-7"> @client.Vendeur</p>
+                  </div>
+                  <div class="row my-2">
+                     <span class="fw-semibold col-5 text-end">@localizer["Type de Paiement par défaut"]:</span>
+                     <p class="col-7"> @client.TypePaiement</p>
+                  </div>
+               </div>
+            </div>
+         </CardBody>
+      </Card>
+   </div>
+   <div class="flex-column border rounded mx-2 w-50">
+      <EmailList emails="emails" SocieteId="client.SocieteId"></EmailList>
+      <TelephoneList telephones="telephones" SocieteId="client.SocieteId"  />
+   </div>
+</div>
+
+@code {
+    
+}
