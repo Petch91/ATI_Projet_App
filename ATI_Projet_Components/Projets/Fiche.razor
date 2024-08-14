@@ -1,0 +1,134 @@
+﻿@using Microsoft.AspNetCore.Components.Web.Virtualization
+@if(projet != null)
+{
+   <Card Class="">
+      <CardHeader Class="d-flex gap-2 align-items-center">
+         <h4 class="my-0">Projet: </h4>
+         <div class="d-flex gap-1 align-items-center">
+            <InputNumber style="max-width: 5rem; text-align: center;" TValue="int" Value="Code" ValueExpression="() => Code" ValueChanged="@(x => SelectChange(x))"></InputNumber>
+            <h5 @onclick="ShowCanvas" class="my-0">@projet.Designation</h5>
+            <Badge Class="mx-1" Color="BadgeColor.Success">@localizer[statuts.First(x => x.Id == projet.SpId).Designation]</Badge>
+            @if (projet.TypeMarche)
+            {
+               <Badge Class="mx-1" Color="BadgeColor.Primary">@localizer["Privée"]</Badge>
+            }
+
+            else
+            {
+               <Badge Class="mx-1" Color="BadgeColor.Primary">@localizer["Public"]</Badge>
+            }
+            @if (projet.TypeFacturation == "T")
+            {
+               <Badge Class="mx-1" Color="BadgeColor.Primary">@localizer["T - Forfait"]</Badge>
+            }
+
+            else
+            {
+               <Badge Class="mx-1" Color="BadgeColor.Primary">@localizer["R - Régie"]</Badge>
+            }
+         </div>
+         @* <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">@localizer["Ajouter"]</Button> *@
+      </CardHeader>
+      <CardBody>
+         <CardTitle>@localizer["Informations"]:</CardTitle>
+         <div class="row ">
+            <div class="col-5">
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["Département"]:</span>
+                  <p class="col-7"> @(departements.FirstOrDefault(d => d.Id == projet.DeptId).Designation)</p>
+               </div>
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["Axe Marché"]:</span>
+                  <p class="col-7"> @(localizer[axesMarche.FirstOrDefault(am => am.Id == projet.AmId).Libelle])</p>
+               </div>
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["Planning"]:</span>
+                  <p class="col-7"> @projet.Planning</p>
+               </div>
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["N° du cahier des charges"]:</span>
+                  <p class="col-7"> @projet.NumCahierCharges</p>
+               </div>
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["N° de commande client"]:</span>
+                  <p class="col-7"> @projet.NumCommandeClient</p>
+               </div>
+            </div>
+            <div class="col-5">
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["Responsable Projet"]:</span>
+                  @{
+                     var respProjet = personnelList.First(x => x.Id == projet.RespProjetId);
+                     <p class="col-7">@(respProjet.Prenom + " " + respProjet.Nom)</p>
+                  }
+               </div>
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["Responsable d'Affaire"]:</span>
+                  @{
+                     var respAffaire = personnelList.First(x => x.Id == projet.RespAffaireId);
+                     <p class="col-7">@(respAffaire.Prenom + " " + respAffaire.Nom)</p>
+                  }
+               </div>
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["Responsable Facturation"]:</span>
+                  @{
+                     var respFacturation = personnelList.First(x => x.Id == projet.RespFacturationId);
+                     <p class="col-7">@(respFacturation.Prenom + " " + respFacturation.Nom)</p>
+                  }
+               </div>
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["Début"]:</span>
+                  <p class="col-7"> @projet.DateDebut.ToString("d")</p>
+               </div>
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["Fin"]:</span>
+                  <p class="col-7"> @projet.DateFin.ToString("d")</p>
+               </div>
+               <div class="row my-2">
+                  <span class="fw-semibold col-5 text-end">@localizer["Nombre de KMs"]:</span>
+                  <p class="col-7"> @projet.KM</p>
+               </div>
+            </div>
+         </div>
+      </CardBody>
+   </Card>
+   <Card >
+      <CardBody>
+         <CardTitle>@localizer["Adresse"]:</CardTitle>
+         <div class="d-flex ">
+            <div class="adresse w-50">
+               <div class="row">
+                  <span class="fw-semibold col-3 text-end">@localizer["Rue et Numéro"]:</span>
+                  <p class="col "> @Adresse.adresse</p>
+               </div>
+               <div class="row">
+                  <span class="fw-semibold col-3 text-end">@localizer["Code Postal"]:</span>
+                  <p class="col-2 "> @Adresse.CodePostal</p>
+                  <span class="fw-semibold col-2 text-end ">@localizer["Localité"]:</span>
+                  <p class="col "> @Adresse.Localite</p>
+               </div>
+               <div class="row">
+                  <span class="fw-semibold col-7 text-end ">@localizer["Pays"]:</span>
+                  <p class="col">@(!string.IsNullOrEmpty(Pays.GetValueOrDefault(CodePays)) ? Pays.GetValueOrDefault(CodePays) : Adresse.Pays)</p>
+               </div>
+            </div>
+         </div>
+      </CardBody>
+   </Card>
+
+      <Offcanvas @ref="offcanvas"
+              Title="Liste Des Projets"
+              Size="OffcanvasSize.Regular"
+              Placement="Placement.Start"
+              IsScrollable="false">
+      <BodyTemplate>
+         <div style="height:500px; overflow-y: scroll" class="d-flex flex-column align-items-center">
+            <Virtualize Items="ProjetsClient">
+               <p @onclick="@(() => SelectChange(context.Code))">
+                  @context.Designation
+               </p>
+            </Virtualize>
+         </div>
+      </BodyTemplate>
+   </Offcanvas>
+}
