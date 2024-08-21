@@ -1,4 +1,5 @@
 using ATI_Projet_Models;
+using ATI_Projet_Tools.Services.Interfaces;
 using BlazorBootstrap;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Graph.Models;
@@ -8,8 +9,8 @@ namespace ATI_Projet_Components.Telephones
 {
     public partial class TelephoneList
     {
-        [Inject]
-        private HttpClient httpClient { get; set; } = default!;
+        [Inject] private ICommon common {  get; set; }
+
         [Parameter]
         public List<Telephone> telephones { get; set; }
         [Parameter]
@@ -49,7 +50,7 @@ namespace ATI_Projet_Components.Telephones
         public async Task Edit(Telephone telephone)
         {
             if (telephone.Id > 0) telephones[telephones.IndexOf(telephones.First(t => t.Id == telephone.Id))] = telephone;
-            using var result = httpClient.PutAsJsonAsync<Telephone>("Employe/updateTelephone", telephone);
+         using var result = common.EditTelephone(telephone);
             if (!result.Result.IsSuccessStatusCode)
             {
                 var body = await result.Result.Content.ReadAsStringAsync();
@@ -66,7 +67,7 @@ namespace ATI_Projet_Components.Telephones
         }
         public async Task Delete(object id)
         {
-            httpClient.DeleteFromJsonAsync<Telephone>("Telephone?id=" + id);
+            common.DeleteTelephone("Telephone?id=" + id);
             telephones.Remove(telephones.First(e => e.Id == (int)id));
             await Task.Delay(500);
             await telephonesChanged.InvokeAsync(telephones);

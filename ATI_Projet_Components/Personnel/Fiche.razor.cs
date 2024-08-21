@@ -11,13 +11,15 @@ using Microsoft.Extensions.Localization;
 using System.Globalization;
 using ATI_Projet_Cultures.Locales;
 using Microsoft.Graph.Models.CallRecords;
+using ATI_Projet_Tools.Services.Interfaces;
 
 
 namespace ATI_Projet_Components.Personnel
 {
-   public partial class Fiche : ComponentBase, IDisposable
+   public partial class Fiche : ComponentBase
    {
-      [Inject] private HttpClient httpClient { get; set; } = default!;
+      [Inject] private IPersonnel personnel {  get; set; }
+      [Inject] private ICommon common { get; set; }
 
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
       [Inject] private IStringLocalizer<LangueResource> langLocalizer { get; set; }
@@ -83,12 +85,12 @@ namespace ATI_Projet_Components.Personnel
             }
          }
 
-         Liste = await httpClient.GetFromJsonAsync<List<EmployeList>>("Employe/") ?? new List<EmployeList>();
-         Liste = Liste.Where(x => x.Actif).ToList();
+         var result = await personnel.GotPersonnelList();
+         Liste = result.Where(x => x.Actif).ToList();
          fonctions = new List<Fonction>();
-         fonctions = await httpClient.GetFromJsonAsync<IEnumerable<Fonction>>("Fonction");
+         fonctions = await personnel.GotFonctions();
          departements = new List<DeptSimplifiedList>();
-         departements = await httpClient.GetFromJsonAsync<IEnumerable<DeptSimplifiedList>>("departement/simplifiedList");
+         departements = await common.GetDepts();
          if (Liste != null) StateHasChanged();
       }
 
@@ -131,13 +133,15 @@ namespace ATI_Projet_Components.Personnel
       }
       public async Task TriggerEmail()
       {
-         emails = await httpClient.GetFromJsonAsync<List<Email>>("Employe/emailsByEmploye/" + EmployeProfil.PersonneId);
+         var result = await personnel.GotEmails(EmployeProfil.PersonneId);
+         emails = result.ToList();
          StateHasChanged();
       }
 
       public async Task TriggerTelephone()
       {
-         telephones = await httpClient.GetFromJsonAsync<List<Telephone>>("Employe/telephonesByEmploye/" + EmployeProfil.PersonneId);
+         var result = await personnel.GotPhones(EmployeProfil.PersonneId);
+         telephones = result.ToList();
          StateHasChanged();
       }
 
@@ -151,19 +155,22 @@ namespace ATI_Projet_Components.Personnel
 
       private async Task ChangeEmploye()
       {
-         EmployeProfil = await httpClient.GetFromJsonAsync<EmployeProfil>("Employe/profil/" + Id) ?? new EmployeProfil();
+         EmployeProfil = await personnel.GotProfil(Id);
 
-         EmployePrivate = await httpClient.GetFromJsonAsync<EmployePrivate>("Employe/private/" + Id) ?? new EmployePrivate();
+         EmployePrivate = await personnel.GotPrivate(Id);
          PhotoPath = string.IsNullOrEmpty(EmployePrivate.Photo) ? "/images/Photo.jpg" : (Path.GetFullPath(EmployePrivate.Photo)).Replace("/app/wwwroot", "").Replace("\\", "/");
          SignaturePath = string.IsNullOrEmpty(EmployePrivate.Signature) ? "/images/signature.webp" : (Path.GetFullPath(EmployePrivate.Signature)).Replace("/app/wwwroot", "").Replace("\\", "/");
 
-         EmployeProf = await httpClient.GetFromJsonAsync<EmployeProf>("Employe/prof/" + Id) ?? new EmployeProf();
+         EmployeProf = await personnel.GotProf(Id);
 
          if (EmployeProfil != null)
          {
-            emails = await httpClient.GetFromJsonAsync<List<Email>>("Employe/emailsByEmploye/" + EmployeProfil.PersonneId);
+            var result = await personnel.GotEmails(EmployeProfil.PersonneId);
+            emails = result.ToList();
 
-            telephones = await httpClient.GetFromJsonAsync<List<Telephone>>("Employe/telephonesByEmploye/" + EmployeProfil.PersonneId);
+            var result2 = await personnel.GotPhones(EmployeProfil.PersonneId);
+
+            telephones = result2.ToList();
          }
 
 
@@ -192,9 +199,10 @@ namespace ATI_Projet_Components.Personnel
 
       private async Task AddEmploye(PersonneForm personne)
       {
-         await httpClient.PostAsJsonAsync<PersonneForm>("Employe/", personne);
+         await personnel.AddEmploye(personne);
          await modal.HideAsync();
-         Liste = await httpClient.GetFromJsonAsync<List<EmployeList>>("Employe/") ?? new List<EmployeList>();
+         var result = await personnel.GotPersonnelList();
+         Liste = result.ToList();
          if (Liste != null) Id = Liste.Last().Id;
          await ChangeEmploye();
          StateHasChanged();
@@ -206,12 +214,6 @@ namespace ATI_Projet_Components.Personnel
          int feets = (int)pouces / 12;
          int reste = (int)pouces % 12;
          return $"{feets}ft {reste}\"";
-      }
-
-      public void Dispose()
-      {
-         httpClient.Dispose();
-         GC.SuppressFinalize(this);
       }
    }
 }

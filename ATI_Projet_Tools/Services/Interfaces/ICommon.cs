@@ -12,5 +12,9 @@ namespace ATI_Projet_Tools.Services.Interfaces
       Task<Adresse> GetAdresse(int id);
       Task<Dictionary<string, string>> GetCountrys(string codeLangue);
       Task<IEnumerable<DeptSimplifiedList>> GetDepts();
+      Task<HttpResponseMessage> EditEmail(Email email);
+      Task DeleteEmail(string url);
+      Task<HttpResponseMessage> EditTelephone(Telephone telephone);
+      Task DeleteTelephone(string url);
    }
 }

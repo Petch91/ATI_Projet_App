@@ -11,12 +11,14 @@ using System.Net.Http;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
 using ATI_Projet_Cultures.Locales;
+using ATI_Projet_Tools.Services.Interfaces;
 
 namespace ATI_Projet_App.Components.Pages.Gestion
 {
    public partial class GestionList : ComponentBase
    {
-      [Inject] private HttpClient HttpClient { get; set; }
+      [Inject] private IPersonnel personnel {  get; set; }
+      [Inject] private ICommon common { get; set; }
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
 
       private List<Type> Liste { get; set; } = new List<Type> { typeof(Fonction), typeof(FonctionVCA), typeof(StatusVCA), typeof(TypeContrat), typeof(TypeMO) };
@@ -29,7 +31,7 @@ namespace ATI_Projet_App.Components.Pages.Gestion
 
       protected async override Task OnInitializedAsync()
       {
-         List<Fonction> list = await HttpClient.GetFromJsonAsync<List<Fonction>>("fonction/");
+         var list = await personnel.GotFonctions();
          items = list.Cast<object>().ToList();
       }
 
@@ -42,31 +44,31 @@ namespace ATI_Projet_App.Components.Pages.Gestion
          {
             case "Fonction":
                {
-                  List<Fonction> list = await HttpClient.GetFromJsonAsync<List<Fonction>>("fonction/");
+                  var list = await personnel.GotFonctions();
                   items = list.Cast<object>().ToList();
                   break;
                }
             case "FonctionVCA":
                {
-                  List<FonctionVCA> list = await HttpClient.GetFromJsonAsync<List<FonctionVCA>>("VCA/Fonction/");
+                  var list = await personnel.GotFonctionsVCA();
                   items = list.Cast<object>().ToList();
                   break;
                }
             case "StatusVCA":
                {
-                  List<StatusVCA> list = await HttpClient.GetFromJsonAsync<List<StatusVCA>>("VCA/status/");
+                  var list = await personnel.GotStatusVCA();
                   items = list.Cast<object>().ToList();
                   break;
                }
             case "TypeContrat":
                {
-                  List<TypeContrat> list = await HttpClient.GetFromJsonAsync<List<TypeContrat>>("type/contrat/");
+                  var list = await personnel.GotTypesContrat();
                   items = list.Cast<object>().ToList();
                   break;
                }
             case "TypeMO":
                {
-                  List<TypeMO> list = await HttpClient.GetFromJsonAsync<List<TypeMO>>("type/MO/");
+                  var list = await personnel.GotTypesMO();
                   items = list.Cast<object>().ToList();
                   break;
                }
@@ -163,7 +165,7 @@ namespace ATI_Projet_App.Components.Pages.Gestion
             Type t when t == typeof(TypeMO) => "type/MO/",
             _ => throw new ArgumentException($"Type {typeof(T)} not supported."),
          };
-         await HttpClient.PatchAsJsonAsync<T>(url, entity);
+         await personnel.EditGeneric<T>(url, entity);
          await modal.HideAsync();
          StateHasChanged();
       }
@@ -179,7 +181,7 @@ namespace ATI_Projet_App.Components.Pages.Gestion
             Type t when t == typeof(TypeMO) => "type/MO/",
             _ => throw new ArgumentException($"Type {typeof(T)} not supported."),
          };
-         await HttpClient.PostAsJsonAsync<T>(url, entity);
+         await personnel.CreateGeneric<T>(url, entity);
          await modal.HideAsync();
          await SelectChange(type);
          StateHasChanged();
@@ -238,7 +240,7 @@ namespace ATI_Projet_App.Components.Pages.Gestion
          }
          if (confirmation)
          {
-            HttpClient.DeleteFromJsonAsync<T>(url + id);
+            personnel.DeleteGeneric<T>(url + id);
             await Task.Delay(100);
             await SelectChange(type);
             StateHasChanged();
