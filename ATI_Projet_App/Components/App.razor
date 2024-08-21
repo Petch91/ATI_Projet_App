@@ -50,6 +50,26 @@
       })();
    </script>
    <script>
+      window.detectBrowser = function () {
+         var userAgent = navigator.userAgent;
+         var browserName = "Unknown";
+
+         if (userAgent.indexOf("Chrome") > -1) {
+            browserName = "Chrome";
+         } else if (userAgent.indexOf("Safari") > -1) {
+            browserName = "Safari";
+         } else if (userAgent.indexOf("Firefox") > -1) {
+            browserName = "Firefox";
+         } else if (userAgent.indexOf("MSIE") > -1 || userAgent.indexOf("Trident") > -1) {
+            browserName = "Internet Explorer";
+         } else if (userAgent.indexOf("Edge") > -1) {
+            browserName = "Edge";
+         }
+
+         return browserName;
+      }
+   </script>
+   <script>
       function isoToEmoji(code) { 
          return code
             .split('')
