@@ -68,7 +68,7 @@ namespace ATI_Projet_Components.Projets
          ProjetsClient = new List<Projet>();
          ProjetsClient = temp.ToList();
 
-         if (ProjetsClient != null)
+         if (ProjetsClient != null && ProjetsClient.Count() > 0)
          {
             projet = ProjetsClient.First();
             Id = projet.Id;

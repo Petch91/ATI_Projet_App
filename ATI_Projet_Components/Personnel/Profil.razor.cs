@@ -10,6 +10,7 @@ using System.Net.Http.Json;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
 using ATI_Projet_Cultures.Locales;
+using ATI_Projet_Tools.Services.Interfaces;
 
 namespace ATI_Projet_Components.Personnel
 {
@@ -23,8 +24,8 @@ namespace ATI_Projet_Components.Personnel
    }
    public partial class Profil
    {
-      [Inject]
-      private HttpClient httpClient { get; set; } = default!;
+      [Inject] private ICommon common {  get; set; }
+      [Inject] private IPersonnel personnel { get; set; }
 
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
 
@@ -47,26 +48,26 @@ namespace ATI_Projet_Components.Personnel
       protected async override Task OnInitializedAsync()
       {
          fonctions = new List<Fonction>();
-         fonctions = await httpClient.GetFromJsonAsync<IEnumerable<Fonction>>("Fonction");
+         fonctions = await personnel.GotFonctions();
          fonctionsVCA = new List<FonctionVCA>();
-         fonctionsVCA = await httpClient.GetFromJsonAsync<IEnumerable<FonctionVCA>>("VCA/fonction");
+         fonctionsVCA = await personnel.GotFonctionsVCA();
          statusVCA = new List<StatusVCA>();
-         statusVCA = await httpClient.GetFromJsonAsync<IEnumerable<StatusVCA>>("VCA/status");
+         statusVCA = await personnel.GotStatusVCA();
          TypesContrat = new List<TypeContrat>();
-         TypesContrat = await httpClient.GetFromJsonAsync<IEnumerable<TypeContrat>>("Type/contrat");
+         TypesContrat = await personnel.GotTypesContrat();
          TypesMO = new List<TypeMO>();
-         TypesMO = await httpClient.GetFromJsonAsync<IEnumerable<TypeMO>>("Type/MO");
+         TypesMO = await personnel.GotTypesMO();
          departements = new List<DeptSimplifiedList>();
-         departements = await httpClient.GetFromJsonAsync<IEnumerable<DeptSimplifiedList>>("departement/simplifiedList");
+         departements = await common.GetDepts();
       }
 
 
-      public void Edit(EmployeProfil employeProfil)
+      public async void Edit(EmployeProfil employeProfil)
       {
          EmployeProfil = employeProfil;
-         httpClient.PatchAsJsonAsync<EmployeProfil>("Employe/updateProfil", employeProfil);
+         await personnel.EditProfil(employeProfil);
          modal.HideAsync();
-         ProfilChanged.InvokeAsync(EmployeProfil);
+         await ProfilChanged.InvokeAsync(EmployeProfil);
          StateHasChanged();
       }
       private Modal modal = default!;
