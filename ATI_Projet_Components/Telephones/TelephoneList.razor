@@ -6,7 +6,7 @@
 <Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopCenter" AutoHide=true />
 <div class="px-1 m-3 position-relative" style="min-width: 5rem">
     <h5 class="mx-1 pt-1">@localizer["Telephones"]</h5>
-@*    <Button Class=" position-absolute top-0 start-50" Color="ButtonColor.Secondary" Size="ButtonSize.Small" @onclick="ShowCreateTelephone">@localizer["Ajouter Telephone"]</Button> *@
+   <Button Class=" position-absolute top-0 start-50" Color="ButtonColor.Secondary" Size="ButtonSize.Small" @onclick="ShowCreateTelephone">@localizer["Ajouter Telephone"]</Button>
     @if (telephones != null && telephones.Count() > 0)
     {
         <ListGenericEdit TId=int TItem=Telephone Items="telephones" ExcludedCols="@(new List<string>{"Id", "PersonneId" , "SocieteId"})" DeleteEvent="Delete" EditEvent="ShowEdit" />
