@@ -19,9 +19,9 @@ using ATI_Projet_Tools.Services.Interfaces;
 
 namespace ATI_Projet_Components.Clients
 {
-   public partial class Fiche : ComponentBase, IDisposable
+   public partial class Fiche : ComponentBase
    {
-      [Inject] private HttpClient httpClient { get; set; } = default!;
+      [Inject] private ICommon common { get; set; }
       [Inject] private NavigationManager navigationManager { get; set; }
 
       [Inject] private ISociete societe { get; set; }
@@ -57,7 +57,7 @@ namespace ATI_Projet_Components.Clients
          axesMarche = new List<AxeMarche>();
          axesMarche = await societe.GotAxeMarche();
          departements = new List<DeptSimplifiedList>();
-         departements = await httpClient.GetFromJsonAsync<IEnumerable<DeptSimplifiedList>>("departement/simplifiedList");
+         departements = await common.GetDepts();
          StateHasChanged();
       }
 
@@ -134,11 +134,5 @@ namespace ATI_Projet_Components.Clients
          navigationManager.NavigateTo("/BC14");
       }
 
-
-      public void Dispose()
-      {
-         httpClient.Dispose();
-         GC.SuppressFinalize(this);
-      }
    }
 }

@@ -6,13 +6,13 @@ using System.Net.Http.Json;
 using Microsoft.Extensions.Localization;
 using ATI_Projet_Cultures.Locales;
 using ATI_Projet_Models.Events;
+using ATI_Projet_Tools.Services.Interfaces;
 
 namespace ATI_Projet_Components.Personnel
 {
    public partial class InfoPriv : ComponentBase
    {
-      [Inject]
-      private HttpClient HttpClient { get; set; }
+      [Inject] private IPersonnel personnel {  get; set; }
 
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
 
@@ -90,8 +90,9 @@ namespace ATI_Projet_Components.Personnel
       {
          if (EmployePrivate != null)
          {
+
             Adresse = new Adresse();
-            Adresse = await HttpClient.GetFromJsonAsync<Adresse>("Employe/adresse/" + EmployePrivate.AdresseId);
+            Adresse = await personnel.GotAdresse((int)EmployePrivate.AdresseId!);
             Adresse.EmployeId = EmployePrivate.Id;
             CodePays = Adresse.Pays;
             StateHasChanged();
@@ -102,10 +103,9 @@ namespace ATI_Projet_Components.Personnel
          EmployePrivate = employePrivate.Employe;
          Adresse = employePrivate.Adresse;
          Adresse.Pays += Pays.GetValueOrDefault(Adresse.Pays);
-         var reponse = HttpClient.PatchAsJsonAsync<Adresse>("Employe/updateAdresse", Adresse);
-         EmployePrivate.AdresseId = await reponse.Result.Content.ReadFromJsonAsync<int>();
+         EmployePrivate.AdresseId = await personnel.EditAdresse(Adresse);
          Adresse.Pays = Adresse.Pays.Substring(2);
-         await HttpClient.PatchAsJsonAsync<EmployePrivate>("Employe/updatePrivate", EmployePrivate);
+         await personnel.EditPrivate(EmployePrivate);
          modal.HideAsync();
          CodePays = Adresse.Pays;
          StateHasChanged();

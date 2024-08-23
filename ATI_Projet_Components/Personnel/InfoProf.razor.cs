@@ -4,13 +4,13 @@ using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 using Microsoft.Extensions.Localization;
 using ATI_Projet_Cultures.Locales;
+using ATI_Projet_Tools.Services.Interfaces;
 
 namespace ATI_Projet_Components.Personnel
 {
    public partial class InfoProf : ComponentBase
    {
-      [Inject]
-      private HttpClient HttpClient { get; set; }
+      [Inject] private IPersonnel personnel {  get; set; }
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
 
       [Parameter]
@@ -18,11 +18,11 @@ namespace ATI_Projet_Components.Personnel
       [Parameter]
       public EventCallback ProfChanged { get; set; }
 
-      private void EditProf(EmployeProf employeProf)
-      {
-         HttpClient.PatchAsJsonAsync<EmployeProf>("Employe/updateProf", employeProf);
+      private async void EditProf(EmployeProf employeProf)
+      { 
+         await personnel.EditProf(employeProf);
          modal.HideAsync();
-         ProfChanged.InvokeAsync();
+         await ProfChanged.InvokeAsync();
          StateHasChanged();
       }
 
