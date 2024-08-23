@@ -82,7 +82,7 @@ namespace ATI_Projet_App.Components.Pages
                                 else
                                 {
                                     await sessionManager.Logout();
-                                    navigationManager.NavigateTo("http://192.168.123.69:7100/logout", true);
+                                    navigationManager.NavigateTo("http://192.168.123.69/logout", true);
                                 }
 
                             }
@@ -98,7 +98,7 @@ namespace ATI_Projet_App.Components.Pages
                 catch (Exception ex)
                 {
                     await sessionManager.Logout();
-                    navigationManager.NavigateTo("http://192.168.123.69:7100/logout", true);
+                    navigationManager.NavigateTo("http://192.168.123.69/logout", true);
                 }
 
             }
