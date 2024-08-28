@@ -20,7 +20,7 @@
    <div>
       @if (Id >= 54)
       {
-         @if (EmployeProfil != null && EmployeProfil.Id > 0 && fonctions != null && departements != null && (EmployePrivate != null && choix == 0))
+         @if (EmployeProfil != null && EmployeProfil.Id > 0 && fonctions != null && departements != null && ((EmployePrivate != null || choix > 0) ))
          {
             <div class="d-flex m-1 p-2 profil border rounded position-relative">
                <Button Type="ButtonType.Button" Class="contButton position-absolute top-0 end-0" Color="ButtonColor.Dark" Size="ButtonSize.Large" @onclick="ShowCanvas">Contacts</Button>
