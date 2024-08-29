@@ -15,20 +15,28 @@
                AllowFiltering="true"
                AllowPaging="true"
                AllowSorting="true"
+               AllowSelection="true"
+               SelectionMode="GridSelectionMode.Multiple"
+               SelectedItemsChanged="OnSelectedItemsChanged"
+               DisableAllRowsSelection="DisableAllRowsSelectionHandler"
+               DisableRowSelection="DisableRowSelectionHandler"
                PageSize="15"
                PageSizeSelectorVisible="true"
                PageSizeSelectorItems="@(new int[] { 15,30,50,100 })"
-               ItemsPerPageText="@localizer["Nombre d'éléments par page"]"
+               ItemsPerPageText="@localizer["Eléments par page"]"
                FiltersRowCssClass="bg-dark text-white bg-opacity-25 border-bottom-0"
-               HeaderRowCssClass="bg-dark text-white bg-opacity-50 border-bottom-0">
+               HeaderRowCssClass="bg-dark text-white bg-opacity-50 border-bottom-0 gridHead">
 
-            <GridColumn TItem="CompBC14" HeaderText="@localizer["Client"]" PropertyName="ClientName" SortKeySelector="i => i.ClientName" Class="client" ColumnClass="@(x => "client")">
-               @context.ClientName
+            <GridColumn TItem="CompBC14" HeaderText="@(localizer["Code"] + " BC14")" PropertyName="No" SortKeySelector="i => i.No" Class="codeBc14" ColumnClass="@(x => "codeBc14")">
+               @context.No
+            </GridColumn>
+            <GridColumn TItem="CompBC14" HeaderText="@localizer["Client"]" PropertyName="ClientName" SortKeySelector="i => i.ClientName" Class="client text-capitalize" ColumnClass="@(x => "client text-capitalize")">
+               @context.ClientName.ToLower()
             </GridColumn>
             <GridColumn TItem="CompBC14" HeaderText="@localizer["Nom du Projet (ATI)"]" PropertyName="Designation" SortKeySelector="i => i.Designation" Class="projetATI" ColumnClass="@(x => "projetATI")">
                @context.Designation
             </GridColumn>
-            <GridColumn TItem="CompBC14" HeaderText="@localizer["Nom du Projet (BC14)"]" PropertyName="Description" SortKeySelector="i => i.Description" Class="projetBC14" ColumnClass="@(x => "projetBC14")">
+            <GridColumn TItem="CompBC14" HeaderText="@localizer["Nom du Projet (BC14)"]" PropertyName="Description" SortKeySelector="i => i.Description" Class="projetBC14 " ColumnClass="@(x => "projetBC14")">
                @context.Description
             </GridColumn>
             <GridColumn TItem="CompBC14" HeaderText="@localizer["Responsable (ATI)"]" PropertyName="RespATI" SortKeySelector="i => i.RespATI" Class="respATI" ColumnClass="@(x => x.NewPerson == 0 ? "respATI text-danger": "respATI")">
@@ -43,7 +51,7 @@
             <GridColumn TItem="CompBC14" HeaderText="Actions" Filterable="false" Class="action" ColumnClass="@(x => "action")">
                <Button Color="ButtonColor.Primary" Size="ButtonSize.ExtraSmall" @onclick=@(() => OpenInfo(context))><Icon Name="IconName.Info" /></Button>
                <Button Disabled="@(context.NewPerson == 0)" Color="ButtonColor.Success" Size="ButtonSize.ExtraSmall" @onclick=@(() => PatchOne(context))><Icon Name="IconName.CheckLg" /></Button>
-               <Button Color="ButtonColor.Danger" Size="ButtonSize.ExtraSmall" @onclick=@(() => RemoveOne(context.Index))><Icon Name="IconName.X" /></Button>
+               <Button Color="ButtonColor.Danger" Size="ButtonSize.ExtraSmall" @onclick=@(() => RemoveOne(context.No))><Icon Name="IconName.X" /></Button>
             </GridColumn>
             <GridTemplates>
                <GridEmptyDataTemplate TItem="CompBC14">
@@ -63,8 +71,9 @@
             </GridTemplates>
          </Grid>
       </div>
-      <div>
-         <Button Size="ButtonSize.Large" Class="m-4" Color="ButtonColor.Success" @onclick="PatchAll">@localizer["Tout Corrigé"]</Button>
+      <div class="d-flex flex-column">
+         <Button Disabled="@(selectedFiches.Count() <= 1)" Size="ButtonSize.Large" Class="m-4 fs-6" Color="ButtonColor.Success" @onclick="@PatchSelected">@localizer["Corriger la sélection"]</Button>
+         <Button Disabled="@(selectedFiches.Count() <= 1)" Size="ButtonSize.Large" Class="m-4 fs-6" Color="ButtonColor.Danger" @onclick="@PatchSelected">@localizer["Supprimer la sélection"]</Button>
       </div>
    </div>
 
@@ -76,7 +85,7 @@
    </FooterTemplate>
 </Modal>
 
-
+<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopRight" AutoHide="true" Delay="4000" />
 @code {
 
 }

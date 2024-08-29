@@ -151,30 +151,37 @@ body {
    color: red; 
 }
 
+.codeBc14 {
+   width: 9%;
+
+}
 
 .client {
-   width: 7%;
+   width: 13%;
 }
 
 .respATI {
-   width: 6%;
+   width: 12%;
 }
 
 .respBC14 {
-   width: 7%;
+   width: 12%;
 }
 
 .projetATI {
-   width: 10%;
+   width: 20%;
 }
 .projetBC14 {
-   width: 13%;
+   width: 21%;
 
 }
 .modif {
-   width: 5%;
+   width: 12%;
 }
 
 .action {
    width: 3%;
+}
+.gridHead {
+   font-size: 0.9rem !important;
 }

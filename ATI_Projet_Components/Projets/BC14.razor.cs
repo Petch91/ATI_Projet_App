@@ -33,7 +33,8 @@ public partial class BC14 : ComponentBase
    private PaginationState pagination = new PaginationState { ItemsPerPage = 25 };
 
    private bool isOK = false;
-   private bool isPatchAll = false;
+   private bool isPatchSelected = false;
+   private bool isPatch = false;
 
    private Grid<CompBC14> grid;
    private BlazorBootstrap.Modal modal;
@@ -41,6 +42,10 @@ public partial class BC14 : ComponentBase
    private BlazorBootstrap.Modal modalSelect;
 
    private int index = 0;
+   private string _no = "";
+
+   private List<ToastMessage> messages = new List<ToastMessage>();
+   private HashSet<CompBC14> selectedFiches = new HashSet<CompBC14>();
 
    protected async override Task OnInitializedAsync()
    {
@@ -87,21 +92,23 @@ public partial class BC14 : ComponentBase
                Designation = p.Designation,
                NewPerson = employe.Actif ? p.RespFacturationId : 0,
                NewPersonName = employe.Actif ? employe.FullName : "NA",
-               Index = i,
             };
             CompList.Add(projet);
-            i++;
+
          }
 
       }
+      CompList = CompList.OrderBy(comp => comp.No).ToList();
       IQueryCompList = CompList.AsQueryable();
 
    }
 
-   private async void PatchOne(CompBC14 fiche)
+   private async Task<bool> PatchOne(CompBC14 fiche)
    {
+
       if (fiche.NewPerson > 0)
       {
+         isPatch = true;
          if (!ressourceList.Select(x => x.No).Contains(fiche.NewPerson.ToString()))
          {
             try
@@ -115,30 +122,68 @@ public partial class BC14 : ComponentBase
          }
          if (await _projet.PatchFicheBC14(fiche.No, fiche.NewPerson.ToString()))
          {
-            RemoveOne(fiche.Index);
-         }
-         if (!isPatchAll)
-         {
-            await grid.RefreshDataAsync();
+            await RemoveOne(fiche.No);
+            if (!isPatchSelected)
+            {
+               messages.Add(new ToastMessage { Type = ToastType.Success, Message = $"Fiche No {fiche.No} est corrigée" });
+
+            }
+            isPatch = false;
             StateHasChanged();
+            return true;
          }
+         else
+         {
+            messages.Add(new ToastMessage { Type = ToastType.Danger, Message = $"Erreur pour la correction de la fiche No {fiche.No}" });
+            isPatch = false;
+            StateHasChanged();
+            return false;
+         }
+
       }
+      return false;
    }
 
-   private void PatchAll()
+   private async void PatchSelected()
    {
-      isPatchAll = true;
-      foreach (var item in CompList)
+      if(selectedFiches.Count() > 1)
       {
-         PatchOne(item);
+         int compteur = 0;
+         isPatchSelected = true;
+         foreach (var item in selectedFiches)
+         {
+            if (await PatchOne(item)) compteur++;
+         }
+         isPatchSelected = false;
+         messages.Add(new ToastMessage { Type = ToastType.Success, Message = $"{compteur} sur {selectedFiches.Count()} fiches ont été corrigées" });
+         StateHasChanged();
+         selectedFiches.Clear();
+         await grid.RefreshDataAsync();
+         if (compteur >= grid.PageSize) await grid.ResetPageNumber();
+         StateHasChanged();
       }
-      _navigationManager.Refresh(true);
    }
 
-   private void RemoveOne(int index)
+   private async Task RemoveOne(string no)
    {
-      CompList.RemoveAt(index);
+      CompList.Remove(CompList.First(x => x.No == no));
+      if (!isPatch) { messages.Add(new ToastMessage { Type = ToastType.Warning, Message = $"Fiche No {no} a été supprimée de la liste\nActualiser la page pour recuperer la liste complète" }); }
+      if (!isPatchSelected) { await grid.RefreshDataAsync(); StateHasChanged(); }
+   }
+
+   private async void RemoveSelected()
+   {
+      int compteur = 0;
+      foreach (var item in selectedFiches)
+      {
+         CompList.Remove(CompList.First(x => x.No == item.No));
+         compteur++;
+      }
+      messages.Add(new ToastMessage { Type = ToastType.Warning, Message = $"{compteur} sur {selectedFiches.Count()} fiches ont été supprimées de la liste\nActualiser la page pour recuperer la liste complète" });
       StateHasChanged();
+      selectedFiches.Clear();
+      await grid.RefreshDataAsync();
+      if (compteur >= grid.PageSize) await grid.ResetPageNumber();
    }
 
    private async void OpenInfo(CompBC14 fiche)
@@ -151,23 +196,23 @@ public partial class BC14 : ComponentBase
 
    private async void OpenSelect(string no, int i)
    {
-      index = i;
+      _no = no;
       var parameters = new Dictionary<string, object>();
       parameters.Add("TItem", typeof(EmployeList));
       parameters.Add("TValue", typeof(int));
       parameters.Add("Data", employeList.Where(x => x.Actif));
       parameters.Add("TextField", (Func<EmployeList, string>)(item => item.FullName));
       parameters.Add("ValueField", (Func<EmployeList, int>)(item => item.Id));
-      parameters.Add("DefaultItemValue", CompList.ElementAt(index).NewPerson);
-      parameters.Add("DefaultItemText", CompList.ElementAt(index).NewPersonName);
+      parameters.Add("DefaultItemValue", CompList.First(x => x.No == no).NewPerson);
+      parameters.Add("DefaultItemText", CompList.First(x => x.No == no).NewPersonName);
       parameters.Add("SelectedValueChanged", EventCallback.Factory.Create<int>(this, SelectChange));
       await modalSelect.ShowAsync<SelectList<EmployeList, int>>(localizer["Modification"], parameters: parameters);
    }
 
    private void SelectChange(int i)
    {
-      CompList.ElementAt(index).NewPerson = i;
-      CompList.ElementAt(index).NewPersonName = employeList.First(e => e.Id == i).FullName;
+      CompList.First(x => x.No == _no).NewPerson = i;
+      CompList.First(x => x.No == _no).NewPersonName = employeList.First(e => e.Id == i).FullName;
       StateHasChanged();
       //await grid.RefreshDataAsync();
    }
@@ -177,5 +222,19 @@ public partial class BC14 : ComponentBase
       await grid.RefreshDataAsync();
       StateHasChanged();
       await modalSelect.HideAsync();
+   }
+   private Task OnSelectedItemsChanged(HashSet<CompBC14> fiches)
+   {
+      selectedFiches = fiches is not null && fiches.Any() ? fiches : new();
+      StateHasChanged();
+      return Task.CompletedTask;
+   }
+   private bool DisableAllRowsSelectionHandler(IEnumerable<CompBC14> fiches)
+   {
+      return fiches.Any(x => x.NewPerson == 0); 
+   }
+   private bool DisableRowSelectionHandler(CompBC14 fiche)
+   {
+      return fiche.NewPerson == 0; 
    }
 }
