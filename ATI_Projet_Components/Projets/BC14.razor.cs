@@ -36,7 +36,7 @@ public partial class BC14 : ComponentBase
    private bool isPatchSelected = false;
    private bool isPatch = false;
 
-   private Grid<CompBC14> grid;
+   private Grid<CompBC14> grid = new Grid<CompBC14>();
    private BlazorBootstrap.Modal modal;
 
    private BlazorBootstrap.Modal modalSelect;
@@ -194,28 +194,28 @@ public partial class BC14 : ComponentBase
       await modal.ShowAsync<ShowGeneric<CompBC14>>(localizer["Details du projet"] + " " + fiche.No, parameters: parameters);
    }
 
-   private async void OpenSelect(string no, int i)
-   {
-      _no = no;
-      var parameters = new Dictionary<string, object>();
-      parameters.Add("TItem", typeof(EmployeList));
-      parameters.Add("TValue", typeof(int));
-      parameters.Add("Data", employeList.Where(x => x.Actif));
-      parameters.Add("TextField", (Func<EmployeList, string>)(item => item.FullName));
-      parameters.Add("ValueField", (Func<EmployeList, int>)(item => item.Id));
-      parameters.Add("DefaultItemValue", CompList.First(x => x.No == no).NewPerson);
-      parameters.Add("DefaultItemText", CompList.First(x => x.No == no).NewPersonName);
-      parameters.Add("SelectedValueChanged", EventCallback.Factory.Create<int>(this, SelectChange));
-      await modalSelect.ShowAsync<SelectList<EmployeList, int>>(localizer["Modification"], parameters: parameters);
-   }
+   //private async void OpenSelect(string no, int i)
+   //{
+   //   _no = no;
+   //   var parameters = new Dictionary<string, object>();
+   //   parameters.Add("TItem", typeof(EmployeList));
+   //   parameters.Add("TValue", typeof(int));
+   //   parameters.Add("Data", employeList.Where(x => x.Actif));
+   //   parameters.Add("TextField", (Func<EmployeList, string>)(item => item.FullName));
+   //   parameters.Add("ValueField", (Func<EmployeList, int>)(item => item.Id));
+   //   parameters.Add("DefaultItemValue", CompList.First(x => x.No == no).NewPerson);
+   //   parameters.Add("DefaultItemText", CompList.First(x => x.No == no).NewPersonName);
+   //   parameters.Add("SelectedValueChanged", EventCallback.Factory.Create<int>(this, SelectChange));
+   //   await modalSelect.ShowAsync<SelectList<EmployeList, int>>(localizer["Modification"], parameters: parameters);
+   //}
 
-   private void SelectChange(int i)
-   {
-      CompList.First(x => x.No == _no).NewPerson = i;
-      CompList.First(x => x.No == _no).NewPersonName = employeList.First(e => e.Id == i).FullName;
-      StateHasChanged();
-      //await grid.RefreshDataAsync();
-   }
+   //private void SelectChange(int i)
+   //{
+   //   CompList.First(x => x.No == _no).NewPerson = i;
+   //   CompList.First(x => x.No == _no).NewPersonName = employeList.First(e => e.Id == i).FullName;
+   //   StateHasChanged();
+   //   //await grid.RefreshDataAsync();
+   //}
 
    private async void OnHideModalClick()
    {

@@ -45,9 +45,6 @@
             <GridColumn TItem="CompBC14" HeaderText="@localizer["Responsable (BC14)"]" PropertyName="RespBC14" SortKeySelector="i => i.RespBC14" Class="respBC14" ColumnClass="@(x => "respBC14")">
                @context.RespBC14
             </GridColumn>
-            <GridColumn TItem="CompBC14" HeaderText="@localizer["Modification"]" Filterable="false" Class="modif" ColumnClass="@(x => "modifBody")">
-               <a class="@(context.NewPerson == 0 ? "disabled": "p-2")" @onclick="@(() => OpenSelect(context.No,context.Index))">@context.NewPersonName</a>
-            </GridColumn>
             <GridColumn TItem="CompBC14" HeaderText="Actions" Filterable="false" Class="action" ColumnClass="@(x => "action")">
                <Button Color="ButtonColor.Primary" Size="ButtonSize.ExtraSmall" @onclick=@(() => OpenInfo(context))><Icon Name="IconName.Info" /></Button>
                <Button Disabled="@(context.NewPerson == 0)" Color="ButtonColor.Success" Size="ButtonSize.ExtraSmall" @onclick=@(() => PatchOne(context))><Icon Name="IconName.CheckLg" /></Button>
@@ -73,7 +70,7 @@
       </div>
       <div class="d-flex flex-column">
          <Button Disabled="@(selectedFiches.Count() <= 1)" Size="ButtonSize.Large" Class="m-4 fs-6" Color="ButtonColor.Success" @onclick="@PatchSelected">@localizer["Corriger la sélection"]</Button>
-         <Button Disabled="@(selectedFiches.Count() <= 1)" Size="ButtonSize.Large" Class="m-4 fs-6" Color="ButtonColor.Danger" @onclick="@PatchSelected">@localizer["Supprimer la sélection"]</Button>
+         <Button Disabled="@(selectedFiches.Count() <= 1)" Size="ButtonSize.Large" Class="m-4 fs-6" Color="ButtonColor.Danger" @onclick="@RemoveSelected">@localizer["Supprimer la sélection"]</Button>
       </div>
    </div>
 
@@ -85,7 +82,7 @@
    </FooterTemplate>
 </Modal>
 
-<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopRight" AutoHide="true" Delay="4000" />
+<Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.BottomRight" AutoHide="true" Delay="4000" />
 @code {
 
 }
