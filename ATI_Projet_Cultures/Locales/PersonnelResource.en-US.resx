@@ -609,6 +609,9 @@
   <data name="Supprimer la sélection" xml:space="preserve">
     <value>Delete selection</value>
   </data>
+  <data name="Synchro des Responsables" xml:space="preserve">
+    <value>Manager Sync</value>
+  </data>
   <data name="T - Forfait" xml:space="preserve">
     <value>T - Fixed price</value>
   </data>

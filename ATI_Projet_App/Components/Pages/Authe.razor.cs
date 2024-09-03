@@ -51,7 +51,7 @@ namespace ATI_Projet_App.Components.Pages
                 try
                 {
                     //_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", result.Value);
-                    using (HttpResponseMessage response = _client.GetAsync($"http://192.168.123.69:7000/api/user/token/{Id}/{HashToken}").Result)
+                    using (HttpResponseMessage response = _client.GetAsync($"http://localhost:7000/api/user/token/{Id}/{HashToken}").Result)
                     {
                         if (response.IsSuccessStatusCode)
                         {
@@ -63,7 +63,7 @@ namespace ATI_Projet_App.Components.Pages
                                 {
                                     ;
                                     int id = int.Parse(jwt.Claims.First(x => x.Type == ClaimTypes.Sid).Value);
-                                    using (HttpResponseMessage res = _client.GetAsync("http://192.168.123.69:7000/api/user/byid/" + id).Result)
+                                    using (HttpResponseMessage res = _client.GetAsync("http://localhost:7000/api/user/byid/" + id).Result)
                                     {
                                         if (res.IsSuccessStatusCode)
                                         {
@@ -82,7 +82,7 @@ namespace ATI_Projet_App.Components.Pages
                                 else
                                 {
                                     await sessionManager.Logout();
-                                    navigationManager.NavigateTo("http://192.168.123.69:7100/logout", true);
+                                    navigationManager.NavigateTo("http://localhost:7100/logout", true);
                                 }
 
                             }
@@ -98,7 +98,7 @@ namespace ATI_Projet_App.Components.Pages
                 catch (Exception ex)
                 {
                     await sessionManager.Logout();
-                    navigationManager.NavigateTo("http://192.168.123.69:7100/logout", true);
+                    navigationManager.NavigateTo("http://localhost:7100/logout", true);
                 }
 
             }
