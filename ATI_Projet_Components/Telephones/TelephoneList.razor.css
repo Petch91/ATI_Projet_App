@@ -16,7 +16,7 @@
 
 ::deep .quickgrid[theme="default"] {
     --col-gap: 0.5rem;
-    min-width: 35rem;
+    min-width: 30rem;
 }
 
 ::deep tr {

@@ -43,14 +43,14 @@
 
          }
          <TemplateColumn Class="actions" Align="Align.Center">
-@*             <Button Color="ButtonColor.Warning" Size="ButtonSize.ExtraSmall" Loading="loadingEdit" LoadingText="  "
+            <Button Color="ButtonColor.Warning" Size="ButtonSize.ExtraSmall" Loading="loadingEdit" LoadingText="  "
                     @onclick="@(() =>Edit((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
                <Icon Name="IconName.PencilSquare"></Icon>
             </Button>
             <Button Color="ButtonColor.Danger" Size="ButtonSize.ExtraSmall" Loading="loadingDelete" LoadingText="  "
                     @onclick="@(() =>Delete((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
                <Icon Name="IconName.XLg"></Icon>
-            </Button> *@
+            </Button>
          </TemplateColumn>
       </QuickGrid>
 
@@ -91,7 +91,7 @@
 
          }
          <TemplateColumn Class="actions">
-@*             <Button Color="ButtonColor.Warning" Size="ButtonSize.ExtraSmall" Loading="loadingEdit" LoadingText="  "
+            <Button Color="ButtonColor.Warning" Size="ButtonSize.ExtraSmall" Loading="loadingEdit" LoadingText="  "
                     @onclick="@(() =>Edit((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
                <Icon Name="IconName.PencilSquare"></Icon>
             </Button>
@@ -99,7 +99,7 @@
                     @onclick="@(() =>Delete((TId)context.GetType().GetProperty(IdName).GetValue(context)))">
                <Icon Name="IconName.XLg"></Icon>
             </Button>
- *@
+
          </TemplateColumn>
       </QuickGrid>
    }

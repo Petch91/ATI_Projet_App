@@ -4,12 +4,12 @@
 @inject IStringLocalizer<PersonnelResource> localizer
 
 <Toasts class="p-3" Messages="messages" Placement="ToastsPlacement.TopCenter" AutoHide=true />
-<div class="px-1 m-3 position-relative" style="min-width: 18rem">
-    <h5 class="mx-1 pt-1">Emails</h5>
-@*     <Button Class="position-absolute top-0 start-50" Color="ButtonColor.Secondary" Size="ButtonSize.Small" @onclick="ShowCreateMail">@localizer["Ajouter Email"]</Button> *@
-    @if (emails != null && emails.Count() > 0)
-    {
-        <ListGenericEdit TId=int TItem=Email Items="emails" ExcludedCols="@(new List<string>{"Id", "PersonneId" , "SocieteId"})" DeleteEvent="Delete" EditEvent="ShowEdit" />
-    }
-    <Modal @ref="modal"></Modal>
+<div class="px-2 m-2 position-relative" >
+   <h5 class="mx-1 pt-1">Emails</h5>
+   <Button Class="position-absolute top-0 start-50" Color="ButtonColor.Secondary" Size="ButtonSize.Small" @onclick="ShowCreateMail">@localizer["Ajouter Email"]</Button>
+   @if (emails != null && emails.Count() > 0)
+   {
+      <ListGenericEdit TId=int TItem=Email Items="emails" ExcludedCols="@(new List<string>{"Id", "PersonneId" , "SocieteId"})" DeleteEvent="Delete" EditEvent="ShowEdit" />
+   }
+   <Modal @ref="modal"></Modal>
 </div>

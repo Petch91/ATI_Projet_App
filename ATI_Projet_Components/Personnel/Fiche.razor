@@ -5,7 +5,7 @@
 @using System.Globalization;
 @inject VariablesGlobales variables;
 
-<div class="m-3">
+<div class="m-1">
    <SelectList TItem="EmployeList"
                TValue="int"
                Data="@Liste"
@@ -16,13 +16,13 @@
                SelectedValueChanged="@(e=>{
                                             SelectChange(e);
                                         })" />
-   @* <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">@localizer["Ajouter"]</Button> *@
+   <Button Color="ButtonColor.Success" @onclick="OpenModalCreate">@localizer["Ajouter"]</Button>
    <div>
       @if (Id >= 54)
       {
-         @if (EmployeProfil != null && EmployeProfil.Id > 0 && fonctions != null && departements != null && ((EmployePrivate != null || choix > 0) ))
+         @if (EmployeProfil != null && EmployeProfil.Id > 0 && fonctions != null && departements != null && (EmployePrivate != null || choix > 0))
          {
-            <div class="d-flex m-1 p-2 profil border rounded position-relative">
+            <div class="d-flex p-2 profil border rounded position-relative">
                <Button Type="ButtonType.Button" Class="contButton position-absolute top-0 end-0" Color="ButtonColor.Dark" Size="ButtonSize.Large" @onclick="ShowCanvas">Contacts</Button>
                <Card Style="width:17rem; height: 40.5rem; min-width: 12rem;">
                   <div class="rounded-top position-relative w-100 image" @onclick="ChangePhoto">
