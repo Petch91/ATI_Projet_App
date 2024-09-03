@@ -243,6 +243,9 @@
   <data name="Coord. SSE - Service administratif" xml:space="preserve">
     <value>Coord. HSE - Administration</value>
   </data>
+  <data name="Corriger la sélection" xml:space="preserve">
+    <value>Correct selection</value>
+  </data>
   <data name="Coût" xml:space="preserve">
     <value>Cost</value>
   </data>
@@ -314,6 +317,9 @@
   </data>
   <data name="Electricien (BA4)" xml:space="preserve">
     <value>Electrician (BA4)</value>
+  </data>
+  <data name="Eléments par page" xml:space="preserve">
+    <value>Items per page</value>
   </data>
   <data name="Employé" xml:space="preserve">
     <value>Employee</value>
@@ -462,9 +468,6 @@
   <data name="Nom du Projet (BC14)" xml:space="preserve">
     <value>Project's Name (BC14)</value>
   </data>
-  <data name="Nombre d'éléments par page" xml:space="preserve">
-    <value>Items per page</value>
-  </data>
   <data name="Nombre de KMs" xml:space="preserve">
     <value>Number of KMs</value>
   </data>
@@ -602,6 +605,9 @@
   </data>
   <data name="Suivi non journalier" xml:space="preserve">
     <value>Non-daily tracking</value>
+  </data>
+  <data name="Supprimer la sélection" xml:space="preserve">
+    <value>Delete selection</value>
   </data>
   <data name="T - Forfait" xml:space="preserve">
     <value>T - Fixed price</value>

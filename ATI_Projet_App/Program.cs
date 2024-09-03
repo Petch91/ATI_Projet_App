@@ -33,6 +33,7 @@ builder.Services
     .AddBootstrapProviders()
     .AddFontAwesomeIcons();
 builder.Services.AddBlazorBootstrap();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://192.168.123.69:7001/api/") });
 //TestDeveloppement 
