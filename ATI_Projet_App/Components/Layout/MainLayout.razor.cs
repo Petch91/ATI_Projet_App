@@ -33,7 +33,7 @@ namespace ATI_Projet_App.Components.Layout
 
         public void GoLogin()
         {
-            navigationManager.NavigateTo("http://192.168.123.69:7100/", true);
+            navigationManager.NavigateTo("http://ati-portal.be/", true);
         }
     }
 }
