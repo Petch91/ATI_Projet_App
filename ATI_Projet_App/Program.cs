@@ -49,9 +49,9 @@ builder.Services.AddHttpClient("api", c => { c.BaseAddress = new Uri("http://192
 builder.Services.AddHttpClient();
 builder.Services.AddHttpClient("BC14", c =>
 {
-   c.BaseAddress = new Uri("https://bc14-test.eesb.be:7348/BC14-TEST-NUP/ODataV4/Company('ATI%20Indus')/");
-   var username = "ATI_WS";
-   var password = "U4VsMoxs4179tL7VDgkBcoffrAJVKVibmEoopIbPelw=";
+   c.BaseAddress = new Uri("https://bc14-prod.eesb.be:7248/BC14-PROD-NUP/ODataV4/Company('ATI%20Indus')");
+   var username = builder.Configuration["BC14:User"];
+   var password = builder.Configuration["BC14:mdp"];
 
    // Encodez les informations d'identification en Base64
    var authToken = Encoding.ASCII.GetBytes($"{username}:{password}");

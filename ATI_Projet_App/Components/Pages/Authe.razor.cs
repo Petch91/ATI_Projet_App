@@ -51,7 +51,7 @@ namespace ATI_Projet_App.Components.Pages
                 try
                 {
                     //_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", result.Value);
-                    using (HttpResponseMessage response = _client.GetAsync($"http://localhost:7000/api/user/token/{Id}/{HashToken}").Result)
+                    using (HttpResponseMessage response = _client.GetAsync($"http://192.168.123.238:7000/api/user/token/{Id}/{HashToken}").Result)
                     {
                         if (response.IsSuccessStatusCode)
                         {
@@ -63,7 +63,7 @@ namespace ATI_Projet_App.Components.Pages
                                 {
                                     ;
                                     int id = int.Parse(jwt.Claims.First(x => x.Type == ClaimTypes.Sid).Value);
-                                    using (HttpResponseMessage res = _client.GetAsync("http://localhost:7000/api/user/byid/" + id).Result)
+                                    using (HttpResponseMessage res = _client.GetAsync("http://192.168.123.238:7000/api/user/byid/" + id).Result)
                                     {
                                         if (res.IsSuccessStatusCode)
                                         {

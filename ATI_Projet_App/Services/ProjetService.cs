@@ -26,17 +26,7 @@ namespace ATI_Projet_App.Services
       public async Task<IEnumerable<FicheBC14>> GotFichesBc14()
       {
          using var client = _httpClientFactory.CreateClient("BC14");
-         //var username = "ATI_WS";
-         //var password = "U4VsMoxs4179tL7VDgkBcoffrAJVKVibmEoopIbPelw=";
-    
-         //// Encodez les informations d'identification en Base64
-         //var authToken = Encoding.ASCII.GetBytes($"{username}:{password}");
-         //var authHeaderValue = Convert.ToBase64String(authToken);
-
-         //// Ajoutez l'en-tête d'autorisation
-         //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
-
-         var reponse  = await client.GetAsync("Fiches_ATI?$filter=Status ne 'Completed'&$select=No,Description,Person_Responsible,Responsable_Nom");
+         var reponse  = await client.GetAsync("Job?$filter=Status ne 'Completed'&$select=No,Description,Person_Responsible,Responsable_Nom");
          if (reponse.IsSuccessStatusCode)
          {
             var jsonResponse =  await reponse.Content.ReadAsStringAsync();
@@ -116,7 +106,7 @@ namespace ATI_Projet_App.Services
          try
          {
             // Envoi de la requête PATCH
-            var response = await client.PatchAsync($"Fiches_ATI(No='{no}')", body);
+            var response = await client.PatchAsync($"Job(No='{no}')", body);
 
             // Vérifiez le statut de la réponse
             return response.IsSuccessStatusCode;

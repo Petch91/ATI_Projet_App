@@ -48,7 +48,8 @@
             <div class="d-flex gap-3 align-items-center">
 
 
-               <NavLink class="link" href="@("Personnel/" + connectedUser.IdExterne)">@connectedUser.FirstName @connectedUser.LastName</NavLink>
+@*                <NavLink class="link" href="@("Personnel/" + connectedUser.IdExterne)">@connectedUser.FirstName @connectedUser.LastName</NavLink> *@
+               <h6 class="m-0">@connectedUser.FirstName @connectedUser.LastName</h6>
                <select value="@culture" @onchange="OnChangeLanguageAsync">
 
                   <option value="fr-BE">FR @(browserName == "Firefox" ? "🇫🇷" : "")</option>
