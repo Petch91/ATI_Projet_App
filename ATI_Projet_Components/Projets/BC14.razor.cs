@@ -9,7 +9,9 @@ using BlazorBootstrapPerso;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.QuickGrid;
 using Microsoft.Extensions.Localization;
+using Microsoft.JSInterop;
 using System.Data;
+using System.Text.Json;
 using System.Threading;
 
 namespace ATI_Projet_Components.Projets;
@@ -22,6 +24,8 @@ public partial class BC14 : ComponentBase, IDisposable
    [Inject] private NavigationManager _navigationManager { get; set; }
    [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
    [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
+
+   [Inject] public IJSRuntime JS { get; set; } = default!;
 
    private IEnumerable<ProjetBC14> ProjetsATI { get; set; }
    private IEnumerable<FicheBC14> ProjetsBC14 { get; set; }
@@ -43,6 +47,7 @@ public partial class BC14 : ComponentBase, IDisposable
    private BlazorBootstrapPerso.Modal modalSelect;
 
    private int index = 0;
+   private int pageSize = 15;
    private string _no = "";
 
    private List<ToastMessage> messages = new List<ToastMessage>();
@@ -151,7 +156,7 @@ public partial class BC14 : ComponentBase, IDisposable
 
    private async void PatchSelected()
    {
-      if(selectedFiches.Count() > 1)
+      if (selectedFiches.Count() > 1)
       {
          int compteur = 0;
          isPatchSelected = true;
@@ -164,7 +169,8 @@ public partial class BC14 : ComponentBase, IDisposable
          StateHasChanged();
          selectedFiches.Clear();
          await grid.RefreshDataAsync();
-         if (compteur >= grid.PageSize) await grid.ResetPageNumber();
+         if (compteur >= grid.PageSize)
+            await grid.ResetPageNumber();
          StateHasChanged();
       }
    }
@@ -188,7 +194,8 @@ public partial class BC14 : ComponentBase, IDisposable
       StateHasChanged();
       selectedFiches.Clear();
       await grid.RefreshDataAsync();
-      if (compteur >= grid.PageSize) await grid.ResetPageNumber();
+      if (compteur >= grid.PageSize)
+         await grid.ResetPageNumber();
    }
 
    private async void OpenInfo(CompBC14 fiche)
@@ -236,10 +243,14 @@ public partial class BC14 : ComponentBase, IDisposable
    }
    private bool DisableAllRowsSelectionHandler(IEnumerable<CompBC14> fiches)
    {
-      return fiches.Any(x => x.NewPerson == 0); 
+      return fiches.Any(x => x.NewPerson == 0);
    }
    private bool DisableRowSelectionHandler(CompBC14 fiche)
    {
-      return fiche.NewPerson == 0; 
+      return fiche.NewPerson == 0;
+   }
+   private void PageSizeChanged(int newSize)
+   {
+      pageSize = newSize;
    }
 }

@@ -20,12 +20,13 @@
                SelectedItemsChanged="OnSelectedItemsChanged"
                DisableAllRowsSelection="DisableAllRowsSelectionHandler"
                DisableRowSelection="DisableRowSelectionHandler"
-               PageSize="15"
+               PageSize="@pageSize"
                PageSizeSelectorVisible="true"
-               PageSizeSelectorItems="@(new int[] { 15,30,50,100 })"
+               PageSizeSelectorItems="@(new int[] { 5,15,30,50,100 })"
                ItemsPerPageText="@localizer["Eléments par page"]"
                FiltersRowCssClass="bg-dark text-white bg-opacity-25 border-bottom-0"
-               HeaderRowCssClass="bg-dark text-white bg-opacity-50 border-bottom-0 gridHead">
+               HeaderRowCssClass="bg-dark text-white bg-opacity-50 border-bottom-0 gridHead"
+               ItemsByPageChanged="PageSizeChanged">
 
             <GridColumn TItem="CompBC14" HeaderText="@(localizer["Code"] + " BC14")" PropertyName="No" SortKeySelector="i => i.No" Class="codeBc14" ColumnClass="@(x => "codeBc14")">
                @context.No
