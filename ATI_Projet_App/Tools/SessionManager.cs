@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using System.Globalization;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 
@@ -100,6 +101,12 @@ namespace ATI_Projet_App.Tools
       public async void DeleteSessionStorage(string key)
       {
          await _protectedSessionStorage.DeleteAsync(key);
+      }
+
+      public async Task<string> GetLanguage()
+      {
+         var result =  await _protectedLocalStorage.GetAsync<string>("Language");
+         return result.Value ?? string.Empty;
       }
    }
 }

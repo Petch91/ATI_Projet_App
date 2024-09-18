@@ -117,13 +117,538 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="a quitté l'entreprise le" xml:space="preserve">
+    <value>a quitté l'entreprise le</value>
+  </data>
+  <data name="Actif" xml:space="preserve">
+    <value>Actif</value>
+  </data>
+  <data name="Administrative departement" xml:space="preserve">
+    <value>Administrative departement</value>
+  </data>
+  <data name="Adresse" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="Ajout d'un status VCA" xml:space="preserve">
+    <value>Ajout d'un status VCA</value>
+  </data>
+  <data name="Ajout d'un type de contrat" xml:space="preserve">
+    <value>Ajout d'un type de contrat</value>
+  </data>
+  <data name="Ajout d'un type de main d'oeuvre" xml:space="preserve">
+    <value>Ajout d'un type de main d'oeuvre</value>
+  </data>
+  <data name="Ajout d'une fonction" xml:space="preserve">
+    <value>Ajout d'une fonction</value>
+  </data>
+  <data name="Ajout d'une fonction VCA" xml:space="preserve">
+    <value>Ajout d'une fonction VCA</value>
+  </data>
+  <data name="Ajouter" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="Ajouter Email" xml:space="preserve">
+    <value>Ajouter Email</value>
+  </data>
+  <data name="Ajouter Telephone" xml:space="preserve">
+    <value>Ajouter Telephone</value>
+  </data>
+  <data name="Ajouter un employé" xml:space="preserve">
+    <value>Ajouter un employé</value>
+  </data>
+  <data name="Automaticien" xml:space="preserve">
+    <value>Automaticien</value>
+  </data>
+  <data name="Automaticien - Roboticien" xml:space="preserve">
+    <value>Automaticien - Roboticien</value>
+  </data>
+  <data name="Automation" xml:space="preserve">
+    <value>Automation</value>
+  </data>
+  <data name="Autres collaborateur intérimaires" xml:space="preserve">
+    <value>Autres collaborateur intérimaires</value>
+  </data>
+  <data name="Axe de marché" xml:space="preserve">
+    <value>Axe de marché</value>
+  </data>
+  <data name="Bienvenue sur ATI Projets" xml:space="preserve">
+    <value>Bienvenue sur ATI Projets</value>
+  </data>
+  <data name="BUM Automation &amp; Robotisation" xml:space="preserve">
+    <value>BUM Automation &amp; Robotisation</value>
+  </data>
+  <data name="BUM Conception Electrique" xml:space="preserve">
+    <value>BUM Conception Electrique</value>
+  </data>
+  <data name="BUM Data" xml:space="preserve">
+    <value>BUM Data</value>
+  </data>
+  <data name="BUM Informatique Industrielle" xml:space="preserve">
+    <value>BUM Informatique Industrielle</value>
+  </data>
+  <data name="C. Prévention - Resp. SSE" xml:space="preserve">
+    <value>C. Prévention - Resp. SSE</value>
+  </data>
+  <data name="Cadre" xml:space="preserve">
+    <value>Cadre</value>
+  </data>
+  <data name="Cadres dirigeant les collaborateurs" xml:space="preserve">
+    <value>Cadres dirigeant les collaborateurs</value>
+  </data>
+  <data name="ce statut VCA?" xml:space="preserve">
+    <value>ce statut VCA?</value>
+  </data>
+  <data name="ce type de contrat?" xml:space="preserve">
+    <value>ce type de contrat?</value>
+  </data>
+  <data name="ce type de main d'oeuvre?" xml:space="preserve">
+    <value>ce type de main d'oeuvre?</value>
+  </data>
+  <data name="cette fonction VCA?" xml:space="preserve">
+    <value>cette fonction VCA?</value>
+  </data>
+  <data name="cette fonction?" xml:space="preserve">
+    <value>cette fonction?</value>
+  </data>
+  <data name="Changer La Photo" xml:space="preserve">
+    <value>Changer La Photo</value>
+  </data>
+  <data name="Changer La Signature" xml:space="preserve">
+    <value>Changer La Signature</value>
+  </data>
+  <data name="Chef d'équipe (BA5)" xml:space="preserve">
+    <value>Chef d'équipe (BA5)</value>
+  </data>
+  <data name="Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
+  <data name="Cliquer Pour Modifier" xml:space="preserve">
+    <value>Cliquer Pour Modifier</value>
+  </data>
+  <data name="Code Postal" xml:space="preserve">
+    <value>Code Postal</value>
+  </data>
+  <data name="Collaborateurs opérationnels fixes" xml:space="preserve">
+    <value>Collaborateurs opérationnels fixes</value>
+  </data>
+  <data name="Collaborateurs opérationnels temporaires" xml:space="preserve">
+    <value>Collaborateurs opérationnels temporaires</value>
+  </data>
+  <data name="Concepteur électrique" xml:space="preserve">
+    <value>Concepteur électrique</value>
+  </data>
+  <data name="Conducteur de nacelle" xml:space="preserve">
+    <value>Conducteur de nacelle</value>
+  </data>
+  <data name="Conseiller Qualité-Sécurité-Santé-Environnement" xml:space="preserve">
+    <value>Conseiller Qualité-Sécurité-Santé-Environnement</value>
+  </data>
+  <data name="Contrat de travail" xml:space="preserve">
+    <value>Contrat de travail</value>
+  </data>
+  <data name="Coord. SSE - Service administratif" xml:space="preserve">
+    <value>Coord. SSE - Service administratif</value>
+  </data>
+  <data name="Corriger la sélection" xml:space="preserve">
+    <value>Corriger la sélection</value>
+  </data>
+  <data name="Coût" xml:space="preserve">
+    <value>Coût</value>
+  </data>
+  <data name="Câblage Atelier" xml:space="preserve">
+    <value>Câblage Atelier</value>
+  </data>
+  <data name="Câblage Chantier" xml:space="preserve">
+    <value>Câblage Chantier</value>
+  </data>
+  <data name="Câbleurs" xml:space="preserve">
+    <value>Câbleurs</value>
+  </data>
+  <data name="Date d'entrée" xml:space="preserve">
+    <value>Date d'entrée</value>
+  </data>
+  <data name="Date de naissance" xml:space="preserve">
+    <value>Date de naissance</value>
+  </data>
+  <data name="Date de sortie" xml:space="preserve">
+    <value>Date de sortie</value>
+  </data>
+  <data name="Dessinateur" xml:space="preserve">
+    <value>Dessinateur</value>
+  </data>
+  <data name="Dessinateurs" xml:space="preserve">
+    <value>Dessinateurs</value>
+  </data>
+  <data name="Details du projet" xml:space="preserve">
+    <value>Details du projet</value>
+  </data>
+  <data name="Directeur Général" xml:space="preserve">
+    <value>Directeur Général</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value>Direction</value>
+  </data>
+  <data name="Données Commerciales" xml:space="preserve">
+    <value>Données Commerciales</value>
+  </data>
+  <data name="Début" xml:space="preserve">
+    <value>Début</value>
+  </data>
+  <data name="Département" xml:space="preserve">
+    <value>Département</value>
+  </data>
+  <data name="Edition des infos privées" xml:space="preserve">
+    <value>Edition des infos privées</value>
+  </data>
+  <data name="Edition des infos professionnelles" xml:space="preserve">
+    <value>Edition des infos professionnelles</value>
+  </data>
+  <data name="Edition du Profil" xml:space="preserve">
+    <value>Edition du Profil</value>
+  </data>
+  <data name="Edition Fonction" xml:space="preserve">
+    <value>Edition Fonction</value>
+  </data>
+  <data name="Edition Fonction VCA" xml:space="preserve">
+    <value>Edition Fonction VCA</value>
+  </data>
+  <data name="Edition Status VCA" xml:space="preserve">
+    <value>Edition Status VCA</value>
+  </data>
+  <data name="Edition Type de contrat" xml:space="preserve">
+    <value>Edition Type de contrat</value>
+  </data>
+  <data name="Edition Type de main d'oeuvre" xml:space="preserve">
+    <value>Edition Type de main d'oeuvre</value>
+  </data>
+  <data name="Electricien (BA4)" xml:space="preserve">
+    <value>Electricien (BA4)</value>
+  </data>
+  <data name="Eléments par page" xml:space="preserve">
+    <value>Eléments par page</value>
+  </data>
+  <data name="Employé" xml:space="preserve">
+    <value>Employé</value>
+  </data>
+  <data name="Entré le" xml:space="preserve">
+    <value>Entré le</value>
+  </data>
+  <data name="Envoi Vers CRM" xml:space="preserve">
+    <value>Envoi Vers CRM</value>
+  </data>
+  <data name="Etude projet" xml:space="preserve">
+    <value>Etude projet</value>
+  </data>
+  <data name="Etudiant Employé" xml:space="preserve">
+    <value>Etudiant Employé</value>
+  </data>
+  <data name="Etudiant Ouvrier" xml:space="preserve">
+    <value>Etudiant Ouvrier</value>
+  </data>
+  <data name="Fermer" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="Fin" xml:space="preserve">
+    <value>Fin</value>
+  </data>
+  <data name="Fixe Privé" xml:space="preserve">
+    <value>Fixe Privé</value>
+  </data>
+  <data name="Fixe Professionnel" xml:space="preserve">
+    <value>Fixe Professionnel</value>
+  </data>
+  <data name="Fonction" xml:space="preserve">
+    <value>Fonction</value>
+  </data>
+  <data name="Fonction VCA" xml:space="preserve">
+    <value>Fonction VCA</value>
+  </data>
+  <data name="Fonctions" xml:space="preserve">
+    <value>Fonctions</value>
+  </data>
+  <data name="Fonctions VCA" xml:space="preserve">
+    <value>Fonctions VCA</value>
+  </data>
+  <data name="Gestion" xml:space="preserve">
+    <value>Gestion</value>
+  </data>
+  <data name="Gestion des ressources" xml:space="preserve">
+    <value>Gestion des ressources</value>
+  </data>
+  <data name="Gestion Stock" xml:space="preserve">
+    <value>Gestion Stock</value>
+  </data>
+  <data name="Gestion Stock1" xml:space="preserve">
+    <value>Gestion Stock1</value>
+  </data>
+  <data name="GSM Privé" xml:space="preserve">
+    <value>GSM Privé</value>
+  </data>
+  <data name="GSM Professionnel" xml:space="preserve">
+    <value>GSM Professionnel</value>
+  </data>
+  <data name="Inactif" xml:space="preserve">
+    <value>Inactif</value>
+  </data>
+  <data name="Indépendant" xml:space="preserve">
+    <value>Indépendant</value>
+  </data>
+  <data name="Informaticien" xml:space="preserve">
+    <value>Informaticien</value>
+  </data>
+  <data name="Informaticien Industriel" xml:space="preserve">
+    <value>Informaticien Industriel</value>
+  </data>
+  <data name="Informaticien Industriel (P.E.)" xml:space="preserve">
+    <value>Informaticien Industriel (P.E.)</value>
+  </data>
+  <data name="Informaticien Logistique (P.E.)" xml:space="preserve">
+    <value>Informaticien Logistique (P.E.)</value>
+  </data>
+  <data name="Informaticien Vision (P.E.)" xml:space="preserve">
+    <value>Informaticien Vision (P.E.)</value>
+  </data>
+  <data name="Informaticiens" xml:space="preserve">
+    <value>Informaticiens</value>
+  </data>
+  <data name="Informations" xml:space="preserve">
+    <value>Informations</value>
+  </data>
+  <data name="Infos Privé" xml:space="preserve">
+    <value>Infos Privé</value>
+  </data>
+  <data name="Infos Professionnelles" xml:space="preserve">
+    <value>Infos Professionnelles</value>
+  </data>
+  <data name="Initiales" xml:space="preserve">
+    <value>Initiales</value>
+  </data>
+  <data name="Intérimaire Employé" xml:space="preserve">
+    <value>Intérimaire Employé</value>
+  </data>
+  <data name="Intérimaire Ouvrier" xml:space="preserve">
+    <value>Intérimaire Ouvrier</value>
+  </data>
+  <data name="Langue" xml:space="preserve">
+    <value>Langue</value>
+  </data>
+  <data name="Libelle" xml:space="preserve">
+    <value>Libelle</value>
+  </data>
   <data name="Liste" xml:space="preserve">
     <value>Liste</value>
   </data>
+  <data name="Liste Des Clients" xml:space="preserve">
+    <value>Liste Des Clients</value>
+  </data>
+  <data name="Liste Des Projets" xml:space="preserve">
+    <value>Liste Des Projets</value>
+  </data>
+  <data name="Localité" xml:space="preserve">
+    <value>Localité</value>
+  </data>
+  <data name="Main d'oeuvre Sécurité" xml:space="preserve">
+    <value>Main d'oeuvre Sécurité</value>
+  </data>
+  <data name="Membre de la direction" xml:space="preserve">
+    <value>Membre de la direction</value>
+  </data>
+  <data name="Mise en service" xml:space="preserve">
+    <value>Mise en service</value>
+  </data>
+  <data name="Modification" xml:space="preserve">
+    <value>Modification</value>
+  </data>
+  <data name="N de commande client" xml:space="preserve">
+    <value>N° de commande client</value>
+  </data>
+  <data name="N de Compte Bancaire" xml:space="preserve">
+    <value>N° de Compte Bancaire</value>
+  </data>
+  <data name="N de T.V.A." xml:space="preserve">
+    <value>N° de T.V.A.</value>
+  </data>
+  <data name="N du cahier des charges" xml:space="preserve">
+    <value>N° du cahier des charges</value>
+  </data>
+  <data name="N Reg. Commerce" xml:space="preserve">
+    <value>N° Reg Commerce</value>
+  </data>
+  <data name="Nationalité" xml:space="preserve">
+    <value>Nationalité</value>
+  </data>
+  <data name="No Test" xml:space="preserve">
+    <value>No Test</value>
+  </data>
+  <data name="Nom" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="Nom du Projet (ATI)" xml:space="preserve">
+    <value>Nom du Projet (ATI)</value>
+  </data>
+  <data name="Nom du Projet (BC14)" xml:space="preserve">
+    <value>Nom du Projet (BC14)</value>
+  </data>
+  <data name="Nombre de KMs" xml:space="preserve">
+    <value>Nombre de KMs</value>
+  </data>
+  <data name="Non Spécial Congés" xml:space="preserve">
+    <value>Non Spécial Congés</value>
+  </data>
   <data name="Numero" xml:space="preserve">
+    <value>Numero</value>
+  </data>
+  <data name="Numéro" xml:space="preserve">
     <value>Numéro</value>
   </data>
-  <data name="Telephone" xml:space="preserve">
-    <value>Téléphone</value>
+  <data name="Numéro National" xml:space="preserve">
+    <value>Numéro National</value>
+  </data>
+  <data name="Ouvrier" xml:space="preserve">
+    <value>Ouvrier</value>
+  </data>
+  <data name="P.E. Chantier &amp; Atelier" xml:space="preserve">
+    <value>P.E. Chantier &amp; Atelier</value>
+  </data>
+  <data name="P.E. Chantier Data" xml:space="preserve">
+    <value>P.E. Chantier Data</value>
+  </data>
+  <data name="P.E. Maintenance Industrielle" xml:space="preserve">
+    <value>P.E. Maintenance Industrielle</value>
+  </data>
+  <data name="Pas d'Envoi vers CMR" xml:space="preserve">
+    <value>Pas d'Envoi =&gt; CMR</value>
+  </data>
+  <data name="Pays" xml:space="preserve">
+    <value>Pays</value>
+  </data>
+  <data name="Permis" xml:space="preserve">
+    <value>Permis</value>
+  </data>
+  <data name="Personnel" xml:space="preserve">
+    <value>Personnel</value>
+  </data>
+  <data name="Planning" xml:space="preserve">
+    <value>Planning</value>
+  </data>
+  <data name="Pour Test" xml:space="preserve">
+    <value>Pour Test</value>
+  </data>
+  <data name="Privée" xml:space="preserve">
+    <value>Privée</value>
+  </data>
+  <data name="Professionnelle" xml:space="preserve">
+    <value>Professionnelle</value>
+  </data>
+  <data name="Profil" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="Projets" xml:space="preserve">
+    <value>Projets</value>
+  </data>
+  <data name="Prénom" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="R - Régie" xml:space="preserve">
+    <value>R - Régie</value>
+  </data>
+  <data name="Responsable (ATI)" xml:space="preserve">
+    <value>Responsable (ATI)</value>
+  </data>
+  <data name="Responsable (BC14)" xml:space="preserve">
+    <value>Responsable (BC14)</value>
+  </data>
+  <data name="Responsable commercial" xml:space="preserve">
+    <value>Responsable commercial</value>
+  </data>
+  <data name="Responsable d'affaire" xml:space="preserve">
+    <value>Responsable d'affaire</value>
+  </data>
+  <data name="Responsable d'Affaire1" xml:space="preserve">
+    <value>Responsable d'Affaire1</value>
+  </data>
+  <data name="Responsable Facturation" xml:space="preserve">
+    <value>Responsable Facturation</value>
+  </data>
+  <data name="Responsable projet" xml:space="preserve">
+    <value>Responsable projet</value>
+  </data>
+  <data name="Responsable SIPP" xml:space="preserve">
+    <value>Responsable SIPP</value>
+  </data>
+  <data name="Rue et Numéro" xml:space="preserve">
+    <value>Rue et Numéro</value>
+  </data>
+  <data name="Sauver" xml:space="preserve">
+    <value>Sauver</value>
+  </data>
+  <data name="Se Déconnecter" xml:space="preserve">
+    <value>Se Déconnecter</value>
+  </data>
+  <data name="Service administratif" xml:space="preserve">
+    <value>Service administratif</value>
+  </data>
+  <data name="Signalétique" xml:space="preserve">
+    <value>Signalétique</value>
+  </data>
+  <data name="Site Internet" xml:space="preserve">
+    <value>Site Internet</value>
+  </data>
+  <data name="Spécial Congés" xml:space="preserve">
+    <value>Spécial Congés</value>
+  </data>
+  <data name="Stagiaire Employé" xml:space="preserve">
+    <value>Stagiaire Employé</value>
+  </data>
+  <data name="Stagiaire Ouvrier" xml:space="preserve">
+    <value>Stagiaire Ouvrier</value>
+  </data>
+  <data name="Status VCA" xml:space="preserve">
+    <value>Status VCA</value>
+  </data>
+  <data name="Suivi en Jour" xml:space="preserve">
+    <value>Suivi en Jour</value>
+  </data>
+  <data name="Suivi non journalier" xml:space="preserve">
+    <value>Suivi non journalier</value>
+  </data>
+  <data name="Supprimer la sélection" xml:space="preserve">
+    <value>Supprimer la sélection</value>
+  </data>
+  <data name="Synchro des Responsables" xml:space="preserve">
+    <value>Synchro des Responsables</value>
+  </data>
+  <data name="T - Forfait" xml:space="preserve">
+    <value>T - Forfait</value>
+  </data>
+  <data name="Taille" xml:space="preserve">
+    <value>Taille</value>
+  </data>
+  <data name="Technico-commercial" xml:space="preserve">
+    <value>Technico-commercial</value>
+  </data>
+  <data name="Telephones" xml:space="preserve">
+    <value>Telephones</value>
+  </data>
+  <data name="Titre" xml:space="preserve">
+    <value>Titre</value>
+  </data>
+  <data name="Tout Corrigé" xml:space="preserve">
+    <value>Tout Corrigé</value>
+  </data>
+  <data name="Type de Paiement par défaut" xml:space="preserve">
+    <value>Type de Paiement par défaut</value>
+  </data>
+  <data name="Type Main d'oeuvre" xml:space="preserve">
+    <value>Type Main d'oeuvre</value>
+  </data>
+  <data name="Vendeur/Fournisseur" xml:space="preserve">
+    <value>Vendeur/Fournisseur</value>
+  </data>
+  <data name="Veuillez vous connecter s'il vous plait" xml:space="preserve">
+    <value>Veuillez vous connecter s'il vous plait</value>
+  </data>
+  <data name="Voulez vous vraiment supprimer" xml:space="preserve">
+    <value>Voulez vous vraiment supprimer</value>
   </data>
 </root>

@@ -61,7 +61,7 @@
 
                         else
                         {
-                           <Badge Class="mx-1" Color="BadgeColor.Danger">@localizer["Pas d'Envoi => CMR"]</Badge>
+                           <Badge Class="mx-1" Color="BadgeColor.Danger">@localizer["Pas d'Envoi vers CMR"]</Badge>
                         }
                         @if (ClientInfo.SuiviJournalier)
                         {
@@ -98,22 +98,26 @@
          }
       }
    </div>
-   <Tabs Class="m-2">
-      <Tab Title="@localizer["Signalétique"]">
-         <Content>
-            <div class="m-2">
-               <ClientSignaCpt client="ClientSigna" emails="emails" telephones="telephones"></ClientSignaCpt>
-            </div>
-         </Content>
-      </Tab>
-      <Tab Title="@localizer["Projets"]">
-         <Content>
-            <div class="m-2">
-               <ATI_Projet_Components.Projets.Fiche ClientId="Id"></ATI_Projet_Components.Projets.Fiche>
-            </div>
-         </Content>
-      </Tab>
-   </Tabs>
+   @{
+      string title1 = localizer["Signalétique"];
+      string title2 = localizer["Projets"];
+      <Tabs  Class="m-2">
+         <Tab Title="@title1">
+            <Content>
+               <div class="m-2">
+                  <ClientSignaCpt client="ClientSigna" emails="emails" telephones="telephones"></ClientSignaCpt>
+               </div>
+            </Content>
+         </Tab>
+         <Tab Title="@title2">
+            <Content>
+               <div class="m-2">
+                  <ATI_Projet_Components.Projets.Fiche ClientId="Id"></ATI_Projet_Components.Projets.Fiche>
+               </div>
+            </Content>
+         </Tab>
+      </Tabs>
+}
 
 </div>
 

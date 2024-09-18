@@ -3,7 +3,7 @@ using ATI_Projet_Models.Models.Forms;
 using ATI_Projet_Models.Types;
 using ATI_Projet_Models.VCA;
 using ATI_Projets_Models;
-using BlazorBootstrap;
+using BlazorBootstrapPerso;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Net.Http.Json;
@@ -12,15 +12,17 @@ using System.Globalization;
 using ATI_Projet_Cultures.Locales;
 using Microsoft.Graph.Models.CallRecords;
 using ATI_Projet_Tools.Services.Interfaces;
+using ATI_Projet_Cultures.Tools;
 
 
 namespace ATI_Projet_Components.Personnel
 {
-   public partial class Fiche : ComponentBase
+   public partial class Fiche : ComponentBase, IDisposable
    {
       [Inject] private IPersonnel personnel {  get; set; }
       [Inject] private ICommon common { get; set; }
 
+      [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
       [Inject] private IStringLocalizer<LangueResource> langLocalizer { get; set; }
       [Inject] private IStringLocalizer<NationaliteResource> natLocalizer { get; set; }
@@ -54,6 +56,7 @@ namespace ATI_Projet_Components.Personnel
 
       protected async override Task OnInitializedAsync()
       {
+         LanguageNotifier.SubscribeLanguageChange(this);
          var dico = langLocalizer.GetAllStrings().ToDictionary(x => x.Name, x => x.Value);
          var valeurs = dico.Values.ToList();
          valeurs.Sort();
@@ -93,6 +96,7 @@ namespace ATI_Projet_Components.Personnel
          departements = await common.GetDepts();
          if (Liste != null) StateHasChanged();
       }
+      public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 
       protected async override Task OnParametersSetAsync()
       {

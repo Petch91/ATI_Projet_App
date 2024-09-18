@@ -53,9 +53,9 @@
                         </div>
                         <div class="my-2">
 
-                           @if (CultureInfo.CurrentCulture != null && EmployePrivate != null)
+                           @if (LanguageNotifier.CurrentCulture != null && EmployePrivate != null)
                            {
-                              @if (CultureInfo.CurrentCulture.Equals(new CultureInfo("fr-BE")))
+                              @if (LanguageNotifier.CurrentCulture.Equals(new CultureInfo("fr-BE")))
                               {
                                  <p><span class="fw-semibold">@localizer["Taille"]: </span>@EmployePrivate.Taille cm</p>
                               }

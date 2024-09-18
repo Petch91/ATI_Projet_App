@@ -8,6 +8,9 @@ using System.Reflection;
 using ATI_Projet_Cultures.Locales;
 using Microsoft.Extensions.Localization;
 using Microsoft.IdentityModel.Tokens;
+using System.IO.Pipelines;
+using ATI_Projet_Cultures.Tools;
+using Blazorise.Extensions;
 
 namespace ATI_Projet_Components
 {
@@ -17,9 +20,10 @@ namespace ATI_Projet_Components
    /// si le nom de la propriètés ne vous convient pas vous pouvez utiliser l'attribut DisplayName
    /// </summary>
    /// <typeparam name="TItem"></typeparam>
-   public partial class ListGenericEdit<TItem, TId> : ComponentBase where TItem : class,new()
+   public partial class ListGenericEdit<TItem, TId> : ComponentBase, IDisposable where TItem : class,new()
    {
       [Inject] private IStringLocalizer<PersonnelResource> localizer {  get; set; }
+      [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
 
       [Parameter]
       public IEnumerable<TItem> Items { get; set; }
@@ -59,6 +63,10 @@ namespace ATI_Projet_Components
       }
 
       private PaginationState pagination;
+
+
+      protected override void OnInitialized() => LanguageNotifier.SubscribeLanguageChange(this);
+      public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 
       protected override void OnParametersSet()
       {

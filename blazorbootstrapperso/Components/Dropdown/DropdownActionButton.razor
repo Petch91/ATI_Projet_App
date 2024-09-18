@@ -1,0 +1,11 @@
+﻿@namespace BlazorBootstrapPerso
+@inherits BlazorBootstrapComponentBase
+
+<button @ref="@Element"
+        id="@Id"
+        class="@ClassNames" 
+        style="@StyleNames"
+        disabled="@Disabled"
+        @attributes="@AdditionalAttributes">
+    @ChildContent
+</button>

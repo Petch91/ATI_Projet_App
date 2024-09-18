@@ -1,11 +1,11 @@
 ﻿using ATI_Projet_Cultures.Locales;
+using ATI_Projet_Cultures.Tools;
 using ATI_Projet_Models;
 using ATI_Projet_Models.Models.Projets;
 using ATI_Projet_Tools.Services.Interfaces;
 using ATI_Projets_Models;
-using BlazorBootstrap;
-using Blazorise;
-using Blazorise.Components;
+using BlazorBootstrapPerso;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.QuickGrid;
 using Microsoft.Extensions.Localization;
@@ -14,13 +14,14 @@ using System.Threading;
 
 namespace ATI_Projet_Components.Projets;
 
-public partial class BC14 : ComponentBase
+public partial class BC14 : ComponentBase, IDisposable
 {
    [Inject] private IProjet _projet { get; set; }
    [Inject] private IPersonnel _personnel { get; set; }
 
    [Inject] private NavigationManager _navigationManager { get; set; }
    [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
+   [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
 
    private IEnumerable<ProjetBC14> ProjetsATI { get; set; }
    private IEnumerable<FicheBC14> ProjetsBC14 { get; set; }
@@ -37,9 +38,9 @@ public partial class BC14 : ComponentBase
    private bool isPatch = false;
 
    private Grid<CompBC14> grid = new Grid<CompBC14>();
-   private BlazorBootstrap.Modal modal;
+   private BlazorBootstrapPerso.Modal modal;
 
-   private BlazorBootstrap.Modal modalSelect;
+   private BlazorBootstrapPerso.Modal modalSelect;
 
    private int index = 0;
    private string _no = "";
@@ -49,6 +50,8 @@ public partial class BC14 : ComponentBase
 
    protected async override Task OnInitializedAsync()
    {
+      LanguageNotifier.SubscribeLanguageChange(this);
+      LanguageNotifier.SubscribeLanguageChange(grid);
       ProjetsATI = await _projet.GotProjetsBc14();
       ProjetsBC14 = await _projet.GotFichesBc14();
       employeList = await _personnel.GotPersonnelList();
@@ -64,6 +67,8 @@ public partial class BC14 : ComponentBase
       //StateHasChanged();
 
    }
+
+   public void Dispose() { LanguageNotifier.UnsubscribeLanguageChange(this); LanguageNotifier.UnsubscribeLanguageChange(grid); }
 
    private void Compare()
    {

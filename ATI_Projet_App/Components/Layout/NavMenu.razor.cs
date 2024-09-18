@@ -3,11 +3,14 @@ using ATI_Projet_App.Tools;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using System.Globalization;
+using ATI_Projet_Cultures.Tools;
+using Microsoft.Extensions.Options;
 
 namespace ATI_Projet_App.Components.Layout
 {
-   public partial class NavMenu
+   public partial class NavMenu : IDisposable
    {
+      [Inject] private IOptions<RequestLocalizationOptions> options { get; set; }
       [Inject]
       private SessionManager session { get; set; }
 
@@ -16,36 +19,19 @@ namespace ATI_Projet_App.Components.Layout
       [Inject]
       private NavigationManager navigationManager { get; set; }
 
+      [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
+
       private User? connectedUser;
 
-      private string drapeauFR;
-      private string drapeauUS;
+      private string culture;
 
-      private CultureInfo culture
-      {
-         get
-         {
-            return CultureInfo.CurrentCulture;
-         }
 
-         set
-         {
-            if (value != null && CultureInfo.CurrentCulture != value)
-            {
-               var uri = new Uri(navigationManager.Uri).GetComponents(UriComponents.PathAndQuery, UriFormat.Unescaped);
-               var cultureEscaped = Uri.EscapeDataString(value.Name);
-               var uriEscaped = Uri.EscapeDataString(uri);
-
-               navigationManager.NavigateTo($"Culture/Set?culture={cultureEscaped}&redirectUri={uriEscaped}", true);
-            }
-         }
+      protected override void OnInitialized() 
+      { 
+         LanguageNotifier.SubscribeLanguageChange(this); 
+         culture = options.Value.DefaultRequestCulture.Culture.ToString();
       }
-
-      protected override async void OnInitialized()
-      {
-         culture = CultureInfo.CurrentCulture;
-         StateHasChanged();
-      }
+      public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 
       protected override async Task OnAfterRenderAsync(bool firstRender)
       {
@@ -62,6 +48,19 @@ namespace ATI_Projet_App.Components.Layout
          await session.Logout();
          navigationManager.NavigateTo("http://ati-portal.be/logout", true);
          //navigationManager.NavigateTo("/login",true);
+      }
+
+      private async Task OnChangeLanguageAsync(ChangeEventArgs e)
+      {
+         string selectedCulture = e.Value as string;
+
+         if (!string.IsNullOrEmpty(selectedCulture))
+         {
+            await storage.SetAsync("Language", selectedCulture);
+            options.Value.SetDefaultCulture(selectedCulture);
+            LanguageNotifier.CurrentCulture = CultureInfo.GetCultureInfo(selectedCulture);
+            //StateHasChanged();
+         }
       }
    }
 }

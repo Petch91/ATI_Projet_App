@@ -7,13 +7,14 @@ using ATI_Projet_Tools.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
 using System.Net.Http;
-using BlazorBootstrap;
+using BlazorBootstrapPerso;
 using System.Globalization;
 using ATI_Projets_Models;
+using ATI_Projet_Cultures.Tools;
 
 namespace ATI_Projet_Components.Projets
 {
-   public partial class Fiche : ComponentBase
+   public partial class Fiche : ComponentBase, IDisposable
    {
 
       [Inject] private IProjet Projet { get; set; }
@@ -22,6 +23,7 @@ namespace ATI_Projet_Components.Projets
 
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
       [Inject] private IStringLocalizer<PaysResource> paysLocalizer { get; set; }
+      [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
 
       [Parameter] public EventCallback<int> ClientChanged { get; set; }
 
@@ -49,7 +51,7 @@ namespace ATI_Projet_Components.Projets
 
       protected async override Task OnInitializedAsync()
       {
-
+         LanguageNotifier.SubscribeLanguageChange(this);
          axesMarche = new List<AxeMarche>();
          axesMarche = await Projet.GotAxeMarche();
          departements = new List<DeptSimplifiedList>();
@@ -61,6 +63,8 @@ namespace ATI_Projet_Components.Projets
 
          StateHasChanged();
       }
+
+      public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 
       protected async override Task OnParametersSetAsync()
       {

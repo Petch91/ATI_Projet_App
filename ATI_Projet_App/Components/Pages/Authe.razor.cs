@@ -95,7 +95,7 @@ namespace ATI_Projet_App.Components.Pages
 
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     await sessionManager.Logout();
                     navigationManager.NavigateTo("http://ati-portal.be/logout", true);

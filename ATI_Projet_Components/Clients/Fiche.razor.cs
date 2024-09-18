@@ -1,25 +1,18 @@
 using ATI_Projet_Models;
-using ATI_Projet_Models.Models.Forms;
-using ATI_Projet_Models.Types;
-using ATI_Projet_Models.VCA;
-using ATI_Projets_Models;
-using BlazorBootstrap;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using System.Net.Http.Json;
 using Microsoft.Extensions.Localization;
-using System.Globalization;
 using ATI_Projet_Cultures.Locales;
-using Microsoft.Graph.Models.CallRecords;
 using ATI_Projet_Models.Models.Societes.Clients;
 using ATI_Projet_Models.Models.Projets;
 using ATI_Projet_Models.Models;
 using ATI_Projet_Tools.Services.Interfaces;
+using ATI_Projet_Cultures.Tools;
+using BlazorBootstrapPerso;
 
 
 namespace ATI_Projet_Components.Clients
 {
-   public partial class Fiche : ComponentBase
+   public partial class Fiche : ComponentBase, IDisposable
    {
       [Inject] private ICommon common { get; set; }
       [Inject] private NavigationManager navigationManager { get; set; }
@@ -27,6 +20,7 @@ namespace ATI_Projet_Components.Clients
       [Inject] private ISociete societe { get; set; }
 
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
+      [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
 
       [Parameter] public EventCallback<int> ClientChanged { get; set; }
 
@@ -48,10 +42,13 @@ namespace ATI_Projet_Components.Clients
 
       private Offcanvas offcanvas = default!;
 
+      private Tab tabs = default!;
+
 
       protected async override Task OnInitializedAsync()
       {
-
+         LanguageNotifier.SubscribeLanguageChange(this);
+         LanguageNotifier.SubscribeLanguageChange(tabs);
          var res = await societe.GotClientList();
          Liste = res.ToList();
          axesMarche = new List<AxeMarche>();
@@ -59,6 +56,11 @@ namespace ATI_Projet_Components.Clients
          departements = new List<DeptSimplifiedList>();
          departements = await common.GetDepts();
          StateHasChanged();
+      }
+      public void Dispose()
+      {
+         LanguageNotifier.UnsubscribeLanguageChange(this);
+         LanguageNotifier.UnsubscribeLanguageChange(tabs);
       }
 
       protected async override Task OnParametersSetAsync()
