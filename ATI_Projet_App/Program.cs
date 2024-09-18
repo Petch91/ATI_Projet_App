@@ -36,7 +36,7 @@ builder.Services
 builder.Services.AddBlazorBootstrapPerso();
 //builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://192.168.123.69:7001/api/") });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://192.168.123.238:7001/api/") });
 //TestDeveloppement 
 //builder.Services.AddTransient(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7214/api/") });
 builder.Services.AddScoped<ProtectedLocalStorage>();
@@ -44,7 +44,9 @@ builder.Services.AddScoped<SessionManager>();
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 builder.Services.AddScoped<ApiRequester>();
 
-builder.Services.AddHttpClient("api", c => { c.BaseAddress = new Uri("http://192.168.123.69:7001/api/"); });
+
+builder.Services.AddHttpClient("api", c => { c.BaseAddress = new Uri("http://192.168.123.238:7001/api/"); });
+builder.Services.AddHttpClient();
 builder.Services.AddHttpClient("BC14", c =>
 {
    c.BaseAddress = new Uri("https://bc14-test.eesb.be:7348/BC14-TEST-NUP/ODataV4/Company('ATI%20Indus')/");
@@ -55,7 +57,7 @@ builder.Services.AddHttpClient("BC14", c =>
    var authToken = Encoding.ASCII.GetBytes($"{username}:{password}");
    var authHeaderValue = Convert.ToBase64String(authToken);
 
-   // Ajoutez l'en-tête d'autorisation
+   // Ajoutez l'en-tÃªte d'autorisation
    c.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
 });
 

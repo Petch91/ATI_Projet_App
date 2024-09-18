@@ -15,13 +15,13 @@
          </button>
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-4">
-               <li class="nav-item dropdown">
+@*                <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                      @localizer["Personnel"].Value
                   </a>
                   <ul class="dropdown-menu">
                      <li><NavLink class="link dropdown-item" href="Personnel">@localizer["Liste"].Value</NavLink></li>
-                     @*                             <li><NavLink class="link dropdown-item" href="EmployeProfil/recherche">Recherche</NavLink></li> *@
+                                                  <li><NavLink class="link dropdown-item" href="EmployeProfil/recherche">Recherche</NavLink></li> 
                   </ul>
                </li>
                <li class="nav-item dropdown">
@@ -30,17 +30,27 @@
                   </a>
                   <ul class="dropdown-menu">
                      <li><NavLink class="link dropdown-item" href="Client">@localizer["Liste"].Value</NavLink></li>
-                     @*                             <li><NavLink class="link dropdown-item" href="EmployeProfil/recherche">Recherche</NavLink></li> *@
+                                                  <li><NavLink class="link dropdown-item" href="EmployeProfil/recherche">Recherche</NavLink></li> 
                   </ul>
                </li>
                <li class="nav-item">
                <li><NavLink class="nav-link dropdown-toggle" href="gestion">@localizer["Gestion"]</NavLink></li>
+               </li> *@
+               <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     @localizer["Projets"].Value
+                  </a>
+                  <ul class="dropdown-menu">
+                     <li><NavLink class="link dropdown-item" href="BC14">@localizer["Synchro des Responsables"]</NavLink></li>
+                  </ul>
                </li>
             </ul>
             <div class="d-flex gap-3 align-items-center">
 
+
                <NavLink class="link" href="@("Personnel/" + connectedUser.IdExterne)">@connectedUser.FirstName @connectedUser.LastName</NavLink>
                <select value="@culture" @onchange="OnChangeLanguageAsync">
+
                   <option value="fr-BE">FR @(browserName == "Firefox" ? "🇫🇷" : "")</option>
                   <option value="en-US">EN @(browserName == "Firefox" ? "🇺🇸" : "")</option>
                </select>

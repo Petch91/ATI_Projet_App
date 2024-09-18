@@ -75,7 +75,7 @@ namespace ATI_Projet_App.Tools
       {
 
          //_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", result.Value);
-         using (HttpResponseMessage response = await _client.PostAsJsonAsync<LoginExt>($"http://192.168.123.69:7000/api/user/token/", new LoginExt { Id = Id, HashToken = HashToken }))
+         using (HttpResponseMessage response = await _client.PostAsJsonAsync<LoginExt>($"http://localhost:7000/api/user/token/", new LoginExt { Id = Id, HashToken = HashToken }))
          {
             if (response.IsSuccessStatusCode)
             {
