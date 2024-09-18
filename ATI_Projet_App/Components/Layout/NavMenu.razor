@@ -40,10 +40,10 @@
             <div class="d-flex gap-3 align-items-center">
 
                <NavLink class="link" href="@("Personnel/" + connectedUser.IdExterne)">@connectedUser.FirstName @connectedUser.LastName</NavLink>
-               <InputSelect @bind-Value="culture">
+               <select value="@culture" @onchange="OnChangeLanguageAsync">
                   <option value="fr-BE">FR @(browserName == "Firefox" ? "🇫🇷" : "")</option>
                   <option value="en-US">EN @(browserName == "Firefox" ? "🇺🇸" : "")</option>
-               </InputSelect>
+               </select>
                <button class="btn btn-outline-danger" @onclick="Logout">@localizer["Se Déconnecter"]</button>
             </div>
          </div>

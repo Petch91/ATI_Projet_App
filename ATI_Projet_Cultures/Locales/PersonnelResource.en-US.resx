@@ -453,6 +453,18 @@
   <data name="Modification" xml:space="preserve">
     <value>Change</value>
   </data>
+  <data name="N de Compte Bancaire" xml:space="preserve">
+    <value>Bank account no.</value>
+  </data>
+  <data name="N de T.V.A." xml:space="preserve">
+    <value>VAT number</value>
+  </data>
+  <data name="N du cahier des charges" xml:space="preserve">
+    <value>Specifications no.</value>
+  </data>
+  <data name="N Reg. Commerce" xml:space="preserve">
+    <value>Trade register no.</value>
+  </data>
   <data name="Nationalité" xml:space="preserve">
     <value>Nationality</value>
   </data>
@@ -483,20 +495,8 @@
   <data name="Numéro National" xml:space="preserve">
     <value>National number</value>
   </data>
-  <data name="N° de commande client" xml:space="preserve">
+  <data name="N de commande client" xml:space="preserve">
     <value>Customer order no.</value>
-  </data>
-  <data name="N° de Compte Bancaire" xml:space="preserve">
-    <value>Bank account no.</value>
-  </data>
-  <data name="N° de T.V.A." xml:space="preserve">
-    <value>VAT number</value>
-  </data>
-  <data name="N° du cahier des charges" xml:space="preserve">
-    <value>Specifications no.</value>
-  </data>
-  <data name="N° Reg. Commerce" xml:space="preserve">
-    <value>Trade register no.</value>
   </data>
   <data name="Ouvrier" xml:space="preserve">
     <value>Worker</value>
@@ -510,7 +510,7 @@
   <data name="P.E. Maintenance Industrielle" xml:space="preserve">
     <value>P.E. Industrial Maintenance</value>
   </data>
-  <data name="Pas d'Envoi =&gt; CMR" xml:space="preserve">
+  <data name="Pas d'Envoi vers CMR" xml:space="preserve">
     <value>No Send =&gt; CMR</value>
   </data>
   <data name="Pays" xml:space="preserve">
@@ -641,5 +641,11 @@
   </data>
   <data name="Voulez vous vraiment supprimer" xml:space="preserve">
     <value>Do you really want to delete</value>
+  </data>
+  <data name="Changer La Photo" xml:space="preserve">
+    <value>Change Picture</value>
+  </data>
+  <data name="Changer La Signature" xml:space="preserve">
+    <value>Change Signature</value>
   </data>
 </root>

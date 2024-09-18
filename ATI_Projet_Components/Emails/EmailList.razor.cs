@@ -1,16 +1,18 @@
 using ATI_Projet_Components.Personnel;
+using ATI_Projet_Cultures.Tools;
 using ATI_Projet_Models;
 using ATI_Projet_Tools.Services.Interfaces;
-using BlazorBootstrap;
+using BlazorBootstrapPerso;
 using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
 using System.Runtime.InteropServices;
 
 namespace ATI_Projet_Components.Emails
 {
-   public partial class EmailList
+   public partial class EmailList : IDisposable
    {
       [Inject] private ICommon common { get; set; }
+      [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
 
       [Parameter]
       public List<Email> emails { get; set; }
@@ -28,6 +30,9 @@ namespace ATI_Projet_Components.Emails
 
 
       List<ToastMessage> messages = new List<ToastMessage>();
+
+      protected override void OnInitialized() => LanguageNotifier.SubscribeLanguageChange(this);
+      public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 
 
       private async Task ShowEdit(object id)

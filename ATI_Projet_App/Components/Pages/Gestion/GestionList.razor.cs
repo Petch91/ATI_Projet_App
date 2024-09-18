@@ -2,7 +2,7 @@ using ATI_Projet_Components;
 using ATI_Projet_Models;
 using ATI_Projet_Models.Types;
 using ATI_Projet_Models.VCA;
-using BlazorBootstrap;
+using BlazorBootstrapPerso;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Graph.Models;
 using Microsoft.Graph.Models.Security;
@@ -12,28 +12,32 @@ using Microsoft.Extensions.Localization;
 using System.Globalization;
 using ATI_Projet_Cultures.Locales;
 using ATI_Projet_Tools.Services.Interfaces;
+using ATI_Projet_Cultures.Tools;
 
 namespace ATI_Projet_App.Components.Pages.Gestion
 {
-   public partial class GestionList : ComponentBase
+   public partial class GestionList : ComponentBase, IDisposable
    {
       [Inject] private IPersonnel personnel {  get; set; }
       [Inject] private ICommon common { get; set; }
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
+      [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
 
       private List<Type> Liste { get; set; } = new List<Type> { typeof(Fonction), typeof(FonctionVCA), typeof(StatusVCA), typeof(TypeContrat), typeof(TypeMO) };
       private List<object> items = new List<object>();
 
       private string type = "Fonction";
 
-      private Modal modal { get; set; }
-      private ConfirmDialog dialog;
+      //private Modal modal { get; set; }
+      //private ConfirmDialog dialog;
 
       protected async override Task OnInitializedAsync()
       {
+         LanguageNotifier.SubscribeLanguageChange(this);
          var list = await personnel.GotFonctions();
          items = list.Cast<object>().ToList();
       }
+      public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 
 
       private async Task SelectChange(string classe)
@@ -82,7 +86,7 @@ namespace ATI_Projet_App.Components.Pages.Gestion
          var parameters = new Dictionary<string, object>();
          parameters.Add("Item", item);
          parameters.Add("SubmitEvent", EventCallback.Factory.Create<T>(this, Edit));
-         await modal.ShowAsync<EditGeneric<T>>(title: title, parameters: parameters);
+         //await modal.ShowAsync<EditGeneric<T>>(title: title, parameters: parameters);
       }
 
       private async Task OpenEdit<T>(object id)
@@ -129,7 +133,7 @@ namespace ATI_Projet_App.Components.Pages.Gestion
          var parameters = new Dictionary<string, object>();
          parameters.Add("Item", item);
          parameters.Add("SubmitEvent", EventCallback.Factory.Create<T>(this, Create));
-         await modal.ShowAsync<EditGeneric<T>>(title: title, parameters: parameters);
+        //await modal.ShowAsync<EditGeneric<T>>(title: title, parameters: parameters);
       }
 
       private async Task OpenModalAdd()
@@ -166,7 +170,7 @@ namespace ATI_Projet_App.Components.Pages.Gestion
             _ => throw new ArgumentException($"Type {typeof(T)} not supported."),
          };
          await personnel.EditGeneric<T>(url, entity);
-         await modal.HideAsync();
+         //await modal.HideAsync();
          StateHasChanged();
       }
 
@@ -182,7 +186,7 @@ namespace ATI_Projet_App.Components.Pages.Gestion
             _ => throw new ArgumentException($"Type {typeof(T)} not supported."),
          };
          await personnel.CreateGeneric<T>(url, entity);
-         await modal.HideAsync();
+         //await modal.HideAsync();
          await SelectChange(type);
          StateHasChanged();
       }
@@ -191,7 +195,8 @@ namespace ATI_Projet_App.Components.Pages.Gestion
          var options = new ConfirmDialogOptions { Size = DialogSize.Large };
          var parameters = new Dictionary<string, object>();
          parameters.Add("Item", entity);
-         return await dialog.ShowAsync<ShowGeneric<T>>(title, parameters, options);
+         return false;
+         //return await dialog.ShowAsync<ShowGeneric<T>>(title, parameters, options);
       }
       public async Task Delete<T>(object id)
       {

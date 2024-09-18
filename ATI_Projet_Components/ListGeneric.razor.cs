@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Reflection;
 using ATI_Projet_Cultures.Locales;
 using Microsoft.Extensions.Localization;
+using ATI_Projet_Cultures.Tools;
 
 namespace ATI_Projet_Components
 {
@@ -16,9 +17,10 @@ namespace ATI_Projet_Components
    /// si le nom de la propriètés ne vous convient pas vous pouvez utiliser l'attribut DisplayName
    /// </summary>
    /// <typeparam name="TItem"></typeparam>
-   public partial class ListGeneric<TItem> : ComponentBase where TItem : class
+   public partial class ListGeneric<TItem> : ComponentBase, IDisposable where TItem : class
    {
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
+      [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
 
       [Parameter]
       public IEnumerable<TItem> Items { get; set; }
@@ -52,6 +54,9 @@ namespace ATI_Projet_Components
       }
 
       PaginationState pagination = new PaginationState { ItemsPerPage = 15 };
+
+      protected override void OnInitialized() => LanguageNotifier.SubscribeLanguageChange(this);
+      public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 
       protected override void OnParametersSet()
       {

@@ -1,5 +1,5 @@
 using ATI_Projet_Models;
-using BlazorBootstrap;
+using BlazorBootstrapPerso;
 using Microsoft.AspNetCore.Components;
 using System.Globalization;
 using System.Net.Http.Json;
@@ -7,19 +7,20 @@ using Microsoft.Extensions.Localization;
 using ATI_Projet_Cultures.Locales;
 using ATI_Projet_Models.Events;
 using ATI_Projet_Tools.Services.Interfaces;
+using ATI_Projet_Cultures.Tools;
 
 namespace ATI_Projet_Components.Personnel
 {
-   public partial class InfoPriv : ComponentBase
+   public partial class InfoPriv : ComponentBase, IDisposable
    {
-      [Inject] private IPersonnel personnel {  get; set; }
+      [Inject] private IPersonnel personnel { get; set; }
 
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
-
       [Inject] private IStringLocalizer<LangueResource> langLocalizer { get; set; }
-
       [Inject] private IStringLocalizer<NationaliteResource> natLocalizer { get; set; }
       [Inject] private IStringLocalizer<PaysResource> paysLocalizer { get; set; }
+      [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
+
 
       [Parameter]
       public EmployePrivate EmployePrivate { get; set; }
@@ -36,6 +37,7 @@ namespace ATI_Projet_Components.Personnel
 
       protected override void OnInitialized()
       {
+         LanguageNotifier.SubscribeLanguageChange(this);
          var dico = langLocalizer.GetAllStrings().ToDictionary(x => x.Name, x => x.Value);
          var valeurs = dico.Values.ToList();
          valeurs.Sort();
@@ -44,7 +46,7 @@ namespace ATI_Projet_Components.Personnel
          {
             foreach (var kvp in dico)
             {
-               if(kvp.Value == value)
+               if (kvp.Value == value)
                {
                   Langues.Add(kvp.Key, value);
                   break;
@@ -85,6 +87,7 @@ namespace ATI_Projet_Components.Personnel
          StateHasChanged();
       }
 
+      public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 
       protected async override Task OnParametersSetAsync()
       {

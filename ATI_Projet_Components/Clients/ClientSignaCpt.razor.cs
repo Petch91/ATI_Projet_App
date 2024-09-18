@@ -1,4 +1,5 @@
 ﻿using ATI_Projet_Cultures.Locales;
+using ATI_Projet_Cultures.Tools;
 using ATI_Projet_Models;
 using ATI_Projet_Models.Models.Societes.Clients;
 using ATI_Projet_Tools.Services.Interfaces;
@@ -8,10 +9,11 @@ using System.Globalization;
 
 namespace ATI_Projet_Components.Clients;
 
-public partial class ClientSignaCpt : ComponentBase
+public partial class ClientSignaCpt : ComponentBase, IDisposable
 {
    [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
    [Inject] private IStringLocalizer<PaysResource> paysLocalizer { get; set; }
+   [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
 
    [Inject] private ICommon common { get; set; }
    [Inject] private ISociete societe { get; set; }
@@ -25,15 +27,8 @@ public partial class ClientSignaCpt : ComponentBase
    private string CodePays = "be";
    private Dictionary<string, string> Pays { get; set; }
 
-   //protected async override void OnInitialized()
-   //{
-
-   //   Pays = new Dictionary<string, string>();
-   //   if (CultureInfo.CurrentCulture.Equals(new CultureInfo("fr-BE"))) Pays = await common.GetCountrys("fr");
-
-   //   else Pays = await common.GetCountrys("en");
-   //   StateHasChanged();
-   //}
+   protected override void OnInitialized() => LanguageNotifier.SubscribeLanguageChange(this);
+   public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 
    protected async override Task OnParametersSetAsync()
    {

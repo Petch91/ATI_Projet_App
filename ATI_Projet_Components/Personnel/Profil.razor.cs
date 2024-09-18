@@ -2,7 +2,7 @@ using ATI_Projet_Models;
 using ATI_Projet_Models.Models.Forms;
 using ATI_Projet_Models.Types;
 using ATI_Projet_Models.VCA;
-using BlazorBootstrap;
+using BlazorBootstrapPerso;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
@@ -11,6 +11,7 @@ using Microsoft.Extensions.Localization;
 using System.Globalization;
 using ATI_Projet_Cultures.Locales;
 using ATI_Projet_Tools.Services.Interfaces;
+using ATI_Projet_Cultures.Tools;
 
 namespace ATI_Projet_Components.Personnel
 {
@@ -22,12 +23,13 @@ namespace ATI_Projet_Components.Personnel
       Total = 9
 
    }
-   public partial class Profil
+   public partial class Profil : IDisposable
    {
       [Inject] private ICommon common {  get; set; }
       [Inject] private IPersonnel personnel { get; set; }
 
       [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
+      [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
 
       [Parameter]
       public EmployeProfil EmployeProfil { get; set; }
@@ -47,6 +49,7 @@ namespace ATI_Projet_Components.Personnel
 
       protected async override Task OnInitializedAsync()
       {
+         LanguageNotifier.SubscribeLanguageChange(this);
          fonctions = new List<Fonction>();
          fonctions = await personnel.GotFonctions();
          fonctionsVCA = new List<FonctionVCA>();
@@ -61,6 +64,7 @@ namespace ATI_Projet_Components.Personnel
          departements = await common.GetDepts();
       }
 
+      public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 
       public async void Edit(EmployeProfil employeProfil)
       {

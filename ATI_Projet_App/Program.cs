@@ -9,17 +9,18 @@ using Blazorise.Bootstrap;
 using Blazorise.Icons.FontAwesome;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.WebEncoders;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using ATI_Projet_Cultures.Tools;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddLocalization();
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -32,8 +33,8 @@ builder.Services
     })
     .AddBootstrapProviders()
     .AddFontAwesomeIcons();
-builder.Services.AddBlazorBootstrap();
-builder.Services.AddHttpContextAccessor();
+builder.Services.AddBlazorBootstrapPerso();
+//builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("http://192.168.123.69:7001/api/") });
 //TestDeveloppement 
@@ -44,7 +45,6 @@ builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
 builder.Services.AddScoped<ApiRequester>();
 
 builder.Services.AddHttpClient("api", c => { c.BaseAddress = new Uri("http://192.168.123.69:7001/api/"); });
-builder.Services.AddHttpClient();
 builder.Services.AddHttpClient("BC14", c =>
 {
    c.BaseAddress = new Uri("https://bc14-test.eesb.be:7348/BC14-TEST-NUP/ODataV4/Company('ATI%20Indus')/");
@@ -74,15 +74,20 @@ builder.Services.Configure<WebEncoderOptions>(options =>
        UnicodeRanges.All);
 });
 
+builder.Services.AddLocalization();
+builder.Services.AddScoped<LanguageChangeNotifier>();
+builder.Services.AddScoped(typeof(IStringLocalizer<>), typeof(CustomStringLocalizer<>));
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+   options.SetDefaultCulture("fr-BE");
+   options.AddSupportedCultures(new[] { "fr-BE", "en-US" });
+   options.AddSupportedUICultures(new[] { "fr-BE", "en-US" });
+});
+
 var app = builder.Build();
 
-string[] supportedCultures = ["fr-BE", "en-US"];
-var localizationOptions = new RequestLocalizationOptions()
-                                                    .SetDefaultCulture(supportedCultures[0])
-                                                    .AddSupportedCultures(supportedCultures)
-                                                    .AddSupportedUICultures(supportedCultures);
 
-app.UseRequestLocalization(localizationOptions);
+app.UseRequestLocalization();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -97,7 +102,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapControllers();
+//app.MapControllers();
 
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
