@@ -17,19 +17,19 @@ namespace ATI_Projet_App.Components.Layout
       [Inject]
       private NavigationManager navigationManager { get; set; }
 
-      private EmployeProfil? connectedUser;
+      //private EmployeProfil? connectedUser;
 
 
-      protected override async Task OnAfterRenderAsync(bool firstRender)
-      {
-         //return base.OnAfterRenderAsync(firstRender);
-         if (firstRender)
-         {
-            var result = await storage.GetAsync<User>("ConnectedUser");
-            if (result.Value != null) connectedUser = await personnel.GotProfil(result.Value.IdExterne);
-            StateHasChanged();
-         }
-      }
+      //protected override async Task OnAfterRenderAsync(bool firstRender)
+      //{
+      //   //return base.OnAfterRenderAsync(firstRender);
+      //   if (firstRender)
+      //   {
+      //      var result = await storage.GetAsync<User>("ConnectedUser");
+      //      if (result.Value != null) connectedUser = await personnel.GotProfil(result.Value.IdExterne);
+      //      StateHasChanged();
+      //   }
+      //}
 
         public void GoLogin()
         {
