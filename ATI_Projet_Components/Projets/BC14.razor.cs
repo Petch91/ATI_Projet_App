@@ -9,7 +9,9 @@ using BlazorBootstrapPerso;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.QuickGrid;
 using Microsoft.Extensions.Localization;
+using Microsoft.Graph.Drives.Item.Items.Item.Workbook.Functions.Log10;
 using Microsoft.JSInterop;
+using Serilog;
 using System.Data;
 using System.Text.Json;
 using System.Threading;
@@ -77,39 +79,53 @@ public partial class BC14 : ComponentBase, IDisposable
 
    private void Compare()
    {
-      int i = 0;
-      foreach (var p in ProjetsATI)
-      {
-         FicheBC14 f;
-         bool isNotImpNumber = string.IsNullOrEmpty(p.ImpNumb);
-         if (isNotImpNumber) f = ProjetsBC14.FirstOrDefault(x => x.CompNumber == p.CompNumber);
-         else f = ProjetsBC14.FirstOrDefault(x => x.No == p.ImpNumb);
-         var employe = employeList.First(e => e.Id == p.RespFacturationId);
-
-         if (f != null && int.Parse(f.Person_Responsible) != p.RespFacturationId && f.Responsable_Nom.ToLower() != employe.FullName.ToLower())
-         {
-            CompBC14 projet = new CompBC14
+        FicheBC14 temp = new();
+        try
+        {
+            int i = 0;
+            foreach (var p in ProjetsATI)
             {
-               No = f.No,
-               RespFacturationId = p.RespFacturationId,
-               RespATI = employe.FullName,
-               Person_Responsible = f.Person_Responsible,
-               RespBC14 = f.Responsable_Nom,
-               ClientName = p.ClientName,
-               CompNumberATI = isNotImpNumber ? p.CompNumber : p.ImpNumb ?? p.CompNumber,
-               CompNumberBC = f.CompNumber,
-               Description = f.Description,
-               Designation = p.Designation,
-               NewPerson = employe.Actif ? p.RespFacturationId : 0,
-               NewPersonName = employe.Actif ? employe.FullName : "NA",
-            };
-            CompList.Add(projet);
+                FicheBC14 f;
+                bool isNotImpNumber = string.IsNullOrEmpty(p.ImpNumb);
+                if (isNotImpNumber) f = ProjetsBC14.FirstOrDefault(x => x.CompNumber == p.CompNumber);
+                else f = ProjetsBC14.FirstOrDefault(x => x.No == p.ImpNumb);
+                temp = f;
+                var employe = employeList.First(e => e.Id == p.RespAffaireId);
 
-         }
+                if (f != null && !string.IsNullOrEmpty(f.Person_Responsible) && int.Parse(f.Person_Responsible) != p.RespAffaireId && f.Responsable_Nom.ToLower() != employe.FullName.ToLower())
+                {
+                    CompBC14 projet = new CompBC14
+                    {
+                        No = f.No,
+                        RespAffaireId = p.RespAffaireId,
+                        RespATI = employe.FullName,
+                        Person_Responsible = f.Person_Responsible,
+                        RespBC14 = f.Responsable_Nom,
+                        ClientName = p.ClientName,
+                        CompNumberATI = isNotImpNumber ? p.CompNumber : p.ImpNumb ?? p.CompNumber,
+                        CompNumberBC = f.CompNumber,
+                        Description = f.Description,
+                        Designation = p.Designation,
+                        NewPerson = employe.Actif ? p.RespAffaireId : 0,
+                        NewPersonName = employe.Actif ? employe.FullName : "NA",
+                    };
+                    CompList.Add(projet);
 
-      }
-      CompList = CompList.OrderBy(comp => comp.No).ToList();
-      IQueryCompList = CompList.AsQueryable();
+                }
+                else if (f != null && string.IsNullOrEmpty(f.Person_Responsible))
+                {
+                    Console.WriteLine($"ce client {f.Description} n'a pas de responsable");
+                }
+
+            }
+            CompList = CompList.OrderBy(comp => comp.No).ToList();
+            IQueryCompList = CompList.AsQueryable();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            throw;
+        }
 
    }
 

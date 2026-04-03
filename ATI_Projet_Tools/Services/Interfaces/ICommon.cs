@@ -16,5 +16,7 @@ namespace ATI_Projet_Tools.Services.Interfaces
       Task DeleteEmail(string url);
       Task<HttpResponseMessage> EditTelephone(Telephone telephone);
       Task DeleteTelephone(string url);
+
+      Task UpdateDB();
    }
 }

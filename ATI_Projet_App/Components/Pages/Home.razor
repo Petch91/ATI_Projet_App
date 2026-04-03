@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using ATI_Projet_Cultures.Tools
+@using ATI_Projet_Tools.Services.Interfaces
 @using Microsoft.Extensions.Localization
 @using System.Globalization
 @using ATI_Projet_Cultures.Locales
@@ -9,11 +10,16 @@
 <PageTitle>Home</PageTitle>
 
 <div class="d-flex justify-content-center">
-    <h1>@localizer["Bienvenue sur ATI Projets"]</h1>
+   <h1>@localizer["Bienvenue sur ATI Projets"]</h1>
 </div>
 
-@code{
+@code {
    [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
+   [Inject] private ICommon common { get; set; }
    protected override void OnInitialized() => LanguageNotifier.SubscribeLanguageChange(this);
+   protected async override Task OnInitializedAsync()
+   {
+      await common.UpdateDB();
+   }
    public void Dispose() => LanguageNotifier.UnsubscribeLanguageChange(this);
 }
