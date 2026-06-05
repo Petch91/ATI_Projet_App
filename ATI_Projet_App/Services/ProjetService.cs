@@ -44,6 +44,25 @@ namespace ATI_Projet_App.Services
          return new List<FicheBC14>();
       }
 
+      public async Task<IEnumerable<FicheBC14>> GotAllFichesBc14()
+      {
+         using var client = _httpClientFactory.CreateClient("BC14");
+         var reponse = await client.GetAsync("Job?$select=No,Description,Person_Responsible,Responsable_Nom,Status,Status_EEB");
+         if (reponse.IsSuccessStatusCode)
+         {
+            var jsonResponse = await reponse.Content.ReadAsStringAsync();
+            var options = new JsonSerializerOptions
+            {
+               PropertyNameCaseInsensitive = true
+            };
+
+            var ficheBC14List = System.Text.Json.JsonSerializer.Deserialize<ODataResponse<FicheBC14>>(jsonResponse, options);
+            return ficheBC14List.Value;
+         }
+
+         return new List<FicheBC14>();
+      }
+
       public async Task<IEnumerable<RessourceBC14>> GotRessourcesBc14()
       {
          using var client = _httpClientFactory.CreateClient("BC14");
@@ -76,6 +95,12 @@ namespace ATI_Projet_App.Services
       {
          using var client = _httpClientFactory.CreateClient("api");
          return await client.GetFromJsonAsync<IEnumerable<ProjetBC14>>("Projet/BC14");
+      }
+
+      public async Task<IEnumerable<ProjetBC14>> GotProjetsCompStatut()
+      {
+         using var client = _httpClientFactory.CreateClient("api");
+         return await client.GetFromJsonAsync<IEnumerable<ProjetBC14>>("Projet/CompStatut");
       }
 
       public async Task<IEnumerable<StatutProjet>> GotStatuts()

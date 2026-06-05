@@ -618,6 +618,15 @@
   <data name="Synchro des Responsables" xml:space="preserve">
     <value>Synchro des Responsables</value>
   </data>
+  <data name="Comparaison des Statuts" xml:space="preserve">
+    <value>Comparaison des Statuts</value>
+  </data>
+  <data name="Statut" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="Tous les statuts sont synchronisés" xml:space="preserve">
+    <value>Tous les statuts sont synchronisés</value>
+  </data>
   <data name="T - Forfait" xml:space="preserve">
     <value>T - Forfait</value>
   </data>

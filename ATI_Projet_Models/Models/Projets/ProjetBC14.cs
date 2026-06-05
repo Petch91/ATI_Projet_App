@@ -15,6 +15,7 @@ namespace ATI_Projet_Models.Models.Projets
         public int RespFacturationId { get; set; }
         public int RespAffaireId { get; set; }
         public int ClientId { get; set; }
+        public int SpId { get; set; }
         public string? ImpNumb { get; set; }
         public string CompNumber
         {

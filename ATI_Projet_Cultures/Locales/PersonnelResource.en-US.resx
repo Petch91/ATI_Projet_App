@@ -612,6 +612,15 @@
   <data name="Synchro des Responsables" xml:space="preserve">
     <value>Manager Sync</value>
   </data>
+  <data name="Comparaison des Statuts" xml:space="preserve">
+    <value>Status Comparison</value>
+  </data>
+  <data name="Statut" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Tous les statuts sont synchronisés" xml:space="preserve">
+    <value>All statuses are synced</value>
+  </data>
   <data name="T - Forfait" xml:space="preserve">
     <value>T - Fixed price</value>
   </data>

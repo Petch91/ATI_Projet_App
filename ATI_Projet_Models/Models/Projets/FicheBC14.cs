@@ -12,6 +12,8 @@ namespace ATI_Projet_Models.Models.Projets
       public string Description { get; set; }
       public string Person_Responsible { get; set; }
       public string Responsable_Nom { get; set; }
+      public string Status { get; set; }
+      public string Status_EEB { get; set; }
       public string CompNumber
       {
          get
