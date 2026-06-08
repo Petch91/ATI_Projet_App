@@ -1,0 +1,73 @@
+@using ATI_Projet_Models.Models.Projets
+@using ATI_Projets_Models
+@using Blazorise.Components
+
+@if (isError)
+{
+   <div class="alert alert-danger m-3" role="alert">
+      <h5><Icon Name="IconName.ExclamationTriangleFill" /> @errorMessage</h5>
+   </div>
+}
+else
+{
+<div class="d-flex flex-column flex-xl-row">
+   <div class="m-2 ml-3 flex-grow-1" style="min-width: 0;">
+      <Grid @ref="grid"
+            TItem="CompStatutBC14"
+            Class="table table-bordered table-striped"
+            Data="CompList"
+            Responsive="true"
+            AllowFiltering="true"
+            AllowPaging="true"
+            AllowSorting="true"
+            PageSize="@pageSize"
+            PageSizeSelectorVisible="true"
+            PageSizeSelectorItems="pageSizeItems"
+            ItemsPerPageText="@localizer["Eléments par page"]"
+            FiltersRowCssClass="bg-dark text-white bg-opacity-25 border-bottom-0"
+            HeaderRowCssClass="bg-dark text-white bg-opacity-50 border-bottom-0 gridHead"
+            ItemsByPageChanged="PageSizeChanged">
+
+         <GridColumn TItem="CompStatutBC14" HeaderText="@(localizer["Code"] + " BC14")" PropertyName="No" SortKeySelector="i => i.No">
+            @context.No
+         </GridColumn>
+         <GridColumn TItem="CompStatutBC14" HeaderText="@localizer["Client"]" PropertyName="ClientName" SortKeySelector="i => i.ClientName" ColumnClass="@(x => "text-capitalize")">
+            @context.ClientName.ToLower()
+         </GridColumn>
+         <GridColumn TItem="CompStatutBC14" HeaderText="@localizer["Nom du Projet (ATI)"]" PropertyName="Designation" SortKeySelector="i => i.Designation">
+            @context.Designation
+         </GridColumn>
+         <GridColumn TItem="CompStatutBC14" HeaderText="@(localizer["Statut"] + " ATI (AtiProjets)")" PropertyName="StatutATI" SortKeySelector="i => i.StatutATI" ColumnClass="@(x => x.IsStatutMismatch ? "fw-semibold text-danger" : "fw-semibold")">
+            @context.StatutATI
+         </GridColumn>
+         <GridColumn TItem="CompStatutBC14" HeaderText="@(localizer["Statut"] + " EEB (BC14)")" PropertyName="StatutEEB" SortKeySelector="i => i.StatutEEB" ColumnClass="@(x => x.IsStatutMismatch ? "fw-semibold text-danger" : "fw-semibold")">
+            @context.StatutEEB
+         </GridColumn>
+         <GridColumn TItem="CompStatutBC14" HeaderText="@(localizer["Statut"] + " BC14 (BC14)")" PropertyName="StatutBC14" SortKeySelector="i => i.StatutBC14" ColumnClass="@(x => "text-muted")">
+            @context.StatutBC14
+         </GridColumn>
+         <GridColumn TItem="CompStatutBC14" HeaderText="Actions" Filterable="false">
+            <Button Color="ButtonColor.Primary" Size="ButtonSize.ExtraSmall" @onclick=@(() => OpenInfo(context))><Icon Name="IconName.Info" /></Button>
+         </GridColumn>
+         <GridTemplates>
+            <GridEmptyDataTemplate TItem="CompStatutBC14">
+               @if (!isOK)
+               {
+                  <div class="d-flex justify-content-center align-items-center">
+                     <h1 class="text-muted">@localizer["Loading"] <Spinner Color="SpinnerColor.Secondary" /></h1>
+                  </div>
+               }
+               else
+               {
+                  <div class="text-center p-4">
+                     <h5 class="text-success">@localizer["Tous les statuts sont synchronisés"]</h5>
+                  </div>
+               }
+            </GridEmptyDataTemplate>
+         </GridTemplates>
+      </Grid>
+   </div>
+</div>
+}
+
+<Modal @ref="modal" Size="ModalSize.Large"></Modal>

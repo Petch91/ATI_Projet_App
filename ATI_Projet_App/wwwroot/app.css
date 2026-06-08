@@ -185,3 +185,10 @@ body {
 .gridHead {
    font-size: 0.9rem !important;
 }
+/* Filtres de grille : sous 1400px, l'input passe sous le bouton filtre (pleine largeur).
+   form-control étant en width:100%, flex-wrap suffit à le faire passer à la ligne. */
+@media (max-width: 1399.98px) {
+    .bb-grid-filter-container {
+        flex-wrap: wrap;
+    }
+}

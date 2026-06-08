@@ -2,6 +2,7 @@
 using ATI_Projet_Models.Models.Societes.Clients;
 using ATI_Projet_Tools.Services.Interfaces;
 using System.Net.Http;
+using static Microsoft.Graph.Constants;
 
 namespace ATI_Projet_App.Services
 {
@@ -49,6 +50,13 @@ namespace ATI_Projet_App.Services
       {
          using var client = _httpClientFactory.CreateClient("api");
          await client.DeleteAsync(url);
+      }
+
+      public async Task UpdateDB()
+      {
+         using var client = _httpClientFactory.CreateClient("api");
+         await client.GetAsync("Tools/updateDB");
+
       }
    }
 }

@@ -1,6 +1,8 @@
 ﻿using ATI_Projet_Models.Models;
 using ATI_Projet_Models.Models.Projets;
 using ATI_Projet_Tools.Services.Interfaces;
+using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -23,57 +25,27 @@ namespace ATI_Projet_App.Services
          return await client.GetFromJsonAsync<IEnumerable<AxeMarche>>("AxeMarche");
       }
 
+      // Fiches BC14 actives (Status != Completed) pour la page Synchro des Responsables.
+      // L'endpoint FicheBc14 renvoie TOUS les jobs → on filtre les clôturés côté Blazor.
       public async Task<IEnumerable<FicheBC14>> GotFichesBc14()
       {
-         using var client = _httpClientFactory.CreateClient("BC14");
-         //var username = "ATI_WS";
-         //var password = "U4VsMoxs4179tL7VDgkBcoffrAJVKVibmEoopIbPelw=";
-    
-         //// Encodez les informations d'identification en Base64
-         //var authToken = Encoding.ASCII.GetBytes($"{username}:{password}");
-         //var authHeaderValue = Convert.ToBase64String(authToken);
-
-         //// Ajoutez l'en-tête d'autorisation
-         //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
-
-         var reponse  = await client.GetAsync("Fiches_ATI?$filter=Status ne 'Completed'&$select=No,Description,Person_Responsible,Responsable_Nom");
-         if (reponse.IsSuccessStatusCode)
-         {
-            var jsonResponse =  await reponse.Content.ReadAsStringAsync();
-            // Désérialiser la réponse JSON en une liste d'objets FicheBC14
-            var options = new JsonSerializerOptions
-            {
-               PropertyNameCaseInsensitive = true
-            };
-
-            var ficheBC14List = System.Text.Json.JsonSerializer.Deserialize<ODataResponse<FicheBC14>>(jsonResponse, options);
-            return ficheBC14List.Value;
-
-         }
-
-         return new List<FicheBC14>();
+         using var client = _httpClientFactory.CreateClient("api");
+         return await client.GetFromJsonAsync<IEnumerable<FicheBC14>>("Projet/FicheBc14Actives");
+      
       }
 
+      // Tous les jobs BC14 (actifs + clôturés) depuis la table locale ATI, pour CompStatut.
+      public async Task<IEnumerable<FicheBC14>> GotAllFichesBc14()
+      {
+         using var client = _httpClientFactory.CreateClient("api");
+         return await client.GetFromJsonAsync<IEnumerable<FicheBC14>>("Projet/FicheBc14");
+      }
+
+      // Ressources BC14 lues depuis la table locale ATI synchronisée en arrière-plan.
       public async Task<IEnumerable<RessourceBC14>> GotRessourcesBc14()
       {
-         using var client = _httpClientFactory.CreateClient("BC14");
-
-         var reponse = await client.GetAsync("Ressources_ATI?$select=No,Name");
-         if (reponse.IsSuccessStatusCode)
-         {
-            var jsonResponse = await reponse.Content.ReadAsStringAsync();
-
-            var options = new JsonSerializerOptions
-            {
-               PropertyNameCaseInsensitive = true
-            };
-
-            var ressourceBC14List = System.Text.Json.JsonSerializer.Deserialize<ODataResponse<RessourceBC14>>(jsonResponse, options);
-            return ressourceBC14List.Value;
-
-         }
-
-         return new List<RessourceBC14>();
+         using var client = _httpClientFactory.CreateClient("api");
+         return await client.GetFromJsonAsync<IEnumerable<RessourceBC14>>("Projet/RessourceBc14");
       }
 
       public async Task<IEnumerable<Projet>> GotProjetBySociete(int id)
@@ -86,6 +58,12 @@ namespace ATI_Projet_App.Services
       {
          using var client = _httpClientFactory.CreateClient("api");
          return await client.GetFromJsonAsync<IEnumerable<ProjetBC14>>("Projet/BC14");
+      }
+
+      public async Task<IEnumerable<ProjetBC14>> GotProjetsCompStatut()
+      {
+         using var client = _httpClientFactory.CreateClient("api");
+         return await client.GetFromJsonAsync<IEnumerable<ProjetBC14>>("Projet/CompStatut");
       }
 
       public async Task<IEnumerable<StatutProjet>> GotStatuts()
@@ -116,7 +94,7 @@ namespace ATI_Projet_App.Services
          try
          {
             // Envoi de la requête PATCH
-            var response = await client.PatchAsync($"Fiches_ATI(No='{no}')", body);
+            var response = await client.PatchAsync($"Job(No='{no}')", body);
 
             // Vérifiez le statut de la réponse
             return response.IsSuccessStatusCode;

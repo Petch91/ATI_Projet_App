@@ -1,0 +1,722 @@
+{
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\App.razor": {
+    "mtime": 1775202489.513187,
+    "ast_hash": "2df9444c8b423f9e3d5bef96daa01a37",
+    "semantic_hash": "2df9444c8b423f9e3d5bef96daa01a37"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Layout\\EmptyLayout.razor": {
+    "mtime": 1775202489.5210793,
+    "ast_hash": "86add030f34ee655a51ccba04f159a7f",
+    "semantic_hash": "86add030f34ee655a51ccba04f159a7f"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Layout\\MainLayout.razor": {
+    "mtime": 1775202489.5288699,
+    "ast_hash": "bbb112d45ad5370a7a4289f7c8a948a3",
+    "semantic_hash": "bbb112d45ad5370a7a4289f7c8a948a3"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Layout\\MainLayout.razor.cs": {
+    "mtime": 1775202489.5330765,
+    "ast_hash": "94adf1cef4e9050507e6b56bc004bf94",
+    "semantic_hash": "94adf1cef4e9050507e6b56bc004bf94"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Layout\\NavMenu.razor": {
+    "mtime": 1775202489.542146,
+    "ast_hash": "7be67543c4dbb4935fc02e2f5f53cf8e",
+    "semantic_hash": "7be67543c4dbb4935fc02e2f5f53cf8e"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Layout\\NavMenu.razor.cs": {
+    "mtime": 1775202489.54623,
+    "ast_hash": "49cac6149d75f0852c6d0b24b88f9cea",
+    "semantic_hash": "49cac6149d75f0852c6d0b24b88f9cea"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Authe.razor": {
+    "mtime": 1775202489.5562477,
+    "ast_hash": "f010aad256d40750718e670c3be0fc3f",
+    "semantic_hash": "f010aad256d40750718e670c3be0fc3f"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Authe.razor.cs": {
+    "mtime": 1775202489.5612643,
+    "ast_hash": "0c1d733d276805f538dcb59b65e7e4ba",
+    "semantic_hash": "0c1d733d276805f538dcb59b65e7e4ba"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Clients\\FicheClient.razor": {
+    "mtime": 1775202489.5683224,
+    "ast_hash": "cdcd9741050d600bd7c95b40500e43f2",
+    "semantic_hash": "cdcd9741050d600bd7c95b40500e43f2"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Clients\\FicheClient.razor.cs": {
+    "mtime": 1775202489.5721934,
+    "ast_hash": "b4840c2a3af5120cd1f35eae1fd83662",
+    "semantic_hash": "b4840c2a3af5120cd1f35eae1fd83662"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Error.razor": {
+    "mtime": 1775202489.5757139,
+    "ast_hash": "895aa385b310af50d09fd583be83b251",
+    "semantic_hash": "895aa385b310af50d09fd583be83b251"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Gestion\\GestionList.razor": {
+    "mtime": 1775202489.581231,
+    "ast_hash": "cdf5b633d9426906518915e45fe279b0",
+    "semantic_hash": "cdf5b633d9426906518915e45fe279b0"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Gestion\\GestionList.razor.cs": {
+    "mtime": 1775202489.5868094,
+    "ast_hash": "db78fdaadb1ae47331671a491b2233ff",
+    "semantic_hash": "db78fdaadb1ae47331671a491b2233ff"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Home.razor": {
+    "mtime": 1775202489.596633,
+    "ast_hash": "63eca33a23062371084aeb4f0389b65d",
+    "semantic_hash": "63eca33a23062371084aeb4f0389b65d"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Personnels\\FichePersonnel.razor": {
+    "mtime": 1775202489.6049695,
+    "ast_hash": "5ab0e124b4a15b2863765e76a02e391d",
+    "semantic_hash": "5ab0e124b4a15b2863765e76a02e391d"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Personnels\\FichePersonnel.razor.cs": {
+    "mtime": 1775202489.6091099,
+    "ast_hash": "8e2663e345c5bae0c620a39958632b9e",
+    "semantic_hash": "8e2663e345c5bae0c620a39958632b9e"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\Projets\\BC14Page.razor": {
+    "mtime": 1775202489.6192822,
+    "ast_hash": "af6efe0c56c6b46f08f6f6cc8ed9c15a",
+    "semantic_hash": "af6efe0c56c6b46f08f6f6cc8ed9c15a"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Pages\\UploadPhoto.razor": {
+    "mtime": 1775202489.6270416,
+    "ast_hash": "1d55c6bcbf73fe39a03e986951e29611",
+    "semantic_hash": "1d55c6bcbf73fe39a03e986951e29611"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\Routes.razor": {
+    "mtime": 1775202489.6315746,
+    "ast_hash": "db9f59613e52c933870df6caa88f7c9f",
+    "semantic_hash": "db9f59613e52c933870df6caa88f7c9f"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Components\\_Imports.razor": {
+    "mtime": 1775202489.6362958,
+    "ast_hash": "1bebca423e89953e14c5056fed144460",
+    "semantic_hash": "1bebca423e89953e14c5056fed144460"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Controllers\\CultureController.cs": {
+    "mtime": 1775202489.6403756,
+    "ast_hash": "fd122409c0bad4ce10f81862617c37fb",
+    "semantic_hash": "fd122409c0bad4ce10f81862617c37fb"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Controllers\\LoginController.cs": {
+    "mtime": 1775202489.6451256,
+    "ast_hash": "a16a924fc716704762643caf5cf0f256",
+    "semantic_hash": "a16a924fc716704762643caf5cf0f256"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Models\\Forms\\LoginForm.cs": {
+    "mtime": 1775202489.667106,
+    "ast_hash": "2823e585ed4246444b75268065494223",
+    "semantic_hash": "2823e585ed4246444b75268065494223"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Models\\User.cs": {
+    "mtime": 1775202489.671215,
+    "ast_hash": "bc8e805ab28008d571d12d97986643e6",
+    "semantic_hash": "bc8e805ab28008d571d12d97986643e6"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Program.cs": {
+    "mtime": 1775202489.6762133,
+    "ast_hash": "9aa50a4856c35e060343dd9dde9d3893",
+    "semantic_hash": "9aa50a4856c35e060343dd9dde9d3893"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Properties\\launchSettings.json": {
+    "mtime": 1775202489.681432,
+    "ast_hash": "341a50d16dfc256908d6630f08f77aef",
+    "semantic_hash": "341a50d16dfc256908d6630f08f77aef"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Services\\CommonService.cs": {
+    "mtime": 1775202489.7687964,
+    "ast_hash": "2fb97f6ae6f81e535684c6adfd35e87a",
+    "semantic_hash": "2fb97f6ae6f81e535684c6adfd35e87a"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Services\\PersonnelService.cs": {
+    "mtime": 1775202489.817597,
+    "ast_hash": "cc3ccdf9f1a78194af56c8dcdae2992e",
+    "semantic_hash": "cc3ccdf9f1a78194af56c8dcdae2992e"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Services\\ProjetService.cs": {
+    "mtime": 1775202489.8283892,
+    "ast_hash": "fc1a7080b286461f12af4efa93af8387",
+    "semantic_hash": "fc1a7080b286461f12af4efa93af8387"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Services\\SocieteService.cs": {
+    "mtime": 1775202489.8354335,
+    "ast_hash": "568feb34cf88869a9e3073e70d15054f",
+    "semantic_hash": "568feb34cf88869a9e3073e70d15054f"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Tools\\AuthStateProvider.cs": {
+    "mtime": 1775202489.85171,
+    "ast_hash": "cd10fb0604c602fecc1a1716d15d9f64",
+    "semantic_hash": "cd10fb0604c602fecc1a1716d15d9f64"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Tools\\SessionManager.cs": {
+    "mtime": 1775202489.862508,
+    "ast_hash": "8a5b1f12b8ea0fdc4a393cd6f68adaa6",
+    "semantic_hash": "8a5b1f12b8ea0fdc4a393cd6f68adaa6"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\blazor.bootstrap.js": {
+    "mtime": 1775202489.9156272,
+    "ast_hash": "24f8e35f9845ca506e06fcbdda462e18",
+    "semantic_hash": "24f8e35f9845ca506e06fcbdda462e18"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\blazor.bootstrap.pdf.js": {
+    "mtime": 1775202489.9278634,
+    "ast_hash": "e50be89d2aae5db903f3926aa28be7a9",
+    "semantic_hash": "e50be89d2aae5db903f3926aa28be7a9"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\blazor.bootstrap.sortable-list.js": {
+    "mtime": 1775202489.9373968,
+    "ast_hash": "7e9957a7e6f905fb9e4958d65fb62659",
+    "semantic_hash": "7e9957a7e6f905fb9e4958d65fb62659"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\ATI_Projet_Components - Backup.csproj": {
+    "mtime": 1775202490.0018206,
+    "ast_hash": "01204218800883a06c2a3d4f97431835",
+    "semantic_hash": "01204218800883a06c2a3d4f97431835"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\ATI_Projet_Components.csproj": {
+    "mtime": 1775202490.0069644,
+    "ast_hash": "922ed7c82c2af9083c808d1b45911771",
+    "semantic_hash": "922ed7c82c2af9083c808d1b45911771"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\AdresseComponent.razor": {
+    "mtime": 1775202490.0122037,
+    "ast_hash": "c760f86b2d9e5622a6f48c89edf03886",
+    "semantic_hash": "c760f86b2d9e5622a6f48c89edf03886"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\AdresseComponent.razor.cs": {
+    "mtime": 1775202490.0182,
+    "ast_hash": "154c2aad0777a80fab93489877988798",
+    "semantic_hash": "154c2aad0777a80fab93489877988798"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Clients\\ClientSignaCpt.razor": {
+    "mtime": 1775202490.0236757,
+    "ast_hash": "e8a5404570f9874f3f9bae081f09b035",
+    "semantic_hash": "e8a5404570f9874f3f9bae081f09b035"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Clients\\ClientSignaCpt.razor.cs": {
+    "mtime": 1775202490.0287447,
+    "ast_hash": "4238f00ece86dcfb25f23f46e5504f32",
+    "semantic_hash": "4238f00ece86dcfb25f23f46e5504f32"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Clients\\Fiche.razor": {
+    "mtime": 1775202490.0367386,
+    "ast_hash": "e774e8a7288ac15d6baea06182544a11",
+    "semantic_hash": "e774e8a7288ac15d6baea06182544a11"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Clients\\Fiche.razor.cs": {
+    "mtime": 1775202490.043885,
+    "ast_hash": "4f939b9edd6676791430d3edbca8bdf5",
+    "semantic_hash": "4f939b9edd6676791430d3edbca8bdf5"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\CreatePersonne.razor": {
+    "mtime": 1775202490.0536067,
+    "ast_hash": "4a1ace1cea022238de4c8e64e5f8b96c",
+    "semantic_hash": "4a1ace1cea022238de4c8e64e5f8b96c"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\CreatePersonne.razor.cs": {
+    "mtime": 1775202490.0601504,
+    "ast_hash": "6763c9ec47e1bfac61ba4dd9e4263907",
+    "semantic_hash": "6763c9ec47e1bfac61ba4dd9e4263907"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\EditGeneric.razor": {
+    "mtime": 1775202490.0633261,
+    "ast_hash": "7049b377ce207399faa6518c511a9ff2",
+    "semantic_hash": "7049b377ce207399faa6518c511a9ff2"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\EditGeneric.razor.cs": {
+    "mtime": 1775202490.0703464,
+    "ast_hash": "1a30f2ad34a16aee5ac1e70e295a6135",
+    "semantic_hash": "1a30f2ad34a16aee5ac1e70e295a6135"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Emails\\EmailForm.razor": {
+    "mtime": 1775202490.0797372,
+    "ast_hash": "0fa3773b75a3f864056cafdafeba297b",
+    "semantic_hash": "0fa3773b75a3f864056cafdafeba297b"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Emails\\EmailForm.razor.cs": {
+    "mtime": 1775202490.083863,
+    "ast_hash": "a3ad473341f99b6c82709b8c1014e956",
+    "semantic_hash": "a3ad473341f99b6c82709b8c1014e956"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Emails\\EmailList.razor": {
+    "mtime": 1775202490.0893476,
+    "ast_hash": "c0eea17882bc88e201b72b469356eb3d",
+    "semantic_hash": "c0eea17882bc88e201b72b469356eb3d"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Emails\\EmailList.razor.cs": {
+    "mtime": 1775202490.0947478,
+    "ast_hash": "0ae56d0242aac13fe862da4b1991b844",
+    "semantic_hash": "0ae56d0242aac13fe862da4b1991b844"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\ListGeneric.razor": {
+    "mtime": 1775202490.1050258,
+    "ast_hash": "776e4f32c08ffb2019e76150fd48342c",
+    "semantic_hash": "776e4f32c08ffb2019e76150fd48342c"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\ListGeneric.razor.cs": {
+    "mtime": 1775202490.1121864,
+    "ast_hash": "4a520fda8bd56d71d41b7ee40ab2391f",
+    "semantic_hash": "4a520fda8bd56d71d41b7ee40ab2391f"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\ListGenericEdit.razor": {
+    "mtime": 1775202490.121213,
+    "ast_hash": "abbd2a94bd46b490c6e371fd3c0cdbde",
+    "semantic_hash": "abbd2a94bd46b490c6e371fd3c0cdbde"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\ListGenericEdit.razor.cs": {
+    "mtime": 1775202490.127499,
+    "ast_hash": "c2a1b637d515c6bec28dd45091dd235b",
+    "semantic_hash": "c2a1b637d515c6bec28dd45091dd235b"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\EditPrivate.razor": {
+    "mtime": 1775202490.1350026,
+    "ast_hash": "7d3ba772746b329f92c43aed4e2b3091",
+    "semantic_hash": "7d3ba772746b329f92c43aed4e2b3091"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\EditPrivate.razor.cs": {
+    "mtime": 1775202490.140515,
+    "ast_hash": "62d217cd1de5e3235e75c094a8974fae",
+    "semantic_hash": "62d217cd1de5e3235e75c094a8974fae"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\EditProf.razor": {
+    "mtime": 1775202490.1505308,
+    "ast_hash": "3f53f7e5cb1807cc4c777e309b3a2c15",
+    "semantic_hash": "3f53f7e5cb1807cc4c777e309b3a2c15"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\EditProf.razor.cs": {
+    "mtime": 1775202490.155541,
+    "ast_hash": "b93f14059dea8d0de383bc2cbd0e09a2",
+    "semantic_hash": "b93f14059dea8d0de383bc2cbd0e09a2"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\EditProfil.razor": {
+    "mtime": 1775202490.1610458,
+    "ast_hash": "4c33ecb778cf5d4f80cc670cafc65d39",
+    "semantic_hash": "4c33ecb778cf5d4f80cc670cafc65d39"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\EditProfil.razor.cs": {
+    "mtime": 1775202490.1704476,
+    "ast_hash": "5abddcd8dc1f93528507d643041e10f9",
+    "semantic_hash": "5abddcd8dc1f93528507d643041e10f9"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\Fiche.razor": {
+    "mtime": 1775202490.1750982,
+    "ast_hash": "2418981153abbce4d28a0dfba50c094f",
+    "semantic_hash": "2418981153abbce4d28a0dfba50c094f"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\Fiche.razor.cs": {
+    "mtime": 1775202490.1843007,
+    "ast_hash": "c95b8f8a4e6dee2c0359633d9873e630",
+    "semantic_hash": "c95b8f8a4e6dee2c0359633d9873e630"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\InfoPriv.razor": {
+    "mtime": 1775202490.1963825,
+    "ast_hash": "bd98e0da7d804baead39c049dbd31552",
+    "semantic_hash": "bd98e0da7d804baead39c049dbd31552"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\InfoPriv.razor.cs": {
+    "mtime": 1775202490.2031486,
+    "ast_hash": "86f43e6362a839c8babfa85205863259",
+    "semantic_hash": "86f43e6362a839c8babfa85205863259"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\InfoProf.razor": {
+    "mtime": 1775202490.214081,
+    "ast_hash": "a1b7eb1583c974129fc9c01ba2a63681",
+    "semantic_hash": "a1b7eb1583c974129fc9c01ba2a63681"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\InfoProf.razor.cs": {
+    "mtime": 1775202490.2205951,
+    "ast_hash": "a91d72ba18cfd808913a91cd397aaf98",
+    "semantic_hash": "a91d72ba18cfd808913a91cd397aaf98"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\Profil.razor": {
+    "mtime": 1775202490.2257957,
+    "ast_hash": "65ad4e43548a3b6e865dc2ee5f78b7f6",
+    "semantic_hash": "65ad4e43548a3b6e865dc2ee5f78b7f6"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Personnel\\Profil.razor.cs": {
+    "mtime": 1775202490.2319565,
+    "ast_hash": "475c70ed508b9ed2b2b5564f53f061b1",
+    "semantic_hash": "475c70ed508b9ed2b2b5564f53f061b1"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Projets\\BC14.razor": {
+    "mtime": 1775203083.6013422,
+    "ast_hash": "8d442851c0b3b77e8286dd40cde87e73",
+    "semantic_hash": "8d442851c0b3b77e8286dd40cde87e73"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Projets\\BC14.razor.cs": {
+    "mtime": 1775202490.2505064,
+    "ast_hash": "7fa02c59f90a8daac25a19f0f4835274",
+    "semantic_hash": "7fa02c59f90a8daac25a19f0f4835274"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Projets\\DetailsBC14.razor": {
+    "mtime": 1775202490.2631578,
+    "ast_hash": "fe5b61948fac19b765e614c7089c177b",
+    "semantic_hash": "fe5b61948fac19b765e614c7089c177b"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Projets\\DetailsBC14.razor.cs": {
+    "mtime": 1775202490.2676685,
+    "ast_hash": "5ed38dcb712f7b6f72c5854898889795",
+    "semantic_hash": "5ed38dcb712f7b6f72c5854898889795"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Projets\\Fiche.razor": {
+    "mtime": 1775202490.2744286,
+    "ast_hash": "8e252af27979aab9db9a90f486a13e01",
+    "semantic_hash": "8e252af27979aab9db9a90f486a13e01"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Projets\\Fiche.razor.cs": {
+    "mtime": 1775202490.2796576,
+    "ast_hash": "40288233840e60a403cbb50af0f72d43",
+    "semantic_hash": "40288233840e60a403cbb50af0f72d43"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\ShowGeneric.razor": {
+    "mtime": 1775202490.2910285,
+    "ast_hash": "9b91173a21165bc1c7213207d096dbd7",
+    "semantic_hash": "9b91173a21165bc1c7213207d096dbd7"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\ShowGeneric.razor.cs": {
+    "mtime": 1775202490.2970457,
+    "ast_hash": "cf5e60ad24e32217a504337b02546be5",
+    "semantic_hash": "cf5e60ad24e32217a504337b02546be5"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Telephones\\TelephoneForm.razor": {
+    "mtime": 1775202490.309168,
+    "ast_hash": "a14db89a9aaa78ab17c4ae2f475b2201",
+    "semantic_hash": "a14db89a9aaa78ab17c4ae2f475b2201"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Telephones\\TelephoneForm.razor.cs": {
+    "mtime": 1775202490.315756,
+    "ast_hash": "c7613e3fbe4f600d616f8bc9311ba503",
+    "semantic_hash": "c7613e3fbe4f600d616f8bc9311ba503"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Telephones\\TelephoneList.razor": {
+    "mtime": 1775202490.3227897,
+    "ast_hash": "e3ea27fc4ea6832b4e8793dd562a6c8c",
+    "semantic_hash": "e3ea27fc4ea6832b4e8793dd562a6c8c"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\Telephones\\TelephoneList.razor.cs": {
+    "mtime": 1775202490.3285048,
+    "ast_hash": "3af094a6d4c01d4077789eb47b5eda33",
+    "semantic_hash": "3af094a6d4c01d4077789eb47b5eda33"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\_Imports.razor": {
+    "mtime": 1775202490.3420084,
+    "ast_hash": "363162b1dd153e6ab00858d233a83b8c",
+    "semantic_hash": "363162b1dd153e6ab00858d233a83b8c"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\wwwroot\\exampleJsInterop.js": {
+    "mtime": 1775202490.3530338,
+    "ast_hash": "97d6a74443388b8a3a7219dfdfbf0daa",
+    "semantic_hash": "97d6a74443388b8a3a7219dfdfbf0daa"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\ATI_Projet_Models.csproj": {
+    "mtime": 1775202490.4858553,
+    "ast_hash": "867a67436fe4bcad65b3f5b95bd3f5c5",
+    "semantic_hash": "867a67436fe4bcad65b3f5b95bd3f5c5"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Events\\EditPrivateArgs.cs": {
+    "mtime": 1775202490.4921527,
+    "ast_hash": "c33052a01d7187185c582bab9b0bac6c",
+    "semantic_hash": "c33052a01d7187185c582bab9b0bac6c"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Adresse.cs": {
+    "mtime": 1775202490.4969654,
+    "ast_hash": "247e184ea4af03a59a7b7c87b46a34c2",
+    "semantic_hash": "247e184ea4af03a59a7b7c87b46a34c2"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\AxeMarche.cs": {
+    "mtime": 1775202490.5037105,
+    "ast_hash": "013af44cff31304ac2d778b149e61681",
+    "semantic_hash": "013af44cff31304ac2d778b149e61681"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\DeptSimplifiedList.cs": {
+    "mtime": 1775202490.5088365,
+    "ast_hash": "a8fd1c0c9d2c56482e0b0c26e67b4304",
+    "semantic_hash": "a8fd1c0c9d2c56482e0b0c26e67b4304"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Email.cs": {
+    "mtime": 1775202490.5123577,
+    "ast_hash": "cedbbe03c45352695f1fcade4cc02f91",
+    "semantic_hash": "cedbbe03c45352695f1fcade4cc02f91"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\EmployeList.cs": {
+    "mtime": 1775202490.518872,
+    "ast_hash": "750816b01af6ee9107987e222b3ac8d9",
+    "semantic_hash": "750816b01af6ee9107987e222b3ac8d9"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\EmployePrivate.cs": {
+    "mtime": 1775202490.5223951,
+    "ast_hash": "d5d05a99ca19802720d00ca37ce3e554",
+    "semantic_hash": "d5d05a99ca19802720d00ca37ce3e554"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\EmployeProf.cs": {
+    "mtime": 1775202490.5285528,
+    "ast_hash": "9db500b2388b83aa07ab14bc9c34343e",
+    "semantic_hash": "9db500b2388b83aa07ab14bc9c34343e"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\EmployeProfil.cs": {
+    "mtime": 1775202490.5339715,
+    "ast_hash": "52def14980237036b45e1bc88bd5bb5b",
+    "semantic_hash": "52def14980237036b45e1bc88bd5bb5b"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Fonction.cs": {
+    "mtime": 1775202490.5384688,
+    "ast_hash": "21afbfaa8f5fe518763bd3387e341e02",
+    "semantic_hash": "21afbfaa8f5fe518763bd3387e341e02"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Forms\\EmailForm.cs": {
+    "mtime": 1775202490.546312,
+    "ast_hash": "d2641e20b53597be08b5f556d4b48e18",
+    "semantic_hash": "d2641e20b53597be08b5f556d4b48e18"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Forms\\PersonneForm.cs": {
+    "mtime": 1775202490.5515175,
+    "ast_hash": "f4f913fdea0fc6daa78b2fa8496d588c",
+    "semantic_hash": "f4f913fdea0fc6daa78b2fa8496d588c"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Projets\\CompBC14.cs": {
+    "mtime": 1775202490.5577834,
+    "ast_hash": "ba83f0bfbc60fbf54362bd8ae009e588",
+    "semantic_hash": "ba83f0bfbc60fbf54362bd8ae009e588"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Projets\\FicheBC14.cs": {
+    "mtime": 1775202490.5635397,
+    "ast_hash": "5aa56fb55d7d9d72b0f162383aa02e40",
+    "semantic_hash": "5aa56fb55d7d9d72b0f162383aa02e40"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Projets\\Projet.cs": {
+    "mtime": 1775202490.5696516,
+    "ast_hash": "9c02a1118240bcf8b7bbcf5893b855f2",
+    "semantic_hash": "9c02a1118240bcf8b7bbcf5893b855f2"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Projets\\ProjetBC14.cs": {
+    "mtime": 1775202490.5746846,
+    "ast_hash": "9c1f4e037857f8fd2f0e340074c7a630",
+    "semantic_hash": "9c1f4e037857f8fd2f0e340074c7a630"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Projets\\RessourceBC14.cs": {
+    "mtime": 1775202490.5801933,
+    "ast_hash": "73184ecbb6eaa7c5ca51102530a0b8e6",
+    "semantic_hash": "73184ecbb6eaa7c5ca51102530a0b8e6"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Projets\\StatutProjet.cs": {
+    "mtime": 1775202490.5837147,
+    "ast_hash": "b937ec0b6954f9b8bc97c38a0238cd16",
+    "semantic_hash": "b937ec0b6954f9b8bc97c38a0238cd16"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Societes\\Clients\\ClientInfo.cs": {
+    "mtime": 1775202490.5892658,
+    "ast_hash": "8fedd94afd943e471e291a9c7ff5fab4",
+    "semantic_hash": "8fedd94afd943e471e291a9c7ff5fab4"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Societes\\Clients\\ClientList.cs": {
+    "mtime": 1775202490.594793,
+    "ast_hash": "de851d89a954123e38cfb38d81f4f6bb",
+    "semantic_hash": "de851d89a954123e38cfb38d81f4f6bb"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Societes\\Clients\\ClientSigna.cs": {
+    "mtime": 1775202490.5993087,
+    "ast_hash": "69e96f87ced72377fe014e31a5a90056",
+    "semantic_hash": "69e96f87ced72377fe014e31a5a90056"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Telephone.cs": {
+    "mtime": 1775202490.6033883,
+    "ast_hash": "49f86b3ec9a978254f165196a3dd5a53",
+    "semantic_hash": "49f86b3ec9a978254f165196a3dd5a53"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Types\\TypeContrat.cs": {
+    "mtime": 1775202490.6097488,
+    "ast_hash": "79a73e3117b2c332a91fc13bfa61b198",
+    "semantic_hash": "79a73e3117b2c332a91fc13bfa61b198"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\Types\\TypeMO.cs": {
+    "mtime": 1775202490.6142635,
+    "ast_hash": "da112ac479bac067d71542f1b2f074e0",
+    "semantic_hash": "da112ac479bac067d71542f1b2f074e0"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\VCA\\FonctionVCA.cs": {
+    "mtime": 1775202490.6187901,
+    "ast_hash": "4a2ec28774d4f14d9103dbca23bf6874",
+    "semantic_hash": "4a2ec28774d4f14d9103dbca23bf6874"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Models\\VCA\\StatusVCA.cs": {
+    "mtime": 1775202490.6233082,
+    "ast_hash": "e51d302f8e70daf3d45ab6d99c18a5b9",
+    "semantic_hash": "e51d302f8e70daf3d45ab6d99c18a5b9"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Validators\\AdresseValidator.cs": {
+    "mtime": 1775202490.631572,
+    "ast_hash": "8bfcaf06e2a575b39d9d94e4d0272ddd",
+    "semantic_hash": "8bfcaf06e2a575b39d9d94e4d0272ddd"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Models\\Validators\\EmployeProfilValidator.cs": {
+    "mtime": 1775202490.636194,
+    "ast_hash": "fa1b8fac35de03715b5e50ca4108fe89",
+    "semantic_hash": "fa1b8fac35de03715b5e50ca4108fe89"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Tools\\ATI_Projet_Tools.csproj": {
+    "mtime": 1775202490.6425922,
+    "ast_hash": "3f3d1a40de9504015d3b3c22d6f8f839",
+    "semantic_hash": "3f3d1a40de9504015d3b3c22d6f8f839"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Tools\\Services\\Interfaces\\ICommon.cs": {
+    "mtime": 1775202490.6496296,
+    "ast_hash": "d7e8883817984bd84fefaf588a290b03",
+    "semantic_hash": "d7e8883817984bd84fefaf588a290b03"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Tools\\Services\\Interfaces\\IPersonnel.cs": {
+    "mtime": 1775202490.6546924,
+    "ast_hash": "0f077d6b694c35719279255b5f6b6a05",
+    "semantic_hash": "0f077d6b694c35719279255b5f6b6a05"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Tools\\Services\\Interfaces\\IProjet.cs": {
+    "mtime": 1775202490.6610587,
+    "ast_hash": "8f403d6b7b600d144441fd957da18dd3",
+    "semantic_hash": "8f403d6b7b600d144441fd957da18dd3"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Tools\\Services\\Interfaces\\ISociete.cs": {
+    "mtime": 1775202490.6662624,
+    "ast_hash": "7eaff6e22a39ec4df3651e76ed56564c",
+    "semantic_hash": "7eaff6e22a39ec4df3651e76ed56564c"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Tools\\Tools\\ApiRequester.cs": {
+    "mtime": 1775202490.6707675,
+    "ast_hash": "3013e9013ab3f6d0b801beae3716cd5e",
+    "semantic_hash": "3013e9013ab3f6d0b801beae3716cd5e"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Tools\\Tools\\VariablesGlobales.cs": {
+    "mtime": 1775202490.6774106,
+    "ast_hash": "a4757460ad054506f12e44f69c9e6849",
+    "semantic_hash": "a4757460ad054506f12e44f69c9e6849"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Cultures\\ATI_Projet_Cultures.csproj": {
+    "mtime": 1775202490.3768044,
+    "ast_hash": "7d8a336521e57ff70ef25b9b4ea64466",
+    "semantic_hash": "7d8a336521e57ff70ef25b9b4ea64466"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Cultures\\Locales\\LangueResource.fr-BE.Designer.cs": {
+    "mtime": 1775202490.3930533,
+    "ast_hash": "116c33e49c573d735ee58c59b621d48e",
+    "semantic_hash": "116c33e49c573d735ee58c59b621d48e"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Cultures\\Locales\\NationaliteResource.fr-BE.Designer.cs": {
+    "mtime": 1775202490.4132848,
+    "ast_hash": "6a19f087af2fd8f24a0ff1c5e49ab5d0",
+    "semantic_hash": "6a19f087af2fd8f24a0ff1c5e49ab5d0"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Cultures\\Locales\\PaysResource.fr-BE.Designer.cs": {
+    "mtime": 1775202490.4344893,
+    "ast_hash": "e7a2c83a17564aac4ddf462ec09b598c",
+    "semantic_hash": "e7a2c83a17564aac4ddf462ec09b598c"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Cultures\\Locales\\PersonnelResource.fr-BE.Designer.cs": {
+    "mtime": 1775202490.4566743,
+    "ast_hash": "4c6023bdb563e2c6cf99dc63397a0e83",
+    "semantic_hash": "4c6023bdb563e2c6cf99dc63397a0e83"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Cultures\\Tools\\CustomStringLocalizer.cs": {
+    "mtime": 1775202490.4733064,
+    "ast_hash": "f65a6e01380d886ae880a0caf968d5ba",
+    "semantic_hash": "f65a6e01380d886ae880a0caf968d5ba"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Cultures\\Tools\\LanguageChangeNotifier.cs": {
+    "mtime": 1775202490.4800217,
+    "ast_hash": "a929425f3cfe7184c9d388a9d31f73fe",
+    "semantic_hash": "a929425f3cfe7184c9d388a9d31f73fe"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Development\\unsafe_uploads\\Photo+id.jpg": {
+    "mtime": 1775202489.6538453,
+    "ast_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb",
+    "semantic_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Development\\unsafe_uploads\\cut-the-rope-3-abylight-barcelona.jpg": {
+    "mtime": 1775202489.6589568,
+    "ast_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb",
+    "semantic_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\Development\\unsafe_uploads\\qouuoo4r.jpg": {
+    "mtime": 1775202489.6620154,
+    "ast_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb",
+    "semantic_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\favicon.png": {
+    "mtime": 1775202489.9449139,
+    "ast_hash": "eab4f24ab5ff80be586dcdab8e87dc9c",
+    "semantic_hash": "eab4f24ab5ff80be586dcdab8e87dc9c"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\images\\ATI.png": {
+    "mtime": 1775202489.950448,
+    "ast_hash": "ed67b0ec78b04c2d2864b764a762a3fe",
+    "semantic_hash": "ed67b0ec78b04c2d2864b764a762a3fe"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\images\\Photo.jpg": {
+    "mtime": 1775202489.954448,
+    "ast_hash": "35975c8078fbc7111ae9b9252293d710",
+    "semantic_hash": "35975c8078fbc7111ae9b9252293d710"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\images\\photos\\employe120.jpg": {
+    "mtime": 1775202489.9629745,
+    "ast_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb",
+    "semantic_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\images\\photos\\employe54.jpg": {
+    "mtime": 1775202489.9670053,
+    "ast_hash": "35975c8078fbc7111ae9b9252293d710",
+    "semantic_hash": "35975c8078fbc7111ae9b9252293d710"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\images\\photos\\employe583.jpg": {
+    "mtime": 1775202489.9710047,
+    "ast_hash": "35975c8078fbc7111ae9b9252293d710",
+    "semantic_hash": "35975c8078fbc7111ae9b9252293d710"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\images\\photos\\employe73.jpg": {
+    "mtime": 1775202489.9745228,
+    "ast_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb",
+    "semantic_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\images\\signature.webp": {
+    "mtime": 1775202489.9785335,
+    "ast_hash": "3ad37cda2cda81f8150ca737571ce7ed",
+    "semantic_hash": "3ad37cda2cda81f8150ca737571ce7ed"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\images\\signatures\\employe54.jpg": {
+    "mtime": 1775202489.9882112,
+    "ast_hash": "7c5b7743dbe1f8589293ea7af9fa9b63",
+    "semantic_hash": "7c5b7743dbe1f8589293ea7af9fa9b63"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\images\\signatures\\employe54.webp": {
+    "mtime": 1775202489.9917428,
+    "ast_hash": "3ad37cda2cda81f8150ca737571ce7ed",
+    "semantic_hash": "3ad37cda2cda81f8150ca737571ce7ed"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_App\\wwwroot\\images\\signatures\\employe583.webp": {
+    "mtime": 1775202489.9968116,
+    "ast_hash": "3ad37cda2cda81f8150ca737571ce7ed",
+    "semantic_hash": "3ad37cda2cda81f8150ca737571ce7ed"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\wwwroot\\background.png": {
+    "mtime": 1775202490.3470051,
+    "ast_hash": "14e07de613f23c2def46f9e31f895259",
+    "semantic_hash": "14e07de613f23c2def46f9e31f895259"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\wwwroot\\images\\ATI.png": {
+    "mtime": 1775202490.3607895,
+    "ast_hash": "ed67b0ec78b04c2d2864b764a762a3fe",
+    "semantic_hash": "ed67b0ec78b04c2d2864b764a762a3fe"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\wwwroot\\images\\Photo.jpg": {
+    "mtime": 1775202490.3652995,
+    "ast_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb",
+    "semantic_hash": "6a1a8ac0eedda0d9ea310c6e48a60cdb"
+  },
+  "C:\\Users\\ati_ppi\\source\\repos\\ATI_Projet_App\\.claude\\worktrees\\naughty-jang\\ATI_Projet_Components\\wwwroot\\images\\signature.webp": {
+    "mtime": 1775202490.3708372,
+    "ast_hash": "3ad37cda2cda81f8150ca737571ce7ed",
+    "semantic_hash": "3ad37cda2cda81f8150ca737571ce7ed"
+  }
+}

@@ -1,5 +1,35 @@
-﻿<h3>DetailsBC14</h3>
+@using ATI_Projet_Models.Models.Projets
+
+@if (Item is not null)
+{
+   <div class="details-bc14">
+
+      <div class="section">
+         <div class="section-title">Projet</div>
+         <div class="row-line"><span class="label">ID BC14</span><span class="value">@Item.No</span></div>
+         <div class="row-line"><span class="label">Client</span><span class="value text-capitalize">@Item.ClientName?.ToLower()</span></div>
+         <div class="row-line"><span class="label">Nom projet ATI</span><span class="value">@Item.Designation</span></div>
+         <div class="row-line"><span class="label">Nom projet BC14</span><span class="value">@Item.Description</span></div>
+      </div>
+
+      <div class="section">
+         <div class="section-title">Responsables</div>
+         <div class="row-line"><span class="label">Responsable ATI</span><span class="value">@Item.RespATI</span></div>
+         <div class="row-line"><span class="label">Responsable BC14</span><span class="value">@Item.RespBC14</span></div>
+         <div class="row-line"><span class="label">Nouveau responsable</span><span class="value text-success fw-bold">@Item.NewPersonName</span></div>
+      </div>
+
+      <div class="section">
+         <div class="section-title">Identifiants techniques</div>
+         <div class="row-line"><span class="label">Id Responsable ATI</span><span class="value">@Item.RespAffaireId</span></div>
+         <div class="row-line"><span class="label">ID Responsable BC14</span><span class="value">@Item.Person_Responsible</span></div>
+         <div class="row-line"><span class="label">N° comparaison ATI</span><span class="value">@Item.CompNumberATI</span></div>
+         <div class="row-line"><span class="label">N° comparaison BC14</span><span class="value">@Item.CompNumberBC</span></div>
+      </div>
+
+   </div>
+}
 
 @code {
-    
+   [Parameter] public CompBC14 Item { get; set; }
 }

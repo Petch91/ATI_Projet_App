@@ -222,6 +222,12 @@
   <data name="Client" xml:space="preserve">
     <value>Client</value>
   </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>Chargement…</value>
+  </data>
   <data name="Cliquer Pour Modifier" xml:space="preserve">
     <value>Cliquer Pour Modifier</value>
   </data>
@@ -617,6 +623,24 @@
   </data>
   <data name="Synchro des Responsables" xml:space="preserve">
     <value>Synchro des Responsables</value>
+  </data>
+  <data name="Synchroniser la sélection" xml:space="preserve">
+    <value>Synchroniser la sélection</value>
+  </data>
+  <data name="Retirer la sélection" xml:space="preserve">
+    <value>Retirer la sélection</value>
+  </data>
+  <data name="Aide" xml:space="preserve">
+    <value>Aide</value>
+  </data>
+  <data name="Comparaison des Statuts" xml:space="preserve">
+    <value>Comparaison des Statuts</value>
+  </data>
+  <data name="Statut" xml:space="preserve">
+    <value>Statut</value>
+  </data>
+  <data name="Tous les statuts sont synchronisés" xml:space="preserve">
+    <value>Tous les statuts sont synchronisés</value>
   </data>
   <data name="T - Forfait" xml:space="preserve">
     <value>T - Forfait</value>

@@ -21,7 +21,7 @@ namespace ATI_Projet_Models.Models.Projets
       public string Description { get; set; }
 
       [DisplayName(@"Id Responsable ATI")]
-      public int RespFacturationId { get; set; }
+      public int RespAffaireId { get; set; }
       [DisplayName(@"Nom responsable ATI")]
       public string RespATI { get; set; }
       [DisplayName(@"ID Responsable BC14")]

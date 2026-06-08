@@ -14,12 +14,14 @@ namespace ATI_Projet_Tools.Services.Interfaces
       Task<IEnumerable<Projet>> GotProjetBySociete(int id);
 
       Task<IEnumerable<ProjetBC14>> GotProjetsBc14();
+      Task<IEnumerable<ProjetBC14>> GotProjetsCompStatut();
 
       Task<IEnumerable<StatutProjet>> GotStatuts();
 
       Task<IEnumerable<AxeMarche>> GotAxeMarche();
       
       Task<IEnumerable<FicheBC14>> GotFichesBc14();
+      Task<IEnumerable<FicheBC14>> GotAllFichesBc14();
 
       Task<bool> PatchFicheBC14(string no, string person);
       Task<IEnumerable<RessourceBC14>> GotRessourcesBc14();

@@ -10,12 +10,9 @@
    justify-content: center;
 }
 
-/*::deep table {
-   table-layout: fixed !important;
-}*/
-
 ::deep .quickgrid[theme="default"] {
    --col-gap: 1.25rem;
+   min-width: 35rem;
 }
 
 ::deep tr {
@@ -26,7 +23,7 @@
 ::deep tbody td {
    white-space: nowrap;
    overflow: hidden;
-   max-width: 8rem;
+   max-width: initial;
    text-overflow: ellipsis;
 }
 /*::deep thead th {

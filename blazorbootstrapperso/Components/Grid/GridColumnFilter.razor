@@ -1,7 +1,7 @@
 ﻿@namespace BlazorBootstrapPerso
 @inherits BlazorBootstrapComponentBase
 
-<div class="d-flex">
+<div class="d-flex bb-grid-filter-container">
     <button type="button" class="btn @filterButtonColorString me-1 d-flex dropdown-toggle bb-grid-filter @FilterButtonCSSClass" data-bs-toggle="dropdown" aria-expanded="false">
         @if (string.IsNullOrWhiteSpace(filterValue))
         {
