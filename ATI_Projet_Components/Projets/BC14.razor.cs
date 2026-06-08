@@ -13,6 +13,8 @@ using Microsoft.Graph.Drives.Item.Items.Item.Workbook.Functions.Log10;
 using Microsoft.JSInterop;
 using Serilog;
 using System.Data;
+using System.Diagnostics;
+using System.Globalization;
 using System.Text.Json;
 using System.Threading;
 
@@ -59,40 +61,84 @@ public partial class BC14 : ComponentBase, IDisposable
    {
       LanguageNotifier.SubscribeLanguageChange(this);
       LanguageNotifier.SubscribeLanguageChange(grid);
-      ProjetsATI = await _projet.GotProjetsBc14();
-      ProjetsBC14 = await _projet.GotFichesBc14();
-      employeList = await _personnel.GotPersonnelList();
-      ressourceList = await _projet.GotRessourcesBc14();
 
+      var swTotal = Stopwatch.StartNew();
+
+      async Task<T> Timed<T>(string nom, Task<T> task)
+      {
+         var sw = Stopwatch.StartNew();
+         var res = await task;
+         sw.Stop();
+         Console.WriteLine($"[BC14]   - {nom}: {sw.ElapsedMilliseconds} ms");
+         return res;
+      }
+
+      // Les 4 appels en parallèle (indépendants)
+      var swFetch = Stopwatch.StartNew();
+      var tATI = Timed("ATI projets (api)", _projet.GotProjetsBc14());
+      var tBC14 = Timed("BC14 fiches (sync)", _projet.GotFichesBc14());
+      var tEmploye = Timed("Employés (api)", _personnel.GotPersonnelList());
+      var tRes = Timed("Ressources (sync)", _projet.GotRessourcesBc14());
+
+      await Task.WhenAll(tATI, tBC14, tEmploye, tRes);
+
+      ProjetsATI = tATI.Result;
+      ProjetsBC14 = tBC14.Result;
+      employeList = tEmploye.Result;
+      ressourceList = tRes.Result;
+      swFetch.Stop();
+      Console.WriteLine($"[BC14] Fetch réseau: {swFetch.ElapsedMilliseconds} ms " +
+         $"(ATI={ProjetsATI.Count()}, BC14={ProjetsBC14.Count()}, Employes={employeList.Count()}, Res={ressourceList.Count()})");
+
+      var swCompare = Stopwatch.StartNew();
       Compare();
+      swCompare.Stop();
+      Console.WriteLine($"[BC14] Compare(): {swCompare.ElapsedMilliseconds} ms ({CompList.Count} lignes)");
+
+      swTotal.Stop();
+      Console.WriteLine($"[BC14] TOTAL: {swTotal.ElapsedMilliseconds} ms");
 
       if (CompList.Count > 0)
       {
          isOK = true;
       }
-
-      //StateHasChanged();
-
    }
 
    public void Dispose() { LanguageNotifier.UnsubscribeLanguageChange(this); LanguageNotifier.UnsubscribeLanguageChange(grid); }
 
    private void Compare()
    {
-        FicheBC14 temp = new();
         try
         {
-            int i = 0;
+            // Index O(1) (évite les FirstOrDefault/First en scan linéaire dans la boucle)
+            var bc14ByNo = new Dictionary<string, FicheBC14>();
+            var bc14ByCompNumber = new Dictionary<string, FicheBC14>();
+            foreach (var x in ProjetsBC14)
+            {
+                if (!string.IsNullOrEmpty(x.No) && !bc14ByNo.ContainsKey(x.No))
+                    bc14ByNo[x.No] = x;
+                var comp = x.CompNumber;
+                if (!string.IsNullOrEmpty(comp) && !bc14ByCompNumber.ContainsKey(comp))
+                    bc14ByCompNumber[comp] = x;
+            }
+            var employesById = new Dictionary<int, EmployeList>();
+            foreach (var e in employeList)
+                if (!employesById.ContainsKey(e.Id))
+                    employesById[e.Id] = e;
+
             foreach (var p in ProjetsATI)
             {
                 FicheBC14 f;
                 bool isNotImpNumber = string.IsNullOrEmpty(p.ImpNumb);
-                if (isNotImpNumber) f = ProjetsBC14.FirstOrDefault(x => x.CompNumber == p.CompNumber);
-                else f = ProjetsBC14.FirstOrDefault(x => x.No == p.ImpNumb);
-                temp = f;
-                var employe = employeList.First(e => e.Id == p.RespAffaireId);
+                if (isNotImpNumber) bc14ByCompNumber.TryGetValue(p.CompNumber, out f);
+                else bc14ByNo.TryGetValue(p.ImpNumb, out f);
 
-                if (f != null && !string.IsNullOrEmpty(f.Person_Responsible) && int.Parse(f.Person_Responsible) != p.RespAffaireId && f.Responsable_Nom.ToLower() != employe.FullName.ToLower())
+                if (f == null) continue;
+
+                if (!employesById.TryGetValue(p.RespAffaireId, out var employe))
+                    continue;   // pas d'employé correspondant → on saute (évite le crash de .First())
+
+                if (!string.IsNullOrEmpty(f.Person_Responsible) && int.Parse(f.Person_Responsible) != p.RespAffaireId && !NomsEquivalents(f.Responsable_Nom, employe.FullName))
                 {
                     CompBC14 projet = new CompBC14
                     {
@@ -112,7 +158,7 @@ public partial class BC14 : ComponentBase, IDisposable
                     CompList.Add(projet);
 
                 }
-                else if (f != null && string.IsNullOrEmpty(f.Person_Responsible))
+                else if (string.IsNullOrEmpty(f.Person_Responsible))
                 {
                     Console.WriteLine($"ce client {f.Description} n'a pas de responsable");
                 }
@@ -127,6 +173,17 @@ public partial class BC14 : ComponentBase, IDisposable
             throw;
         }
 
+   }
+
+   // Compare deux noms en ignorant la casse ET les accents (é, ë, è… = e).
+   // Évite de signaler le même responsable orthographié différemment entre ATI et BC14
+   // (ex : "DENOËL Jean-Yves" == "DENOEL Jean-Yves").
+   private static bool NomsEquivalents(string a, string b)
+   {
+      if (string.IsNullOrEmpty(a) || string.IsNullOrEmpty(b)) return false;
+      return string.Compare(a.Trim(), b.Trim(),
+         CultureInfo.InvariantCulture,
+         CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase) == 0;
    }
 
    private async Task<bool> PatchOne(CompBC14 fiche)
@@ -218,8 +275,12 @@ public partial class BC14 : ComponentBase, IDisposable
    {
       var parameters = new Dictionary<string, object>();
       parameters.Add("Item", fiche);
-      parameters.Add("ExcludedProp", new List<string> { "Index" });
-      await modal.ShowAsync<ShowGeneric<CompBC14>>(localizer["Details du projet"] + " " + fiche.No, parameters: parameters);
+      await modal.ShowAsync<DetailsBC14>(localizer["Details du projet"] + " " + fiche.No, parameters: parameters);
+   }
+
+   private async void OpenAide()
+   {
+      await modal.ShowAsync<AideBC14>("Aide — Comparaison BC14");
    }
 
    //private async void OpenSelect(string no, int i)

@@ -14,13 +14,11 @@ namespace ATI_Projet_Components.Projets;
 public partial class CompStatut : ComponentBase, IDisposable
 {
    [Inject] private IProjet _projet { get; set; }
-   [Inject] private IPersonnel _personnel { get; set; }
    [Inject] private IStringLocalizer<PersonnelResource> localizer { get; set; }
    [Inject] private LanguageChangeNotifier LanguageNotifier { get; set; }
 
    private IEnumerable<ProjetBC14> ProjetsATI { get; set; }
    private IEnumerable<FicheBC14> ProjetsBC14 { get; set; }
-   private IEnumerable<EmployeList> employeList { get; set; }
    private IEnumerable<StatutProjet> statutsATI { get; set; }
 
    private List<CompStatutBC14> CompList = new List<CompStatutBC14>();
@@ -32,6 +30,7 @@ public partial class CompStatut : ComponentBase, IDisposable
    private bool isError = false;
    private string errorMessage = "";
    private int pageSize = 15;
+   private readonly int[] pageSizeItems = { 5, 15, 30, 50, 100 };
 
    // Mapping: ATI StatutProjet.Id → liste de Status_EEB BC14 acceptables
    private static readonly Dictionary<int, List<string>> MappingATIversEEB = new()
@@ -59,22 +58,30 @@ public partial class CompStatut : ComponentBase, IDisposable
       {
          var swTotal = Stopwatch.StartNew();
 
-         // Lancement des 4 appels réseau en parallèle (indépendants)
+         // Lancement des 4 appels réseau en parallèle (indépendants), chrono par appel
          var swFetch = Stopwatch.StartNew();
-         var tProjetsATI = _projet.GotProjetsCompStatut();
-         var tProjetsBC14 = _projet.GotAllFichesBc14();
-         var tEmploye = _personnel.GotPersonnelList();
-         var tStatuts = _projet.GotStatuts();
 
-         await Task.WhenAll(tProjetsATI, tProjetsBC14, tEmploye, tStatuts);
+         async Task<T> Timed<T>(string nom, Task<T> task)
+         {
+            var sw = Stopwatch.StartNew();
+            var res = await task;
+            sw.Stop();
+            Console.WriteLine($"[CompStatut]   - {nom}: {sw.ElapsedMilliseconds} ms");
+            return res;
+         }
+
+         var tProjetsATI = Timed("ATI projets (api)", _projet.GotProjetsCompStatut());
+         var tProjetsBC14 = Timed("BC14 jobs (sync ATI)", _projet.GotAllFichesBc14());
+         var tStatuts = Timed("Statuts (api)", _projet.GotStatuts());
+
+         await Task.WhenAll(tProjetsATI, tProjetsBC14, tStatuts);
 
          ProjetsATI = tProjetsATI.Result;
          ProjetsBC14 = tProjetsBC14.Result;
-         employeList = tEmploye.Result;
          statutsATI = tStatuts.Result;
          swFetch.Stop();
-         Console.WriteLine($"[CompStatut] Fetch réseau: {swFetch.ElapsedMilliseconds} ms " +
-            $"(ATI={ProjetsATI.Count()}, BC14={ProjetsBC14.Count()}, Employes={employeList.Count()}, Statuts={statutsATI.Count()})");
+         Console.WriteLine($"[CompStatut] Fetch réseau TOTAL: {swFetch.ElapsedMilliseconds} ms " +
+            $"(ATI={ProjetsATI.Count()}, BC14={ProjetsBC14.Count()}, Statuts={statutsATI.Count()})");
 
          var swCompare = Stopwatch.StartNew();
          Compare();
@@ -108,7 +115,6 @@ public partial class CompStatut : ComponentBase, IDisposable
 
    // Dictionnaires de lookup construits une fois avant la comparaison
    private Dictionary<int, string> _statutsDict;
-   private Dictionary<int, string> _employesDict;
    private Dictionary<string, FicheBC14> _bc14ByNo;
    private Dictionary<string, FicheBC14> _bc14ByCompNumber;
 
@@ -141,10 +147,6 @@ public partial class CompStatut : ComponentBase, IDisposable
             .GroupBy(s => s.Id)
             .ToDictionary(g => g.Key, g => g.First().Designation);
 
-         _employesDict = employeList
-            .GroupBy(e => e.Id)
-            .ToDictionary(g => g.Key, g => g.First().FullName);
-
          _bc14ByNo = new Dictionary<string, FicheBC14>();
          _bc14ByCompNumber = new Dictionary<string, FicheBC14>();
          foreach (var f in ProjetsBC14)
@@ -169,8 +171,6 @@ public partial class CompStatut : ComponentBase, IDisposable
             bool isMismatch = StatutsAreDifferent(p.SpId, f.Status_EEB);
             if (!isMismatch) continue;
 
-            string respATI = _employesDict.TryGetValue(p.RespAffaireId, out var nom) ? nom : "Inconnu";
-
             CompList.Add(new CompStatutBC14
             {
                No = f.No,
@@ -180,8 +180,6 @@ public partial class CompStatut : ComponentBase, IDisposable
                StatutATI = GetStatutATIDesignation(p.SpId),
                StatutEEB = f.Status_EEB ?? "",
                StatutBC14 = f.Status ?? "",
-               RespATI = respATI,
-               RespBC14 = f.Responsable_Nom ?? "",
                CompNumberATI = isNotImpNumber ? p.CompNumber : p.ImpNumb ?? p.CompNumber,
                CompNumberBC = f.CompNumber,
                IsStatutMismatch = isMismatch,

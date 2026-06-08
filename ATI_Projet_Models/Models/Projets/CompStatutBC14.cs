@@ -25,12 +25,6 @@ namespace ATI_Projet_Models.Models.Projets
       [DisplayName(@"Statut BC14")]
       public string StatutBC14 { get; set; }
 
-      [DisplayName(@"Responsable ATI")]
-      public string RespATI { get; set; }
-
-      [DisplayName(@"Responsable BC14")]
-      public string RespBC14 { get; set; }
-
       [DisplayName(@"Numéro utilisé pour comparer (ATI)")]
       public string CompNumberATI { get; set; }
 

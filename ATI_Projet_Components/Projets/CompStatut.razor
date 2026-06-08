@@ -22,7 +22,7 @@ else
             AllowSorting="true"
             PageSize="@pageSize"
             PageSizeSelectorVisible="true"
-            PageSizeSelectorItems="@(new int[] { 5,15,30,50,100 })"
+            PageSizeSelectorItems="pageSizeItems"
             ItemsPerPageText="@localizer["Eléments par page"]"
             FiltersRowCssClass="bg-dark text-white bg-opacity-25 border-bottom-0"
             HeaderRowCssClass="bg-dark text-white bg-opacity-50 border-bottom-0 gridHead"
@@ -37,13 +37,13 @@ else
          <GridColumn TItem="CompStatutBC14" HeaderText="@localizer["Nom du Projet (ATI)"]" PropertyName="Designation" SortKeySelector="i => i.Designation">
             @context.Designation
          </GridColumn>
-         <GridColumn TItem="CompStatutBC14" HeaderText="@(localizer["Statut"] + " ATI")" PropertyName="StatutATI" SortKeySelector="i => i.StatutATI" ColumnClass="@(x => x.IsStatutMismatch ? "fw-semibold text-danger" : "fw-semibold")">
+         <GridColumn TItem="CompStatutBC14" HeaderText="@(localizer["Statut"] + " ATI (AtiProjets)")" PropertyName="StatutATI" SortKeySelector="i => i.StatutATI" ColumnClass="@(x => x.IsStatutMismatch ? "fw-semibold text-danger" : "fw-semibold")">
             @context.StatutATI
          </GridColumn>
-         <GridColumn TItem="CompStatutBC14" HeaderText="@(localizer["Statut"] + " EEB")" PropertyName="StatutEEB" SortKeySelector="i => i.StatutEEB" ColumnClass="@(x => x.IsStatutMismatch ? "fw-semibold text-danger" : "fw-semibold")">
+         <GridColumn TItem="CompStatutBC14" HeaderText="@(localizer["Statut"] + " EEB (BC14)")" PropertyName="StatutEEB" SortKeySelector="i => i.StatutEEB" ColumnClass="@(x => x.IsStatutMismatch ? "fw-semibold text-danger" : "fw-semibold")">
             @context.StatutEEB
          </GridColumn>
-         <GridColumn TItem="CompStatutBC14" HeaderText="@(localizer["Statut"] + " BC14")" PropertyName="StatutBC14" SortKeySelector="i => i.StatutBC14" ColumnClass="@(x => "text-muted")">
+         <GridColumn TItem="CompStatutBC14" HeaderText="@(localizer["Statut"] + " BC14 (BC14)")" PropertyName="StatutBC14" SortKeySelector="i => i.StatutBC14" ColumnClass="@(x => "text-muted")">
             @context.StatutBC14
          </GridColumn>
          <GridColumn TItem="CompStatutBC14" HeaderText="Actions" Filterable="false">

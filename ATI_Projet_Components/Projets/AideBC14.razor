@@ -1,0 +1,34 @@
+<div>
+    <h5 class="mb-3">Comparaison ATI / BC14</h5>
+    <p>
+        Cette page compare les responsables de projets entre le système ATI et BC14.
+        Elle affiche uniquement les projets dont le responsable diffère entre les deux systèmes.
+    </p>
+
+    <h6 class="mt-4"><i class="bi bi-exclamation-triangle-fill text-warning me-1"></i> Noms en rouge</h6>
+    <p>
+        Un responsable affiché en rouge signifie qu'il n'existe plus ou n'est plus actif dans ATI Projets.
+        La synchronisation vers BC14 est bloquée pour cette ligne. Vous devez d'abord corriger le responsable
+        dans ATI Projets, puis revenir ici pour synchroniser vers BC14.
+    </p>
+
+    <h6 class="mt-4"><i class="bi bi-info-circle-fill text-info me-1"></i> Boutons d'action par ligne</h6>
+    <ul>
+        <li><span class="badge bg-primary"><i class="bi bi-info"></i></span> — Affiche les détails complets du projet.</li>
+        <li><span class="badge bg-success"><i class="bi bi-check-lg"></i></span> — Synchronise le responsable ATI vers BC14 pour cette ligne.</li>
+        <li>
+            <span class="badge bg-danger"><i class="bi bi-x"></i></span> — Retire la ligne de la liste.
+            Cela ne supprime rien dans BC14, la ligne réapparaîtra au prochain chargement si la différence persiste.
+        </li>
+    </ul>
+
+    <h6 class="mt-4"><i class="bi bi-check-circle-fill text-success me-1"></i> Actions groupées</h6>
+    <p>
+        Sélectionnez plusieurs lignes via les cases à cocher, puis utilisez les boutons
+        « Synchroniser la sélection » ou « Retirer la sélection » pour agir en masse.
+    </p>
+    <p>
+        Si la case « Tout sélectionner » est grisée, cela signifie que certaines lignes ne peuvent pas être
+        sélectionnées pour la synchronisation (responsable en rouge). Corrigez d'abord ces lignes dans ATI Projets.
+    </p>
+</div>
